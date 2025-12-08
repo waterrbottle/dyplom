@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4mnaxjttyxjh"]
+
+[ext_resource type="PackedScene" uid="uid://bqmvvc2ih4t7r" path="res://scenes/MyComputer.tscn" id="1_viy3g"]
+[ext_resource type="Shader" uid="uid://bu2iik1wswbas" path="res://scenes/screen.gdshader" id="2_wb02a"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bhgq5"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t2m3u"]
+resource_local_to_scene = true
+shader = ExtResource("2_wb02a")
+shader_parameter/tex = SubResource("ViewportTexture_bhgq5")
+shader_parameter/mask_type = 5
+shader_parameter/curve = 0.1190000056525
+shader_parameter/color_offset = 0.170000031825
+shader_parameter/mask_brightness = 1.0
+shader_parameter/aspect = 0.5
+
+[node name="MyComputerer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1152, 648)
+
+[node name="MyComputer" parent="SubViewport" instance=ExtResource("1_viy3g")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_t2m3u")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

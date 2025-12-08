@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccg2insd1jt0s"]
+
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="1_e8qk0"]
+[ext_resource type="Script" uid="uid://6pn8piyioe6o" path="res://scenes/apps/notepad/app_code.gd" id="2_52xsm"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="3_52xsm"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="4_o03j8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w8k3o"]
+font = ExtResource("4_o03j8")
+font_color = Color(0, 0.032499813, 0.65, 1)
+
+[node name="AppMaster" type="Node2D"]
+script = ExtResource("2_52xsm")
+
+[node name="AppCode" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="AppCode"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="AppCode/ColorRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 27.0
+offset_right = -6.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_e8qk0")
+text = "fffff"
+wrap_mode = 1
+
+[node name="Panel" type="Panel" parent="AppCode"]
+visible = false
+texture_filter = 2
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+theme = ExtResource("1_e8qk0")
+
+[node name="Label" type="Label" parent="AppCode/Panel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 211.0
+offset_bottom = 26.0
+text = "you are browsing a file. Read only."
+label_settings = SubResource("LabelSettings_w8k3o")
+
+[node name="Leveldata" parent="." instance=ExtResource("3_52xsm")]
+scenesize = Vector2(400, 200)
+windowname = "notepad.exe"
+type = "explorer"

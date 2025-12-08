@@ -1,0 +1,54 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cgmct2d0jwq0v"]
+
+[ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="1_exhw4"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="1_t5o7e"]
+[ext_resource type="Texture2D" uid="uid://b5jo2ayyf14op" path="res://assets/images/ui/windows/inverted.png" id="2_6bwuq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6bwuq"]
+load_path = "res://.godot/imported/bgpanel.png-fd42ffc2508523eab1647c410bc95ee2.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3k20"]
+texture = SubResource("CompressedTexture2D_6bwuq")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+modulate_color = Color(0.92, 0.92, 0.92, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6bwuq"]
+texture = ExtResource("1_exhw4")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t5o7e"]
+texture = ExtResource("2_6bwuq")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5o7e"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3k20"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_er58c"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[resource]
+Button/fonts/font = ExtResource("1_t5o7e")
+Button/styles/hover = SubResource("StyleBoxTexture_p3k20")
+Button/styles/normal = SubResource("StyleBoxTexture_6bwuq")
+Button/styles/pressed = SubResource("StyleBoxTexture_t5o7e")
+Panel/styles/panel = SubResource("StyleBoxTexture_6bwuq")
+TextEdit/colors/caret_color = Color(0, 0.18333316, 1, 1)
+TextEdit/colors/font_color = Color(0, 0, 0, 1)
+TextEdit/colors/font_readonly_color = Color(0.29, 0.29, 0.29, 1)
+TextEdit/font_sizes/font_size = 16
+TextEdit/fonts/font = ExtResource("1_t5o7e")
+TextEdit/styles/focus = SubResource("StyleBoxFlat_t5o7e")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_p3k20")
+TextEdit/styles/read_only = SubResource("StyleBoxFlat_er58c")

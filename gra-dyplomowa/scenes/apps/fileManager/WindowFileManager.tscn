@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://bweuy5c10gc1l"]
+
+[ext_resource type="Script" uid="uid://dgxdx2v8ttdv" path="res://scenes/apps/fileManager/window_file_manager.gd" id="1_3pyc6"]
+[ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="2_tvxw8"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="3_a5r02"]
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="4_wquea"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="5_tvxw8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_40gkv"]
+texture = ExtResource("2_tvxw8")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40gkv"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yt8l5"]
+font = ExtResource("3_a5r02")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[node name="WindowFileManager" type="Node2D"]
+script = ExtResource("1_3pyc6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.54, 0.54, 0.54, 1)
+
+[node name="Panel2" type="Panel" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_40gkv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel2"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_bottom = 34.0
+grow_horizontal = 2
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Panel2/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(455, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_40gkv")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Panel2/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -2.649994
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_40gkv")
+
+[node name="dirlabel" type="Label" parent="CanvasLayer/Panel2/HBoxContainer/Panel2"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = -5.0
+offset_bottom = 27.0
+grow_horizontal = 2
+text = "/MyComputer"
+label_settings = SubResource("LabelSettings_yt8l5")
+clip_text = true
+
+[node name="BackButton" type="Button" parent="CanvasLayer/Panel2/HBoxContainer"]
+custom_minimum_size = Vector2(27, 27)
+layout_mode = 2
+theme = ExtResource("4_wquea")
+
+[node name="VBoxContainer" type="GridContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 54.0
+offset_right = -1.0
+offset_bottom = -3.0
+columns = 9
+
+[node name="Leveldata" parent="." instance=ExtResource("5_tvxw8")]
+scenesize = Vector2(500, 300)
+windowname = "file"
+type = "explorer"
+
+[connection signal="pressed" from="CanvasLayer/Panel2/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

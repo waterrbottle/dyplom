@@ -1,0 +1,95 @@
+[gd_scene load_steps=14 format=3 uid="uid://c4ur3tbgxukjd"]
+
+[ext_resource type="Texture2D" uid="uid://dp1ijobw7tlmg" path="res://assets/images/ui/icons/dokument.png" id="1_kdjss"]
+[ext_resource type="Script" uid="uid://ce4n7li1qbunw" path="res://objects/TheWindowSystem/windowFileManager/FileIcon/fileicon.gd" id="1_nr0wp"]
+[ext_resource type="Shader" uid="uid://c8gnyhvoj6jiw" path="res://resources/shaders/gupishader.gdshader" id="2_eauu2"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="2_kdjss"]
+[ext_resource type="Texture2D" uid="uid://1wkon13xccrm" path="res://assets/images/ui/icons/Sprite-folder-pelny copy.png" id="3_nr0wp"]
+
+[sub_resource type="Gradient" id="Gradient_tsewj"]
+offsets = PackedFloat32Array(0, 0.9904762)
+colors = PackedColorArray(0.012421018, 0, 0.18738744, 1, 0.47068137, 0.24853423, 0.79981107, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3giw7"]
+gradient = SubResource("Gradient_tsewj")
+
+[sub_resource type="Gradient" id="Gradient_e77ct"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1ny7j"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xt06e"]
+noise = SubResource("FastNoiseLite_1ny7j")
+color_ramp = SubResource("Gradient_e77ct")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e7cp4"]
+shader = ExtResource("2_eauu2")
+shader_parameter/position = Vector2(0.25, -0.16)
+shader_parameter/radius = 0.72
+shader_parameter/borderWidth = 0.2
+shader_parameter/burnMult = 0.34
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_xt06e")
+shader_parameter/burnColor = Color(0, 0, 0, 1)
+shader_parameter/pixel_size = 0.004
+shader_parameter/blend_steps = 8.5
+shader_parameter/colorCurve = SubResource("GradientTexture2D_3giw7")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jj43p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kdjss")
+}],
+"loop": true,
+"name": &"document",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nr0wp")
+}],
+"loop": true,
+"name": &"folder",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nr0wp"]
+line_spacing = -6.09
+font = ExtResource("2_kdjss")
+font_size = 15
+font_color = Color(0, 0, 0, 1)
+
+[node name="Fileicon" type="Control"]
+custom_minimum_size = Vector2(50, 70)
+layout_mode = 3
+anchor_right = 0.043
+anchor_bottom = 0.108
+offset_right = 0.4639969
+offset_bottom = 0.01599884
+script = ExtResource("1_nr0wp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 2
+material = SubResource("ShaderMaterial_e7cp4")
+position = Vector2(21.895, 19.644999)
+scale = Vector2(0.5032813, 0.51109374)
+sprite_frames = SubResource("SpriteFrames_jj43p")
+animation = &"folder"
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_top = 35.0
+offset_right = 48.0
+offset_bottom = 86.0
+text = "FileName
+gg"
+label_settings = SubResource("LabelSettings_nr0wp")
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 51.0
+offset_bottom = 54.0
+focus_mode = 0
+flat = true

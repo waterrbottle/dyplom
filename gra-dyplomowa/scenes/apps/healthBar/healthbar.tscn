@@ -1,0 +1,90 @@
+[gd_scene load_steps=14 format=3 uid="uid://8th8x04gfalc"]
+
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="1_1aadq"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="1_1m51j"]
+[ext_resource type="Script" uid="uid://dbgrc31j6e72x" path="res://scenes/apps/healthBar/healthbar.gd" id="1_mqvc5"]
+[ext_resource type="Shader" uid="uid://my032d0yw2j6" path="res://resources/shaders/funny.gdshader" id="2_sikvp"]
+[ext_resource type="Texture2D" uid="uid://dfii4ayhtt0pq" path="res://assets/images/bitsoda-1x.png" id="3_e72gk"]
+[ext_resource type="Texture2D" uid="uid://dp35rkdx45nrm" path="res://assets/images/bayer16.png" id="4_coeja"]
+[ext_resource type="Texture2D" uid="uid://csutddenuu67l" path="res://assets/images/ui/tymon/Screenshot 2025-11-17 at 17.25.39.png" id="7_8k8qr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1aadq"]
+bg_color = Color(0.11, 0.11, 0.11, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1m51j"]
+bg_color = Color(1, 0.27999997, 0.27999997, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_juj71"]
+shader = ExtResource("2_sikvp")
+shader_parameter/u_dither_tex = ExtResource("4_coeja")
+shader_parameter/u_color_tex = ExtResource("3_e72gk")
+shader_parameter/u_bit_depth = 130
+shader_parameter/u_contrast = 0.5
+shader_parameter/u_offset = -1.81
+shader_parameter/u_dither_size = 2
+
+[sub_resource type="Animation" id="Animation_kn8wh"]
+resource_name = "tymus"
+length = 4.64
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/u_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5, 1.76]
+}
+
+[sub_resource type="Animation" id="Animation_sq6sb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/u_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.81]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hxydp"]
+_data = {
+&"RESET": SubResource("Animation_sq6sb"),
+&"tymus": SubResource("Animation_kn8wh")
+}
+
+[node name="Healthbar" type="Node2D"]
+script = ExtResource("1_mqvc5")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_right = 400.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("1_1m51j")
+theme_override_styles/background = SubResource("StyleBoxFlat_1aadq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1m51j")
+value = 30.0
+
+[node name="Leveldata" parent="." instance=ExtResource("1_1aadq")]
+scenesize = Vector2(400, 50)
+windowname = "healthbar.exe"
+type = "explorer"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_juj71")
+position = Vector2(215, -333)
+scale = Vector2(0.92763156, 0.53956836)
+texture = ExtResource("7_8k8qr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hxydp")
+}
+autoplay = "tymus"

@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://b834qsi8vm82e"]
+
+[ext_resource type="Script" uid="uid://bxtgmeq27j4w7" path="res://objects/player/playerspawnpart.gd" id="1_w2n6g"]
+
+[sub_resource type="Gradient" id="Gradient_cqmt1"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mpqca"]
+gradient = SubResource("Gradient_cqmt1")
+fill_from = Vector2(0.0021367522, 0.014957265)
+
+[sub_resource type="Gradient" id="Gradient_5m1fd"]
+offsets = PackedFloat32Array(0.67625, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gnkmh"]
+gradient = SubResource("Gradient_5m1fd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xhsuc"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 30.0
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+inherit_velocity_ratio = 0.066
+velocity_pivot = Vector3(0, 1, 0)
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_max = 68.35
+gravity = Vector3(0, 98, 0)
+scale_min = 0.049999997
+scale_max = 0.099999994
+color = Color(1, 0.35000002, 0.35000002, 1)
+color_ramp = SubResource("GradientTexture1D_gnkmh")
+
+[node name="GPUParticles2D2" type="GPUParticles2D"]
+emitting = false
+amount = 50
+texture = SubResource("GradientTexture2D_mpqca")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_xhsuc")
+
+[node name="Playerspawnpart" type="Node2D" parent="."]
+script = ExtResource("1_w2n6g")
+
+[node name="Timer" type="Timer" parent="Playerspawnpart"]
+wait_time = 2.0
+
+[connection signal="timeout" from="Playerspawnpart/Timer" to="Playerspawnpart" method="_on_timer_timeout"]

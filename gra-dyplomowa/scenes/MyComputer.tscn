@@ -1,0 +1,468 @@
+[gd_scene load_steps=39 format=3 uid="uid://bqmvvc2ih4t7r"]
+
+[ext_resource type="Script" uid="uid://bski7mfsjr2u0" path="res://scenes/system.gd" id="1_8c8no"]
+[ext_resource type="Shader" uid="uid://c3twmf158t8ym" path="res://resources/shaders/retro.gdshader" id="1_tlqso"]
+[ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="2_7w4bu"]
+[ext_resource type="PackedScene" uid="uid://cydwpoipuoe8x" path="res://objects/TheWindowSystem/windowUI.tscn" id="2_ng37i"]
+[ext_resource type="Texture2D" uid="uid://csutddenuu67l" path="res://assets/images/ui/tymon/Screenshot 2025-11-17 at 17.25.39.png" id="2_tlqso"]
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="2_vcjmw"]
+[ext_resource type="FontFile" uid="uid://c27yrvbvkjcu2" path="res://assets/fonts/Jersey_15/Jersey15-Regular.ttf" id="3_e14vx"]
+[ext_resource type="Script" uid="uid://c413ri1j8dyju" path="res://objects/TheWindowSystem/windowFileManager/desktop_file_manager.gd" id="4_62mc7"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="8_y8hb4"]
+[ext_resource type="PackedScene" uid="uid://bv25h3t84m4of" path="res://objects/player/player.tscn" id="10_62mc7"]
+
+[sub_resource type="Gradient" id="Gradient_dcjl0"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ng37i"]
+gradient = SubResource("Gradient_dcjl0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7w4bu"]
+shader = ExtResource("1_tlqso")
+shader_parameter/colorreduceR = 1.22
+shader_parameter/colorreduceG = 2.59
+shader_parameter/colorreduceB = 2.19
+shader_parameter/colorStrength = 1.76
+
+[sub_resource type="Gradient" id="Gradient_ng37i"]
+colors = PackedColorArray(0.5991008, 0.5991008, 0.5991008, 1, 0.92, 0.92, 0.92, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vcjmw"]
+gradient = SubResource("Gradient_ng37i")
+fill_from = Vector2(1, 0.9017094)
+fill_to = Vector2(0, 0.4059829)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e14vx"]
+texture = ExtResource("2_7w4bu")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="Gradient" id="Gradient_73kuy"]
+colors = PackedColorArray(0, 0.039215688, 0.7490196, 1, 0, 0.037499785, 0.75, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ng37i"]
+gradient = SubResource("Gradient_73kuy")
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0.8269231, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tlqso"]
+texture = ExtResource("2_7w4bu")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_7w4bu"]
+font = ExtResource("3_e14vx")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7w4bu"]
+texture = ExtResource("2_7w4bu")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e14vx"]
+size = Vector2(4084, 27)
+
+[sub_resource type="Gradient" id="Gradient_8c8no"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.0022522523, 1)
+colors = PackedColorArray(0.74, 0.7876666, 1, 1, 0, 0.036999788, 0.74, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y8hb4"]
+gradient = SubResource("Gradient_8c8no")
+width = 32
+height = 32
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cbliw"]
+font = ExtResource("8_y8hb4")
+font_size = 26
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_62mc7"]
+viewport_path = NodePath("Player/SubViewport")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4flbx"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i3pqv"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_onrkg"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i3pqv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hqtel"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "velocity.length() > .2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sweqy"]
+xfade_time = 0.3
+switch_mode = 1
+advance_mode = 2
+advance_expression = "velocity.length() < 0.2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2hs0m"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "!is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1jxqw"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4flbx"]
+xfade_time = 0.3
+advance_mode = 2
+advance_expression = "!is_on_floor() "
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_eoi4i"]
+resource_local_to_scene = true
+states/Start/position = Vector2(218, 76.5)
+states/idle/node = SubResource("AnimationNodeAnimation_4flbx")
+states/idle/position = Vector2(373.5, 83.029785)
+states/jump/node = SubResource("AnimationNodeAnimation_i3pqv")
+states/jump/position = Vector2(421.5, 177.5)
+states/run/node = SubResource("AnimationNodeAnimation_onrkg")
+states/run/position = Vector2(506.5, 82.91211)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_i3pqv"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_hqtel"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_sweqy"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_2hs0m"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_1jxqw"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_4flbx")]
+graph_offset = Vector2(125.96984, 34.7625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62mc7"]
+size = Vector2(20, 1360)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eoi4i"]
+size = Vector2(4244, 38)
+
+[node name="MyComputer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8c8no")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.36225006, 0.315, 0.45, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+modulate = Color(0.36352, 0.3552, 0.48, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.13, 0.13)
+texture = SubResource("GradientTexture1D_ng37i")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_7w4bu")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -337.0
+offset_top = -250.0
+offset_right = 6584.684
+offset_bottom = 3907.2632
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.19, 0.19)
+texture = ExtResource("2_tlqso")
+stretch_mode = 1
+
+[node name="DesktopFiles" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_62mc7")
+
+[node name="GridContainer" type="GridContainer" parent="DesktopFiles"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="desktopfocus" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+mouse_filter = 1
+flat = true
+
+[node name="Windows" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Control4" parent="Windows" instance=ExtResource("2_ng37i")]
+layout_mode = 1
+scene = "res://scenes/levels/level.tscn"
+
+[node name="Control6" parent="Windows" instance=ExtResource("2_ng37i")]
+layout_mode = 1
+scene = "res://scenes/apps/notepad/notepad.tscn"
+
+[node name="Control7" parent="Windows" instance=ExtResource("2_ng37i")]
+layout_mode = 1
+scene = "res://scenes/levels/level_key.tscn"
+
+[node name="Control5" parent="Windows" instance=ExtResource("2_ng37i")]
+layout_mode = 1
+scene = "res://scenes/apps/healthBar/healthbar.tscn"
+
+[node name="bottobar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -46.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureRect2" type="TextureRect" parent="bottobar"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -41.0
+offset_right = 2.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_vcjmw")
+expand_mode = 1
+
+[node name="Panel2" type="Panel" parent="bottobar"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_e14vx")
+
+[node name="TextureRect" type="TextureRect" parent="bottobar"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -40.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_ng37i")
+expand_mode = 1
+
+[node name="Startbutton" type="Button" parent="bottobar"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0000005
+offset_top = -3.0
+offset_right = 140.29413
+offset_bottom = 38.176514
+grow_vertical = 2
+scale = Vector2(0.51, 0.51)
+focus_mode = 0
+theme = ExtResource("2_vcjmw")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxTexture_tlqso")
+text = "start!"
+
+[node name="TimeLabel" type="Label" parent="bottobar"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -5.0
+offset_right = -4.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "12:37"
+label_settings = SubResource("LabelSettings_7w4bu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="bottobar"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -25.0
+offset_right = -43.0
+offset_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("2_vcjmw")
+theme_override_styles/panel = SubResource("StyleBoxTexture_7w4bu")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bottobar"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottobar/StaticBody2D"]
+position = Vector2(2032, 27.5)
+shape = SubResource("RectangleShape2D_e14vx")
+
+[node name="startmenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_top = 0.532
+anchor_right = 0.148
+anchor_bottom = 0.95400006
+offset_top = 0.26400757
+offset_right = 0.5039978
+offset_bottom = -0.1920166
+
+[node name="Panel" type="Panel" parent="startmenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_vcjmw")
+
+[node name="TextureRect" type="TextureRect" parent="startmenu/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.023000002
+anchor_right = 0.21100001
+anchor_bottom = 0.9850001
+offset_left = 0.066999674
+offset_top = 4.0
+offset_right = -0.08100128
+offset_bottom = 0.0949707
+texture = SubResource("GradientTexture2D_y8hb4")
+
+[node name="Label" type="Label" parent="startmenu/Panel"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 263.0
+offset_right = 156.0
+offset_bottom = 290.0
+rotation = -1.5707964
+text = "well hello there!"
+label_settings = SubResource("LabelSettings_cbliw")
+
+[node name="Player" parent="." instance=ExtResource("10_62mc7")]
+position = Vector2(300, 600)
+
+[node name="TextureRect" parent="Player" index="2"]
+texture = SubResource("ViewportTexture_62mc7")
+
+[node name="AnimationTree" parent="Player" index="3"]
+tree_root = SubResource("AnimationNodeStateMachine_eoi4i")
+
+[node name="Camera2D" parent="Player" index="5"]
+enabled = false
+
+[node name="leftsidewall" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="leftsidewall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leftsidewall/StaticBody2D2"]
+position = Vector2(0, 377)
+shape = SubResource("RectangleShape2D_62mc7")
+
+[node name="leftsidewall2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="leftsidewall2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leftsidewall2/StaticBody2D2"]
+position = Vector2(52, 378)
+shape = SubResource("RectangleShape2D_62mc7")
+
+[node name="topwall" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="topwall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="topwall/StaticBody2D2"]
+position = Vector2(2108, -11)
+shape = SubResource("RectangleShape2D_eoi4i")
+
+[connection signal="pressed" from="desktopfocus" to="." method="_on_desktopfocus_pressed"]
+[connection signal="pressed" from="bottobar/Startbutton" to="." method="_on_startbutton_pressed"]
+
+[editable path="Player"]
