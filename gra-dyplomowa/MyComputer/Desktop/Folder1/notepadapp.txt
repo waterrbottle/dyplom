@@ -1,0 +1,7 @@
+app-redirect
+scene
+res://scenes/apps/notepad/notepad.tscn
+icon
+res://assets/images/ui/tymon/20250713_185202.jpg
+name
+notepad

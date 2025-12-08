@@ -8,10 +8,13 @@ var velocityhist := 0.0
 var wallfever = false
 var active = true
 var particlescene = load("res://objects/player/playerspawnpart.tscn")
+
+
 func _physics_process(delta: float) -> void:
 
-	Global.playervars["position"] = global_position
+	
 	if active == true:
+		Global.playervars["position"] = global_position
 		if is_on_wall():
 			if !is_on_floor():
 				if Input.is_key_pressed(KEY_SPACE):
@@ -97,3 +100,8 @@ func spawn():
 	var inst = particlescene.instantiate()
 	inst.emitting = true
 	#add_child(inst)
+
+func damage(amount: int):
+	velocity.x = -500
+	velocity.y = -500
+	Global.playervars["health"] -= amount

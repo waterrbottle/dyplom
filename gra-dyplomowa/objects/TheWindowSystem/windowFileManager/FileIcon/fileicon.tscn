@@ -24,7 +24,7 @@ color_ramp = SubResource("Gradient_e77ct")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e7cp4"]
 shader = ExtResource("2_eauu2")
 shader_parameter/position = Vector2(0.25, -0.16)
-shader_parameter/radius = 0.72
+shader_parameter/radius = 0.0
 shader_parameter/borderWidth = 0.2
 shader_parameter/burnMult = 0.34
 shader_parameter/noiseTexture = SubResource("NoiseTexture2D_xt06e")

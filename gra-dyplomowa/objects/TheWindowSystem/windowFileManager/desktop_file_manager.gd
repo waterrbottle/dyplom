@@ -52,6 +52,10 @@ func update():
 		var inst = icon.instantiate()
 		inst.get_child(0).play("document")
 		inst.type = "document"
+		
+		
+		
+		
 		inst.get_child(1).text = str(file)
 		$GridContainer.add_child(inst)
 

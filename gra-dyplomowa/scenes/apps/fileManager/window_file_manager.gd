@@ -54,6 +54,11 @@ func update():
 		inst.get_child(0).play("document")
 		inst.type = "document"
 		inst.get_child(1).text = str(file)
+		
+		var filer = FileAccess.open(dirstring+file, FileAccess.READ)
+		var content = filer.get_as_text()
+		content.get_slice("/n",1)
+		
 		if (file.get_extension()) == "png" or file.get_extension() == "jpg" or file.get_extension() == "svg" or file.get_extension() == "webp":
 			inst.subtype = "image"
 		
