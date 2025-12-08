@@ -1,0 +1,7 @@
+app-redirect
+scene
+res://scenes/apps/ImageViewer/imageviewer.tscn
+icon
+res://icon.svg
+name
+imageViewer.exe

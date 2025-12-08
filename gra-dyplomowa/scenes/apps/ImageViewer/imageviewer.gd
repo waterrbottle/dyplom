@@ -1,13 +1,19 @@
 extends Node2D
-var texturepath = "res://assets/a3095c92-7acb-43ac-a006-679ab8d1bb55_image8.png"
+var texturepath = "res://icon.svg"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	loadtexture()
+	pass
 	
 func loadtexture():
-	var size = $CanvasLayer/TextureRect.texture.get_size()
+	if texturepath != "":
+		loadc()
+
+
+func loadc():
 	$CanvasLayer/TextureRect.texture = load(texturepath)
+	var size = $CanvasLayer/TextureRect.texture.get_size()
+	
 	var dzielnik = 1
 	var checksize = size.x
 	

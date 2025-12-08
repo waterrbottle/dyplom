@@ -1,0 +1,7 @@
+app-redirect
+scene
+res://scenes/levels/level_key.tscn
+icon
+res://icon.svg
+name
+level-1-2.exe

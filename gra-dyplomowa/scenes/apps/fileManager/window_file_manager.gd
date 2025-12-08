@@ -16,7 +16,8 @@ func updatedirstring():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if 	get_parent().get_parent().get_parent().active == true:
+
+	if get_parent().get_parent().get_parent().active == true:
 		for n in $CanvasLayer/VBoxContainer.get_children():
 			if n.get_child(2).is_pressed():
 				if get_parent().get_parent().get_parent().acceptinput == true:
@@ -37,11 +38,19 @@ func _process(delta: float) -> void:
 								Global.addwindow("res://scenes/apps/notepad/notepad.tscn", n.get_child(1).text, [content, true])
 							if n.subtype == "image":
 								Global.addwindow("res://scenes/apps/ImageViewer/imageviewer.tscn", n.get_child(1).text, [dirstring + n.get_child(1).text])
+					if n.type == "app":
+						if Input.is_action_just_pressed("click"):
+							Input.action_release("click")
+							get_parent().get_parent().get_parent().active = false
+							print("data")
+						
+							Global.addwindow(n.scenepath, n.get_child(1).text, (n.adata))
 						
 	%dirlabel.text = dirstring
 
 
 func update():
+	
 	var dir := DirAccess.open(dirstring)
 	if dir == null: printerr("Could not open folder"); return
 	
@@ -56,9 +65,28 @@ func update():
 		inst.get_child(1).text = str(file)
 		
 		var filer = FileAccess.open(dirstring+file, FileAccess.READ)
-		var content = filer.get_as_text()
-		content.get_slice("/n",1)
 		
+		var content = filer.get_line()
+		
+		if content=="app-redirect":
+			inst.type = "app"
+			
+			for n in range(10):
+			
+				var contenti = filer.get_line()
+				print(contenti)
+				if n == 1:
+					inst.scenepath = str(contenti)
+				if n == 5:
+					inst.get_child(1).text = str(contenti)
+				if n == 3:
+
+					inst.image(contenti)
+				if n == 7:
+					if contenti != "":
+						inst.adata= str_to_var(contenti)
+					
+						
 		if (file.get_extension()) == "png" or file.get_extension() == "jpg" or file.get_extension() == "svg" or file.get_extension() == "webp":
 			inst.subtype = "image"
 		

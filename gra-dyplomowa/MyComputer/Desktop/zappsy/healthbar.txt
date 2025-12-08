@@ -1,0 +1,7 @@
+app-redirect
+scene
+res://scenes/apps/healthBar/healthbar.tscn
+icon
+res://icon.svg
+name
+healthbar.exe
