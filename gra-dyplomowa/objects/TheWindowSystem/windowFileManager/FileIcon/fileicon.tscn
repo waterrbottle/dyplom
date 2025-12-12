@@ -68,7 +68,7 @@ offset_bottom = 0.01599884
 script = ExtResource("1_nr0wp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 2
+texture_filter = 1
 material = SubResource("ShaderMaterial_e7cp4")
 position = Vector2(21.895, 19.644999)
 scale = Vector2(0.5032813, 0.51109374)
@@ -81,8 +81,7 @@ layout_mode = 0
 offset_top = 35.0
 offset_right = 48.0
 offset_bottom = 86.0
-text = "FileName
-gg"
+text = "FileName"
 label_settings = SubResource("LabelSettings_nr0wp")
 horizontal_alignment = 1
 autowrap_mode = 1
@@ -95,6 +94,7 @@ focus_mode = 0
 flat = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = 6.0
 offset_top = 3.0
