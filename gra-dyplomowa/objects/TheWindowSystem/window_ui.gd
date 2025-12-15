@@ -7,6 +7,7 @@ var active = false
 var appscene = null
 var acceptinput = false
 var appvalid = false
+var  front = false # activates window on start
 @export var nameoverwrite = ""
 @onready var scenepath = $Panel/SubViewport
 # Called when the node enters the scene tree for the first time.
@@ -39,7 +40,11 @@ func spawnapp():
 		Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", ["cant open the scene. file " +str(scene) +" does not exist.",true])
 		queue_free()
 func _ready() -> void:
-	
+	if front == true:
+		active = true
+		Global.ondesktop = false
+		move_to_front()
+		get_parent().get_parent().updateactivewindow()
 	$Panel.position = Vector2(randi_range(1,500),randi_range(1,500))
 	if $Panel/SubViewport.get_child_count() == 0:
 		spawnapp()

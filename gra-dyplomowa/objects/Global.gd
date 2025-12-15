@@ -22,7 +22,7 @@ func addwindow(scene: String, namee, content):
 	var inst = scn.instantiate()
 	inst.scene = scene
 	inst.nameoverwrite = namee
-	
+	inst.front = true
 	inst.get_child(0).position = get_viewport().get_visible_rect().size/2 - inst.get_child(0).size /2
 	if scene == "res://scenes/apps/fileManager/WindowFileManager.tscn":
 		inst.spawnapp()

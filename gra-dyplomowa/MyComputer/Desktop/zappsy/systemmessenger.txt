@@ -1,0 +1,9 @@
+app-redirect
+scene
+res://scenes/apps/sysmessenger/sysmessenger.tscn
+icon
+res://assets/images/ui/icons/17086-256x256x32.png
+name
+system_messenger.exe
+data-injection
+["welcome to system messenger! this app will inform you when an error occurs.",false]

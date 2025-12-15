@@ -7,6 +7,7 @@ var adata = ["", false]
 func _ready() -> void:
 	pass # Replace with function body.
 func image(img):
+	$AnimatedSprite2D.hide()
 	$TextureRect.texture = load(img)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,7 +1,7 @@
 app-redirect
 scene
-res://scenes/levels/level.tscn
+res://scenes/apps/notepad/notepad.tscn
 icon
-res://assets/images/ui/tymon/20250713_185202.jpg
+res://assets/images/bitsoda-1x.png
 name
 notepad.exe
