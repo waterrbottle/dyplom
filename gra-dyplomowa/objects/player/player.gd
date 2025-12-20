@@ -9,7 +9,27 @@ var wallfever = false
 var active = true
 var particlescene = load("res://objects/player/playerspawnpart.tscn")
 
+#fighting vars
+var fight = false
+var fightdir = 0
+var fightdirmem = 0
 
+func _process(delta: float) -> void:
+	
+	if active == false:
+		return
+	if Input.is_action_pressed("fight"):
+		
+		if fight == false:
+			$fight.show()
+			%fistobject.active = true
+			%fistobject.dir = fightdir
+			%fistobject.bodyvel = velocity
+			$fight.rotation_degrees = 90 * fightdir - 90
+			$fight/fight_anim.play("fight")
+		fight = true
+	
+	
 func _physics_process(delta: float) -> void:
 
 	
@@ -39,17 +59,26 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if active == true:
-		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
+	if not is_on_floor() and velocity.y < 0:
+		fightdir = 0
+	if not is_on_floor() and velocity.y > 0:
+		fightdir = 2
+	if is_on_floor():
+		fightdir=fightdirmem
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if active == true:
-		var direction := Input.get_axis("ui_left", "ui_right")
-		if Input.is_action_just_pressed("ui_left"):
+		var direction := Input.get_axis("left", "right")
+		if not direction == 0:
+			fightdir = direction
+			fightdirmem = fightdir
+		if Input.is_action_just_pressed("left"):
 			velocity.x = abs(velocity.x) * -0.4
 			walkspeed = abs(velocity.x) * -0.4
-		if Input.is_action_just_pressed("ui_right"):
+		if Input.is_action_just_pressed("right"):
 			velocity.x = abs(velocity.x) * 0.4
 			walkspeed = abs(velocity.x) * 0.4
 		if direction:
@@ -70,7 +99,9 @@ func _physics_process(delta: float) -> void:
 	if active == true:
 		move_and_slide()
 		$SubViewport/Node3D.show()
+		$fight.show()
 	else:
+		$fight.hide()
 		$SubViewport/Node3D.hide()
 	
 
@@ -83,6 +114,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		
 		if abs(velocity.x) < 1:
 			pass
+	
+	
 
  
 func despawn():
@@ -105,3 +138,10 @@ func damage(amount: int):
 	velocity.x = -500
 	velocity.y = -500
 	Global.playervars["health"] -= amount
+
+
+func _on_fight_anim_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "fight":
+		fight = false
+		$fight.hide()
+		%fistobject.active = false

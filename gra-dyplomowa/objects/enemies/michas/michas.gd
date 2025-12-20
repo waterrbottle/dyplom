@@ -42,4 +42,9 @@ func _physics_process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		if body.active==true:
-			body.damage(5)
+			body.damage(1)
+	if body.is_in_group("fist"):
+		if body.active == true:
+			velocity.y = -500 + body.bodyvel.y * 2
+			if abs(body.dir) == 1:
+				velocity.x = 100 * body.dir + body.bodyvel.x * 3

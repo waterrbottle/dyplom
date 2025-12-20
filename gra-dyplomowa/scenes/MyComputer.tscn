@@ -232,19 +232,7 @@ mouse_filter = 2
 
 [node name="Control4" parent="Windows" instance=ExtResource("2_ng37i")]
 layout_mode = 1
-scene = "res://scenes/levels/level.tscn"
-
-[node name="Control6" parent="Windows" instance=ExtResource("2_ng37i")]
-layout_mode = 1
-scene = "res://scenes/apps/notepad/notepad.tscn"
-
-[node name="Control7" parent="Windows" instance=ExtResource("2_ng37i")]
-layout_mode = 1
-scene = "res://scenes/levels/level_key.tscn"
-
-[node name="Control5" parent="Windows" instance=ExtResource("2_ng37i")]
-layout_mode = 1
-scene = "res://scenes/apps/healthBar/healthbar.tscn"
+scene = "res://scenes/apps/musicplayer/musicplayer.tscn"
 
 [node name="bottobar" type="Control" parent="."]
 layout_mode = 1
@@ -407,6 +395,12 @@ label_settings = SubResource("LabelSettings_cbliw")
 
 [node name="Player" parent="." instance=ExtResource("10_62mc7")]
 position = Vector2(1118, 41)
+
+[node name="right arm" parent="Player/SubViewport/Node3D" index="1"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="right leg" parent="Player/SubViewport/Node3D" index="3"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="TextureRect" parent="Player" index="2"]
 texture = SubResource("ViewportTexture_62mc7")
