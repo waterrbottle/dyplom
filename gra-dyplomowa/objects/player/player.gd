@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 25.0
+const SPEED = 15.0
 const JUMP_VELOCITY = -900.0
 var walkspeed = 0
 var velocityhist := 0.0
@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	
 					if abs(velocityhist) > 10:
 						velocity.y=0
-						if abs(velocityhist) > 2000:
+						if abs(velocityhist) > 1:
 							velocityhist /= 2
 						velocity.y += abs(velocityhist)*-0.5
 						velocity.x = velocityhist *-1.2
@@ -76,11 +76,11 @@ func _physics_process(delta: float) -> void:
 			fightdir = direction
 			fightdirmem = fightdir
 		if Input.is_action_just_pressed("left"):
-			velocity.x = abs(velocity.x) * -0.4
-			walkspeed = abs(velocity.x) * -0.4
+			velocity.x = abs(velocity.x) * -0.1
+			walkspeed = abs(velocity.x) * -0.1
 		if Input.is_action_just_pressed("right"):
-			velocity.x = abs(velocity.x) * 0.4
-			walkspeed = abs(velocity.x) * 0.4
+			velocity.x = abs(velocity.x) * 0.1
+			walkspeed = abs(velocity.x) * 0.1
 		if direction:
 			if abs(walkspeed) < 1500:
 				if wallfever == false:
