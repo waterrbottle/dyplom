@@ -1,0 +1,7 @@
+app-redirect
+scene
+res://scenes/levels/Sample_level.tscn
+icon
+res://assets/images/bitsoda-1x.png
+name
+mateusz.exe
