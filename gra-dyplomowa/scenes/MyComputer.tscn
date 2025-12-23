@@ -1,9 +1,8 @@
-[gd_scene load_steps=39 format=3 uid="uid://bqmvvc2ih4t7r"]
+[gd_scene load_steps=38 format=3 uid="uid://bqmvvc2ih4t7r"]
 
 [ext_resource type="Script" uid="uid://bski7mfsjr2u0" path="res://scenes/system.gd" id="1_8c8no"]
 [ext_resource type="Shader" uid="uid://c3twmf158t8ym" path="res://resources/shaders/retro.gdshader" id="1_tlqso"]
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="2_7w4bu"]
-[ext_resource type="PackedScene" uid="uid://cydwpoipuoe8x" path="res://objects/TheWindowSystem/windowUI.tscn" id="2_ng37i"]
 [ext_resource type="Texture2D" uid="uid://csutddenuu67l" path="res://assets/images/ui/tymon/Screenshot 2025-11-17 at 17.25.39.png" id="2_tlqso"]
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="2_vcjmw"]
 [ext_resource type="FontFile" uid="uid://c27yrvbvkjcu2" path="res://assets/fonts/Jersey_15/Jersey15-Regular.ttf" id="3_e14vx"]
@@ -230,10 +229,6 @@ offset_right = 6.0
 offset_bottom = 5.0
 mouse_filter = 2
 
-[node name="Control4" parent="Windows" instance=ExtResource("2_ng37i")]
-layout_mode = 1
-scene = "res://scenes/apps/musicplayer/musicplayer.tscn"
-
 [node name="bottobar" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 12
@@ -397,10 +392,13 @@ label_settings = SubResource("LabelSettings_cbliw")
 position = Vector2(1118, 41)
 
 [node name="right arm" parent="Player/SubViewport/Node3D" index="1"]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="left leg" parent="Player/SubViewport/Node3D" index="2"]
+transform = Transform3D(0.9895802, 0.1439759, 0, -0.1439759, 0.9895802, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="right leg" parent="Player/SubViewport/Node3D" index="3"]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="TextureRect" parent="Player" index="2"]
 texture = SubResource("ViewportTexture_62mc7")

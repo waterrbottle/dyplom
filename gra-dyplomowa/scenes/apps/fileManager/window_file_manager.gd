@@ -38,6 +38,8 @@ func _process(delta: float) -> void:
 								Global.addwindow("res://scenes/apps/notepad/notepad.tscn", n.get_child(1).text, [content, true])
 							if n.subtype == "image":
 								Global.addwindow("res://scenes/apps/ImageViewer/imageviewer.tscn", n.get_child(1).text, [dirstring + n.get_child(1).text])
+							if n.subtype == "music":
+								Global.addwindow("res://scenes/apps/musicplayer/musicplayer.tscn", "audio_player.exe", [dirstring + n.get_child(1).text,n.get_child(1).text ])
 					if n.type == "app":
 						if Input.is_action_just_pressed("click"):
 							Input.action_release("click")
@@ -50,13 +52,15 @@ func _process(delta: float) -> void:
 
 
 func update():
-	
+	var skipfile = false
 	var dir := DirAccess.open(dirstring)
 	if dir == null: printerr("Could not open folder"); return
 	
 	dir.list_dir_begin()
 	gdirs = dir.get_directories()
 	for file: String in dir.get_files():
+		if (file.get_extension()) == "import" or  (file.get_extension()) == "uid":
+			continue
 		#var resource := load(dir.get_current_dir() + "/" + file)
 		print(file)
 		var inst = icon.instantiate()
@@ -89,10 +93,12 @@ func update():
 						
 		if (file.get_extension()) == "png" or file.get_extension() == "jpg" or file.get_extension() == "svg" or file.get_extension() == "webp":
 			inst.subtype = "image"
-		
+		if (file.get_extension()) == "mp3" or file.get_extension() == "wav":
+			inst.subtype = "music"
 		$CanvasLayer/VBoxContainer.add_child(inst)
 		
-
+		
+	
 	for dirs: String in dir.get_directories():
 		#var resource := load(dir.get_current_dir() + "/" + file)
 		var inst = icon.instantiate()
@@ -106,6 +112,7 @@ func update():
 func _on_back_button_pressed() -> void:
 	for m in $CanvasLayer/VBoxContainer.get_children():
 		m.queue_free()
-	dirlist.remove_at(dirlist.size()-1)
+	if dirlist.size() > 0:
+		dirlist.remove_at(dirlist.size()-1)
 	updatedirstring()
 	update()

@@ -44,6 +44,10 @@ func addwindow(scene: String, namee, content):
 		inst.spawnapp()
 		inst.appscene.texturepath = content[0]
 		inst.appscene.loadtexture()
+	if scene == "res://scenes/apps/musicplayer/musicplayer.tscn":
+		inst.spawnapp()
+		inst.appscene.musicload = content[0]
+		inst.appscene.musicname = content[1]
 	get_node("/root/MyComputer/Windows").add_child.call_deferred(inst)
 	
 	
