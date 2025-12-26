@@ -64,7 +64,7 @@ offset_left = 5.0
 offset_top = 4.0
 offset_right = 152.0
 offset_bottom = 29.0
-text = "audio player alfa"
+text = "audio player beta"
 label_settings = SubResource("LabelSettings_767w8")
 
 [node name="Panel3" type="Panel" parent="CanvasLayer/Control"]
@@ -94,22 +94,37 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/Panel3/ColorRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Panel3/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 16.0
-offset_right = -20.0
-offset_bottom = -16.0
+offset_bottom = -34.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
+
+[node name="musictitle" type="Label" parent="CanvasLayer/Control/Panel3/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
 text = "to play music open an mp3 or wav file in the explorer"
 label_settings = SubResource("LabelSettings_f0xe8")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="musicduration" type="Label" parent="CanvasLayer/Control/Panel3/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+text = "duration: --/--"
+label_settings = SubResource("LabelSettings_f0xe8")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -150,12 +165,35 @@ focus_mode = 0
 mouse_filter = 1
 flat = true
 
+[node name="Control" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line2D" type="Line2D" parent="CanvasLayer/Control/Control"]
+points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+width = 2.0
+default_color = Color(0.09803922, 0.90588236, 0, 1)
+
 [node name="Leveldata" parent="." instance=ExtResource("4_f6p7h")]
 scenesize = Vector2(300, 200)
 windowname = "audio_player"
 type = "explorer"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
 
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/pause" to="." method="_on_pause_pressed"]
