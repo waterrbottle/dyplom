@@ -64,8 +64,24 @@ offset_left = 5.0
 offset_top = 4.0
 offset_right = 152.0
 offset_bottom = 29.0
-text = "audio player beta"
+text = "audio player gamma"
 label_settings = SubResource("LabelSettings_767w8")
+
+[node name="volume" type="VSlider" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 45.0
+offset_right = -4.0
+offset_bottom = -42.0
+grow_horizontal = 0
+grow_vertical = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
 
 [node name="Panel3" type="Panel" parent="CanvasLayer/Control"]
 texture_filter = 1
@@ -75,13 +91,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 9.0
 offset_top = 41.0
-offset_right = -8.0
+offset_right = -19.0
 offset_bottom = -38.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_3sj5x")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/Panel3"]
+clip_children = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -99,9 +116,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 14.0
 offset_bottom = -34.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = -3
 alignment = 1
 
 [node name="musictitle" type="Label" parent="CanvasLayer/Control/Panel3/ColorRect/VBoxContainer"]
@@ -126,6 +145,48 @@ autowrap_mode = 3
 clip_text = true
 text_overrun_behavior = 1
 
+[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Panel3/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="looplabel" type="Label" parent="CanvasLayer/Control/Panel3/ColorRect/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "loop on"
+label_settings = SubResource("LabelSettings_f0xe8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="volumelabel" type="Label" parent="CanvasLayer/Control/Panel3/ColorRect/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "volume: 100"
+label_settings = SubResource("LabelSettings_f0xe8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/Panel3/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -21.5
+offset_right = 25.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line2D" type="Line2D" parent="CanvasLayer/Control/Panel3/ColorRect/Control"]
+unique_name_in_owner = true
+points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+width = 2.0
+default_color = Color(0.09803922, 0.90588236, 0, 1)
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 12
@@ -142,17 +203,20 @@ grow_vertical = 0
 [node name="play" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+theme = ExtResource("1_6uyr2")
 text = "|>"
 
 [node name="pause" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+theme = ExtResource("1_6uyr2")
 text = "||"
 
 [node name="HSlider" type="HSlider" parent="CanvasLayer/Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_6uyr2")
 
 [node name="Button" type="Button" parent="CanvasLayer/Control/HBoxContainer/HSlider"]
 layout_mode = 1
@@ -163,26 +227,14 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 mouse_filter = 1
+theme = ExtResource("1_6uyr2")
 flat = true
 
-[node name="Control" type="Control" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Line2D" type="Line2D" parent="CanvasLayer/Control/Control"]
-points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-width = 2.0
-default_color = Color(0.09803922, 0.90588236, 0, 1)
+[node name="loop" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+theme = ExtResource("1_6uyr2")
+text = "loop"
 
 [node name="Leveldata" parent="." instance=ExtResource("4_f6p7h")]
 scenesize = Vector2(300, 200)
@@ -198,4 +250,5 @@ autostart = true
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/pause" to="." method="_on_pause_pressed"]
 [connection signal="button_up" from="CanvasLayer/Control/HBoxContainer/HSlider/Button" to="." method="_on_button_button_up"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/loop" to="." method="_on_loop_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

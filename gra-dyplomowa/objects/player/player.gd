@@ -48,6 +48,10 @@ func _physics_process(delta: float) -> void:
 						velocity.y += abs(velocityhist)*-1.5
 						velocity.x = velocityhist *-2.2
 	if active == true:
+		if Input.is_action_pressed("down"):
+			velocity.y+=100
+			velocity.x/=1.5
+		
 		if !Input.is_key_pressed(KEY_SPACE) or abs(velocity.x) < 20 or is_on_floor():
 			$GPUParticles2D.emitting = false
 			if wallfever ==true:

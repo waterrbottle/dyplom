@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://3p73m03twu6q"]
+
+[ext_resource type="Script" uid="uid://bdv01su7pr5o5" path="res://scenes/apps/paint/paint.gd" id="1_0b6hd"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="1_fm7n2"]
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="2_5xpbh"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="3_jw3ga"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0b6hd"]
+font = ExtResource("3_jw3ga")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jw3ga"]
+
+[node name="Paint" type="Node2D"]
+script = ExtResource("1_0b6hd")
+
+[node name="Leveldata" parent="." instance=ExtResource("1_fm7n2")]
+scenesize = Vector2(600, 400)
+windowname = "paint.exe"
+type = "app"
+
+[node name="paintui" type="CanvasLayer" parent="."]
+
+[node name="paintui" type="Control" parent="paintui"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="paintui/paintui"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 41.0
+offset_right = 40.0
+grow_vertical = 2
+theme = ExtResource("2_5xpbh")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel2" type="Panel" parent="paintui/paintui"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme = ExtResource("2_5xpbh")
+
+[node name="Label" type="Label" parent="paintui/paintui/Panel2"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 155.0
+offset_bottom = 36.0
+text = "paint but it doesnt work"
+label_settings = SubResource("LabelSettings_0b6hd")
+metadata/_edit_use_anchors_ = true
+
+[node name="texture" type="TextureRect" parent="paintui/paintui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_jw3ga")
+expand_mode = 1

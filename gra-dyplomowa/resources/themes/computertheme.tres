@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cgmct2d0jwq0v"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://cgmct2d0jwq0v"]
 
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="1_exhw4"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="1_t5o7e"]
 [ext_resource type="Texture2D" uid="uid://b5jo2ayyf14op" path="res://assets/images/ui/windows/inverted.png" id="2_6bwuq"]
+[ext_resource type="Texture2D" uid="uid://kyciafi44qq0" path="res://scenes/levels/bayer16.png" id="4_p3k20"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6bwuq"]
 load_path = "res://.godot/imported/bgpanel.png-fd42ffc2508523eab1647c410bc95ee2.ctex"
@@ -29,6 +30,14 @@ texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3x337"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.38039216, 0.37254903, 0.37254903, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5o7e"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -43,6 +52,10 @@ Button/fonts/font = ExtResource("1_t5o7e")
 Button/styles/hover = SubResource("StyleBoxTexture_p3k20")
 Button/styles/normal = SubResource("StyleBoxTexture_6bwuq")
 Button/styles/pressed = SubResource("StyleBoxTexture_t5o7e")
+HSlider/icons/grabber = ExtResource("4_p3k20")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_t5o7e")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_t5o7e")
+HSlider/styles/slider = SubResource("StyleBoxFlat_3x337")
 Panel/styles/panel = SubResource("StyleBoxTexture_6bwuq")
 TextEdit/colors/caret_color = Color(0, 0.18333316, 1, 1)
 TextEdit/colors/font_color = Color(0, 0, 0, 1)

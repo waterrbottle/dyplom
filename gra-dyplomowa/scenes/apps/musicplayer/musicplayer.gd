@@ -3,6 +3,7 @@ var musicload := ""
 var open=false
 var musicname = ""
 var spectrum = AudioEffectSpectrumAnalyzerInstance
+var loop = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spectrum=AudioServer.get_bus_effect_instance(0,0)
@@ -14,11 +15,18 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	$AudioStreamPlayer.volume_linear = $CanvasLayer/Control/volume.value
+	if loop == false:
+		%looplabel.text = "loop off"
+	if loop == true:
+		%looplabel.text = "loop on"
+	%volumelabel.text = "volume: " + str(int($CanvasLayer/Control/volume.value*100))
 	$CanvasLayer/Control/Panel3/ColorRect/VBoxContainer/musicduration.text = str("duration: ", floor($AudioStreamPlayer.get_playback_position()*10)/10, "/", floor( $AudioStreamPlayer.stream.get_length()*10)/10 )
-
-	$CanvasLayer/Control/Control/Line2D.clear_points()
-	for i in range(270):
-		$CanvasLayer/Control/Control/Line2D.add_point(Vector2(i-115,spectrum.get_magnitude_for_frequency_range(i*10 - 50, i*10+1 - 50, 1).x*100 + 60))
+	
+	if $AudioStreamPlayer.playing==true:
+		%Line2D.clear_points()
+		for i in range(200):
+			%Line2D.add_point(Vector2(i-85,spectrum.get_magnitude_for_frequency_range(i*10 - 0, i*10+1 - 0, 1).x*100 + 60))
 	if $CanvasLayer/Control/HBoxContainer/HSlider/Button.is_pressed() == false:
 		
 		$CanvasLayer/Control/HBoxContainer/HSlider.value = $AudioStreamPlayer.get_playback_position()
@@ -40,7 +48,19 @@ func _on_pause_pressed() -> void:
 
 func _on_button_button_up() -> void:
 	$AudioStreamPlayer.play($CanvasLayer/Control/HBoxContainer/HSlider.value)
+	open=true
 
 
 func _on_audio_stream_player_finished() -> void:
 	open=false
+	if loop == true:
+		open=true
+		$AudioStreamPlayer.play()
+
+
+func _on_loop_pressed() -> void:
+	if loop == false:
+		loop = true
+		return
+	if loop == true:
+		loop = false
