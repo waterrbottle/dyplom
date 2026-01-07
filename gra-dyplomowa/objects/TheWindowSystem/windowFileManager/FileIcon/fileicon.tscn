@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c4ur3tbgxukjd"]
+[gd_scene load_steps=21 format=3 uid="uid://c4ur3tbgxukjd"]
 
 [ext_resource type="Texture2D" uid="uid://dp1ijobw7tlmg" path="res://assets/images/ui/icons/dokument.png" id="1_kdjss"]
 [ext_resource type="Script" uid="uid://ce4n7li1qbunw" path="res://objects/TheWindowSystem/windowFileManager/FileIcon/fileicon.gd" id="1_nr0wp"]
@@ -67,6 +67,18 @@ bg_color = Color(0.07000008, 0.6, 0, 0.7921569)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3giw7"]
 bg_color = Color(0.6, 0.39000002, 0, 0.61960787)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eauu2"]
+size = Vector2(51, 54)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e77ct"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xt06e"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ny7j"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [node name="Fileicon" type="Control"]
 custom_minimum_size = Vector2(50, 70)
 layout_mode = 3
@@ -109,9 +121,32 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3giw7")
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 10.210001
+offset_left = 10.0
 offset_top = 3.0
-offset_right = 42.21
+offset_right = 42.0
 offset_bottom = 35.0
 mouse_filter = 2
 expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="." groups=["file"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(25.5, 27)
+shape = SubResource("RectangleShape2D_eauu2")
+
+[node name="TextEdit" type="LineEdit" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 36.0
+offset_right = 53.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("2_kdjss")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_e77ct")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_xt06e")
+theme_override_styles/focus = SubResource("StyleBoxFlat_1ny7j")
+alignment = 1
+
+[connection signal="editing_toggled" from="TextEdit" to="." method="_on_text_edit_editing_toggled"]
+[connection signal="text_submitted" from="TextEdit" to="." method="_on_text_edit_text_submitted"]

@@ -4,6 +4,9 @@ var open=false
 var musicname = ""
 var spectrum = AudioEffectSpectrumAnalyzerInstance
 var loop = false
+var texturesspeaker = [load("res://assets/images/ui/icons/musicplayer/glosnik_bez_paskow.png"),
+load("res://assets/images/ui/icons/musicplayer/glosnik.png"),
+ load("res://assets/images/ui/icons/musicplayer/glosnik_paski_2.png")]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spectrum=AudioServer.get_bus_effect_instance(0,0)
@@ -15,13 +18,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+
 	$AudioStreamPlayer.volume_linear = $CanvasLayer/Control/volume.value
 	if loop == false:
 		%looplabel.text = "loop off"
 	if loop == true:
 		%looplabel.text = "loop on"
 	%volumelabel.text = "volume: " + str(int($CanvasLayer/Control/volume.value*100))
-	$CanvasLayer/Control/Panel3/ColorRect/VBoxContainer/musicduration.text = str("duration: ", floor($AudioStreamPlayer.get_playback_position()*10)/10, "/", floor( $AudioStreamPlayer.stream.get_length()*10)/10 )
+	if $AudioStreamPlayer.stream != null:
+		$CanvasLayer/Control/Panel3/ColorRect/VBoxContainer/musicduration.text = str("duration: ", floor($AudioStreamPlayer.get_playback_position()*10)/10, "/", floor( $AudioStreamPlayer.stream.get_length()*10)/10 )
 	
 	if $AudioStreamPlayer.playing==true:
 		%Line2D.clear_points()
@@ -33,6 +39,7 @@ func _process(delta: float) -> void:
 	else:
 		if $Timer.time_left < 0.01:
 			$AudioStreamPlayer.play($CanvasLayer/Control/HBoxContainer/HSlider.value)
+			
 
 
 func _on_play_pressed() -> void:
@@ -64,3 +71,13 @@ func _on_loop_pressed() -> void:
 		return
 	if loop == true:
 		loop = false
+
+
+func _on_volume_value_changed(value: float) -> void:
+	if value > 0.79:
+		$CanvasLayer/Control/volumetexture.texture = texturesspeaker[2]
+	if value < 0.8:
+		$CanvasLayer/Control/volumetexture.texture = texturesspeaker[1]
+	if value < 0.1:
+		$CanvasLayer/Control/volumetexture.texture = texturesspeaker[0]
+	

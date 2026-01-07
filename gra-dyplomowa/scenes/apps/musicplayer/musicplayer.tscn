@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dov4nvr0lhshw"]
+[gd_scene load_steps=13 format=3 uid="uid://dov4nvr0lhshw"]
 
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="1_6uyr2"]
 [ext_resource type="Script" uid="uid://b0j3p8beb4ydb" path="res://scenes/apps/musicplayer/musicplayer.gd" id="1_f6hdi"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="2_f6hdi"]
 [ext_resource type="Texture2D" uid="uid://b5jo2ayyf14op" path="res://assets/images/ui/windows/inverted.png" id="3_7r8gj"]
+[ext_resource type="Texture2D" uid="uid://1wjjj1bjlx11" path="res://assets/images/ui/icons/musicplayer/glosnik_paski_2.png" id="4_dj3xd"]
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="4_f6p7h"]
+[ext_resource type="Texture2D" uid="uid://by6j7b3a8dcxd" path="res://assets/images/ui/icons/musicplayer/start_sprite.png" id="6_767w8"]
+[ext_resource type="Texture2D" uid="uid://b8rmswimd7av7" path="res://assets/images/ui/icons/musicplayer/stop_sprite.png" id="7_3sj5x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dj3xd"]
 bg_color = Color(1, 1, 1, 1)
@@ -32,6 +35,7 @@ script = ExtResource("1_f6hdi")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,20 +72,36 @@ text = "audio player gamma"
 label_settings = SubResource("LabelSettings_767w8")
 
 [node name="volume" type="VSlider" parent="CanvasLayer/Control"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = 45.0
-offset_right = -4.0
-offset_bottom = -42.0
+offset_left = -40.0
+offset_top = 71.0
+offset_right = -6.0
+offset_bottom = -38.0
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("1_6uyr2")
 max_value = 1.0
 step = 0.01
 value = 1.0
+
+[node name="volumetexture" type="TextureRect" parent="CanvasLayer/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -38.0
+offset_top = 41.0
+offset_right = -9.0
+offset_bottom = 70.0
+grow_horizontal = 0
+texture = ExtResource("4_dj3xd")
+expand_mode = 1
 
 [node name="Panel3" type="Panel" parent="CanvasLayer/Control"]
 texture_filter = 1
@@ -91,7 +111,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 9.0
 offset_top = 41.0
-offset_right = -19.0
+offset_right = -43.0
 offset_bottom = -38.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -195,22 +215,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 9.0
 offset_top = -36.0
-offset_right = -9.0
+offset_right = -7.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="play" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 theme = ExtResource("1_6uyr2")
-text = "|>"
+icon = ExtResource("6_767w8")
+icon_alignment = 1
 
 [node name="pause" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 theme = ExtResource("1_6uyr2")
-text = "||"
+icon = ExtResource("7_3sj5x")
+icon_alignment = 1
 
 [node name="HSlider" type="HSlider" parent="CanvasLayer/Control/HBoxContainer"]
 layout_mode = 2
@@ -247,6 +271,7 @@ type = "explorer"
 wait_time = 0.1
 autostart = true
 
+[connection signal="value_changed" from="CanvasLayer/Control/volume" to="." method="_on_volume_value_changed"]
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/pause" to="." method="_on_pause_pressed"]
 [connection signal="button_up" from="CanvasLayer/Control/HBoxContainer/HSlider/Button" to="." method="_on_button_button_up"]

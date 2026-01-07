@@ -3,13 +3,13 @@ extends Node
 var windowname = "fileManager.exe"
 var icon = load("res://objects/TheWindowSystem/windowFileManager/FileIcon/fileicon.tscn")
 var gdirs = null
-var dirstring = "res://MyComputer/Desktop/"
+var dirstring = "user://MyComputer/Desktop/"
 var dirlist =["MyComputer"]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update()
 func updatedirstring():
-	dirstring = "res://"
+	dirstring = "user://"
 	for i in dirlist:
 		dirstring += i +"/"
 
@@ -17,7 +17,7 @@ func updatedirstring():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-
+	$GridContainer.columns = $GridContainer.size.x/54
 	for n in $GridContainer.get_children():
 		if n.get_child(2).is_pressed():
 
@@ -41,6 +41,8 @@ func _process(delta: float) -> void:
 
 
 func update():
+	for n in $GridContainer.get_children():
+		n.queue_free()
 	var dir := DirAccess.open(dirstring)
 	if dir == null: printerr("Could not open folder"); return
 	
@@ -48,7 +50,7 @@ func update():
 	gdirs = dir.get_directories()
 	for file: String in dir.get_files():
 		#var resource := load(dir.get_current_dir() + "/" + file)
-		print(file)
+
 		var inst = icon.instantiate()
 		inst.get_child(0).play("document")
 		inst.type = "document"
@@ -66,4 +68,3 @@ func update():
 		inst.type = "folder"
 		inst.get_child(1).text = str(dirs)
 		$GridContainer.add_child(inst)
-		print(dirs)

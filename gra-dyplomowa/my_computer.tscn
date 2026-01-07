@@ -11,10 +11,10 @@ resource_local_to_scene = true
 shader = ExtResource("2_wb02a")
 shader_parameter/tex = SubResource("ViewportTexture_bhgq5")
 shader_parameter/mask_type = 5
-shader_parameter/curve = 0.1190000056525
-shader_parameter/color_offset = 0.170000031825
+shader_parameter/curve = 0.0710000033725
+shader_parameter/color_offset = -0.29599999031
 shader_parameter/mask_brightness = 1.0
-shader_parameter/aspect = 0.5
+shader_parameter/aspect = 0.57200000342
 
 [node name="MyComputerer" type="Control"]
 layout_mode = 3

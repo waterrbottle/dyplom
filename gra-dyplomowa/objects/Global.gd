@@ -2,10 +2,16 @@ extends Node
 var playerloc = "window"
 var ondesktop = true
 var playervars = {"health": 100, "position": Vector2(0,0)}
-
+var quicktasks = ["where", "am", "i"]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
+
+
+
+
+
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,5 +56,34 @@ func addwindow(scene: String, namee, content):
 		inst.appscene.musicname = content[1]
 	get_node("/root/MyComputer/Windows").add_child.call_deferred(inst)
 	
+func closewindow(closetype, value):
+	if closetype == "node":
+		value.queue_free()
+	if closetype == "type":
+		for n in get_node("/root/MyComputer/Windows").get_children():
+			if n.scene == "value":
+				queue_free()
+	if closetype == "all":
+		for n in get_node("/root/MyComputer/Windows").get_children():
+			n.queue_free()
+
+func addfolder(path,value):
+	var dir = DirAccess.open(path)
+	dir.make_dir(value)
+	get_node("/root/MyComputer/DesktopFiles").update()
+
+func renamefile(old,new):
+	pass
+
+func deletefolder(path):
+	print("pathHHH")
+	print(path)
+	#var dir = DirAccess.open(path)
+	#DirAccess.remove_absolute(path)
+	print(DirAccess.dir_exists_absolute(path))
+
+	DirAccess.remove_absolute(path)
 	
-	
+	#	addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "", [path + " doesnt exist?", true])
+
+	get_node("/root/MyComputer/DesktopFiles").update()

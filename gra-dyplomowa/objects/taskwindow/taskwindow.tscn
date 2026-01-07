@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dndxjkirb7sod"]
+
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="1_6u2dc"]
+[ext_resource type="Script" uid="uid://belptl2oboc4e" path="res://objects/taskwindow/taskwindow.gd" id="2_ps3d0"]
+
+[node name="taskwindow" type="PanelContainer"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_6u2dc")
+script = ExtResource("2_ps3d0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1

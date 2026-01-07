@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bqmvvc2ih4t7r"]
+[gd_scene load_steps=41 format=3 uid="uid://bqmvvc2ih4t7r"]
 
 [ext_resource type="Script" uid="uid://bski7mfsjr2u0" path="res://scenes/system.gd" id="1_8c8no"]
 [ext_resource type="Shader" uid="uid://c3twmf158t8ym" path="res://resources/shaders/retro.gdshader" id="1_tlqso"]
@@ -6,10 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://csutddenuu67l" path="res://assets/images/ui/tymon/Screenshot 2025-11-17 at 17.25.39.png" id="2_tlqso"]
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="2_vcjmw"]
 [ext_resource type="FontFile" uid="uid://c27yrvbvkjcu2" path="res://assets/fonts/Jersey_15/Jersey15-Regular.ttf" id="3_e14vx"]
-[ext_resource type="Script" uid="uid://c413ri1j8dyju" path="res://objects/TheWindowSystem/windowFileManager/desktop_file_manager.gd" id="4_62mc7"]
+[ext_resource type="Script" uid="uid://dgxdx2v8ttdv" path="res://scenes/apps/fileManager/window_file_manager.gd" id="4_eoi4i"]
 [ext_resource type="PackedScene" uid="uid://cydwpoipuoe8x" path="res://objects/TheWindowSystem/windowUI.tscn" id="5_62mc7"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="8_y8hb4"]
 [ext_resource type="PackedScene" uid="uid://bv25h3t84m4of" path="res://objects/player/player.tscn" id="10_62mc7"]
+[ext_resource type="PackedScene" uid="uid://dndxjkirb7sod" path="res://objects/taskwindow/taskwindow.tscn" id="11_eoi4i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x660l"]
+size = Vector2(2359, 1431)
 
 [sub_resource type="Gradient" id="Gradient_dcjl0"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -154,6 +158,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8c8no")
 
+[node name="Area2D" type="Area2D" parent="." groups=["desktop"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1169.5, 705.5)
+shape = SubResource("RectangleShape2D_x660l")
+
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -185,15 +195,20 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -337.0
-offset_top = -250.0
-offset_right = 6584.684
-offset_bottom = 3907.2632
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.19, 0.19)
 texture = ExtResource("2_tlqso")
+expand_mode = 1
 stretch_mode = 1
+
+[node name="Backgroundclick" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="DesktopFiles" type="Control" parent="."]
 layout_mode = 1
@@ -203,7 +218,9 @@ anchor_bottom = 1.0
 offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("4_62mc7")
+mouse_filter = 2
+script = ExtResource("4_eoi4i")
+mode = "desktop"
 
 [node name="GridContainer" type="GridContainer" parent="DesktopFiles"]
 layout_mode = 1
@@ -212,6 +229,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+columns = 40
 
 [node name="desktopfocus" type="Button" parent="."]
 layout_mode = 1
@@ -397,13 +416,13 @@ label_settings = SubResource("LabelSettings_cbliw")
 position = Vector2(1118, 41)
 
 [node name="right arm" parent="Player/SubViewport/Node3D" index="1"]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.9999996, 0, 0, 0, 0.9999996, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="left leg" parent="Player/SubViewport/Node3D" index="2"]
-transform = Transform3D(0.9895802, 0.1439759, 0, -0.1439759, 0.9895802, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.98958004, 0.14397587, 0, -0.14397587, 0.98958004, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="right leg" parent="Player/SubViewport/Node3D" index="3"]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="TextureRect" parent="Player" index="2"]
 texture = SubResource("ViewportTexture_62mc7")
@@ -470,6 +489,10 @@ collision_mask = 7
 position = Vector2(2108, -11)
 shape = SubResource("RectangleShape2D_eoi4i")
 
+[node name="taskwindow" parent="." instance=ExtResource("11_eoi4i")]
+layout_mode = 0
+
+[connection signal="pressed" from="Backgroundclick" to="." method="_on_backgroundclick_pressed"]
 [connection signal="pressed" from="desktopfocus" to="." method="_on_desktopfocus_pressed"]
 [connection signal="pressed" from="bottobar/Startbutton" to="." method="_on_startbutton_pressed"]
 

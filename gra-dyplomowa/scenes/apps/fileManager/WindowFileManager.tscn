@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bweuy5c10gc1l"]
+[gd_scene load_steps=10 format=3 uid="uid://bweuy5c10gc1l"]
 
 [ext_resource type="Script" uid="uid://dgxdx2v8ttdv" path="res://scenes/apps/fileManager/window_file_manager.gd" id="1_3pyc6"]
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="2_tvxw8"]
@@ -20,6 +20,9 @@ bg_color = Color(1, 1, 1, 1)
 font = ExtResource("3_a5r02")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvxw8"]
+size = Vector2(1153, 671)
 
 [node name="WindowFileManager" type="Node2D"]
 script = ExtResource("1_3pyc6")
@@ -93,15 +96,23 @@ custom_minimum_size = Vector2(27, 27)
 layout_mode = 2
 theme = ExtResource("4_wquea")
 
-[node name="VBoxContainer" type="GridContainer" parent="CanvasLayer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = 54.0
-offset_right = -1.0
-offset_bottom = -3.0
+offset_top = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="GridContainer" parent="CanvasLayer/ScrollContainer"]
+layout_mode = 2
 columns = 9
+
+[node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/StaticBody2D"]
+position = Vector2(566.5, 325.5)
+shape = SubResource("RectangleShape2D_tvxw8")
 
 [node name="Leveldata" parent="." instance=ExtResource("5_tvxw8")]
 scenesize = Vector2(500, 300)

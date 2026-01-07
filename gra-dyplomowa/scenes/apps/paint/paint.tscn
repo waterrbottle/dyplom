@@ -1,16 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://3p73m03twu6q"]
+[gd_scene load_steps=11 format=3 uid="uid://3p73m03twu6q"]
 
 [ext_resource type="Script" uid="uid://bdv01su7pr5o5" path="res://scenes/apps/paint/paint.gd" id="1_0b6hd"]
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="1_fm7n2"]
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="2_5xpbh"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="3_jw3ga"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_0b6hd"]
-font = ExtResource("3_jw3ga")
-font_size = 32
-font_color = Color(0, 0, 0, 1)
+[ext_resource type="Texture2D" uid="uid://cc01pfax77857" path="res://assets/checkerboard-pattern-seamless-vector-checkered-background-gray-white-squares-82221467.jpg.webp" id="3_n1war"]
+[ext_resource type="Texture2D" uid="uid://b5jo2ayyf14op" path="res://assets/images/ui/windows/inverted.png" id="6_shfm6"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jw3ga"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_shfm6"]
+font = ExtResource("3_jw3ga")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n1war"]
+font = ExtResource("3_jw3ga")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gnc1a"]
+texture = ExtResource("6_shfm6")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
 
 [node name="Paint" type="Node2D"]
 script = ExtResource("1_0b6hd")
@@ -22,6 +35,45 @@ type = "app"
 
 [node name="paintui" type="CanvasLayer" parent="."]
 
+[node name="TextureRect" type="TextureRect" parent="paintui"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_n1war")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Control" type="Control" parent="paintui"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+
+[node name="texture" type="TextureRect" parent="paintui/Control"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -378.0
+offset_top = -256.0
+offset_right = 378.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_jw3ga")
+expand_mode = 1
+
 [node name="paintui" type="Control" parent="paintui"]
 layout_mode = 3
 anchors_preset = 15
@@ -30,12 +82,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="colcheck" type="Button" parent="paintui/paintui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
 [node name="Panel" type="Panel" parent="paintui/paintui"]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 9
+anchors_preset = -1
+anchor_top = 0.06635802
 anchor_bottom = 1.0
-offset_top = 41.0
+offset_top = 31.0
 offset_right = 40.0
 grow_vertical = 2
 theme = ExtResource("2_5xpbh")
@@ -46,28 +108,321 @@ texture_filter = 1
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 42.0
+offset_bottom = 33.0
 grow_horizontal = 2
 theme = ExtResource("2_5xpbh")
 
-[node name="Label" type="Label" parent="paintui/paintui/Panel2"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 3.0
-offset_right = 155.0
-offset_bottom = 36.0
-text = "paint but it doesnt work"
-label_settings = SubResource("LabelSettings_0b6hd")
+[node name="HBoxContainer" type="HBoxContainer" parent="paintui/paintui/Panel2"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 6.0
+offset_top = 4.0
+offset_bottom = 27.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="paintui/paintui/Panel2/HBoxContainer"]
+layout_mode = 2
+text = "paintex.pl 0.2."
+label_settings = SubResource("LabelSettings_shfm6")
+
+[node name="Button" type="Button" parent="paintui/paintui/Panel2/HBoxContainer"]
+layout_mode = 2
+text = "New File"
+
+[node name="Button4" type="Button" parent="paintui/paintui/Panel2/HBoxContainer"]
+layout_mode = 2
+text = "Open File"
+
+[node name="Button2" type="Button" parent="paintui/paintui/Panel2/HBoxContainer"]
+layout_mode = 2
+text = "Save File"
+
+[node name="Button3" type="Button" parent="paintui/paintui/Panel2/HBoxContainer"]
+layout_mode = 2
+text = "Save File As"
+
+[node name="Button5" type="Button" parent="paintui/paintui/Panel2/HBoxContainer"]
+layout_mode = 2
+text = "Undo"
+
+[node name="Button6" type="Button" parent="paintui/paintui/Panel2/HBoxContainer"]
+layout_mode = 2
+text = "Redo"
+
+[node name="Button7" type="Button" parent="paintui/paintui/Panel2/HBoxContainer"]
+layout_mode = 2
+text = "Copy"
+
+[node name="Button8" type="Button" parent="paintui/paintui/Panel2/HBoxContainer"]
+layout_mode = 2
+text = "Paste"
+
+[node name="Panel3" type="Panel" parent="paintui/paintui"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 33.0
+offset_bottom = 74.0
+grow_horizontal = 2
+theme = ExtResource("2_5xpbh")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="paintui/paintui/Panel3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.50600004
+offset_left = 5.0
+offset_top = -16.0
+offset_right = -12.0
+offset_bottom = 16.253998
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="paintui/paintui/Panel3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "size:"
+label_settings = SubResource("LabelSettings_n1war")
 metadata/_edit_use_anchors_ = true
 
-[node name="texture" type="TextureRect" parent="paintui/paintui"]
+[node name="sizeslider" type="HSlider" parent="paintui/paintui/Panel3/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+
+[node name="Label3" type="Label" parent="paintui/paintui/Panel3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "zoom:"
+label_settings = SubResource("LabelSettings_n1war")
+metadata/_edit_use_anchors_ = true
+
+[node name="zoomslider" type="HSlider" parent="paintui/paintui/Panel3/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+min_value = 0.1
+max_value = 5.0
+step = 0.05
+value = 1.1
+
+[node name="Label4" type="Label" parent="paintui/paintui/Panel3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "colors:"
+label_settings = SubResource("LabelSettings_n1war")
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="paintui/paintui/Panel3/VBoxContainer"]
+custom_minimum_size = Vector2(79.03, 0)
+layout_mode = 2
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
+columns = 5
+
+[node name="Panel" type="Panel" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gnc1a")
+
+[node name="ColorRect" type="ColorRect" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 42.0
+offset_left = 2.0
+offset_top = 1.5
+offset_right = -2.0
+offset_bottom = -2.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_jw3ga")
-expand_mode = 1
+color = Color(1, 0, 0, 1)
+
+[node name="Panel2" type="Panel" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gnc1a")
+
+[node name="ColorRect" type="ColorRect" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.5
+offset_right = -2.0
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Panel3" type="Panel" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gnc1a")
+
+[node name="ColorRect" type="ColorRect" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.5
+offset_right = -2.0
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Panel4" type="Panel" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gnc1a")
+
+[node name="ColorRect" type="ColorRect" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer/Panel4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.5
+offset_right = -2.0
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Panel5" type="Panel" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gnc1a")
+
+[node name="ColorRect" type="ColorRect" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer/Panel5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.5
+offset_right = -2.0
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Panel6" type="Panel" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gnc1a")
+
+[node name="ColorRect" type="ColorRect" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer/Panel6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.5
+offset_right = -2.0
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Panel7" type="Panel" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gnc1a")
+
+[node name="ColorRect" type="ColorRect" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer/Panel7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.5
+offset_right = -2.0
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Panel8" type="Panel" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gnc1a")
+
+[node name="ColorRect" type="ColorRect" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer/Panel8"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.5
+offset_right = -2.0
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Panel9" type="Panel" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gnc1a")
+
+[node name="ColorRect" type="ColorRect" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer/Panel9"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.5
+offset_right = -2.0
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Panel10" type="Panel" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gnc1a")
+
+[node name="ColorRect" type="ColorRect" parent="paintui/paintui/Panel3/VBoxContainer/GridContainer/Panel10"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.5
+offset_right = -2.0
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Panel9" type="Panel" parent="paintui/paintui/Panel3/VBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gnc1a")
+
+[node name="ColorRect" type="ColorRect" parent="paintui/paintui/Panel3/VBoxContainer/Panel9"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.5
+offset_right = -2.0
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[connection signal="pressed" from="paintui/paintui/colcheck" to="." method="_on_colcheck_pressed"]

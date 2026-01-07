@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://cgmct2d0jwq0v"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://cgmct2d0jwq0v"]
 
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="1_exhw4"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="1_t5o7e"]
@@ -38,6 +38,16 @@ border_width_right = 15
 border_width_bottom = 15
 border_color = Color(0.38039216, 0.37254903, 0.37254903, 1)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p3k20"]
+load_path = "res://.godot/imported/bgpanel.png-fd42ffc2508523eab1647c410bc95ee2.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_er58c"]
+texture = SubResource("CompressedTexture2D_p3k20")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5o7e"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -57,6 +67,7 @@ HSlider/styles/grabber_area = SubResource("StyleBoxTexture_t5o7e")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_t5o7e")
 HSlider/styles/slider = SubResource("StyleBoxFlat_3x337")
 Panel/styles/panel = SubResource("StyleBoxTexture_6bwuq")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_er58c")
 TextEdit/colors/caret_color = Color(0, 0.18333316, 1, 1)
 TextEdit/colors/font_color = Color(0, 0, 0, 1)
 TextEdit/colors/font_readonly_color = Color(0.29, 0.29, 0.29, 1)
@@ -65,3 +76,6 @@ TextEdit/fonts/font = ExtResource("1_t5o7e")
 TextEdit/styles/focus = SubResource("StyleBoxFlat_t5o7e")
 TextEdit/styles/normal = SubResource("StyleBoxFlat_p3k20")
 TextEdit/styles/read_only = SubResource("StyleBoxFlat_er58c")
+VSlider/styles/grabber_area = SubResource("StyleBoxTexture_t5o7e")
+VSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_t5o7e")
+VSlider/styles/slider = SubResource("StyleBoxFlat_3x337")

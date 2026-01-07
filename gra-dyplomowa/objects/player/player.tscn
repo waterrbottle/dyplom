@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bv25h3t84m4of"]
+[gd_scene load_steps=41 format=3 uid="uid://bv25h3t84m4of"]
 
 [ext_resource type="Script" uid="uid://ue1b8fgnky4u" path="res://objects/player/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://bdqqr6bpsscaq" path="res://assets/images/player/abilities/fistattack3.png" id="2_g7ett"]
@@ -796,6 +796,43 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7ett"]
 size = Vector2(27, 36)
 
+[sub_resource type="Animation" id="Animation_jnjyq"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fightrotated:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fightrotated:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("fightrotated/ColorRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.92, 0.2944, 0.30482653, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_ssrue"]
 resource_name = "fight"
 length = 0.7
@@ -834,48 +871,14 @@ tracks/2/keys = {
 "values": [Color(0.92, 0.2944, 0.30482653, 0), Color(0.92, 0.2944, 0.30482653, 1), Color(0.92, 0.2944, 0.30482653, 1), Color(0.92, 0.2944, 0.30482653, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_jnjyq"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("fightrotated:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("fightrotated:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("fightrotated/ColorRect:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.92, 0.2944, 0.30482653, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gnkmh"]
 _data = {
 &"RESET": SubResource("Animation_jnjyq"),
 &"fight": SubResource("Animation_ssrue")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ssrue"]
+radius = 26.172504
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 4
@@ -1000,6 +1003,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_gnkmh")
 }
 speed_scale = 2.0
+
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["player"]]
+shape = SubResource("CircleShape2D_ssrue")
 
 [connection signal="animation_finished" from="SubViewport/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="fight/fight_anim" to="." method="_on_fight_anim_animation_finished"]

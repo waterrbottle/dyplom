@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8wkwxcr8ybmt" path="res://scenes/apps/sysmessenger/sysmessenger.gd" id="1_3g1eb"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="2_h2k7b"]
-[ext_resource type="Texture2D" uid="uid://d0aa63pocxl0d" path="res://assets/images/ui/icons/17086-256x256x32.png" id="3_h2k7b"]
+[ext_resource type="Texture2D" uid="uid://ci603ivw70gdi" path="res://assets/images/ui/icons/system/ERROR_.png" id="3_qj7ll"]
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="4_3g1eb"]
 [ext_resource type="AudioStream" uid="uid://qq5jobyxtom0" path="res://assets/sounds/sfx/error.wav" id="5_kljoy"]
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="5_qj7ll"]
@@ -26,6 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -41,19 +42,19 @@ text = "komputer wybuchl"
 label_settings = SubResource("LabelSettings_3g1eb")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -13.0
-offset_top = -32.0
-offset_right = 14.0
+offset_left = -18.0
+offset_top = -41.0
+offset_right = 18.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_h2k7b")
-expand_mode = 1
+texture = ExtResource("3_qj7ll")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 8

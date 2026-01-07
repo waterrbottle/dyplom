@@ -2,7 +2,7 @@ app-redirect
 scene
 res://scenes/apps/sysmessenger/sysmessenger.tscn
 icon
-res://assets/images/ui/icons/17086-256x256x32.png
+res://assets/images/ui/icons/system/ERROR_.png
 name
 system_messenger.exe
 data-injection

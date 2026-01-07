@@ -46,7 +46,7 @@ font_size = 20
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpmoa"]
 resource_local_to_scene = true
-size = Vector2(500, 527)
+size = Vector2(35, 38.5)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -235,12 +235,12 @@ flat = true
 physics_object_picking = true
 size = Vector2i(500, 300)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Panel"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Panel" groups=["window"]]
 collision_layer = 4
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Panel/StaticBody2D"]
-position = Vector2(250, 300)
+position = Vector2(17.5, 55.75)
 shape = SubResource("RectangleShape2D_kpmoa")
 
 [node name="ColorRect" type="ColorRect" parent="Panel/StaticBody2D/CollisionShape2D"]

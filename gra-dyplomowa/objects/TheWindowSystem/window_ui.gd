@@ -33,8 +33,8 @@ func spawnapp():
 		$Panel.size = Vector2( windowdata.scenesize.x + 5, windowdata.scenesize.y + 30)
 		$Panel/SubViewport.add_child(inst)
 		appscene = get_node("Panel/SubViewport").get_child(0)
-		$Panel/StaticBody2D/CollisionShape2D.shape.size = $Panel.size
-		$Panel/StaticBody2D/CollisionShape2D.position = $Panel.size/2
+		
+		
 		appvalid=true
 	else:
 		Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", ["cant open the scene. file " +str(scene) +" does not exist.",true])
@@ -82,6 +82,9 @@ func _input(event: InputEvent) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	$Panel/StaticBody2D/CollisionShape2D.shape.size = $Panel.size
+	$Panel/StaticBody2D/CollisionShape2D.position = $Panel.size/2
 	if scenepath.get_child_count() == 0:
 		Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", ["window exists but app doesnt.",true])
 		queue_free()

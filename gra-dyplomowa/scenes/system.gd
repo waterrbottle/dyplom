@@ -8,12 +8,23 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+
+
 	%TimeLabel.text = Time.get_time_string_from_system()  #Time.get_time_dict_from_system()["hour"] , ":" , Time.get_time_dict_from_system()["minute"])
 	if Global.ondesktop == false:
 		if $Player.active==true:
 			$desktopfocus.mouse_filter=1
 			$Player.despawn()
 	
+	#quicktools script
+	if Input.is_action_just_pressed("right_click"):
+
+							
+		$taskwindow.position = get_viewport().get_mouse_position()
+		$taskwindow.show()
+
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		$taskwindow.hide()
 
 func updateactivewindow():
 
