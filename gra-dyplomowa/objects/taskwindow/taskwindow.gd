@@ -28,7 +28,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
 	if Input.is_action_just_pressed("right_click"):
+		if Global.quicktasklock == true:
+			return
 		print("pressed")
 		var space = get_world_2d().direct_space_state
 		var mousePos = get_viewport().get_mouse_position()

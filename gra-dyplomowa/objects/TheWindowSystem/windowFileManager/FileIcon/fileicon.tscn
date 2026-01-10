@@ -59,7 +59,7 @@ font_size = 15
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eauu2"]
-bg_color = Color(0.6, 0, 0.39999992, 0.49019608)
+bg_color = Color(0.6, 0, 0.39999992, 0.44705883)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tsewj"]
 bg_color = Color(0.07000008, 0.6, 0, 0.7921569)
@@ -101,22 +101,23 @@ texture_filter = 1
 layout_mode = 0
 offset_top = 35.0
 offset_right = 51.0
-offset_bottom = 86.0
-text = "FileName"
+offset_bottom = 61.0
+text = "FileName vffvdfvdfdvdvfdvfvdfvdfvdfdvf"
 label_settings = SubResource("LabelSettings_nr0wp")
 horizontal_alignment = 1
 autowrap_mode = 1
-visible_characters = 20
-visible_ratio = 2.5
+max_lines_visible = 2
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_right = 51.0
 offset_bottom = 54.0
 focus_mode = 0
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_eauu2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_tsewj")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3giw7")
+flat = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -148,5 +149,12 @@ theme_override_styles/read_only = SubResource("StyleBoxFlat_xt06e")
 theme_override_styles/focus = SubResource("StyleBoxFlat_1ny7j")
 alignment = 1
 
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_shape_entered" from="Area2D" to="." method="_on_area_2d_mouse_shape_entered"]
+[connection signal="mouse_shape_exited" from="Area2D" to="." method="_on_area_2d_mouse_shape_exited"]
 [connection signal="editing_toggled" from="TextEdit" to="." method="_on_text_edit_editing_toggled"]
 [connection signal="text_submitted" from="TextEdit" to="." method="_on_text_edit_text_submitted"]

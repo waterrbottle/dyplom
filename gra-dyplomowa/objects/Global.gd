@@ -3,6 +3,19 @@ var playerloc = "window"
 var ondesktop = true
 var playervars = {"health": 100, "position": Vector2(0,0)}
 var quicktasks = ["where", "am", "i"]
+var quicktasklock = false
+signal deferred
+
+func wait_deferred() -> Signal:
+	var deferred_signal := Signal(deferred)
+	deferred_signal.emit.call_deferred()
+	return deferred_signal
+
+func do_something():
+	# Stuff happens here
+	await wait_deferred()
+	quicktasklock=false
+	# Stuff happens here at the end of the current frame
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -13,9 +26,11 @@ func _ready() -> void:
 
 
 
-
+func updatetasks(tasks):
+	get_node("/root/MyComputer/taskwindow").updatetasks(tasks)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	do_something()
 	if playervars["health"] < 1:
 		for n in get_node("/root/MyComputer/Windows").get_children():
 			if n.appscene.get_node("Leveldata").type == "level":
