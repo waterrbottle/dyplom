@@ -74,3 +74,5 @@ windowname = "level 1"
 [node name="Michas" parent="." unique_id=2099416904 instance=ExtResource("8_ouxo3")]
 
 [node name="Player" parent="." unique_id=1401127334 instance=ExtResource("9_icy5c")]
+
+[node name="objects" type="Node2D" parent="." unique_id=1827192927]

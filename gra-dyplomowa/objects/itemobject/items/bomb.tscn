@@ -1,7 +1,13 @@
 [gd_scene format=3 uid="uid://cscyb5jsqf8tf"]
 
+[ext_resource type="Script" uid="uid://clpjgyv1c3vuj" path="res://objects/itemobject/items/bomb.gd" id="1_byym3"]
 [ext_resource type="Texture2D" uid="uid://c2ijsg1dtai7g" path="res://assets/images/items/BOMBA.png" id="1_uhsla"]
-[ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="2_byym3"]
+[ext_resource type="Texture2D" uid="uid://decij10wog07i" path="res://assets/images/particles/IKS.png" id="2_uhsla"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_byym3"]
+bounce = 0.27
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_byym3"]
 
 [sub_resource type="Gradient" id="Gradient_13f8l"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 0.6509804, 0, 1)
@@ -9,23 +15,50 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 0.6509804, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_2p2vj"]
 gradient = SubResource("Gradient_13f8l")
 
+[sub_resource type="Gradient" id="Gradient_uhsla"]
+offsets = PackedFloat32Array(0.4783654, 0.7932692, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0.4, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_byym3"]
+gradient = SubResource("Gradient_uhsla")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s8asg"]
 particle_flag_disable_z = true
-inherit_velocity_ratio = 1.0
+inherit_velocity_ratio = 0.152
 velocity_pivot = Vector3(0, 1, 0)
 initial_velocity_max = 10.0
 gravity = Vector3(0, -100, 0)
-scale_min = 0.01
-scale_max = 0.03
+scale_min = 0.5
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_byym3")
 color_initial_ramp = SubResource("GradientTexture1D_2p2vj")
 
 [node name="Bomb" type="Node2D" unique_id=1831489478]
+script = ExtResource("1_byym3")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=533032022]
+[node name="display" type="Node2D" parent="." unique_id=915950676]
+
+[node name="Sprite2D" type="Sprite2D" parent="display" unique_id=533032022]
 texture_filter = 1
 texture = ExtResource("1_uhsla")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1628235014]
+[node name="object" type="RigidBody2D" parent="." unique_id=67397050]
+collision_layer = 128
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_byym3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="object" unique_id=904616758]
+shape = SubResource("CircleShape2D_byym3")
+
+[node name="display" type="Node2D" parent="object" unique_id=105667266]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="object/display" unique_id=1397348841]
+texture_filter = 1
 position = Vector2(6, -12)
-texture = ExtResource("2_byym3")
+amount = 25
+texture = ExtResource("2_uhsla")
 process_material = SubResource("ParticleProcessMaterial_s8asg")
+
+[node name="Sprite2D" type="Sprite2D" parent="object/display" unique_id=1886184511]
+texture_filter = 1
+texture = ExtResource("1_uhsla")

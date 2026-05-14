@@ -256,6 +256,12 @@ grow_vertical = 2
 
 [node name="Player" parent="." unique_id=1401127334 instance=ExtResource("4_x660l")]
 
+[node name="right arm" parent="Player/SubViewport/Node3D" parent_id_path=PackedInt32Array(1401127334, 1438825571) index="1" unique_id=1786653235]
+transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="right leg" parent="Player/SubViewport/Node3D" parent_id_path=PackedInt32Array(1401127334, 1438825571) index="3" unique_id=1739319851]
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 1, 0, 0, 0)
+
 [node name="TextureRect" parent="Player" index="2" unique_id=1031087902]
 texture = SubResource("ViewportTexture_eoi4i")
 
@@ -673,3 +679,4 @@ mouse_filter = 2
 [connection signal="pressed" from="startmenu/ScrollContainer/VBoxContainer/HBoxContainer/shut" to="." method="_on_shut_pressed"]
 
 [editable path="Player"]
+[editable path="Player/Itemhold"]

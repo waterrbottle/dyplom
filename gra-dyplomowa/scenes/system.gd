@@ -10,7 +10,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 
-
 	%TimeLabel.text = Time.get_time_string_from_system()  #Time.get_time_dict_from_system()["hour"] , ":" , Time.get_time_dict_from_system()["minute"])
 	if Global.ondesktop == false:
 		if has_node("Player"):

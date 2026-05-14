@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d8h710hmn2rb"
-path="res://.godot/imported/tile.png-0bfac90b19b568b2c58f7f3f3e0d060e.ctex"
+uid="uid://dcncn8uuablr2"
+path="res://.godot/imported/chmurka.png-0cf86bc49caffd56748d3d8d76e25dda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/tiles/tile.png"
-dest_files=["res://.godot/imported/tile.png-0bfac90b19b568b2c58f7f3f3e0d060e.ctex"]
+source_file="res://assets/images/particles/chmurka.png"
+dest_files=["res://.godot/imported/chmurka.png-0cf86bc49caffd56748d3d8d76e25dda.ctex"]
 
 [params]
 

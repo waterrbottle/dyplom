@@ -54,16 +54,34 @@ func _process(delta: float) -> void:
 			die()
 		if position.y < 0:
 			die()
-
+	
+	var canfight = true
 	if Input.is_action_pressed("fight"):
 		
+		if Global.item != "":
+			Global.item = ""
+			canfight=false
+			if get_parent() != null:
+				var i = $Itemhold.get_node("item").get_child(0).duplicate()
+				i.display = false
+				i.position = global_position
+				Global.add_item("")
+				$Itemhold.get_node("item").get_child(0).queue_free()
+				
+				if get_parent().has_node("objects"):
+					get_parent().get_node("objects").add_child(i)
+				else:
+					get_parent().add_child(i)
+					print("no object node to add the object to!")
+		
 		if fight == false:
-			$fight.show()
-			%fistobject.active = true
-			%fistobject.dir = fightdir
-			%fistobject.bodyvel = velocity
-			$fight.rotation_degrees = 90 * fightdir - 90
-			$fight/fight_anim.play("fight")
+			if canfight == true:
+				$fight.show()
+				%fistobject.active = true
+				%fistobject.dir = fightdir
+				%fistobject.bodyvel = velocity
+				$fight.rotation_degrees = 90 * fightdir - 90
+				$fight/fight_anim.play("fight")
 		fight = true
 	
 	for n in $dasparticles.get_children():

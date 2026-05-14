@@ -12,7 +12,7 @@ func load_item():
 	if loadscn == null:
 		return
 	var i = loadscn.instantiate()
-	
+	i.display = true
 	$item.add_child(i)
 	
 	
