@@ -1,9 +1,14 @@
 extends Node
 var playerloc = "window"
 var ondesktop = true
-var playervars = {"health": 100, "position": Vector2(0,0)}
+var playervars = {"health": 100, "position": Vector2(0,0), "scale": Vector2(1,1)}
 var quicktasks = ["where", "am", "i"]
 var quicktasklock = false
+var qtquueue = []
+var qtopen = false
+var activetype =""
+var lockinput = false
+var item = ""
 signal deferred
 
 func wait_deferred() -> Signal:
@@ -20,16 +25,28 @@ func do_something():
 func _ready() -> void:
 	pass # Replace with function body.
 
-
-
-
-
-
+func add_item(itemm):
+	get_tree().call_group("player", "add_item", itemm)
+	item = itemm
 
 func updatetasks(tasks):
-	get_node("/root/MyComputer/taskwindow").updatetasks(tasks)
+	get_node("/root/MyComputer/taskwindow").updateglobal(tasks)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#print(lockinput)
+	var focus_owner = get_viewport().gui_get_focus_owner()
+	
+	# Check if anything actually has focus
+	if is_instance_valid(focus_owner):
+		# We check for LineEdit (Chat) and TextEdit (Large text blocks)
+		if focus_owner is LineEdit or focus_owner is TextEdit:
+			lockinput = true
+		else:
+			# Something else is focused (like a button), usually safe to unlock
+			lockinput = false
+	else:
+		# No UI element is focused
+		lockinput = false
 	do_something()
 	if playervars["health"] < 1:
 		for n in get_node("/root/MyComputer/Windows").get_children():
@@ -56,7 +73,7 @@ func addwindow(scene: String, namee, content):
 		#inst.appscene.get_child(0).content = content
 	if scene == "res://scenes/apps/notepad/notepad.tscn":
 		pass
-	if scene == "res://scenes/apps/sysmessenger/sysmessenger.tscn":
+	if scene == "res://scenes/apps/sysmessenger/sysmessenger.tscn" or scene == "uid://8ogs475b2e7p":
 		
 		inst.spawnapp()
 		inst.appscene.content = content[0]
@@ -69,7 +86,8 @@ func addwindow(scene: String, namee, content):
 		inst.spawnapp()
 		inst.appscene.musicload = content[0]
 		inst.appscene.musicname = content[1]
-	get_node("/root/MyComputer/Windows").add_child.call_deferred(inst)
+	if has_node("/root/MyComputer/Windows"):
+		get_node("/root/MyComputer/Windows").add_child.call_deferred(inst)
 	
 func closewindow(closetype, value):
 	if closetype == "node":
@@ -91,14 +109,39 @@ func renamefile(old,new):
 	pass
 
 func deletefolder(path):
-	print("pathHHH")
+	#addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "", [error_string(e) + ". Error code: "+ str(e),true])
 	print(path)
-	#var dir = DirAccess.open(path)
-	#DirAccess.remove_absolute(path)
-	print(DirAccess.dir_exists_absolute(path))
-
-	DirAccess.remove_absolute(path)
-	
-	#	addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "", [path + " doesnt exist?", true])
+	remove_recursive(path)
 
 	get_node("/root/MyComputer/DesktopFiles").update()
+	for n in get_node("/root/MyComputer/Windows").get_children():
+		if n.scene == "res://scenes/apps/fileManager/WindowFileManager.tscn":
+			n.appscene.update()
+
+func remove_recursive(path: String) -> Error:
+	var dir = DirAccess.open(path)
+	if not dir:
+		Global.addwindow("uid://8ogs475b2e7p","",["cant delete. error: " + error_string(DirAccess.get_open_error()), true])
+		return DirAccess.get_open_error()
+
+	# Start reading the contents
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+
+	while file_name != "":
+		if file_name != "." and file_name != "..":
+			var full_path = path.path_join(file_name)
+			if dir.current_is_dir():
+				# It's a folder, recurse into it
+				var err = remove_recursive(full_path)
+				if err != OK:
+					return err
+			else:
+				# It's a file, delete it
+				var err = DirAccess.remove_absolute(full_path)
+				if err != OK:
+					return err
+		file_name = dir.get_next()
+
+	# The folder is now empty, delete the folder itself
+	return DirAccess.remove_absolute(path)

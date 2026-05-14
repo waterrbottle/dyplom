@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bweuy5c10gc1l"]
+[gd_scene format=3 uid="uid://bweuy5c10gc1l"]
 
 [ext_resource type="Script" uid="uid://dgxdx2v8ttdv" path="res://scenes/apps/fileManager/window_file_manager.gd" id="1_3pyc6"]
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="2_tvxw8"]
@@ -22,14 +22,14 @@ font_size = 24
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvxw8"]
-size = Vector2(1153, 671)
+size = Vector2(1153, 687)
 
-[node name="WindowFileManager" type="Node2D"]
+[node name="WindowFileManager" type="Node2D" unique_id=317757362]
 script = ExtResource("1_3pyc6")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1692032730]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=697784151]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -37,7 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.54, 0.54, 0.54, 1)
 
-[node name="Panel2" type="Panel" parent="CanvasLayer"]
+[node name="Panel2" type="Panel" parent="CanvasLayer" unique_id=589066231]
 texture_filter = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -47,7 +47,7 @@ grow_horizontal = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_40gkv")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel2" unique_id=1456288017]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -56,14 +56,14 @@ offset_top = 6.0
 offset_bottom = 34.0
 grow_horizontal = 2
 
-[node name="Panel2" type="Panel" parent="CanvasLayer/Panel2/HBoxContainer"]
+[node name="Panel2" type="Panel" parent="CanvasLayer/Panel2/HBoxContainer" unique_id=1196519925]
 texture_filter = 1
 custom_minimum_size = Vector2(455, 0)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_40gkv")
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Panel2/HBoxContainer/Panel2"]
+[node name="Panel" type="Panel" parent="CanvasLayer/Panel2/HBoxContainer/Panel2" unique_id=329880044]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,7 +76,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_40gkv")
 
-[node name="dirlabel" type="Label" parent="CanvasLayer/Panel2/HBoxContainer/Panel2"]
+[node name="dirlabel" type="Label" parent="CanvasLayer/Panel2/HBoxContainer/Panel2" unique_id=786171745]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
@@ -91,12 +91,12 @@ text = "/MyComputer"
 label_settings = SubResource("LabelSettings_yt8l5")
 clip_text = true
 
-[node name="BackButton" type="Button" parent="CanvasLayer/Panel2/HBoxContainer"]
+[node name="BackButton" type="Button" parent="CanvasLayer/Panel2/HBoxContainer" unique_id=1246212234]
 custom_minimum_size = Vector2(27, 27)
 layout_mode = 2
 theme = ExtResource("4_wquea")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer" unique_id=1083382951]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -104,19 +104,21 @@ offset_top = 41.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="GridContainer" parent="CanvasLayer/ScrollContainer"]
+[node name="VBoxContainer" type="GridContainer" parent="CanvasLayer/ScrollContainer" unique_id=2025834797]
 layout_mode = 2
 columns = 9
 
-[node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/StaticBody2D"]
-position = Vector2(566.5, 325.5)
-shape = SubResource("RectangleShape2D_tvxw8")
-
-[node name="Leveldata" parent="." instance=ExtResource("5_tvxw8")]
+[node name="Leveldata" parent="." unique_id=1276539679 instance=ExtResource("5_tvxw8")]
 scenesize = Vector2(500, 300)
 windowname = "file"
 type = "explorer"
 
+[node name="staticbody" type="StaticBody2D" parent="." unique_id=844247728 groups=["desktop"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="staticbody" unique_id=720806907]
+position = Vector2(566.5, 333.5)
+shape = SubResource("RectangleShape2D_tvxw8")
+
+[connection signal="mouse_entered" from="CanvasLayer/ColorRect" to="." method="_on_color_rect_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/ColorRect" to="." method="_on_color_rect_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Panel2/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://7qvbhxkl8n3d"]
+
+[ext_resource type="Script" uid="uid://bgd4tiph380w6" path="res://objects/itemobject/itemhold.gd" id="1_e5qce"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hhwvd"]
+
+[node name="Itemhold" type="Node2D" unique_id=1711426756]
+script = ExtResource("1_e5qce")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1476242937]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=130332207]
+shape = SubResource("CircleShape2D_hhwvd")
+
+[node name="item" type="Node2D" parent="." unique_id=1397283490]

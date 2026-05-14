@@ -1,5 +1,5 @@
 extends Node2D
-var texturepath = "res://icon.svg"
+var texturepath = "user://icon.svg"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,9 +9,24 @@ func loadtexture():
 	if texturepath != "":
 		loadc()
 
+func load_image_manually(path: String) -> ImageTexture:
+	if not FileAccess.file_exists(path):
+		Global.addwindow("uid://8ogs475b2e7p","",["invalid path.", true])
+		return null
+		
+	# 1. Load the raw data into an Image object
+	var img = Image.load_from_file(path)
+	if img == null:
+		Global.addwindow("uid://8ogs475b2e7p","",["no image.", true])
+		return null
+		
+	# 2. Convert that Image into a Texture so Godot can render it
+	var texture = ImageTexture.create_from_image(img)
+	return texture
 
 func loadc():
-	$CanvasLayer/TextureRect.texture = load(texturepath)
+	print(texturepath)
+	$CanvasLayer/TextureRect.texture = load_image_manually(texturepath)
 	var size = $CanvasLayer/TextureRect.texture.get_size()
 	
 	var dzielnik = 1

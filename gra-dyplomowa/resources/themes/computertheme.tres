@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://cgmct2d0jwq0v"]
+[gd_resource type="Theme" format=3 uid="uid://cgmct2d0jwq0v"]
 
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="1_exhw4"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="1_t5o7e"]

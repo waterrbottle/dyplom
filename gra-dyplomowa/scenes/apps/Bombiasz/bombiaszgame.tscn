@@ -1,0 +1,310 @@
+[gd_scene format=3 uid="uid://csk1b6nq6eppo"]
+
+[ext_resource type="Script" uid="uid://b2irsrm6niqj7" path="res://scenes/apps/Bombiasz/bombiaszgame.gd" id="1_2q2hn"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="1_edujk"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="1_qhrn4"]
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="2_wq0mr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wq0mr"]
+font = ExtResource("1_qhrn4")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2q2hn"]
+
+[sub_resource type="Animation" id="Animation_nwyv4"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(303, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(35, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(556, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Label3:label_settings:font_color:r")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Label3:label_settings:font_color:g")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Label3:label_settings:font_color:b")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Label3:label_settings:font_color:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_2q2hn"]
+resource_name = "infobar"
+length = 2.96
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(2000, -0.25, 0, 0.25, 0, 2000, -0.086666666, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(35, -0.25, 0, 0.25, 0, 594, -0.086666666, -93.166664, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.086666666, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(556, -0.25, 0, 0.25, 0, -3, -0.086666666, 93.166664, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Label3:label_settings:font_color:r")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.15166667, 0, 0, 0, 1, -0.041666657, 0, 0.155, 0, 1, -0.19666664, 0, 0, 0, 1, -0.038333338, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.91, 1.16, 2.09, 2.32)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Label3:label_settings:font_color:g")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.15166667, 0, 0, 0, 1, -0.041666657, 0, 0.155, 0, 1, -0.19666664, 0, 0, 0, 1, -0.038333338, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.91, 1.16, 2.09, 2.32)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Label3:label_settings:font_color:b")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.15166667, 0, 0, 0, 1, -0.041666657, 0, 0.155, 0, 1, -0.19666664, 0, 0, 0, 1, -0.038333338, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.91, 1.16, 2.09, 2.32)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Label3:label_settings:font_color:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.15166667, 0, 0, 0, 1, -0.041666657, -0.03531073, 0.155, 0.13135596, 1, -0.19666664, -0.16666667, 0, 0, 0, -0.038333338, 0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.91, 1.16, 2.09, 2.32)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s2tf5"]
+_data = {
+&"RESET": SubResource("Animation_nwyv4"),
+&"infobar (2)": SubResource("Animation_2q2hn")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_2q2hn"]
+font = ExtResource("1_qhrn4")
+font_size = 30
+font_color = Color(1, 1, 1, 0)
+
+[node name="Bombiaszgame" type="Node2D" unique_id=1534754971]
+script = ExtResource("1_2q2hn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=692696452]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1364314203]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.59, 0.59, 0.59, 1)
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=698466951]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control" unique_id=1515679366]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -79.0
+offset_right = 79.5
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_wq0mr")
+columns = 13
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer" unique_id=1919117954]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 34.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect2" unique_id=224987539]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 115.0
+offset_bottom = 34.0
+text = "bombiasz"
+label_settings = SubResource("LabelSettings_wq0mr")
+
+[node name="Leveldata" parent="." unique_id=1345651821 instance=ExtResource("1_edujk")]
+scenesize = Vector2(500, 500)
+windowname = "file"
+type = "minigame"
+
+[node name="Timer" type="Timer" parent="." unique_id=1448742199]
+wait_time = 0.25
+autostart = true
+
+[node name="detect" type="Area2D" parent="." unique_id=1193176934]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect" unique_id=1180644631]
+shape = SubResource("CircleShape2D_2q2hn")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=548384378]
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer2" unique_id=1943401226]
+anchors_preset = -1
+anchor_right = 1.0251737
+anchor_bottom = -0.016975308
+offset_top = 556.0
+offset_right = -878.0
+offset_bottom = 602.0
+color = Color(1, 0.43, 0.43, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer2/ColorRect2" unique_id=646478393]
+libraries/ = SubResource("AnimationLibrary_s2tf5")
+
+[node name="Label3" type="Label" parent="CanvasLayer2" unique_id=697465879]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "THE FIRE HAS WON"
+label_settings = SubResource("LabelSettings_2q2hn")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="CanvasLayer2/ColorRect2/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

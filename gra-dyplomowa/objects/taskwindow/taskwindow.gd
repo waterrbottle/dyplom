@@ -2,6 +2,9 @@ extends PanelContainer
 var btn = load("res://objects/taskwindow/taskwindowbutton.tscn")
 
 # Called when the node enters the scene tree for the first time.
+func updateglobal(value):
+	if value[0] == "file":
+		fileicontasks(value[1])
 
 func updatetasks(tasks: Array):
 	
@@ -32,7 +35,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("right_click"):
 		if Global.quicktasklock == true:
 			return
-		print("pressed")
+
 		var space = get_world_2d().direct_space_state
 		var mousePos = get_viewport().get_mouse_position()
 		var params = PhysicsPointQueryParameters2D.new()
@@ -60,6 +63,7 @@ func _process(delta: float) -> void:
 			var col = spc[spc.size()-1].collider
 			
 			var hit=false
+			print(col)
 			if col.is_in_group("player"):
 
 				updatetasks([["suicide",murder.bind("siema", "dwa")]])
@@ -72,15 +76,9 @@ func _process(delta: float) -> void:
 			
 			
 			if col.is_in_group("desktop"):
-				var filename = "folder"
-				for i in range(1000):
-
-					if !DirAccess.dir_exists_absolute("user://MyComputer/Desktop/folder" + str(i)+ "/"):
-						filename = "folder" + str(i)
-	
-						break
+				deskotop(col)
 					
-				updatetasks([["add new folder", Global.addfolder.bind("user://MyComputer/Desktop/", filename)]])
+				
 				hit=true
 			if col.is_in_group("window"):
 				updatetasks([["close window",Global.closewindow.bind("node", col.get_parent().get_parent() )],
@@ -113,17 +111,26 @@ func _process(delta: float) -> void:
 					if col2.is_in_group("file"):
 						
 						fileicontasks(col2)
+					if col2.is_in_group("desktop"):
+						deskotop(col2)
 			if hit == false:
 				updatetasks([])
 			
 func fileicontasks(col):
 	updatetasks([["rename",rename.bind(col) ],["delete", Global.deletefolder.bind(col.get_parent().path + col.get_parent().filename)]])
+func deskotop(col):
+	var filename = "folder"
+	for i in range(1000):
 
+		if !DirAccess.dir_exists_absolute("user://MyComputer/Desktop/folder" + str(i)+ "/"):
+			filename = "folder" + str(i)
+			break
+	updatetasks([["add new folder", Global.addfolder.bind("user://MyComputer/Desktop/", filename)]])
 
 func btn_pressed(n):
 	n.call()
 func rename(col):
-	col.get_parent().edit=true
+	col.get_parent().rename()
 	col.get_parent().get_node("TextEdit").grab_focus()
 
 func murder(cstm_mg,cstm2):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcofs4xfxw186"]
+[gd_scene format=3 uid="uid://bcofs4xfxw186"]
 
 [ext_resource type="Script" uid="uid://b8lnlqk5ged1h" path="res://scenes/apps/ImageViewer/imageviewer.gd" id="1_7fb28"]
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="1_fw18m"]
@@ -19,22 +19,22 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0s0ux"]
 shader = ExtResource("3_o2os2")
-shader_parameter/colorreduceR = 8.0
-shader_parameter/colorreduceG = 8.0
-shader_parameter/colorreduceB = 8.0
+shader_parameter/colorreduceR = 16.0
+shader_parameter/colorreduceG = 16.0
+shader_parameter/colorreduceB = 16.0
 shader_parameter/colorStrength = 1.0
 
-[node name="Imageviewer" type="Node2D"]
+[node name="Imageviewer" type="Node2D" unique_id=1209476534]
 script = ExtResource("1_7fb28")
 
-[node name="Leveldata" parent="." instance=ExtResource("1_fw18m")]
+[node name="Leveldata" parent="." unique_id=1548152679 instance=ExtResource("1_fw18m")]
 scenesize = Vector2(300, 300)
 windowname = "ImageViewer"
 type = "explorer"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1516670519]
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1039613373]
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,7 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_0s0ux")
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=116907825]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -59,7 +59,7 @@ text = "no image to load"
 label_settings = SubResource("LabelSettings_5ycmd")
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/Label"]
+[node name="Label" type="Label" parent="CanvasLayer/Label" unique_id=432637497]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -76,7 +76,7 @@ text = "to open an image find the source file in explorer"
 label_settings = SubResource("LabelSettings_o2os2")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=596240239]
 texture_filter = 1
 material = SubResource("ShaderMaterial_0s0ux")
 anchors_preset = 15

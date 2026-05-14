@@ -5,6 +5,7 @@ var gdirs = null
 var dirstring = "user://MyComputer/"
 var dirlist =["MyComputer"]
 @export var mode = "windowed"
+var inside = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update()
@@ -54,11 +55,16 @@ func fileopening(n):
 			Global.addwindow(n.scenepath, n.get_child(1).text, (n.adata))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+
 	if mode == "windowed":
 		if get_parent().get_parent().get_parent().active == true:
 			for n in $CanvasLayer/ScrollContainer/VBoxContainer.get_children():
 				if n.get_child(2).is_pressed():
+
+					n.disable = true
+
 					if get_parent().get_parent().get_parent().acceptinput == true:
+						
 						fileopening(n)
 		%dirlabel.text = dirstring
 	if mode == "desktop":
@@ -76,6 +82,9 @@ func update():
 		dirstring = "user://MyComputer/Desktop/"
 		for n in $GridContainer.get_children():
 			n.queue_free()
+	if mode == "windowed":
+		for n in $CanvasLayer/ScrollContainer/VBoxContainer.get_children():
+			n.queue_free()
 			
 
 	var dir := DirAccess.open(dirstring)
@@ -92,6 +101,7 @@ func update():
 		inst.get_child(0).play("document")
 		inst.type = "document"
 		inst.path = dirstring
+		inst.ext = file.get_extension()
 		inst.get_child(1).text = str(file)
 		
 		var filer = FileAccess.open(dirstring+file, FileAccess.READ)
@@ -108,7 +118,7 @@ func update():
 				if n == 1:
 					inst.scenepath = str(contenti)
 				if n == 5:
-					inst.get_child(1).text = str(contenti)
+					inst.nameoverride = str(contenti)
 				if n == 3:
 
 					inst.image(contenti)

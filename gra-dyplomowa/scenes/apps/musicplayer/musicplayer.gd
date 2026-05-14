@@ -10,10 +10,99 @@ load("res://assets/images/ui/icons/musicplayer/glosnik.png"),
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spectrum=AudioServer.get_bus_effect_instance(0,0)
+	print(musicload)
 	if musicload != "":
-		$AudioStreamPlayer.stream = load(musicload)
-		$CanvasLayer/Control/HBoxContainer/HSlider.max_value = $AudioStreamPlayer.stream.get_length()
-		$CanvasLayer/Control/Panel3/ColorRect/VBoxContainer/musictitle.text = musicname
+		if musicload.get_extension() == "mp3":
+			load_mp3_manually(musicload)
+		elif musicload.get_extension() == "wav":
+			
+			load_wav_manually(musicload)
+			$AudioStreamPlayer.stream = load_wav_manually(musicload)
+			$CanvasLayer/Control/HBoxContainer/HSlider.max_value = $AudioStreamPlayer.stream.get_length()
+			$CanvasLayer/Control/Panel3/ColorRect/VBoxContainer/musictitle.text = musicname
+		else:
+			Global.addwindow("uid://8ogs475b2e7p","",["unrecognized file ext", true])
+
+	else:
+		Global.addwindow("uid://8ogs475b2e7p","",["no path?", true])
+
+func load_mp3_manually(path: String):
+
+	if not FileAccess.file_exists(path):
+		Global.addwindow("uid://8ogs475b2e7p","",["stream doesnt exist", true])
+		
+	var file = FileAccess.open(path, FileAccess.READ)
+	if not file:
+		Global.addwindow("uid://8ogs475b2e7p","",["error opening music file", true])
+		
+
+	var bytes = file.get_buffer(file.get_length())
+	
+	var stream = AudioStreamMP3.new()
+	
+	stream.data = bytes
+	$AudioStreamPlayer.stream = stream
+	$CanvasLayer/Control/HBoxContainer/HSlider.max_value = $AudioStreamPlayer.stream.get_length()
+	$CanvasLayer/Control/Panel3/ColorRect/VBoxContainer/musictitle.text = musicname
+
+ 
+func load_wav_manually(path: String):
+	var file = FileAccess.open(path, FileAccess.READ)
+	if not file: return null
+	
+	var bytes = file.get_buffer(file.get_length())
+	var stream = AudioStreamWAV.new()
+	
+	var offset = 12
+	var bits = 0
+	var raw_data = PackedByteArray()
+
+	while offset < bytes.size() - 8:
+		var chunk_id = bytes.slice(offset, offset + 4).get_string_from_ascii()
+		var chunk_size = bytes.decode_u32(offset + 4)
+		var chunk_start = offset + 8
+		
+		if chunk_id == "fmt ":
+			var compression_code = bytes.decode_u16(chunk_start)
+			if compression_code != 1 and compression_code != 3:
+				push_error("Not a PCM WAV (Compression: %d)" % compression_code)
+				return null
+				
+			var channels = bytes.decode_u16(chunk_start + 2)
+			stream.stereo = (channels == 2)
+			stream.mix_rate = bytes.decode_u32(chunk_start + 4)
+			bits = bytes.decode_u16(chunk_start + 14)
+			
+		elif chunk_id == "data":
+			raw_data = bytes.slice(chunk_start, chunk_start + chunk_size)
+		
+		offset += 8 + chunk_size
+
+	# --- THE CONVERSION LOGIC ---
+	if bits == 16:
+		stream.format = AudioStreamWAV.FORMAT_16_BITS
+		stream.data = raw_data
+	elif bits == 24:
+		stream.format = AudioStreamWAV.FORMAT_16_BITS
+		var converted = PackedByteArray()
+		converted.resize(raw_data.size() / 3 * 2)
+		
+		var j = 0
+		for i in range(0, raw_data.size() - 2, 3):
+			# WAV is Little Endian. 24-bit is: [Low] [Mid] [High]
+			# We want the Mid and High bytes to make a 16-bit sample.
+			converted[j] = raw_data[i + 1]
+			converted[j + 1] = raw_data[i + 2]
+			j += 2
+		stream.data = converted
+	elif bits == 8:
+		stream.format = AudioStreamWAV.FORMAT_8_BITS
+		stream.data = raw_data
+	else:
+		push_error("Unsupported bit depth: %d" % bits)
+		return null
+
+	return stream
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var canjump = true
+var health = 100
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -17,7 +18,7 @@ func _on_timer_timeout() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-
+	$ProgressBar.value = health
 	$ColorRect.color = Color(randf_range(0.5,1), 0.3, 0.3)
 	if position.x > Global.playervars["position"].x:
 		velocity.x += -5
@@ -37,6 +38,8 @@ func _physics_process(delta: float) -> void:
 				
 					$Timer.start()
 	move_and_slide()
+	if Input.is_key_pressed(KEY_L):
+		queue_free()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -45,6 +48,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			body.damage(1)
 	if body.is_in_group("fist"):
 		if body.active == true:
+			health -= 5
 			velocity.y = -500 + body.bodyvel.y * 2
 			if abs(body.dir) == 1:
 				velocity.x = 100 * body.dir + body.bodyvel.x * 3

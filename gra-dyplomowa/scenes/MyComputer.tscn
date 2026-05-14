@@ -1,25 +1,19 @@
-[gd_scene load_steps=41 format=3 uid="uid://bqmvvc2ih4t7r"]
+[gd_scene format=3 uid="uid://bqmvvc2ih4t7r"]
 
 [ext_resource type="Script" uid="uid://bski7mfsjr2u0" path="res://scenes/system.gd" id="1_8c8no"]
 [ext_resource type="Shader" uid="uid://c3twmf158t8ym" path="res://resources/shaders/retro.gdshader" id="1_tlqso"]
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="2_7w4bu"]
 [ext_resource type="Texture2D" uid="uid://csutddenuu67l" path="res://assets/images/ui/tymon/Screenshot 2025-11-17 at 17.25.39.png" id="2_tlqso"]
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="2_vcjmw"]
-[ext_resource type="FontFile" uid="uid://c27yrvbvkjcu2" path="res://assets/fonts/Jersey_15/Jersey15-Regular.ttf" id="3_e14vx"]
 [ext_resource type="Script" uid="uid://dgxdx2v8ttdv" path="res://scenes/apps/fileManager/window_file_manager.gd" id="4_eoi4i"]
-[ext_resource type="PackedScene" uid="uid://cydwpoipuoe8x" path="res://objects/TheWindowSystem/windowUI.tscn" id="5_62mc7"]
+[ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player.tscn" id="4_x660l"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="8_y8hb4"]
-[ext_resource type="PackedScene" uid="uid://bv25h3t84m4of" path="res://objects/player/player.tscn" id="10_62mc7"]
 [ext_resource type="PackedScene" uid="uid://dndxjkirb7sod" path="res://objects/taskwindow/taskwindow.tscn" id="11_eoi4i"]
+[ext_resource type="Shader" uid="uid://dwuiurj8e5cpe" path="res://scenes/MyComputer.gdshader" id="12_x660l"]
+[ext_resource type="PackedScene" uid="uid://cgayns48dk0gb" path="res://scenes/apps/screensaver/screensaver.tscn" id="13_amumy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x660l"]
 size = Vector2(2359, 1431)
-
-[sub_resource type="Gradient" id="Gradient_dcjl0"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ng37i"]
-gradient = SubResource("Gradient_dcjl0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7w4bu"]
 shader = ExtResource("1_tlqso")
@@ -27,6 +21,96 @@ shader_parameter/colorreduceR = 1.22
 shader_parameter/colorreduceG = 2.59
 shader_parameter/colorreduceB = 2.19
 shader_parameter/colorStrength = 1.76
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_eoi4i"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ow0dq"]
+animation = &"slide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m4kly"]
+animation = &"slide_2"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_xgwla"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ow0dq")
+blend_point_0/pos = 0.5
+blend_point_1/node = SubResource("AnimationNodeAnimation_m4kly")
+blend_point_1/pos = -0.5
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4flbx"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i3pqv"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_onrkg"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ssrue"]
+animation = &"slide_2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i3pqv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hqtel"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "velocity.length() > .2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2hs0m"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "!is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1jxqw"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4flbx"]
+xfade_time = 0.3
+advance_mode = 2
+advance_expression = "!is_on_floor() "
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sweqy"]
+xfade_time = 0.3
+switch_mode = 1
+advance_mode = 2
+advance_expression = "velocity.length() < 0.2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jnjyq"]
+xfade_time = 0.1
+break_loop_at_end = true
+advance_mode = 2
+advance_expression = "sneak"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ssrue"]
+xfade_time = 0.1
+break_loop_at_end = true
+advance_mode = 2
+advance_expression = "sneak"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gnkmh"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "!sneak"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_x660l"]
+resource_local_to_scene = true
+states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_xgwla")
+states/BlendSpace1D/position = Vector2(505.8144, -39.182613)
+states/End/position = Vector2(866, 84.28298)
+states/Start/position = Vector2(232.5, 84.391205)
+states/idle/node = SubResource("AnimationNodeAnimation_4flbx")
+states/idle/position = Vector2(354.90204, 101.28298)
+states/jump/node = SubResource("AnimationNodeAnimation_i3pqv")
+states/jump/position = Vector2(488, 222)
+states/run/node = SubResource("AnimationNodeAnimation_onrkg")
+states/run/position = Vector2(506.5, 84.3371)
+states/slide/node = SubResource("AnimationNodeAnimation_ssrue")
+states/slide/position = Vector2(333.83527, -7.545105)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_i3pqv"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_hqtel"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_2hs0m"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_1jxqw"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_4flbx"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_sweqy"), "run", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_jnjyq"), "idle", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_ssrue"), "BlendSpace1D", "idle", SubResource("AnimationNodeStateMachineTransition_gnkmh")]
+graph_offset = Vector2(-14.819885, -129.40508)
 
 [sub_resource type="Gradient" id="Gradient_ng37i"]
 colors = PackedColorArray(0.5991008, 0.5991008, 0.5991008, 1, 0.92, 0.92, 0.92, 1)
@@ -59,7 +143,7 @@ texture_margin_right = 5.0
 texture_margin_bottom = 5.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_7w4bu"]
-font = ExtResource("3_e14vx")
+font = ExtResource("8_y8hb4")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
 
@@ -90,66 +174,27 @@ fill_to = Vector2(1, 1)
 font = ExtResource("8_y8hb4")
 font_size = 26
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_62mc7"]
-viewport_path = NodePath("Player/SubViewport")
+[sub_resource type="LabelSettings" id="LabelSettings_x660l"]
+font = ExtResource("8_y8hb4")
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4flbx"]
-animation = &"idle"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amumy"]
+size = Vector2(180, 272)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i3pqv"]
-animation = &"jump"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_onrkg"]
-animation = &"run"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i3pqv"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hqtel"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "velocity.length() > .2"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sweqy"]
-xfade_time = 0.3
-switch_mode = 1
-advance_mode = 2
-advance_expression = "velocity.length() < 0.2"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2hs0m"]
-xfade_time = 0.1
-advance_mode = 2
-advance_expression = "!is_on_floor()"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1jxqw"]
-xfade_time = 0.1
-advance_mode = 2
-advance_expression = "is_on_floor()"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4flbx"]
-xfade_time = 0.3
-advance_mode = 2
-advance_expression = "!is_on_floor() "
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_eoi4i"]
-resource_local_to_scene = true
-states/Start/position = Vector2(218, 76.5)
-states/idle/node = SubResource("AnimationNodeAnimation_4flbx")
-states/idle/position = Vector2(373.5, 83.029785)
-states/jump/node = SubResource("AnimationNodeAnimation_i3pqv")
-states/jump/position = Vector2(421.5, 177.5)
-states/run/node = SubResource("AnimationNodeAnimation_onrkg")
-states/run/position = Vector2(506.5, 82.91211)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_i3pqv"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_hqtel"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_sweqy"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_2hs0m"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_1jxqw"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_4flbx")]
-graph_offset = Vector2(125.96984, 34.7625)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmm6e"]
+size = Vector2(173, 266)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62mc7"]
-size = Vector2(20, 1360)
+size = Vector2(16.5, 1401)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eoi4i"]
-size = Vector2(4244, 38)
+size = Vector2(4244, 30)
 
-[node name="MyComputer" type="Control"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_28luw"]
+shader = ExtResource("12_x660l")
+shader_parameter/colors = 10.8290004668775
+shader_parameter/dither = 0.25600001216
+
+[node name="MyComputer" type="Control" unique_id=1684596161]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -158,13 +203,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8c8no")
 
-[node name="Area2D" type="Area2D" parent="." groups=["desktop"]]
+[node name="Area2D" type="Area2D" parent="." unique_id=809728021 groups=["desktop"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1146157916]
 position = Vector2(1169.5, 705.5)
 shape = SubResource("RectangleShape2D_x660l")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1234204621]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -173,7 +218,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.36225006, 0.315, 0.45, 1)
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Player#TextureRect" type="TextureRect" parent="." unique_id=420429723]
 visible = false
 modulate = Color(0.36352, 0.3552, 0.48, 1)
 texture_filter = 1
@@ -184,10 +229,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.13, 0.13)
-texture = SubResource("GradientTexture1D_ng37i")
 expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1197318443]
 visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_7w4bu")
@@ -201,7 +245,7 @@ texture = ExtResource("2_tlqso")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="Backgroundclick" type="Button" parent="."]
+[node name="Backgroundclick" type="Button" parent="." unique_id=869194101]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -210,7 +254,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DesktopFiles" type="Control" parent="."]
+[node name="Player" parent="." unique_id=1401127334 instance=ExtResource("4_x660l")]
+
+[node name="TextureRect" parent="Player" index="2" unique_id=1031087902]
+texture = SubResource("ViewportTexture_eoi4i")
+
+[node name="AnimationTree" parent="Player" index="3" unique_id=938827342]
+tree_root = SubResource("AnimationNodeStateMachine_x660l")
+
+[node name="Camera2D" parent="Player" index="5" unique_id=1236330716]
+enabled = false
+
+[node name="DesktopFiles" type="Control" parent="." unique_id=1173970550]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,7 +277,7 @@ mouse_filter = 2
 script = ExtResource("4_eoi4i")
 mode = "desktop"
 
-[node name="GridContainer" type="GridContainer" parent="DesktopFiles"]
+[node name="GridContainer" type="GridContainer" parent="DesktopFiles" unique_id=1533129559]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -232,7 +287,7 @@ grow_vertical = 2
 mouse_filter = 2
 columns = 40
 
-[node name="desktopfocus" type="Button" parent="."]
+[node name="desktopfocus" type="Button" parent="." unique_id=1241753663]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -243,17 +298,13 @@ focus_mode = 0
 mouse_filter = 1
 flat = true
 
-[node name="Windows" type="Control" parent="."]
+[node name="Windows" type="Control" parent="." unique_id=1765414581]
 anchors_preset = 0
 offset_right = 6.0
 offset_bottom = 5.0
 mouse_filter = 2
 
-[node name="Control" parent="Windows" instance=ExtResource("5_62mc7")]
-layout_mode = 1
-scene = "res://scenes/apps/paint/paint.tscn"
-
-[node name="bottobar" type="Control" parent="."]
+[node name="bottobar" type="Control" parent="." unique_id=2003253051]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -263,7 +314,7 @@ offset_top = -46.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="TextureRect2" type="TextureRect" parent="bottobar"]
+[node name="TextureRect2" type="TextureRect" parent="bottobar" unique_id=471853887]
 visible = false
 layout_mode = 1
 anchors_preset = 12
@@ -278,7 +329,7 @@ grow_vertical = 0
 texture = SubResource("GradientTexture2D_vcjmw")
 expand_mode = 1
 
-[node name="Panel2" type="Panel" parent="bottobar"]
+[node name="Panel2" type="Panel" parent="bottobar" unique_id=1614873737]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 12
@@ -290,7 +341,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_e14vx")
 
-[node name="TextureRect" type="TextureRect" parent="bottobar"]
+[node name="TextureRect" type="TextureRect" parent="bottobar" unique_id=165959185]
 visible = false
 layout_mode = 1
 anchors_preset = 12
@@ -306,7 +357,7 @@ grow_vertical = 0
 texture = SubResource("GradientTexture2D_ng37i")
 expand_mode = 1
 
-[node name="Startbutton" type="Button" parent="bottobar"]
+[node name="Startbutton" type="Button" parent="bottobar" unique_id=739272704]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
@@ -325,7 +376,7 @@ theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxTexture_tlqso")
 text = "start!"
 
-[node name="TimeLabel" type="Label" parent="bottobar"]
+[node name="TimeLabel" type="Label" parent="bottobar" unique_id=1731556013]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
@@ -345,7 +396,7 @@ label_settings = SubResource("LabelSettings_7w4bu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="bottobar"]
+[node name="Panel" type="Panel" parent="bottobar" unique_id=521041219]
 visible = false
 layout_mode = 1
 anchors_preset = 6
@@ -362,25 +413,25 @@ grow_vertical = 2
 theme = ExtResource("2_vcjmw")
 theme_override_styles/panel = SubResource("StyleBoxTexture_7w4bu")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="bottobar"]
+[node name="StaticBody2D" type="StaticBody2D" parent="bottobar" unique_id=483569018]
 collision_layer = 4
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bottobar/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottobar/StaticBody2D" unique_id=2086225361]
 position = Vector2(2032, 27.5)
 shape = SubResource("RectangleShape2D_e14vx")
 
-[node name="startmenu" type="Control" parent="."]
-visible = false
+[node name="startmenu" type="Control" parent="." unique_id=872990277]
 layout_mode = 1
-anchor_top = 0.532
-anchor_right = 0.148
-anchor_bottom = 0.95400006
-offset_top = 0.26400757
-offset_right = 0.5039978
-offset_bottom = -0.1920166
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -303.0
+offset_right = 171.0
+offset_bottom = -30.0
+grow_vertical = 0
 
-[node name="Panel" type="Panel" parent="startmenu"]
+[node name="Panel" type="Panel" parent="startmenu" unique_id=218928080]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -390,7 +441,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_vcjmw")
 
-[node name="TextureRect" type="TextureRect" parent="startmenu/Panel"]
+[node name="TextureRect" type="TextureRect" parent="startmenu/Panel" unique_id=968237557]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.023000002
@@ -402,7 +453,7 @@ offset_right = -0.08100128
 offset_bottom = 0.0949707
 texture = SubResource("GradientTexture2D_y8hb4")
 
-[node name="Label" type="Label" parent="startmenu/Panel"]
+[node name="Label" type="Label" parent="startmenu/Panel" unique_id=1008048299]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 263.0
@@ -412,28 +463,127 @@ rotation = -1.5707964
 text = "well hello there!"
 label_settings = SubResource("LabelSettings_cbliw")
 
-[node name="Player" parent="." instance=ExtResource("10_62mc7")]
-position = Vector2(1118, 41)
+[node name="ScrollContainer" type="ScrollContainer" parent="startmenu" unique_id=153892647]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 37.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="right arm" parent="Player/SubViewport/Node3D" index="1"]
-transform = Transform3D(0.9999996, 0, 0, 0, 0.9999996, 0, 0, 0, 1, 0, 0, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="startmenu/ScrollContainer" unique_id=1116503106]
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
 
-[node name="left leg" parent="Player/SubViewport/Node3D" index="2"]
-transform = Transform3D(0.98958004, 0.14397587, 0, -0.14397587, 0.98958004, 0, 0, 0, 1, 0, 0, 0)
+[node name="Button" type="Button" parent="startmenu/ScrollContainer/VBoxContainer" unique_id=840762318]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("2_vcjmw")
+text = "My Computer"
 
-[node name="right leg" parent="Player/SubViewport/Node3D" index="3"]
-transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 1, 0, 0, 0)
+[node name="Button2" type="Button" parent="startmenu/ScrollContainer/VBoxContainer" unique_id=972437213]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("2_vcjmw")
+text = "Documents"
 
-[node name="TextureRect" parent="Player" index="2"]
-texture = SubResource("ViewportTexture_62mc7")
+[node name="Button3" type="Button" parent="startmenu/ScrollContainer/VBoxContainer" unique_id=1195285421]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("2_vcjmw")
+text = "Unlocked Apps"
 
-[node name="AnimationTree" parent="Player" index="3"]
-tree_root = SubResource("AnimationNodeStateMachine_eoi4i")
+[node name="Button4" type="Button" parent="startmenu/ScrollContainer/VBoxContainer" unique_id=310233404]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("2_vcjmw")
+text = "Levels"
 
-[node name="Camera2D" parent="Player" index="5"]
-enabled = false
+[node name="Button5" type="Button" parent="startmenu/ScrollContainer/VBoxContainer" unique_id=222002436]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("2_vcjmw")
+text = "Email"
 
-[node name="leftsidewall" type="Control" parent="."]
+[node name="Button6" type="Button" parent="startmenu/ScrollContainer/VBoxContainer" unique_id=1088171565]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("2_vcjmw")
+text = "...."
+
+[node name="Button7" type="Button" parent="startmenu/ScrollContainer/VBoxContainer" unique_id=623642030]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("2_vcjmw")
+text = "...."
+
+[node name="Label" type="Label" parent="startmenu/ScrollContainer/VBoxContainer" unique_id=394354468]
+layout_mode = 2
+text = "Power:"
+label_settings = SubResource("LabelSettings_x660l")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="startmenu/ScrollContainer/VBoxContainer" unique_id=933046191]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="sleep" type="Button" parent="startmenu/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1682629549]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_vcjmw")
+theme_override_font_sizes/font_size = 12
+text = "Sleep"
+
+[node name="shut" type="Button" parent="startmenu/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=905639752]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_vcjmw")
+theme_override_font_sizes/font_size = 12
+text = "Shut down"
+
+[node name="Button3" type="Button" parent="startmenu/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=213760196]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("2_vcjmw")
+theme_override_font_sizes/font_size = 12
+text = "Restart"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="startmenu" unique_id=910435357]
+collision_layer = 0
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="startmenu/StaticBody2D" unique_id=140337949]
+position = Vector2(80, 136)
+shape = SubResource("RectangleShape2D_amumy")
+
+[node name="Area2D" type="Area2D" parent="startmenu" unique_id=1549362440]
+collision_layer = 0
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="startmenu/Area2D" unique_id=2054672360]
+position = Vector2(86.5, 136)
+shape = SubResource("RectangleShape2D_dmm6e")
+
+[node name="leftsidewall" type="Control" parent="." unique_id=364425827]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -444,15 +594,15 @@ offset_bottom = 20.0
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="leftsidewall"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="leftsidewall" unique_id=1840938138]
 collision_layer = 4
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="leftsidewall/StaticBody2D2"]
-position = Vector2(0, 377)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leftsidewall/StaticBody2D2" unique_id=11546122]
+position = Vector2(-5.5, 356.5)
 shape = SubResource("RectangleShape2D_62mc7")
 
-[node name="leftsidewall2" type="Control" parent="."]
+[node name="leftsidewall2" type="Control" parent="." unique_id=1767846772]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -466,34 +616,60 @@ grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="leftsidewall2"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="leftsidewall2" unique_id=1587281567]
 collision_layer = 4
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="leftsidewall2/StaticBody2D2"]
-position = Vector2(52, 378)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leftsidewall2/StaticBody2D2" unique_id=342874143]
+position = Vector2(48.25, 378)
 shape = SubResource("RectangleShape2D_62mc7")
 
-[node name="topwall" type="Control" parent="."]
+[node name="topwall" type="Control" parent="." unique_id=521049296]
 layout_mode = 1
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="topwall"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="topwall" unique_id=459900165]
 collision_layer = 4
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="topwall/StaticBody2D2"]
-position = Vector2(2108, -11)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="topwall/StaticBody2D2" unique_id=1791214858]
+position = Vector2(2108, -15)
 shape = SubResource("RectangleShape2D_eoi4i")
 
-[node name="taskwindow" parent="." instance=ExtResource("11_eoi4i")]
+[node name="taskwindow" parent="." unique_id=527884476 instance=ExtResource("11_eoi4i")]
 layout_mode = 0
+
+[node name="screensaver" type="Control" parent="." unique_id=1202412385]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" parent="screensaver" unique_id=257484149 instance=ExtResource("13_amumy")]
+layout_mode = 1
+
+[node name="shader" type="ColorRect" parent="." unique_id=674897030]
+texture_filter = 1
+material = SubResource("ShaderMaterial_28luw")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="pressed" from="Backgroundclick" to="." method="_on_backgroundclick_pressed"]
 [connection signal="pressed" from="desktopfocus" to="." method="_on_desktopfocus_pressed"]
 [connection signal="pressed" from="bottobar/Startbutton" to="." method="_on_startbutton_pressed"]
+[connection signal="pressed" from="startmenu/ScrollContainer/VBoxContainer/HBoxContainer/sleep" to="." method="_on_sleep_pressed"]
+[connection signal="pressed" from="startmenu/ScrollContainer/VBoxContainer/HBoxContainer/shut" to="." method="_on_shut_pressed"]
 
 [editable path="Player"]

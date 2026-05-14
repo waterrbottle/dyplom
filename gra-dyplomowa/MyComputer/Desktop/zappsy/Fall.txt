@@ -1,0 +1,7 @@
+app-redirect
+scene
+res://scenes/apps/fallminigame/fall.tscn
+icon
+res://assets/GlucioTemplates/Glucio_Green.png
+name
+bouncy boi.exe

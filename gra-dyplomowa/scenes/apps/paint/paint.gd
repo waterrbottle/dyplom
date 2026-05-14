@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 
 	if candraw == true:
 		if $paintui/paintui/colcheck.is_pressed():
-			print(prevposition)
+
 			drawpos = (get_global_mouse_position() - ($paintui/Control.position + %texture.position*$paintui/Control.scale) ) / $paintui/Control.scale
 			line_fill(drawpos,50.0,%sizeslider.value)
 		

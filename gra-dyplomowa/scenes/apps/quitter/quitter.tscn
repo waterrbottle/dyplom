@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bnqmlumc6fg6k"]
+
+[ext_resource type="Script" uid="uid://c0qqjpaw2y0bk" path="res://scenes/apps/quitter/quitter.gd" id="1_mrsbe"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="2_ysjqc"]
+
+[node name="Quitter" type="Control" unique_id=468705515]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mrsbe")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1885013481]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1686891477]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Leveldata" parent="." unique_id=729030949 instance=ExtResource("2_ysjqc")]
+windowname = "sys_quit"
+type = "system"

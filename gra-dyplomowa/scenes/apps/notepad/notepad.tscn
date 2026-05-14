@@ -1,34 +1,41 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccg2insd1jt0s"]
+[gd_scene format=3 uid="uid://ccg2insd1jt0s"]
 
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="1_e8qk0"]
 [ext_resource type="Script" uid="uid://6pn8piyioe6o" path="res://scenes/apps/notepad/app_code.gd" id="2_52xsm"]
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="3_52xsm"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="4_o03j8"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_sq0y6"]
+font = ExtResource("4_o03j8")
+font_color = Color(0.38, 0.38, 0.38, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_w8k3o"]
 font = ExtResource("4_o03j8")
 font_color = Color(0, 0.032499813, 0.65, 1)
 
-[node name="AppMaster" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_o03j8"]
+font = ExtResource("4_o03j8")
+
+[node name="AppMaster" type="Node2D" unique_id=1987087599]
 script = ExtResource("2_52xsm")
 
-[node name="AppCode" type="CanvasLayer" parent="."]
+[node name="AppCode" type="CanvasLayer" parent="." unique_id=1341942964]
 
-[node name="ColorRect" type="ColorRect" parent="AppCode"]
+[node name="ColorRect" type="ColorRect" parent="AppCode" unique_id=604525359]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextEdit" type="TextEdit" parent="AppCode/ColorRect"]
+[node name="TextEdit" type="TextEdit" parent="AppCode/ColorRect" unique_id=412438099]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 6.0
-offset_top = 27.0
+offset_top = 38.0
 offset_right = -6.0
 offset_bottom = -9.0
 grow_horizontal = 2
@@ -37,16 +44,35 @@ theme = ExtResource("1_e8qk0")
 text = "fffff"
 wrap_mode = 1
 
-[node name="Panel" type="Panel" parent="AppCode"]
+[node name="Label" type="Label" parent="AppCode/ColorRect" unique_id=59041673]
 visible = false
-texture_filter = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "cryptic
+coruptions"
+label_settings = SubResource("LabelSettings_sq0y6")
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="AppCode" unique_id=10471973]
+texture_filter = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 25.0
+offset_bottom = 33.0
 grow_horizontal = 2
 theme = ExtResource("1_e8qk0")
 
-[node name="Label" type="Label" parent="AppCode/Panel"]
+[node name="Label" type="Label" parent="AppCode/Panel" unique_id=157426856]
+visible = false
 layout_mode = 0
 offset_left = 9.0
 offset_top = 3.0
@@ -55,7 +81,60 @@ offset_bottom = 26.0
 text = "you are browsing a file. Read only."
 label_settings = SubResource("LabelSettings_w8k3o")
 
-[node name="Leveldata" parent="." instance=ExtResource("3_52xsm")]
-scenesize = Vector2(400, 200)
+[node name="HBoxContainer" type="HBoxContainer" parent="AppCode/Panel" unique_id=52457796]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = -2.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="AppCode/Panel/HBoxContainer" unique_id=1819876971]
+layout_mode = 2
+text = "notepad 1.0."
+label_settings = SubResource("LabelSettings_o03j8")
+
+[node name="Button7" type="Button" parent="AppCode/Panel/HBoxContainer" unique_id=1700218128]
+layout_mode = 2
+text = "new"
+
+[node name="Button" type="Button" parent="AppCode/Panel/HBoxContainer" unique_id=931509709]
+layout_mode = 2
+text = "open"
+
+[node name="Button2" type="Button" parent="AppCode/Panel/HBoxContainer" unique_id=1040298816]
+layout_mode = 2
+text = "save as"
+
+[node name="Button3" type="Button" parent="AppCode/Panel/HBoxContainer" unique_id=112134734]
+layout_mode = 2
+text = "save"
+
+[node name="Button4" type="Button" parent="AppCode/Panel/HBoxContainer" unique_id=883720252]
+layout_mode = 2
+text = "copy selected"
+
+[node name="Button8" type="Button" parent="AppCode/Panel/HBoxContainer" unique_id=1227540082]
+layout_mode = 2
+text = "undo"
+
+[node name="Button9" type="Button" parent="AppCode/Panel/HBoxContainer" unique_id=801458788]
+layout_mode = 2
+text = "redo"
+
+[node name="Button5" type="Button" parent="AppCode/Panel/HBoxContainer" unique_id=1909914018]
+layout_mode = 2
+text = "copy all"
+
+[node name="Button6" type="Button" parent="AppCode/Panel/HBoxContainer" unique_id=1813862331]
+layout_mode = 2
+text = "paste"
+
+[node name="Leveldata" parent="." unique_id=2049047120 instance=ExtResource("3_52xsm")]
+scenesize = Vector2(600, 400)
 windowname = "notepad.exe"
 type = "explorer"

@@ -1,0 +1,7 @@
+app-redirect
+scene
+res://scenes/apps/console/console.tscn
+icon
+res://assets/images/ui/buttons/Xv1.png
+name
+CONSOLE.exe

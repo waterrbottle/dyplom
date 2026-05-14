@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cydwpoipuoe8x"]
+[gd_scene format=3 uid="uid://cydwpoipuoe8x"]
 
 [ext_resource type="Script" uid="uid://dmr5vy4s24yly" path="res://objects/TheWindowSystem/window_ui.gd" id="1_rfedv"]
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="2_aeolc"]
@@ -16,17 +16,13 @@ texture_margin_bottom = 10.0
 viewport_path = NodePath("Panel/SubViewport")
 
 [sub_resource type="Gradient" id="Gradient_v5qpa"]
-interpolation_mode = 2
-interpolation_color_space = 2
 offsets = PackedFloat32Array(0.0022522523, 1)
-colors = PackedColorArray(0.74, 0.7876666, 1, 1, 0, 0.036999788, 0.74, 1)
+colors = PackedColorArray(0.73, 0.77949995, 1, 1, 0, 0.036999788, 0.74, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_aeolc"]
 gradient = SubResource("Gradient_v5qpa")
-width = 8
-height = 8
-fill_from = Vector2(1, 1)
-fill_to = Vector2(0.32264957, 0.99358976)
+fill_from = Vector2(0.9551282, 1)
+fill_to = Vector2(0.3525641, 1)
 
 [sub_resource type="Gradient" id="Gradient_kpmoa"]
 interpolation_mode = 2
@@ -38,7 +34,7 @@ gradient = SubResource("Gradient_kpmoa")
 width = 8
 height = 8
 fill_from = Vector2(1, 1)
-fill_to = Vector2(0.32264957, 0.99358976)
+fill_to = Vector2(0.33119658, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_kpmoa"]
 font = ExtResource("3_kpmoa")
@@ -48,7 +44,7 @@ font_size = 20
 resource_local_to_scene = true
 size = Vector2(35, 38.5)
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=602759468]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,28 +54,37 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_rfedv")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=443853389]
 layout_mode = 0
 offset_right = 500.0
 offset_bottom = 527.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_nsapq")
 
-[node name="TextureRect2" type="TextureRect" parent="Panel"]
-texture_filter = 3
+[node name="Control" type="Control" parent="Panel" unique_id=1852205247]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 29.743998
-offset_right = -6.0
-offset_bottom = -7.2559814
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="display" type="TextureRect" parent="Panel/Control" unique_id=582677185]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("ViewportTexture_rfedv")
 expand_mode = 1
 
-[node name="TextureRect" type="TextureRect" parent="Panel"]
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=730129587]
 texture_filter = 2
 layout_mode = 1
 anchors_preset = 10
@@ -92,7 +97,7 @@ grow_horizontal = 2
 texture = SubResource("GradientTexture2D_aeolc")
 expand_mode = 1
 
-[node name="unactive" type="TextureRect" parent="Panel/TextureRect"]
+[node name="unactive" type="TextureRect" parent="Panel/TextureRect" unique_id=1918874590]
 texture_filter = 2
 layout_mode = 1
 anchors_preset = 15
@@ -103,7 +108,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_v5qpa")
 expand_mode = 1
 
-[node name="windownamelabel" type="Label" parent="Panel/TextureRect"]
+[node name="windownamelabel" type="Label" parent="Panel/TextureRect" unique_id=598720273]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
@@ -122,7 +127,7 @@ label_settings = SubResource("LabelSettings_kpmoa")
 vertical_alignment = 1
 text_overrun_behavior = 1
 
-[node name="exitbutton" type="Button" parent="Panel/TextureRect"]
+[node name="exitbutton" type="Button" parent="Panel/TextureRect" unique_id=398623811]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -141,7 +146,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="buttons" type="Control" parent="Panel"]
+[node name="buttons" type="Control" parent="Panel" unique_id=1016169157]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -150,7 +155,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Topbar" type="Button" parent="Panel/buttons"]
+[node name="Topbar" type="Button" parent="Panel/buttons" unique_id=1017703031]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -161,7 +166,7 @@ focus_mode = 0
 mouse_filter = 1
 flat = true
 
-[node name="Button2" type="Button" parent="Panel/buttons"]
+[node name="Button2" type="Button" parent="Panel/buttons" unique_id=338490017]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -173,7 +178,7 @@ grow_vertical = 0
 focus_mode = 0
 flat = true
 
-[node name="Button3" type="Button" parent="Panel/buttons"]
+[node name="Button3" type="Button" parent="Panel/buttons" unique_id=911292879]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -182,7 +187,7 @@ grow_vertical = 2
 focus_mode = 0
 flat = true
 
-[node name="Button4" type="Button" parent="Panel/buttons"]
+[node name="Button4" type="Button" parent="Panel/buttons" unique_id=660311752]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -194,7 +199,7 @@ grow_vertical = 2
 focus_mode = 0
 flat = true
 
-[node name="Button5" type="Button" parent="Panel/buttons"]
+[node name="Button5" type="Button" parent="Panel/buttons" unique_id=992560997]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -208,7 +213,7 @@ grow_vertical = 0
 focus_mode = 0
 flat = true
 
-[node name="Button6" type="Button" parent="Panel/buttons"]
+[node name="Button6" type="Button" parent="Panel/buttons" unique_id=635575291]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -219,7 +224,7 @@ grow_vertical = 0
 focus_mode = 0
 flat = true
 
-[node name="focusbutton" type="Button" parent="Panel/buttons"]
+[node name="focusbutton" type="Button" parent="Panel/buttons" unique_id=133771988]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -231,26 +236,26 @@ focus_mode = 0
 mouse_filter = 1
 flat = true
 
-[node name="SubViewport" type="SubViewport" parent="Panel"]
+[node name="SubViewport" type="SubViewport" parent="Panel" unique_id=1041711453]
 physics_object_picking = true
 size = Vector2i(500, 300)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Panel" groups=["window"]]
+[node name="StaticBody2D" type="StaticBody2D" parent="Panel" unique_id=471777357 groups=["window"]]
 collision_layer = 4
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Panel/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Panel/StaticBody2D" unique_id=869363447]
 position = Vector2(17.5, 55.75)
 shape = SubResource("RectangleShape2D_kpmoa")
 
-[node name="ColorRect" type="ColorRect" parent="Panel/StaticBody2D/CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="Panel/StaticBody2D/CollisionShape2D" unique_id=546120290]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=733712414]
 wait_time = 0.00999999999999999
 one_shot = true
 

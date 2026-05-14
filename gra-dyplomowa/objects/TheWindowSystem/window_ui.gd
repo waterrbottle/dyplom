@@ -13,7 +13,10 @@ var  front = false # activates window on start
 # Called when the node enters the scene tree for the first time.
 func updatesize(wsize: Vector2):
 		$Panel/SubViewport.size = wsize
-		$Panel.size = Vector2( wsize.x + 5, wsize.y + 30)
+		
+		$Panel.size = Vector2( wsize.x + 10, wsize.y + 32)
+		%display.size = wsize
+		%display.position = %display.size/2 *-1 + Vector2(0,11)
 func spawnapp():
 	
 	if ResourceLoader.exists(scene, "PackedScene"):
@@ -30,59 +33,67 @@ func spawnapp():
 		%windownamelabel.text = windowdata.windowname
 		if nameoverwrite != "":
 			%windownamelabel.text = nameoverwrite
-		$Panel.size = Vector2( windowdata.scenesize.x + 5, windowdata.scenesize.y + 30)
+		$Panel.size = Vector2( windowdata.scenesize.x + 10, windowdata.scenesize.y + 32)
+		
 		$Panel/SubViewport.add_child(inst)
 		appscene = get_node("Panel/SubViewport").get_child(0)
-		
+		%display.size = Vector2( windowdata.scenesize.x, windowdata.scenesize.y)
+		%display.position = %display.size/2 *-1 + Vector2(0,11)
 		
 		appvalid=true
 	else:
 		Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", ["cant open the scene. file " +str(scene) +" does not exist.",true])
 		queue_free()
+	
 func _ready() -> void:
 	if front == true:
 		active = true
 		Global.ondesktop = false
 		move_to_front()
-		get_parent().get_parent().updateactivewindow()
+		#get_parent().get_parent().updateactivewindow()
 	$Panel.position = Vector2(randi_range(1,500),randi_range(1,500))
 	if $Panel/SubViewport.get_child_count() == 0:
 		spawnapp()
 	
+	if appvalid == true:
+		Global.activetype = scenepath.get_child(0).get_node("Leveldata").type
+		get_parent().get_parent().updateactivewindow()
 	pass # Replace with function body.
+
 func _input(event: InputEvent) -> void:
-	
-	if event is InputEventMouseMotion:
-		var offset = event
-		offset = event.duplicate()
-		offset["position"] -= $Panel.position + Vector2(-10000,-10000)
-		$Panel/SubViewport.push_input(offset)
 
-	if acceptinput == true:
-		
-		var offset = event
-		if event is InputEventMouseButton:
+	if not acceptinput:
+		return
+
+	if event is InputEventMouse:
+		var shifted_event = event.duplicate()
+		shifted_event.position = Vector2(%display.get_local_mouse_position()) - Vector2(0, 3)
 			
-			
-			offset = event.duplicate()
-			offset["position"] -= $Panel.position + Vector2(0,25)
+
+		if event is InputEventMouseButton and event.pressed:
+
+			if Global.qtopen == true:
+				return
+		$Panel/SubViewport.push_input(shifted_event)
+	elif event is InputEventKey:
+		$Panel/SubViewport.push_input(event)
 
 
-			$Panel/SubViewport.push_input(offset)
-		elif event is InputEventKey:
-			$Panel/SubViewport.push_input(event)
-		if event is InputEventMouseMotion:
 
-			offset = event.duplicate()
-			offset["position"] -= $Panel.position + Vector2(0,25)
-			$Panel/SubViewport.push_input(offset)
-
-
-	
-
+func despawn_character_from_all():
+	if scenepath.get_child(0).get_node("Leveldata").type == "level":
+		if active == true:
+			scenepath.get_child(0).get_node("Player").despawn()
+func character_teleportation_handler():
+	if active == false:
+		if appvalid == true:
+			if scenepath.get_child(0).get_node("Leveldata").type == "level":
+				if scenepath.get_child(0).get_node("Player").active == true:
+					if Global.activetype == "level":
+						scenepath.get_child(0).get_node("Player").despawn()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
+
 	$Panel/StaticBody2D/CollisionShape2D.shape.size = $Panel.size
 	$Panel/StaticBody2D/CollisionShape2D.position = $Panel.size/2
 	if scenepath.get_child_count() == 0:
@@ -91,19 +102,18 @@ func _process(delta: float) -> void:
 		return
 	if moving == true:
 		$Panel.position = initialposition + get_viewport().get_mouse_position() - clickpos
+
 	if active == false:
+
 		#$Panel/buttons/focusbutton.mouse_filter = 0
 		acceptinput = false
 
 		$Panel/TextureRect/unactive.show()
 		
-		if scenepath.get_child(0).get_node("Leveldata").type == "level":
-
-			if scenepath.get_child(0).get_node("Player").active == true:
-				scenepath.get_child(0).get_node("Player").despawn()
 
 			
 	else:
+		
 		#$Panel/buttons/focusbutton.mouse_filter = 2
 		if $Timer.is_stopped():
 			$Timer.start()
@@ -125,14 +135,13 @@ func _on_topbar_button_down() -> void:
 	#	for n in get_parent().get_children():
 	#		n.z_index = 0
 	updatepos()
-	Global.ondesktop=false
+	activate_window()
 	
 	
 func updatepos():
-	move_to_front()
-	get_parent().get_parent().updateactivewindow()
+	#move_to_front()
+	#get_parent().get_parent().updateactivewindow()
 	moving = true
-	active = true
 	clickpos = get_viewport().get_mouse_position()
 	initialposition = $Panel.position
 	
@@ -151,15 +160,14 @@ func _on_focusbutton_pressed() -> void:
 
 
 func _on_focusbutton_button_down() -> void:
-	
+	activate_window()
+
+func activate_window():
+	Global.activetype = scenepath.get_child(0).get_node("Leveldata").type
 	active = true
 	Global.ondesktop = false
 	move_to_front()
 	get_parent().get_parent().updateactivewindow()
-	
-	
-
-
 func _on_timer_timeout() -> void:
 	acceptinput=true
 	

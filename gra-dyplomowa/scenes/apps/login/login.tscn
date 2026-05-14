@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://d4blf5i3bqcmb"]
+
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="1_btn4b"]
+[ext_resource type="Script" uid="uid://bk7huuhxu823s" path="res://scenes/apps/login/login.gd" id="1_moi2c"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="2_8gvoo"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="4_iu3s6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_moi2c"]
+font = ExtResource("2_8gvoo")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="Login" type="Control" unique_id=4152473]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_moi2c")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=173619104]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.36225006, 0.315, 0.45, 1)
+
+[node name="shutdown" type="Control" parent="." unique_id=1689780039]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="shutdown" unique_id=1337990878]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.5
+offset_top = -20.5
+offset_right = 160.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_btn4b")
+
+[node name="Label" type="Label" parent="shutdown/Panel" unique_id=1861893540]
+layout_mode = 2
+size_flags_horizontal = 4
+text = " shuttng down and saving "
+label_settings = SubResource("LabelSettings_moi2c")
+
+[node name="Leveldata" parent="." unique_id=372844176 instance=ExtResource("4_iu3s6")]
+scenesize = Vector2(600, 300)
+windowname = "login"
+type = "system"
+
+[node name="Timer" type="Timer" parent="." unique_id=305833691]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

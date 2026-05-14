@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://cgayns48dk0gb"]
+
+[ext_resource type="Script" uid="uid://cv7a4edxv2yeh" path="res://scenes/apps/screensaver/screensaver.gd" id="1_lbd3v"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="1_vub3w"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="3_rkdtj"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rkdtj"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vub3w"]
+shading_mode = 2
+diffuse_mode = 1
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Environment" id="Environment_lbd3v"]
+background_mode = 1
+
+[sub_resource type="Animation" id="Animation_lbd3v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rkdtj"]
+resource_name = "new_animation"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fx7j8"]
+_data = {
+&"RESET": SubResource("Animation_lbd3v"),
+&"new_animation": SubResource("Animation_rkdtj")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_fx7j8"]
+font = ExtResource("3_rkdtj")
+
+[node name="Control" type="Control" unique_id=257484149]
+texture_filter = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2073037505]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_rkdtj")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1013239076]
+size = Vector2i(256, 256)
+
+[node name="Screensaver" type="Node3D" parent="SubViewport" unique_id=828457679]
+script = ExtResource("1_lbd3v")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="SubViewport/Screensaver" unique_id=542703666]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+radial_segments = 6
+material = SubResource("StandardMaterial3D_vub3w")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/Screensaver" unique_id=1285874483]
+environment = SubResource("Environment_lbd3v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/Screensaver" unique_id=1053956202]
+transform = Transform3D(1, 0, 0, 0, 0.026735295, 0.99964255, 0, -0.99964255, 0.026735295, 0, 1.1288214, 0)
+light_color = Color(1, 0.8666667, 0, 1)
+
+[node name="Node3D" type="Node3D" parent="SubViewport/Screensaver" unique_id=1492800926]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/Screensaver/Node3D" unique_id=394622928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.161979)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/Screensaver/Node3D" unique_id=595208862]
+libraries/ = SubResource("AnimationLibrary_fx7j8")
+autoplay = &"new_animation"
+speed_scale = 0.204
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="SubViewport/Screensaver" unique_id=362286290]
+transform = Transform3D(1, 0, 0, 0, -0.075413786, -0.9971523, 0, 0.9971523, -0.075413786, 0, 1.1288214, 0)
+light_color = Color(0, 0.9166665, 1, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewport/Screensaver" unique_id=6341609]
+
+[node name="Label" type="Label" parent="SubViewport/Screensaver/CanvasLayer" unique_id=1263483255]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "move your mouse to continue."
+label_settings = SubResource("LabelSettings_fx7j8")
+
+[node name="Leveldata" parent="." unique_id=2014004283 instance=ExtResource("1_vub3w")]
+scenesize = Vector2(400, 400)
+windowname = "screensaver"
+type = "lsystemevel"
