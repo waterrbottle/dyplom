@@ -34,8 +34,8 @@ func _process(delta: float) -> void:
 				print("index:")
 				print(b.get_index())
 				print(e)
-				e.remove_at(b.get_index())
-				b.queue_free()
+				#e.remove_at(b.get_index())
+				#b.queue_free()
 				
 
 
