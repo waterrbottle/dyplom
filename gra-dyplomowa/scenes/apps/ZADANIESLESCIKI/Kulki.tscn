@@ -20,6 +20,7 @@ background_mode = 1
 background_color = Color(0.112200014, 0.3769699, 0.66, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wkpfn"]
+radius = 1.807
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkpfn"]
 shading_mode = 0
