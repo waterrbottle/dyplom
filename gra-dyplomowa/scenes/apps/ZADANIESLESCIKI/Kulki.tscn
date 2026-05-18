@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://syjwb887jqxk"]
+
+[ext_resource type="Script" uid="uid://dv6itbclxvyg8" path="res://scenes/apps/ZADANIESLESCIKI/kulki.gd" id="1_ae4e1"]
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="2_h1aok"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="3_wkpfn"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="4_wkpfn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a4yvb"]
+font = ExtResource("3_wkpfn")
+font_size = 32
+
+[sub_resource type="SphereMesh" id="SphereMesh_h1aok"]
+radial_segments = 10
+rings = 5
+
+[sub_resource type="Environment" id="Environment_h1aok"]
+background_mode = 1
+background_color = Color(0.112200014, 0.3769699, 0.66, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkpfn"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="Kulki" type="Node3D" unique_id=594769965]
+script = ExtResource("1_ae4e1")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1898535242]
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGBox3D" unique_id=669896315]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.66855)
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="CSGBox3D" unique_id=922215891]
+
+[node name="CSGSphere3D4" type="CSGSphere3D" parent="CSGBox3D" unique_id=543494208]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=875660271]
+transform = Transform3D(1, 0, 0, 0, 0.59934497, 0.80049086, 0, -0.80049086, 0.59934497, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1391666950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.0247912)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2070493121]
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1528106772]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 52.0
+grow_horizontal = 2
+theme = ExtResource("2_h1aok")
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel" unique_id=681120512]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 7.0
+offset_top = -11.0
+offset_right = 47.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "balls 0.1."
+label_settings = SubResource("LabelSettings_a4yvb")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer" unique_id=274604691]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_h1aok")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel2" unique_id=1780704484]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel2/VBoxContainer" unique_id=23469764]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "amount: "
+label_settings = SubResource("LabelSettings_a4yvb")
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/Panel2/VBoxContainer" unique_id=1824478917]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 1.0
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel2/VBoxContainer" unique_id=1515337675]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "1"
+label_settings = SubResource("LabelSettings_a4yvb")
+
+[node name="Label3" type="Label" parent="CanvasLayer/Panel2/VBoxContainer" unique_id=79083782]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "  radius:"
+label_settings = SubResource("LabelSettings_a4yvb")
+
+[node name="HSlider2" type="HSlider" parent="CanvasLayer/Panel2/VBoxContainer" unique_id=1518648586]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 10.0
+step = 0.1
+value = 1.0
+
+[node name="Label4" type="Label" parent="CanvasLayer/Panel2/VBoxContainer" unique_id=1240996660]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "1"
+label_settings = SubResource("LabelSettings_a4yvb")
+
+[node name="ball" type="MeshInstance3D" parent="." unique_id=1498650512]
+visible = false
+mesh = SubResource("SphereMesh_h1aok")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=644581473]
+environment = SubResource("Environment_h1aok")
+
+[node name="Leveldata" parent="." unique_id=1409773576 instance=ExtResource("4_wkpfn")]
+scenesize = Vector2(800, 600)
+windowname = "KULKII"
+type = "app"
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=113762702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20529461, 0)
+radius = 0.14257813
+height = 1.3427734
+material = SubResource("StandardMaterial3D_wkpfn")
+
+[connection signal="value_changed" from="CanvasLayer/Panel2/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Panel2/VBoxContainer/HSlider2" to="." method="_on_h_slider_2_value_changed"]

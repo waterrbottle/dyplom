@@ -16,10 +16,10 @@ var fightdirmem = 0
 @export var desktop = false
 var startpos := Vector2(0,0)
 var scalemodifier = Vector2(1,1)
-@export var detection_range := 1 # How far to look for walls
+@export var detection_range := 1.0 # How far to look for walls
 var modsize := Vector2(35, 35)
 @export var original_size := Vector2(35, 35)
-@export var min_scale := 0.1
+@export var min_scale := 0.25
 var target_scale := Vector2.ONE
 @export var recovery_speed := 5.0
 @export var squash_speed := 20.0
@@ -39,9 +39,14 @@ func add_item(id):
 	$Itemhold.load_item()
 
 func _process(delta: float) -> void:
+
 	$Itemhold.hide()
 	if active == false:
+		set_collision_layer_value(1,false)
+		set_collision_mask_value(3,false)
 		return
+	set_collision_mask_value(3,true)
+	set_collision_layer_value(1,true)
 	$Itemhold.show()
 	scale = scalemodifier + (Global.playervars["scale"] - Vector2(1,1))
 	if desktop == true:
@@ -56,15 +61,18 @@ func _process(delta: float) -> void:
 			die()
 	
 	var canfight = true
+	
 	if Input.is_action_pressed("fight"):
-		
 		if Global.item != "":
 			Global.item = ""
 			canfight=false
 			if get_parent() != null:
 				var i = $Itemhold.get_node("item").get_child(0).duplicate()
+				i.position = global_position + Vector2(0,-30)# + Vector2(0,50)
 				i.display = false
-				i.position = global_position
+				
+
+				i.spawn(Vector2(velocity.x * 2,velocity.y -300))
 				Global.add_item("")
 				$Itemhold.get_node("item").get_child(0).queue_free()
 				
@@ -129,7 +137,7 @@ func _physics_process(delta: float) -> void:
 						velocity.y=0
 						if abs(velocityhist) > 1000:
 							velocityhist /= 1.5
-						print(velocityhist)
+
 						velocity.y += abs(velocityhist)*-1.0
 
 						velocity.x = velocityhist *-1.5 - 10

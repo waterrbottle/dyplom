@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="2_vcjmw"]
 [ext_resource type="Script" uid="uid://dgxdx2v8ttdv" path="res://scenes/apps/fileManager/window_file_manager.gd" id="4_eoi4i"]
 [ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player.tscn" id="4_x660l"]
+[ext_resource type="PackedScene" uid="uid://cydwpoipuoe8x" path="res://objects/TheWindowSystem/windowUI.tscn" id="6_x660l"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="8_y8hb4"]
 [ext_resource type="PackedScene" uid="uid://dndxjkirb7sod" path="res://objects/taskwindow/taskwindow.tscn" id="11_eoi4i"]
 [ext_resource type="Shader" uid="uid://dwuiurj8e5cpe" path="res://scenes/MyComputer.gdshader" id="12_x660l"]
@@ -254,23 +255,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Player" parent="." unique_id=1401127334 instance=ExtResource("4_x660l")]
-
-[node name="right arm" parent="Player/SubViewport/Node3D" parent_id_path=PackedInt32Array(1401127334, 1438825571) index="1" unique_id=1786653235]
-transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="right leg" parent="Player/SubViewport/Node3D" parent_id_path=PackedInt32Array(1401127334, 1438825571) index="3" unique_id=1739319851]
-transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="TextureRect" parent="Player" index="2" unique_id=1031087902]
-texture = SubResource("ViewportTexture_eoi4i")
-
-[node name="AnimationTree" parent="Player" index="3" unique_id=938827342]
-tree_root = SubResource("AnimationNodeStateMachine_x660l")
-
-[node name="Camera2D" parent="Player" index="5" unique_id=1236330716]
-enabled = false
-
 [node name="DesktopFiles" type="Control" parent="." unique_id=1173970550]
 layout_mode = 1
 anchors_preset = 15
@@ -304,11 +288,39 @@ focus_mode = 0
 mouse_filter = 1
 flat = true
 
+[node name="Player" parent="." unique_id=1401127334 instance=ExtResource("4_x660l")]
+desktop = true
+
+[node name="right arm" parent="Player/SubViewport/Node3D" parent_id_path=PackedInt32Array(1401127334, 1438825571) index="1" unique_id=1786653235]
+transform = Transform3D(0.9999996, 0, 0, 0, 0.9999996, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="right leg" parent="Player/SubViewport/Node3D" parent_id_path=PackedInt32Array(1401127334, 1438825571) index="3" unique_id=1739319851]
+transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="TextureRect" parent="Player" index="2" unique_id=1031087902]
+texture = SubResource("ViewportTexture_eoi4i")
+
+[node name="AnimationTree" parent="Player" index="3" unique_id=938827342]
+tree_root = SubResource("AnimationNodeStateMachine_x660l")
+
+[node name="Camera2D" parent="Player" index="5" unique_id=1236330716]
+enabled = false
+
 [node name="Windows" type="Control" parent="." unique_id=1765414581]
 anchors_preset = 0
 offset_right = 6.0
 offset_bottom = 5.0
 mouse_filter = 2
+
+[node name="Control" parent="Windows" unique_id=602759468 instance=ExtResource("6_x660l")]
+layout_mode = 1
+scene = "res://scenes/levels/level1.tscn"
+
+[node name="Control2" parent="Windows" unique_id=554947373 instance=ExtResource("6_x660l")]
+layout_mode = 1
+scene = "res://scenes/apps/ZADANIESLESCIKI/Kulki.tscn"
+
+[node name="objects" type="Node2D" parent="." unique_id=651193975]
 
 [node name="bottobar" type="Control" parent="." unique_id=2003253051]
 layout_mode = 1

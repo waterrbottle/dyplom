@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bvgqjrqb5xftd"]
+
+[ext_resource type="Script" uid="uid://d2f4f41malmr" path="res://objects/enemies/EntityExtentions/healthbar/healthbar.gd" id="1_kfb7j"]
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="2_oviqj"]
+
+[node name="Healthbar" type="Node2D" unique_id=1620432705]
+script = ExtResource("1_kfb7j")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=491069206]
+offset_left = -143.0
+offset_top = -15.0
+offset_right = 144.0
+offset_bottom = 12.0
+theme = ExtResource("2_oviqj")
+show_percentage = false

@@ -6,8 +6,11 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func load_item():
+	
 	for n in $item.get_children():
 		n.queue_free()
+	if itemid == "":
+		return
 	var loadscn = load("res://objects/itemobject/items/" + str(itemid) +".tscn")
 	if loadscn == null:
 		return

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4mnaxjttyxjh"]
+[gd_scene format=3 uid="uid://c4mnaxjttyxjh"]
 
 [ext_resource type="PackedScene" uid="uid://bqmvvc2ih4t7r" path="res://scenes/MyComputer.tscn" id="1_viy3g"]
 [ext_resource type="Shader" uid="uid://bu2iik1wswbas" path="res://scenes/screen.gdshader" id="2_wb02a"]
@@ -16,7 +16,7 @@ shader_parameter/color_offset = -0.29599999031
 shader_parameter/mask_brightness = 1.0
 shader_parameter/aspect = 0.57200000342
 
-[node name="MyComputerer" type="Control"]
+[node name="MyComputerer" type="Control" unique_id=468615779]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,12 +24,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1617838284]
 size = Vector2i(1152, 648)
 
-[node name="MyComputer" parent="SubViewport" instance=ExtResource("1_viy3g")]
+[node name="MyComputer" parent="SubViewport" unique_id=87604470 instance=ExtResource("1_viy3g")]
+texture_filter = 1
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=992432841]
+texture_filter = 1
 material = SubResource("ShaderMaterial_t2m3u")
 layout_mode = 1
 anchors_preset = 15

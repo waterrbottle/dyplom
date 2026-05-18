@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bylgva3u4tckl" path="res://assets/images/backgrounds/tlo1.png" id="2_bfxgj"]
 [ext_resource type="Texture2D" uid="uid://d8h710hmn2rb" path="res://assets/images/tiles/tile.png" id="2_dd0lh"]
 [ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player.tscn" id="3_dd0lh"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="5_dywbp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfxgj"]
 texture = ExtResource("2_dd0lh")
@@ -71,3 +72,7 @@ tile_set = SubResource("TileSet_dywbp")
 
 [node name="Player" parent="." unique_id=1401127334 instance=ExtResource("3_dd0lh")]
 position = Vector2(-286, 1081)
+
+[node name="Leveldata" parent="." unique_id=1255549413 instance=ExtResource("5_dywbp")]
+scenesize = Vector2(500, 500)
+windowname = "LEVELIK"
