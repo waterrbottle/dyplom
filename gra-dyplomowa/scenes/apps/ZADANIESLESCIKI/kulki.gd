@@ -22,9 +22,21 @@ func _process(delta: float) -> void:
 
 		if fmod(e[n.get_index()-1],2*PI ) > 0 :
 			if fmod(e[n.get_index()-1],2*PI ) < 0.1 :
-				n.queue_free()
-				e.remove_at(n.get_index()-1)
-
+				var laser = $Area3D.duplicate()
+				laser.visible=true
+				$lasers.add_child(laser)
+		
+	for n in $lasers.get_children():
+		n.position.y += delta*20
+		print(n.get_overlapping_areas())
+		for b in n.get_overlapping_areas():
+			if b.is_in_group("BALL"):
+				print("index:")
+				print(b.get_index())
+				print(e)
+				e.remove_at(b.get_index())
+				b.queue_free()
+				
 
 
 

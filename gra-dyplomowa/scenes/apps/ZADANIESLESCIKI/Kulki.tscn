@@ -13,9 +13,13 @@ font_size = 32
 radial_segments = 10
 rings = 5
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_a4yvb"]
+
 [sub_resource type="Environment" id="Environment_h1aok"]
 background_mode = 1
 background_color = Color(0.112200014, 0.3769699, 0.66, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wkpfn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkpfn"]
 shading_mode = 0
@@ -120,9 +124,14 @@ size_flags_horizontal = 4
 text = "1"
 label_settings = SubResource("LabelSettings_a4yvb")
 
-[node name="ball" type="MeshInstance3D" parent="." unique_id=1498650512]
+[node name="ball" type="MeshInstance3D" parent="." unique_id=1498650512 groups=["BALL"]]
 visible = false
 mesh = SubResource("SphereMesh_h1aok")
+
+[node name="Area3D" type="Area3D" parent="ball" unique_id=663164365 groups=["BALL"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ball/Area3D" unique_id=1883636915]
+shape = SubResource("SphereShape3D_a4yvb")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=644581473]
 environment = SubResource("Environment_h1aok")
@@ -132,11 +141,19 @@ scenesize = Vector2(800, 600)
 windowname = "KULKII"
 type = "app"
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=113762702]
+[node name="Area3D" type="Area3D" parent="." unique_id=209322363]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=981337525]
+shape = SubResource("SphereShape3D_wkpfn")
+
+[node name="laser" type="CSGCylinder3D" parent="Area3D" unique_id=113762702]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20529461, 0)
-radius = 0.14257813
-height = 1.3427734
+radius = 0.026
+height = 0.161
 material = SubResource("StandardMaterial3D_wkpfn")
+
+[node name="lasers" type="Node3D" parent="." unique_id=553696853]
 
 [connection signal="value_changed" from="CanvasLayer/Panel2/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/Panel2/VBoxContainer/HSlider2" to="." method="_on_h_slider_2_value_changed"]
