@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b834qsi8vm82e"]
+[gd_scene format=3 uid="uid://b834qsi8vm82e"]
 
 [ext_resource type="Script" uid="uid://bxtgmeq27j4w7" path="res://objects/player/playerspawnpart.gd" id="1_w2n6g"]
 
@@ -33,7 +33,7 @@ scale_max = 0.099999994
 color = Color(1, 0.35000002, 0.35000002, 1)
 color_ramp = SubResource("GradientTexture1D_gnkmh")
 
-[node name="GPUParticles2D2" type="GPUParticles2D"]
+[node name="GPUParticles2D2" type="GPUParticles2D" unique_id=2094542184]
 emitting = false
 amount = 50
 texture = SubResource("GradientTexture2D_mpqca")
@@ -41,10 +41,10 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_xhsuc")
 
-[node name="Playerspawnpart" type="Node2D" parent="."]
+[node name="Playerspawnpart" type="Node2D" parent="." unique_id=1727200198]
 script = ExtResource("1_w2n6g")
 
-[node name="Timer" type="Timer" parent="Playerspawnpart"]
+[node name="Timer" type="Timer" parent="Playerspawnpart" unique_id=1439200518]
 wait_time = 2.0
 
 [connection signal="timeout" from="Playerspawnpart/Timer" to="Playerspawnpart" method="_on_timer_timeout"]

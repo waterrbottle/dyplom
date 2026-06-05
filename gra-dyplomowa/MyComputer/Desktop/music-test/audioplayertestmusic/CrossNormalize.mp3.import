@@ -2,13 +2,12 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://kil8lotjl60"
-path="res://.godot/imported/CrossNormalize.mp3-ce3da69412e1cf90180aa80cbcad6631.mp3str"
+uid="uid://dbaqi34jqvpxc"
+valid=false
 
 [deps]
 
 source_file="res://MyComputer/Desktop/music-test/audioplayertestmusic/CrossNormalize.mp3"
-dest_files=["res://.godot/imported/CrossNormalize.mp3-ce3da69412e1cf90180aa80cbcad6631.mp3str"]
 
 [params]
 

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c4qceoenujvhy"]
+
+[ext_resource type="Script" uid="uid://dc855c0nrktfi" path="res://objects/enemies/EntityExtentions/damager/damagerbasic.gd" id="1_5ibli"]
+
+[node name="Damagerbasic" type="Node" unique_id=1209103094]
+script = ExtResource("1_5ibli")

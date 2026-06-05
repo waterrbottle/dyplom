@@ -1,33 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cba0cemoin7gh"]
+[gd_scene format=3 uid="uid://cba0cemoin7gh"]
 
 [ext_resource type="Script" uid="uid://c3nhimis8t83l" path="res://objects/enemies/enemy_master.gd" id="1_skus5"]
+[ext_resource type="Resource" uid="uid://bv1v5aca7ucty" path="res://objects/enemies/EntityResources/basicenemy.tres" id="2_jqata"]
+[ext_resource type="Texture2D" uid="uid://b13bka4134nul" path="res://assets/images/Screenshot 2025-12-26 at 16.13.45.png" id="3_ny6r0"]
+[ext_resource type="PackedScene" uid="uid://bvgqjrqb5xftd" path="res://objects/enemies/EntityExtentions/healthbar/stats.tscn" id="4_ejgvo"]
 
-[sub_resource type="Resource" id="Resource_skus5"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_7635a"]
-font_size = 32
-
-[node name="EnemyMaster" type="Node2D"]
+[node name="EnemyMaster" type="Node2D" unique_id=2011147183]
 script = ExtResource("1_skus5")
-resource = SubResource("Resource_skus5")
+enemyselection = 3
+resource = ExtResource("2_jqata")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = -193.0
-offset_top = -56.0
-offset_right = 193.0
-offset_bottom = -13.0
+[node name="enemy" type="Node2D" parent="." unique_id=1647255999]
 
-[node name="Label" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -98.0
-offset_top = -106.0
-offset_right = 95.0
-offset_bottom = -61.0
-grow_horizontal = 2
-text = "enemyname"
-label_settings = SubResource("LabelSettings_7635a")
-horizontal_alignment = 1
+[node name="Sprite2D" type="Sprite2D" parent="enemy" unique_id=439673674]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -1)
+scale = Vector2(0.098143235, 0.09814326)
+texture = ExtResource("3_ny6r0")
 
-[node name="enemy" type="Node2D" parent="."]
+[node name="Healthbar" parent="." unique_id=1620432705 instance=ExtResource("4_ejgvo")]
+position = Vector2(0, -69)

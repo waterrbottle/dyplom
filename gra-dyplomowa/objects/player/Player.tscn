@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ue1b8fgnky4u" path="res://objects/player/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://bdqqr6bpsscaq" path="res://assets/images/player/abilities/fistattack3.png" id="2_g7ett"]
 [ext_resource type="Script" uid="uid://cdurhfq364kau" path="res://objects/player/fistobject.gd" id="3_ssrue"]
-[ext_resource type="PackedScene" uid="uid://7qvbhxkl8n3d" path="res://objects/itemobject/itemhold.tscn" id="4_6o7ef"]
+[ext_resource type="PackedScene" path="res://objects/itemobject/itemhold.tscn" id="4_6o7ef"]
 [ext_resource type="Texture2D" uid="uid://bd84sjxkxwwti" path="res://assets/images/player/texture/Illustration2.png" id="5_h7ooo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]

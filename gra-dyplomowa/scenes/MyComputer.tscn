@@ -23,7 +23,7 @@ shader_parameter/colorreduceG = 2.59
 shader_parameter/colorreduceB = 2.19
 shader_parameter/colorStrength = 1.76
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_eoi4i"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_x660l"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ow0dq"]
@@ -96,7 +96,7 @@ xfade_time = 0.2
 advance_mode = 2
 advance_expression = "!sneak"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_x660l"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_amumy"]
 resource_local_to_scene = true
 states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_xgwla")
 states/BlendSpace1D/position = Vector2(505.8144, -39.182613)
@@ -298,13 +298,19 @@ transform = Transform3D(0.9999996, 0, 0, 0, 0.9999996, 0, 0, 0, 1, 0, 0, 0)
 transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="TextureRect" parent="Player" index="2" unique_id=1031087902]
-texture = SubResource("ViewportTexture_eoi4i")
+texture = SubResource("ViewportTexture_x660l")
 
 [node name="AnimationTree" parent="Player" index="3" unique_id=938827342]
-tree_root = SubResource("AnimationNodeStateMachine_x660l")
+tree_root = SubResource("AnimationNodeStateMachine_amumy")
 
 [node name="Camera2D" parent="Player" index="5" unique_id=1236330716]
 enabled = false
+
+[node name="ColorRect" parent="Player/fight/fightrotated" parent_id_path=PackedInt32Array(1401127334, 1508304438) index="0" unique_id=642020049]
+texture = null
+
+[node name="Sprite2D" parent="Player" index="13" unique_id=1605983702]
+texture = null
 
 [node name="Windows" type="Control" parent="." unique_id=1765414581]
 anchors_preset = 0

@@ -86,6 +86,8 @@ func _process(delta: float) -> void:
 				hit=true
 				
 				#SEPERATE SCRIPT FOR INSIDE OF THE WINDOW
+				if col.get_parent().get_node("SubViewport").get_child(0) is Node3D:
+					return
 				space = col.get_parent().get_node("SubViewport").get_child(0).get_world_2d().direct_space_state
 				params.position = col.get_parent().get_node("SubViewport").get_child(0).get_global_mouse_position()
 				params.collide_with_areas=true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wfiprppncgtq"
-path="res://.godot/imported/glosnik_bez_paskow.png-50d98c3f8f959aefe30d6eb8a53e395d.ctex"
+uid="uid://bc80evshlo8b0"
+path="res://.godot/imported/20250713_185202 copy.jpg-0ec1bbed3c6fa021bca4e1e557894f10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/ui/icons/musicplayer/glosnik_bez_paskow.png"
-dest_files=["res://.godot/imported/glosnik_bez_paskow.png-50d98c3f8f959aefe30d6eb8a53e395d.ctex"]
+source_file="res://assets/images/ui/tymon/20250713_185202 copy.jpg"
+dest_files=["res://.godot/imported/20250713_185202 copy.jpg-0ec1bbed3c6fa021bca4e1e557894f10.ctex"]
 
 [params]
 

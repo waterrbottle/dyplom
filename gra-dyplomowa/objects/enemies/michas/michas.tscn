@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://d357asu1k1n06"]
 
 [ext_resource type="Script" uid="uid://k72j2jbnosjb" path="res://objects/enemies/michas/michas.gd" id="1_2lj0q"]
-[ext_resource type="Texture2D" uid="uid://c4apgwomfwmag" path="res://icon.svg" id="2_xteaa"]
-[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="3_xteaa"]
+[ext_resource type="Resource" uid="uid://bv1v5aca7ucty" path="res://objects/enemies/EntityResources/basicenemy.tres" id="2_mf4m2"]
+[ext_resource type="PackedScene" uid="uid://bvgqjrqb5xftd" path="res://objects/enemies/EntityExtentions/healthbar/stats.tscn" id="3_edrj5"]
+[ext_resource type="PackedScene" uid="uid://d3ylpw37j7qrg" path="res://objects/enemies/EntityExtentions/movements/movementfollowbasic/movementfollowbasic.tscn" id="3_xteaa"]
+[ext_resource type="PackedScene" uid="uid://c4qceoenujvhy" path="res://objects/enemies/EntityExtentions/damager/damagerbasic.tscn" id="4_edrj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ltib"]
 size = Vector2(34, 34)
@@ -10,25 +12,16 @@ size = Vector2(34, 34)
 [sub_resource type="CircleShape2D" id="CircleShape2D_2lj0q"]
 radius = 22.022715
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lj0q"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ltib"]
-bg_color = Color(0.6, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_edrj5"]
-font = ExtResource("3_xteaa")
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
-
 [node name="Michas" type="CharacterBody2D" unique_id=2140165586]
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_2lj0q")
+EnemyStats = ExtResource("2_mf4m2")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=246346919]
-offset_left = -18.0
+offset_left = -20.0
 offset_top = -20.0
-offset_right = 22.0
+offset_right = 20.0
 offset_bottom = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1560967408]
@@ -44,32 +37,23 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1217549758]
 shape = SubResource("CircleShape2D_2lj0q")
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1931776535]
-visible = false
-offset_left = -52.0
-offset_top = -54.0
-offset_right = 52.0
-offset_bottom = -27.0
-theme_override_styles/background = SubResource("StyleBoxFlat_2lj0q")
-theme_override_styles/fill = SubResource("StyleBoxFlat_1ltib")
-value = 50.0
+[node name="Stats" parent="." unique_id=1620432705 instance=ExtResource("3_edrj5")]
+position = Vector2(0, -35)
+entity = "michas.exe"
+healthbarlengt = 75
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1981435180]
-offset_left = -21.0
-offset_top = -72.0
-offset_right = 26.0
-offset_bottom = 24.0
-texture = ExtResource("2_xteaa")
-expand_mode = 1
+[node name="extentions" type="Node" parent="." unique_id=620799667]
 
-[node name="Label" type="Label" parent="." unique_id=1931301970]
-offset_left = -80.0
-offset_top = -99.0
-offset_right = 82.0
-offset_bottom = -76.0
-text = "indestructible worm"
-label_settings = SubResource("LabelSettings_edrj5")
-horizontal_alignment = 1
+[node name="movement" type="Node" parent="extentions" unique_id=1942901925]
+
+[node name="Movementfollowbasic" parent="extentions/movement" unique_id=570659975 node_paths=PackedStringArray("entity") instance=ExtResource("3_xteaa")]
+entity = NodePath("../../..")
+
+[node name="damagers" type="Node" parent="extentions" unique_id=934516349]
+
+[node name="Damagerbasic" parent="extentions/damagers" unique_id=1582854605 node_paths=PackedStringArray("entity", "damagearea") instance=ExtResource("4_edrj5")]
+entity = NodePath("../../..")
+damagearea = NodePath("../../../Area2D")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
