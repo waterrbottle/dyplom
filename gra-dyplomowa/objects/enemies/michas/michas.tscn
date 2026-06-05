@@ -54,6 +54,7 @@ entity = NodePath("../../..")
 [node name="Damagerbasic" parent="extentions/damagers" unique_id=1582854605 node_paths=PackedStringArray("entity", "damagearea") instance=ExtResource("4_edrj5")]
 entity = NodePath("../../..")
 damagearea = NodePath("../../../Area2D")
+getdamage = Vector2i(1, 1)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

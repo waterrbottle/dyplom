@@ -37,7 +37,9 @@ window/stretch/aspect="expand"
 [file_customization]
 
 folder_colors={
-"res://assets/": "blue"
+"res://MyComputer/": "yellow",
+"res://assets/": "blue",
+"res://objects/": "red"
 }
 
 [global_group]

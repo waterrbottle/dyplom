@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="5_dywbp"]
 [ext_resource type="PackedScene" uid="uid://d357asu1k1n06" path="res://objects/enemies/michas/michas.tscn" id="6_2r1tl"]
 [ext_resource type="Script" uid="uid://powq1usgpexu" path="res://objects/enemies/EntityResources/BasicEnemy.gd" id="7_8a7m2"]
+[ext_resource type="PackedScene" uid="uid://dpox42dqsw7fu" path="res://objects/enemies/dvd/dvd.tscn" id="8_8a7m2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfxgj"]
 texture = ExtResource("2_dd0lh")
@@ -53,10 +54,16 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 3
 sources/1 = SubResource("TileSetAtlasSource_bfxgj")
 
-[sub_resource type="Resource" id="Resource_2r1tl"]
+[sub_resource type="Resource" id="Resource_8a7m2"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
-max_health = 20
+max_health = 15
+metadata/_custom_type_script = "uid://powq1usgpexu"
+
+[sub_resource type="Resource" id="Resource_plydf"]
+resource_local_to_scene = true
+script = ExtResource("7_8a7m2")
+max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
 [node name="Level1" type="Node2D" unique_id=260567677]
@@ -83,31 +90,35 @@ tile_set = SubResource("TileSet_dywbp")
 position = Vector2(-286, 1081)
 
 [node name="Leveldata" parent="." unique_id=1255549413 instance=ExtResource("5_dywbp")]
-scenesize = Vector2(500, 500)
+scenesize = Vector2(700, 500)
 windowname = "LEVELIK"
 
 [node name="enemies" type="Node2D" parent="." unique_id=153441791]
 
-[node name="Michas4" parent="enemies" unique_id=1329997019 instance=ExtResource("6_2r1tl")]
-position = Vector2(-151, 1405)
-EnemyStats = SubResource("Resource_2r1tl")
+[node name="Dvd" parent="enemies" unique_id=68257720 instance=ExtResource("8_8a7m2")]
+position = Vector2(-171, 1103)
+EnemyStats = SubResource("Resource_8a7m2")
 
-[node name="ColorRect" parent="enemies/Michas4" index="0" unique_id=246346919]
+[node name="Michas" parent="enemies" unique_id=2140165586 instance=ExtResource("6_2r1tl")]
+position = Vector2(0, 1357)
+EnemyStats = SubResource("Resource_plydf")
+
+[node name="ColorRect" parent="enemies/Michas" index="0" unique_id=246346919]
+color = Color(0.29000002, 0.70416677, 1, 1)
+
+[node name="Damagerbasic" parent="enemies/Michas/extentions/damagers" parent_id_path=PackedInt32Array(2140165586, 934516349) index="0" unique_id=1582854605]
+setdamage = Vector2i(1, 10)
+
+[node name="objects" type="Node2D" parent="." unique_id=1140636792]
+
+[node name="kolce" type="Node2D" parent="objects" unique_id=1708420233]
+
+[node name="ColorRect" type="ColorRect" parent="objects/kolce" unique_id=290085413]
+offset_left = -69.0
+offset_top = 1114.0
+offset_right = -29.0
+offset_bottom = 1154.0
 color = Color(1, 0, 0, 1)
 
-[node name="Stats" parent="enemies/Michas4" index="4" unique_id=1620432705]
-entity = "michas + + +.exe"
-healthbarlengt = 125
-
-[node name="Movementfollowbasic" parent="enemies/Michas4/extentions/movement" parent_id_path=PackedInt32Array(1329997019, 1942901925) index="0" unique_id=570659975]
-jumpheight = 1500.0
-jumpfrequency = Vector2(0.3, 0.5)
-speedgain = 30.0
-maxspeed = 800.0
-gravity = 5.0
-
-[node name="Damagerbasic" parent="enemies/Michas4/extentions/damagers" parent_id_path=PackedInt32Array(1329997019, 934516349) index="0" unique_id=1582854605]
-setdamage = Vector2i(5, 10)
-getdamage = Vector2i(1, 1)
-
-[editable path="enemies/Michas4"]
+[editable path="enemies/Dvd"]
+[editable path="enemies/Michas"]

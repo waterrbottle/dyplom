@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dxq0iy4aaopp0"]
+
+[ext_resource type="Script" uid="uid://c1b1goyt8xvxs" path="res://objects/enemies/EntityExtentions/movements/movementfloat/movementfloat.gd" id="1_rc757"]
+
+[node name="Movementfloat" type="Node" unique_id=1004497749]
+script = ExtResource("1_rc757")
