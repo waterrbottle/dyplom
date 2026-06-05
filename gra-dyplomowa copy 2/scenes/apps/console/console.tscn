@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://d4i7w41xse6ey"]
+
+[ext_resource type="Script" uid="uid://dl7c0c8qqn8na" path="res://scenes/apps/console/console.gd" id="1_5fh4m"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="1_88kon"]
+[ext_resource type="Script" uid="uid://caiyxj6xdmlfx" path="res://scenes/apps/console/rich_text_label.gd" id="3_12l46"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="3_uv06m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pqilr"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88kon"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5fh4m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uv06m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_88kon"]
+font = ExtResource("1_88kon")
+font_color = Color(0.11764706, 1, 0, 1)
+outline_color = Color(0.11764706, 1, 0, 1)
+
+[node name="Console" type="Node2D" unique_id=153605669]
+script = ExtResource("1_5fh4m")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1502627699]
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1445412261]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pqilr")
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Panel" unique_id=47244418]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+offset_right = -183.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.11764706, 1, 0, 1)
+theme_override_colors/font_selected_color = Color(0.11764706, 1, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.11764706, 1, 0, 1)
+theme_override_colors/caret_color = Color(0.11764706, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_88kon")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_88kon")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_5fh4m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uv06m")
+placeholder_text = " enter command"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Panel" unique_id=208287141]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -41.0
+offset_right = -180.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.11764706, 1, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Panel" unique_id=1818803673]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -182.0
+offset_right = -180.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.11764706, 1, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel" unique_id=2122297672]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0050000004
+offset_left = -176.0
+offset_top = 2.0
+offset_right = -136.0
+offset_bottom = 17.0
+grow_horizontal = 2
+text = "log:"
+label_settings = SubResource("LabelSettings_88kon")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel" unique_id=2009092727]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -177.0
+offset_top = 21.604
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_88kon")
+text = "* - - - - - - - - - - - - - - - *
+  ^-^ crashinnn out log ^-^
+ *- - - - - - - - - - - - - - - *"
+script = ExtResource("3_12l46")
+
+[node name="consoletext" type="RichTextLabel" parent="CanvasLayer/Panel" unique_id=1976279333]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = -184.0
+offset_bottom = -43.0
+theme_override_fonts/normal_font = ExtResource("1_88kon")
+
+[node name="Leveldata" parent="." unique_id=1195664920 instance=ExtResource("3_uv06m")]
+scenesize = Vector2(700, 400)
+windowname = "console.exe"
+type = "explorer"

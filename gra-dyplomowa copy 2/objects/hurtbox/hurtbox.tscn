@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct2s4m0efv1fa"]
+
+[ext_resource type="Script" uid="uid://cqbiejl83op0f" path="res://objects/hurtbox/hurtbox.gd" id="1_5jqat"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l10b4"]
+
+[node name="Hurtbox" type="Node2D"]
+script = ExtResource("1_5jqat")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_l10b4")
+
+[node name="ColorRect" type="ColorRect" parent="Area2D"]
+offset_left = -17.0
+offset_top = -23.0
+offset_right = 23.0
+offset_bottom = 17.0
+color = Color(1, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Area2D"]
+offset_left = -28.0
+offset_top = -51.0
+offset_right = 35.0
+offset_bottom = -28.0
+text = "hurtbox"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

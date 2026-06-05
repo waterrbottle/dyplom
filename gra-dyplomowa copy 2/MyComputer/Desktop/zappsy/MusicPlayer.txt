@@ -1,0 +1,7 @@
+app-redirect
+scene
+res://scenes/apps/musicplayer/musicplayer.tscn
+icon
+res://assets/images/ui/icons/Sprite-folder-pelny.png
+name
+audio_player.exe

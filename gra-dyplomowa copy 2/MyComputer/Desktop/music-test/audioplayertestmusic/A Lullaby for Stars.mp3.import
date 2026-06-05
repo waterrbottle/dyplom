@@ -1,0 +1,18 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://tc50kw8phxdx"
+valid=false
+
+[deps]
+
+source_file="res://MyComputer/Desktop/music-test/audioplayertestmusic/A Lullaby for Stars.mp3"
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://c4ur3tbgxukjd"]
+
+[ext_resource type="Texture2D" uid="uid://dp1ijobw7tlmg" path="res://assets/images/ui/icons/dokument.png" id="1_kdjss"]
+[ext_resource type="Script" uid="uid://ce4n7li1qbunw" path="res://objects/TheWindowSystem/windowFileManager/FileIcon/fileicon.gd" id="1_nr0wp"]
+[ext_resource type="Shader" uid="uid://c8gnyhvoj6jiw" path="res://resources/shaders/gupishader.gdshader" id="2_eauu2"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="2_kdjss"]
+[ext_resource type="Texture2D" uid="uid://1wkon13xccrm" path="res://assets/images/ui/icons/Sprite-folder-pelny copy.png" id="3_nr0wp"]
+
+[sub_resource type="Gradient" id="Gradient_tsewj"]
+offsets = PackedFloat32Array(0, 0.9904762)
+colors = PackedColorArray(0.012421018, 0, 0.18738744, 1, 0.47068137, 0.24853423, 0.79981107, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3giw7"]
+gradient = SubResource("Gradient_tsewj")
+
+[sub_resource type="Gradient" id="Gradient_e77ct"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1ny7j"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xt06e"]
+noise = SubResource("FastNoiseLite_1ny7j")
+color_ramp = SubResource("Gradient_e77ct")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e7cp4"]
+shader = ExtResource("2_eauu2")
+shader_parameter/position = Vector2(0.25, -0.16)
+shader_parameter/radius = 0.0
+shader_parameter/borderWidth = 0.2
+shader_parameter/burnMult = 0.34
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_xt06e")
+shader_parameter/burnColor = Color(0, 0, 0, 1)
+shader_parameter/pixel_size = 0.004
+shader_parameter/blend_steps = 8.5
+shader_parameter/colorCurve = SubResource("GradientTexture2D_3giw7")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jj43p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kdjss")
+}],
+"loop": true,
+"name": &"document",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nr0wp")
+}],
+"loop": true,
+"name": &"folder",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nr0wp"]
+line_spacing = -6.09
+font = ExtResource("2_kdjss")
+font_size = 15
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eauu2"]
+bg_color = Color(0.6, 0, 0.39999992, 0.44705883)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tsewj"]
+bg_color = Color(0.07000008, 0.6, 0, 0.7921569)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3giw7"]
+bg_color = Color(0.6, 0.39000002, 0, 0.61960787)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eauu2"]
+size = Vector2(51, 61)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e77ct"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xt06e"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ny7j"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Fileicon" type="Control" unique_id=793028924]
+custom_minimum_size = Vector2(50, 70)
+layout_mode = 3
+anchor_right = 0.043
+anchor_bottom = 0.108
+offset_right = 0.4639969
+offset_bottom = 0.01599884
+script = ExtResource("1_nr0wp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=526728863]
+texture_filter = 1
+material = SubResource("ShaderMaterial_e7cp4")
+position = Vector2(26.105001, 19.644999)
+scale = Vector2(0.5032813, 0.51109374)
+sprite_frames = SubResource("SpriteFrames_jj43p")
+animation = &"folder"
+
+[node name="Label" type="Label" parent="." unique_id=1406202973]
+texture_filter = 1
+layout_mode = 0
+offset_top = 35.0
+offset_right = 51.0
+offset_bottom = 61.0
+text = "FileName vffvdfvdfdvdvfdvfvdfvdfvdfdvf"
+label_settings = SubResource("LabelSettings_nr0wp")
+horizontal_alignment = 1
+autowrap_mode = 1
+max_lines_visible = 2
+
+[node name="Button" type="Button" parent="." unique_id=206179441]
+layout_mode = 0
+offset_right = 51.0
+offset_bottom = 38.0
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_eauu2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tsewj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3giw7")
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1408260324]
+texture_filter = 1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 42.0
+offset_bottom = 35.0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1974871790 groups=["file"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=950552775]
+position = Vector2(25.5, 30.5)
+shape = SubResource("RectangleShape2D_eauu2")
+
+[node name="TextEdit" type="LineEdit" parent="." unique_id=1716192172]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 36.0
+offset_right = 53.0
+offset_bottom = 51.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_kdjss")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_e77ct")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_xt06e")
+theme_override_styles/focus = SubResource("StyleBoxFlat_1ny7j")
+alignment = 1
+
+[node name="cooldown" type="Timer" parent="." unique_id=1814594102]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_shape_entered" from="Area2D" to="." method="_on_area_2d_mouse_shape_entered"]
+[connection signal="mouse_shape_exited" from="Area2D" to="." method="_on_area_2d_mouse_shape_exited"]
+[connection signal="editing_toggled" from="TextEdit" to="." method="_on_text_edit_editing_toggled"]
+[connection signal="text_submitted" from="TextEdit" to="." method="_on_text_edit_text_submitted"]
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]

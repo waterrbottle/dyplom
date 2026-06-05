@@ -1,0 +1,9 @@
+app-redirect
+scene
+res://scenes/apps/fileManager/WindowFileManager.tscn
+icon
+res://icon.svg
+name
+fileManager.exe
+data-injection
+[["MyComputer", "Desktop"],false]

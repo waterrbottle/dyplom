@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://08v0pea6ht4r"]
+
+[sub_resource type="GDScript" id="GDScript_vu45j"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 25.0
+const JUMP_VELOCITY = -1000.0
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta * 2
+
+	# Handle jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
+	if Input.is_action_just_pressed(\"ui_left\"):
+		velocity.x = abs(velocity.x) * -0.5
+	if Input.is_action_just_pressed(\"ui_right\"):
+		velocity.x = abs(velocity.x) * 0.5
+	if direction:
+		if abs(velocity.x) < 800:
+			velocity.x += direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	$ColorRect.size.y = 40-abs(velocity.x)/30.0
+	$ColorRect.position.y = -20+abs(velocity.x)/30.0
+	$ColorRect.size.x = 40
+	move_and_slide()
+	if (velocity.y) < 0:
+		$ColorRect.size.y = 40 +abs(velocity.y)/10.0
+		$ColorRect.size.x = 40
+	else:
+		$ColorRect.size.x = 40 + abs(velocity.y)/40.0
+		$ColorRect.position.x = 40 - abs(velocity.y)/20.0/2
+		$ColorRect.position.y = -20+abs(velocity.x)/30.0
+		$ColorRect.size.y = 40 -abs(velocity.y)/40.0
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vu45j"]
+radius = 19.105
+
+[node name="Character" type="CharacterBody2D"]
+script = SubResource("GDScript_vu45j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vu45j")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+pivot_offset = Vector2(20, 40)
+color = Color(1, 0, 0, 1)

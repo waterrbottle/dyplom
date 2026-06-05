@@ -1,0 +1,7 @@
+app-redirect
+scene
+res://scenes/levels/Sample_level.tscn
+icon
+res://assets/GlucioTemplates/Glucio_Red.png
+name
+mateusz.exe

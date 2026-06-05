@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://8hhvr15dkvdp"]
+
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="1_ganvo"]
+[ext_resource type="Script" uid="uid://bgyje5iiku71r" path="res://scenes/apps/Bombiasz/bombiaszbutton.gd" id="2_531o6"]
+[ext_resource type="Texture2D" uid="uid://5ryrnvvibgiq" path="res://assets/images/apps/bombiasz/icon_fire_1.png" id="3_6ubb2"]
+[ext_resource type="Texture2D" uid="uid://djcnjxnlm44ev" path="res://assets/GlucioTemplates/Glucio_Green.png" id="3_531o6"]
+[ext_resource type="Texture2D" uid="uid://dfumvavaatqt4" path="res://assets/images/apps/bombiasz/icon_fire_2.png" id="4_6ubb2"]
+[ext_resource type="Texture2D" uid="uid://ckj66sn7bvvs2" path="res://assets/images/apps/bombiasz/bomboicona..png" id="5_u2d2g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u2d2g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6ubb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6ubb2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_531o6"]
+size = Vector2(26, 26)
+
+[node name="button" type="Button" unique_id=1407187647]
+custom_minimum_size = Vector2(30, 30)
+offset_right = 30.0
+offset_bottom = 30.0
+theme = ExtResource("1_ganvo")
+script = ExtResource("2_531o6")
+
+[node name="fire" type="TextureRect" parent="." unique_id=797892110]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="fire" unique_id=773115579]
+position = Vector2(15, 15)
+scale = Vector2(1.875, 1.875)
+sprite_frames = SubResource("SpriteFrames_u2d2g")
+autoplay = "default"
+frame_progress = 0.08689765
+
+[node name="water" type="TextureRect" parent="." unique_id=251196870]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_531o6")
+expand_mode = 1
+
+[node name="bomb" type="TextureRect" parent="." unique_id=739371624]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_u2d2g")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1748490194]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1005596062]
+position = Vector2(15, 15)
+shape = SubResource("RectangleShape2D_531o6")
+
+[node name="ColorRect" type="ColorRect" parent="Area2D" unique_id=1026666033]
+visible = false
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 28.0
+offset_bottom = 28.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

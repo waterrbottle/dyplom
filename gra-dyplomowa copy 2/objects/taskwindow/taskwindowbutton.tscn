@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8f3qe2sv14sw"]
+
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="1_vjles"]
+[ext_resource type="Texture2D" uid="uid://b5jo2ayyf14op" path="res://assets/images/ui/windows/inverted.png" id="2_7r8jb"]
+[ext_resource type="Script" uid="uid://bvmpr6l6v3ukn" path="res://objects/taskwindow/taskwindowbutton.gd" id="3_giiwj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_giiwj"]
+texture = ExtResource("2_7r8jb")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[node name="Button" type="Button"]
+texture_filter = 1
+custom_minimum_size = Vector2(200, 30)
+anchors_preset = -1
+anchor_right = 0.17400001
+anchor_bottom = 0.046000004
+offset_right = -200.44801
+offset_bottom = -29.808002
+theme = ExtResource("1_vjles")
+theme_override_styles/normal = SubResource("StyleBoxTexture_giiwj")
+text = "something went wrong"
+script = ExtResource("3_giiwj")

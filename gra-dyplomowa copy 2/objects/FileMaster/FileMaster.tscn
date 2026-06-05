@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccmrmyl88c7m0"]
+
+[ext_resource type="Script" uid="uid://c27ndrhju68yh" path="res://objects/FileMaster/file_master.gd" id="1_7rqdd"]
+
+[node name="FileMaster" type="Node"]
+script = ExtResource("1_7rqdd")
+types = 1

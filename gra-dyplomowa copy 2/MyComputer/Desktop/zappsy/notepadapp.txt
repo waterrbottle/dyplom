@@ -1,0 +1,7 @@
+app-redirect
+scene
+res://scenes/apps/notepad/notepad.tscn
+icon
+res://assets/images/bitsoda-1x.png
+name
+notepad.exe

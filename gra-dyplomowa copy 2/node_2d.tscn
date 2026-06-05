@@ -1,0 +1,135 @@
+[gd_scene load_steps=2 format=3 uid="uid://br6m5waw6dah3"]
+
+[sub_resource type="GDScript" id="GDScript_y32ns"]
+script/source = "extends Node2D
+
+@onready var sprite = $Sprite2D
+@onready var camera = $Camera2D
+
+enum Shape { RECT, CIRCLE, TRIANGLE }
+
+var canvas_image: Image
+var canvas_texture: ImageTexture
+var canvas_size = Vector2i(1024, 1024)
+
+var brush_image: Image # The \"stamp\"
+var current_shape = Shape.TRIANGLE
+var brush_size: int = 64
+var brush_color: Color = Color.BLACK
+
+var last_mouse_pos: Vector2i = Vector2i(-1, -1)
+var last_angle: float = 0.0
+var is_panning: bool = false
+
+func _ready():
+	# 1. Initialize Main Canvas
+	canvas_image = Image.create(canvas_size.x, canvas_size.y, false, Image.FORMAT_RGBA8)
+	canvas_image.fill(Color.WHITE)
+	canvas_texture = ImageTexture.create_from_image(canvas_image)
+	sprite.texture = canvas_texture
+	sprite.centered = false
+	
+	camera.position = Vector2(canvas_size) / 2
+	
+	_update_brush_texture(0.0)
+
+func _process(_delta):
+	var changed = false
+	if Input.is_key_pressed(KEY_1): 
+		brush_size = max(8, brush_size - 4); changed = true
+	if Input.is_key_pressed(KEY_2): 
+		brush_size = min(400, brush_size + 4); changed = true
+	
+	if Input.is_key_pressed(KEY_3) and current_shape != Shape.RECT:
+		current_shape = Shape.RECT; changed = true
+	if Input.is_key_pressed(KEY_4) and current_shape != Shape.CIRCLE:
+		current_shape = Shape.CIRCLE; changed = true
+	if Input.is_key_pressed(KEY_5) and current_shape != Shape.TRIANGLE:
+		current_shape = Shape.TRIANGLE; changed = true
+
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var mouse_pos = Vector2i(sprite.get_local_mouse_position())
+		
+		if last_mouse_pos != Vector2i(-1, -1) and last_mouse_pos != mouse_pos:
+			var movement = Vector2(mouse_pos - last_mouse_pos)
+			if movement.length() > 4.0:
+				last_angle = movement.angle()
+				_update_brush_texture(last_angle)
+			_draw_line(last_mouse_pos, mouse_pos)
+		else:
+			if changed: _update_brush_texture(last_angle)
+			_stamp(mouse_pos)
+			
+		last_mouse_pos = mouse_pos
+		canvas_texture.update(canvas_image)
+	else:
+		last_mouse_pos = Vector2i(-1, -1)
+		if changed: _update_brush_texture(last_angle)
+
+# --- THE FIX: PRE-RENDER THE BRUSH TO AN IMAGE ---
+
+func _update_brush_texture(angle: float):
+	# Create a small buffer for the brush
+	var b_size = int(brush_size * 1.5)
+	brush_image = Image.create(b_size, b_size, false, Image.FORMAT_RGBA8)
+	brush_image.fill(Color(0,0,0,0)) # Transparent
+	
+	var center = Vector2(b_size, b_size) / 2.0
+	var s = float(brush_size) / 2.0
+	
+	var verts: PackedVector2Array = []
+	if current_shape == Shape.RECT:
+		verts = [Vector2(-s, -s), Vector2(s, -s), Vector2(s, s), Vector2(-s, s)]
+	elif current_shape == Shape.TRIANGLE:
+		verts = [Vector2(s, 0), Vector2(-s, -s), Vector2(-s, s)]
+	elif current_shape == Shape.CIRCLE:
+		# Circles don't rotate, so we just draw once
+		for x in range(b_size):
+			for y in range(b_size):
+				if Vector2(x,y).distance_to(center) < s:
+					brush_image.set_pixel(x, y, brush_color)
+		return
+
+	# Rotate vertices
+	var rotated = PackedVector2Array()
+	for v in verts:
+		rotated.append(v.rotated(angle) + center)
+	
+	# Draw the shape onto our small brush image once
+	for x in range(b_size):
+		for y in range(b_size):
+			if Geometry2D.is_point_in_polygon(Vector2(x,y), rotated):
+				brush_image.set_pixel(x, y, brush_color)
+
+func _stamp(pos: Vector2i):
+	# Blit is extremely fast compared to manual set_pixel loops
+	var offset = Vector2i(brush_image.get_size()) / 2
+	canvas_image.blit_rect_mask(
+		brush_image, 
+		brush_image, 
+		Rect2i(Vector2i.ZERO, brush_image.get_size()), 
+		pos - offset
+	)
+
+func _draw_line(start: Vector2i, end: Vector2i):
+	var dist = Vector2(start).distance_to(Vector2(end))
+	var steps = max(1, int(dist / (brush_size / 8.0)))
+	for i in range(steps):
+		var lerp_pos = Vector2(start).lerp(Vector2(end), float(i) / steps)
+		_stamp(Vector2i(lerp_pos))
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP: camera.zoom *= 1.1
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN: camera.zoom *= 0.9
+		if event.button_index == MOUSE_BUTTON_MIDDLE: is_panning = event.pressed
+	if event is InputEventMouseMotion and is_panning:
+		camera.position -= event.relative / camera.zoom
+"
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_y32ns")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]

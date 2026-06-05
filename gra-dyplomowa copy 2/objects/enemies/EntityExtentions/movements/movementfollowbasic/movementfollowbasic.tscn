@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d3ylpw37j7qrg"]
+
+[ext_resource type="Script" uid="uid://c3edpnv0c2sva" path="res://objects/enemies/EntityExtentions/movements/movementfollowbasic/movementfollowbasic.gd" id="1_jsuhq"]
+
+[node name="Movementfollowbasic" type="Node" unique_id=198252922]
+script = ExtResource("1_jsuhq")

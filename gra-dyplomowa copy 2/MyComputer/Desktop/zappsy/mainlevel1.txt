@@ -1,0 +1,7 @@
+app-redirect
+scene
+res://scenes/levels/level1.tscn
+icon
+res://assets/images/player/texture/Illustration2.png
+name
+LEVEL 1.gdap

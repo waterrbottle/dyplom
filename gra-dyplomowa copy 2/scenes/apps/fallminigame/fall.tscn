@@ -1,0 +1,520 @@
+[gd_scene format=3 uid="uid://chi8be12wgslv"]
+
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="1_al40p"]
+[ext_resource type="Script" uid="uid://ireb5d8m7wkr" path="res://scenes/apps/fallminigame/fall.gd" id="1_hl3f7"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="2_okeyh"]
+[ext_resource type="Texture2D" uid="uid://djcnjxnlm44ev" path="res://assets/GlucioTemplates/Glucio_Green.png" id="3_4bpe3"]
+[ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="5_bvbmd"]
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="6_nwyv4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_okeyh"]
+radius = 8.594999
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bpe3"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="Gradient" id="Gradient_hl3f7"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bvbmd"]
+gradient = SubResource("Gradient_hl3f7")
+fill_from = Vector2(1, 1)
+fill_to = Vector2(1, 0.2820513)
+
+[sub_resource type="Gradient" id="Gradient_nwyv4"]
+colors = PackedColorArray(0, 0.5999999, 1, 1, 0, 0.4500003, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v7gq2"]
+gradient = SubResource("Gradient_nwyv4")
+fill_from = Vector2(1, 1)
+fill_to = Vector2(1, 0.2820513)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yfqh2"]
+gradient = SubResource("Gradient_nwyv4")
+fill_from = Vector2(1, 1)
+fill_to = Vector2(1, 0.2820513)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3mrv"]
+radius = 7.0
+height = 68.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3hl6"]
+size = Vector2(20, 539)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4bpe3"]
+font = ExtResource("2_okeyh")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4bpe3"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hl3f7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwyv4"]
+size = Vector2(32.5, 15.57)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v7gq2"]
+texture = ExtResource("5_bvbmd")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_nwyv4"]
+font = ExtResource("2_okeyh")
+font_size = 20
+outline_size = 7
+outline_color = Color(0.34000003, 0.6, 0.28800002, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v7gq2"]
+font = ExtResource("2_okeyh")
+font_size = 20
+outline_size = 7
+outline_color = Color(0.6, 0.28800002, 0.28800002, 1)
+
+[sub_resource type="Animation" id="Animation_nwyv4"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(303, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(35, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(556, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_v7gq2"]
+resource_name = "infobar"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2, 2),
+"points": PackedFloat32Array(303, -0.25, 0, 0.25, 0, 303, -0.086666666, 0, 0, 0, 303, -0.35666668, 0, 0, 0, 303, -0.033333343, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3, 2.44, 2.64)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2, 2),
+"points": PackedFloat32Array(35, -0.25, 0, 0.25, 0, 594, -0.086666666, -93.166664, 0, 0, 582.37445, -5, 0, 0.1, 0, 0, -0.05151081, 0.9159446, 0, 0),
+"times": PackedFloat32Array(0, 0.3, 2.4333334, 2.64)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.086666666, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(556, -0.25, 0, 0.25, 0, -3, -0.086666666, 93.166664, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../CanvasLayer/ColorRect/Label3:label_settings:font_color:r")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.046666674, 0, 0, 0, 1, -0.22333333, 0, 0, 0, 1, -0.033333343, 0, 0, 0),
+"times": PackedFloat32Array(0.38, 0.66, 2, 2.2)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../CanvasLayer/ColorRect/Label3:label_settings:font_color:g")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.046666674, 0, 0, 0, 1, -0.22333333, 0, 0, 0, 1, -0.033333343, 0, 0, 0),
+"times": PackedFloat32Array(0.38, 0.66, 2, 2.2)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../CanvasLayer/ColorRect/Label3:label_settings:font_color:b")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.046666674, 0, 0, 0, 1, -0.22333333, 0, 0, 0, 1, -0.033333343, 0, 0, 0),
+"times": PackedFloat32Array(0.38, 0.66, 2, 2.2)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../CanvasLayer/ColorRect/Label3:label_settings:font_color:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.046666674, -0.16666667, 0, 0, 1, -0.22333333, 0, 0, 0, 0, -0.033333343, 0.16666669, 0, 0),
+"times": PackedFloat32Array(0.38, 0.66, 2, 2.2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yfqh2"]
+_data = {
+&"RESET (2)": SubResource("Animation_nwyv4"),
+&"infobar": SubResource("Animation_v7gq2")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_i3mrv"]
+font = ExtResource("2_okeyh")
+font_size = 30
+font_color = Color(1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7gq2"]
+size = Vector2(57, 20)
+
+[node name="fall" type="Node2D" unique_id=964273730]
+script = ExtResource("1_hl3f7")
+
+[node name="balllol" type="StaticBody2D" parent="." unique_id=1732394291]
+position = Vector2(-46.19, 0)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="balllol" unique_id=1672307785]
+shape = SubResource("CircleShape2D_okeyh")
+
+[node name="Panel" type="Panel" parent="balllol" unique_id=1549712914]
+texture_filter = 1
+offset_left = -8.064999
+offset_top = -8.285
+offset_right = 7.9350014
+offset_bottom = 7.715
+theme_override_styles/panel = SubResource("StyleBoxFlat_4bpe3")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=408037880]
+custom_minimum_size = Vector2(300, 500)
+offset_left = 2.0
+offset_right = 302.0
+offset_bottom = 550.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Node2D2" type="Node2D" parent="." unique_id=1972860801]
+
+[node name="TextureRect" type="TextureRect" parent="Node2D2" unique_id=863860859]
+offset_top = 460.0
+offset_right = 65.0
+offset_bottom = 500.0
+texture = SubResource("GradientTexture2D_bvbmd")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="Node2D2" unique_id=1152695671]
+offset_left = 238.0
+offset_top = 460.0
+offset_right = 303.0
+offset_bottom = 500.0
+texture = SubResource("GradientTexture2D_bvbmd")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Node2D2" unique_id=104031706]
+offset_left = 65.0
+offset_top = 460.0
+offset_right = 75.0
+offset_bottom = 500.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="Node2D2" unique_id=1565049173]
+offset_left = 228.0
+offset_top = 460.0
+offset_right = 238.0
+offset_bottom = 500.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="Node2D2" unique_id=181598927]
+offset_left = 145.0
+offset_top = 460.0
+offset_right = 155.0
+offset_bottom = 500.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect3" type="TextureRect" parent="Node2D2" unique_id=1890723094]
+offset_left = 75.0
+offset_top = 460.0
+offset_right = 145.0
+offset_bottom = 500.0
+texture = SubResource("GradientTexture2D_v7gq2")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect4" type="TextureRect" parent="Node2D2" unique_id=223128132]
+offset_left = 155.0
+offset_top = 460.0
+offset_right = 228.0
+offset_bottom = 500.0
+texture = SubResource("GradientTexture2D_yfqh2")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D2" unique_id=114893304]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/StaticBody2D" unique_id=1635379250]
+position = Vector2(70, 488)
+shape = SubResource("CapsuleShape2D_i3mrv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D2/StaticBody2D" unique_id=836388563]
+position = Vector2(150, 492)
+shape = SubResource("CapsuleShape2D_i3mrv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D2/StaticBody2D" unique_id=1091053550]
+position = Vector2(233, 492)
+shape = SubResource("CapsuleShape2D_i3mrv")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node2D2/StaticBody2D" unique_id=2022030705]
+position = Vector2(-8, 253)
+shape = SubResource("RectangleShape2D_s3hl6")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Node2D2/StaticBody2D" unique_id=1197275049]
+position = Vector2(311, 265.5)
+shape = SubResource("RectangleShape2D_s3hl6")
+
+[node name="Label" type="Label" parent="Node2D2" unique_id=875738836]
+offset_left = 80.0
+offset_top = 473.0
+offset_right = 123.0
+offset_bottom = 490.0
+text = "+ 1 size"
+label_settings = SubResource("LabelSettings_4bpe3")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Node2D2" unique_id=1722001185]
+offset_left = 171.0
+offset_top = 472.0
+offset_right = 214.0
+offset_bottom = 489.0
+text = "- 1 size"
+label_settings = SubResource("LabelSettings_4bpe3")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="Node2D2" unique_id=465920804]
+offset_left = 5.0
+offset_top = 473.0
+offset_right = 59.0
+offset_bottom = 490.0
+text = "-5 health"
+label_settings = SubResource("LabelSettings_4bpe3")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label4" type="Label" parent="Node2D2" unique_id=1643493058]
+offset_left = 244.0
+offset_top = 473.0
+offset_right = 298.0
+offset_bottom = 490.0
+text = "-5 health"
+label_settings = SubResource("LabelSettings_4bpe3")
+metadata/_edit_use_anchors_ = true
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1072340849]
+position = Vector2(150, 20)
+mass = 0.181
+physics_material_override = SubResource("PhysicsMaterial_4bpe3")
+gravity_scale = 0.341
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1552788624]
+shape = SubResource("CircleShape2D_hl3f7")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=1470567825]
+position = Vector2(2.0000038, -1)
+scale = Vector2(0.42156863, 0.42156863)
+texture = ExtResource("3_4bpe3")
+
+[node name="walls" type="Node2D" parent="." unique_id=328701512]
+
+[node name="wall" type="StaticBody2D" parent="." unique_id=1202115025]
+position = Vector2(-121.18, 0)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall" unique_id=909886312]
+position = Vector2(8.185001, 0)
+shape = SubResource("RectangleShape2D_nwyv4")
+
+[node name="Panel" type="Panel" parent="wall" unique_id=1051760841]
+texture_filter = 1
+offset_left = -7.5649986
+offset_top = -8.285
+offset_right = 24.935001
+offset_bottom = 7.715
+theme_override_styles/panel = SubResource("StyleBoxTexture_v7gq2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Leveldata" parent="." unique_id=233388832 instance=ExtResource("1_al40p")]
+scenesize = Vector2(300, 550)
+type = "minigame"
+
+[node name="Button" type="Button" parent="." unique_id=757353021]
+texture_filter = 1
+offset_top = 499.0
+offset_right = 302.0
+offset_bottom = 550.0
+focus_mode = 0
+theme = ExtResource("6_nwyv4")
+text = "FALL!"
+metadata/_edit_use_anchors_ = true
+
+[node name="balls" type="Node2D" parent="." unique_id=201100326]
+modulate = Color(0.34117648, 0.6, 0.28627452, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1005561583]
+offset_left = 7.0
+offset_top = 3.0
+offset_right = 78.0
+offset_bottom = 24.0
+text = "balls left: 3"
+label_settings = SubResource("LabelSettings_nwyv4")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="." unique_id=1272697349]
+offset_left = 189.0
+offset_top = 3.0
+offset_right = 294.0
+offset_bottom = 24.0
+text = "time left: 15"
+label_settings = SubResource("LabelSettings_v7gq2")
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1414510955]
+offset_top = 556.0
+offset_right = 303.0
+offset_bottom = 591.0
+color = Color(1, 0.43, 0.43, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect2" unique_id=1761549978]
+libraries/ = SubResource("AnimationLibrary_yfqh2")
+autoplay = &"RESET (2)"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1183437650]
+
+[node name="ColorRect" type="Control" parent="CanvasLayer" unique_id=1051723346]
+custom_minimum_size = Vector2(300, 500)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 500.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="CanvasLayer/ColorRect" unique_id=446966305]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "you run out of time."
+label_settings = SubResource("LabelSettings_i3mrv")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1693955862]
+
+[node name="a1" type="Area2D" parent="Node2D" unique_id=673585850]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/a1" unique_id=95034304]
+position = Vector2(31, 500)
+shape = SubResource("RectangleShape2D_v7gq2")
+
+[node name="a2" type="Area2D" parent="Node2D" unique_id=1517521471]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/a2" unique_id=912466590]
+position = Vector2(192, 499)
+shape = SubResource("RectangleShape2D_v7gq2")
+
+[node name="a3" type="Area2D" parent="Node2D" unique_id=568546893]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/a3" unique_id=1006736792]
+position = Vector2(109.5, 499)
+shape = SubResource("RectangleShape2D_v7gq2")
+
+[node name="a4" type="Area2D" parent="Node2D" unique_id=1642361616]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/a4" unique_id=1190222177]
+position = Vector2(271, 500)
+shape = SubResource("RectangleShape2D_v7gq2")
+
+[node name="Timer" type="Timer" parent="." unique_id=499508959]
+one_shot = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="body_entered" from="Node2D/a1" to="." method="_on_a_1_body_entered"]
+[connection signal="body_entered" from="Node2D/a2" to="." method="_on_a_2_body_entered"]
+[connection signal="body_entered" from="Node2D/a3" to="." method="_on_a_3_body_entered"]
+[connection signal="body_entered" from="Node2D/a4" to="." method="_on_a_4_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

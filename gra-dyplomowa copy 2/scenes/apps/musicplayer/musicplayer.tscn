@@ -1,0 +1,278 @@
+[gd_scene format=3 uid="uid://dov4nvr0lhshw"]
+
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="1_6uyr2"]
+[ext_resource type="Script" uid="uid://b0j3p8beb4ydb" path="res://scenes/apps/musicplayer/musicplayer.gd" id="1_f6hdi"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="2_f6hdi"]
+[ext_resource type="Texture2D" uid="uid://b5jo2ayyf14op" path="res://assets/images/ui/windows/inverted.png" id="3_7r8gj"]
+[ext_resource type="Texture2D" uid="uid://1wjjj1bjlx11" path="res://assets/images/ui/icons/musicplayer/glosnik_paski_2.png" id="4_dj3xd"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="4_f6p7h"]
+[ext_resource type="Texture2D" uid="uid://by6j7b3a8dcxd" path="res://assets/images/ui/icons/musicplayer/start_sprite.png" id="6_767w8"]
+[ext_resource type="Texture2D" uid="uid://b8rmswimd7av7" path="res://assets/images/ui/icons/musicplayer/stop_sprite.png" id="7_3sj5x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dj3xd"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_767w8"]
+font = ExtResource("2_f6hdi")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3sj5x"]
+texture = ExtResource("3_7r8gj")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_f0xe8"]
+font = ExtResource("2_f6hdi")
+font_size = 20
+font_color = Color(0.116666794, 1, 0, 1)
+
+[node name="Musicplayer" type="Node2D" unique_id=903895628]
+script = ExtResource("1_f6hdi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1864120443]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1749654072]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Control" unique_id=1079161498]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dj3xd")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control" unique_id=491070004]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6uyr2")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=647635986]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 152.0
+offset_bottom = 29.0
+text = "audio player gamma"
+label_settings = SubResource("LabelSettings_767w8")
+
+[node name="volume" type="VSlider" parent="CanvasLayer/Control" unique_id=492131142]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = 71.0
+offset_right = -6.0
+offset_bottom = -38.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("1_6uyr2")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="volumetexture" type="TextureRect" parent="CanvasLayer/Control" unique_id=854959483]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -38.0
+offset_top = 41.0
+offset_right = -9.0
+offset_bottom = 70.0
+grow_horizontal = 0
+texture = ExtResource("4_dj3xd")
+expand_mode = 1
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/Control" unique_id=615126894]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 41.0
+offset_right = -43.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3sj5x")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/Panel3" unique_id=671746827]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Panel3/ColorRect" unique_id=298476967]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 14.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -3
+alignment = 1
+
+[node name="musictitle" type="Label" parent="CanvasLayer/Control/Panel3/ColorRect/VBoxContainer" unique_id=1825198947]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+text = "to play music open an mp3 or wav file in the explorer"
+label_settings = SubResource("LabelSettings_f0xe8")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="musicduration" type="Label" parent="CanvasLayer/Control/Panel3/ColorRect/VBoxContainer" unique_id=627705000]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+text = "duration: --/--"
+label_settings = SubResource("LabelSettings_f0xe8")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Panel3/ColorRect/VBoxContainer" unique_id=1737363222]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="looplabel" type="Label" parent="CanvasLayer/Control/Panel3/ColorRect/VBoxContainer/VBoxContainer" unique_id=933371977]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "loop on"
+label_settings = SubResource("LabelSettings_f0xe8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="volumelabel" type="Label" parent="CanvasLayer/Control/Panel3/ColorRect/VBoxContainer/VBoxContainer" unique_id=365147136]
+unique_name_in_owner = true
+layout_mode = 2
+text = "volume: 100"
+label_settings = SubResource("LabelSettings_f0xe8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/Panel3/ColorRect" unique_id=119126765]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -21.5
+offset_right = 25.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line2D" type="Line2D" parent="CanvasLayer/Control/Panel3/ColorRect/Control" unique_id=867546244]
+unique_name_in_owner = true
+points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+width = 2.0
+default_color = Color(0.09803922, 0.90588236, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=1113341305]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -36.0
+offset_right = -7.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="play" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=1867753268]
+texture_filter = 1
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+theme = ExtResource("1_6uyr2")
+icon = ExtResource("6_767w8")
+icon_alignment = 1
+
+[node name="pause" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=448815363]
+texture_filter = 1
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+theme = ExtResource("1_6uyr2")
+icon = ExtResource("7_3sj5x")
+icon_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/Control/HBoxContainer" unique_id=1527071574]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_6uyr2")
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/HBoxContainer/HSlider" unique_id=218852600]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("1_6uyr2")
+flat = true
+
+[node name="loop" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=10235259]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+theme = ExtResource("1_6uyr2")
+text = "loop"
+
+[node name="Leveldata" parent="." unique_id=777068768 instance=ExtResource("4_f6p7h")]
+scenesize = Vector2(300, 200)
+windowname = "audio_player"
+type = "explorer"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=626050850]
+
+[node name="Timer" type="Timer" parent="." unique_id=46546009]
+wait_time = 0.1
+autostart = true
+
+[connection signal="value_changed" from="CanvasLayer/Control/volume" to="." method="_on_volume_value_changed"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/pause" to="." method="_on_pause_pressed"]
+[connection signal="button_up" from="CanvasLayer/Control/HBoxContainer/HSlider/Button" to="." method="_on_button_button_up"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/loop" to="." method="_on_loop_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
