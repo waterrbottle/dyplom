@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED = 15.0
-const JUMP_VELOCITY = -900.0
+const JUMP_VELOCITY = -1000.0
 var walkspeed = 0
 var velocityhist := 0.0
 var wallfever = false

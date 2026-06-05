@@ -4,8 +4,8 @@ var timer = null
 
 @export var entity: Node
 @export_category("JUMPING")
-@export var canjump=true
-@export_range(0, 3000) var jumpheight = 700.0
+@export var canjump=false
+@export_range(0, 3000) var jumpheight = 600.0
 @export var jumpfrequency = Vector2(0.5,1.5)
 @export_category("WALKING")
 @export_range(0, 50) var speedgain = 5.0
