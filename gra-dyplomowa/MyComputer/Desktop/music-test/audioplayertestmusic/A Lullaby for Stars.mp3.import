@@ -3,11 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://tc50kw8phxdx"
-valid=false
+path="res://.godot/imported/A Lullaby for Stars.mp3-c96c1174b3f3ec419f20ca096fbe63a9.mp3str"
 
 [deps]
 
 source_file="res://MyComputer/Desktop/music-test/audioplayertestmusic/A Lullaby for Stars.mp3"
+dest_files=["res://.godot/imported/A Lullaby for Stars.mp3-c96c1174b3f3ec419f20ca096fbe63a9.mp3str"]
 
 [params]
 

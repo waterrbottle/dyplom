@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="3_0s0ux"]
 [ext_resource type="Shader" uid="uid://c3twmf158t8ym" path="res://resources/shaders/retro.gdshader" id="3_o2os2"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="4_kay7p"]
+[ext_resource type="Texture2D" uid="uid://viuso0flbk6c" path="res://assets/images/apps/paint/checker8.png" id="5_0s0ux"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5ycmd"]
 font = ExtResource("4_kay7p")
@@ -76,7 +77,19 @@ text = "to open an image find the source file in explorer"
 label_settings = SubResource("LabelSettings_o2os2")
 horizontal_alignment = 1
 
+[node name="checker" type="TextureRect" parent="CanvasLayer" unique_id=1650326345]
+visible = false
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_0s0ux")
+stretch_mode = 1
+
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=596240239]
+visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_0s0ux")
 anchors_preset = 15

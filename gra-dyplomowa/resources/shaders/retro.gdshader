@@ -15,7 +15,7 @@ void fragment() {
 	COLOR.g = floor(COLOR.g * colorreduceG)/colorreduceG;
 	COLOR.b = floor(COLOR.b * colorreduceB)/colorreduceB;
 	COLOR *= colorStrength;
-	COLOR.a = 1.0;
+	
 	//COLOR *= 1.0;
 	// Called for every pixel the material is visible on.
 }

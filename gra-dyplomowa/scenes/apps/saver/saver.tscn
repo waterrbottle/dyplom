@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://bfpf6kh6ry4ad"]
+
+[ext_resource type="Script" uid="uid://cs1lqsxb3kfwt" path="res://scenes/apps/saver/saver.gd" id="1_4a6sk"]
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="1_eqna2"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="2_4a6sk"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="3_b8t1b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w4tcp"]
+font = ExtResource("2_4a6sk")
+font_size = 24
+
+[node name="Saver" type="Node2D" unique_id=1101557156]
+script = ExtResource("1_4a6sk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1091156601]
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1272016523]
+texture_filter = 1
+offset_right = 400.0
+offset_bottom = 250.0
+theme = ExtResource("1_eqna2")
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel" unique_id=997805632]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -69.0
+offset_top = 23.0
+offset_right = 70.0
+offset_bottom = 48.0
+grow_horizontal = 2
+text = "save your precious file"
+label_settings = SubResource("LabelSettings_w4tcp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel" unique_id=1524387606]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = -78.0
+offset_right = 179.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer" unique_id=540900183]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer" unique_id=532470108]
+layout_mode = 2
+text = "name:"
+label_settings = SubResource("LabelSettings_w4tcp")
+
+[node name="name" type="LineEdit" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer" unique_id=509283368]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer" unique_id=1804715696]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer2" unique_id=1740038941]
+layout_mode = 2
+text = "localization"
+label_settings = SubResource("LabelSettings_w4tcp")
+
+[node name="loc" type="LineEdit" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer2" unique_id=835132757]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(236.13, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MyComputer/Desktop"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer" unique_id=1388185637]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer3" unique_id=944202737]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer" unique_id=117497954]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer4" unique_id=2044538791]
+layout_mode = 2
+text = "transparent bg:"
+label_settings = SubResource("LabelSettings_w4tcp")
+
+[node name="CheckBox" type="CheckBox" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer4" unique_id=1524605492]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer" unique_id=443900070]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer5" unique_id=249395164]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Panel" unique_id=380466472]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -179.0
+offset_top = -64.0
+offset_right = 179.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "ok"
+
+[node name="Leveldata" parent="." unique_id=1211035428 instance=ExtResource("3_b8t1b")]
+scenesize = Vector2(400, 250)
+windowname = "saver.gxapp"
+type = "explorer"
+
+[connection signal="pressed" from="CanvasLayer/Panel/Button" to="." method="_on_button_pressed"]

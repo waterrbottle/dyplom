@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cscyb5jsqf8tf"]
 
 [ext_resource type="Script" uid="uid://clpjgyv1c3vuj" path="res://objects/itemobject/items/bomb.gd" id="1_byym3"]
-[ext_resource type="Texture2D" uid="uid://c2ijsg1dtai7g" path="res://assets/images/items/BOMBA.png" id="1_uhsla"]
-[ext_resource type="Texture2D" uid="uid://decij10wog07i" path="res://assets/images/particles/IKS.png" id="2_uhsla"]
-[ext_resource type="Texture2D" uid="uid://dcncn8uuablr2" path="res://assets/images/particles/chmurka.png" id="4_13f8l"]
+[ext_resource type="Texture2D" uid="uid://elmwyrmqpq7o" path="res://assets/images/items/BOMBA.png" id="1_uhsla"]
+[ext_resource type="Texture2D" uid="uid://d1eltwlrem3hq" path="res://assets/images/particles/IKS.png" id="2_uhsla"]
+[ext_resource type="Texture2D" uid="uid://br68ug1vyokhs" path="res://assets/images/particles/chmurka.png" id="4_13f8l"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_byym3"]
 bounce = 0.59
@@ -131,6 +131,9 @@ radius = 14.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_2hfmp"]
 radius = 17.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_13f8l"]
+radius = 93.193344
+
 [node name="Bomb" type="Node2D" unique_id=1831489478]
 script = ExtResource("1_byym3")
 
@@ -201,5 +204,13 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="object/Area2D" unique_id=711449046]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_2hfmp")
+
+[node name="tilecheck" type="Area2D" parent="." unique_id=47510365]
+collision_layer = 0
+collision_mask = 4
+priority = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tilecheck" unique_id=275401297]
+shape = SubResource("CircleShape2D_13f8l")
 
 [connection signal="body_entered" from="object/Area2D" to="." method="_on_area_2d_body_entered"]

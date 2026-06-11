@@ -6,6 +6,8 @@ var dirstring = "user://MyComputer/"
 var dirlist =["MyComputer"]
 @export var mode = "windowed"
 var inside = false
+var currentfles = []
+var counter = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update()
@@ -30,7 +32,7 @@ func fileopening(n):
 	else:
 		if n.type == "folder":
 			
-			Global.addwindow("res://scenes/apps/fileManager/WindowFileManager.tscn", "", [["MyComputer", "Desktop", n.get_child(1).text]])
+			Global.addwindow("res://scenes/apps/fileManager/WindowFileManager.tscn", "", [["MyComputer", "Desktop", n.get_child(1).text]], null)
 			Global.ondesktop=false
 	if n.type == "document":
 		if Input.is_action_just_pressed("click"):
@@ -40,11 +42,11 @@ func fileopening(n):
 			var file = FileAccess.open(dirstring + n.get_child(1).text, FileAccess.READ)
 			if n.subtype == "text":
 				var content = file.get_as_text()
-				Global.addwindow("res://scenes/apps/notepad/notepad.tscn", n.get_child(1).text, [content, true])
+				Global.addwindow("res://scenes/apps/notepad/notepad.tscn", n.get_child(1).text, [content, true], null)
 			if n.subtype == "image":
-				Global.addwindow("res://scenes/apps/ImageViewer/imageviewer.tscn", n.get_child(1).text, [dirstring + n.get_child(1).text])
+				Global.addwindow("res://scenes/apps/ImageViewer/imageviewer.tscn", n.get_child(1).text, [dirstring + n.get_child(1).text],null)
 			if n.subtype == "music":
-				Global.addwindow("res://scenes/apps/musicplayer/musicplayer.tscn", "audio_player.exe", [dirstring + n.get_child(1).text,n.get_child(1).text ])
+				Global.addwindow("res://scenes/apps/musicplayer/musicplayer.tscn", "audio_player.exe", [dirstring + n.get_child(1).text,n.get_child(1).text ],null)
 	if n.type == "app":
 		if Input.is_action_just_pressed("click"):
 			Input.action_release("click")
@@ -52,10 +54,15 @@ func fileopening(n):
 				get_parent().get_parent().get_parent().active = false
 			print("data")
 
-			Global.addwindow(n.scenepath, n.get_child(1).text, (n.adata))
+			Global.addwindow(n.scenepath, n.get_child(1).text, (n.adata),null)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-
+	counter += delta
+	if counter > 5:
+		checkfornew()
+		counter = 0
+	
+	
 	if mode == "windowed":
 		if get_parent().get_parent().get_parent().active == true:
 			for n in $CanvasLayer/ScrollContainer/VBoxContainer.get_children():
@@ -75,9 +82,21 @@ func _process(delta: float) -> void:
 					fileopening(n)
 	
 
+func checkfornew():
+	var newfiles = []
+	var dir := DirAccess.open(dirstring)
+	if dir == null: printerr("Could not open folder"); return
+	
+	dir.list_dir_begin()
+	gdirs = dir.get_directories()
+	
+	for file: String in dir.get_files():
+		newfiles.append(file)
+	if newfiles != currentfles:
+		update()
 
 func update():
-
+	print("time for file update!")
 	if mode == "desktop":
 		dirstring = "user://MyComputer/Desktop/"
 		for n in $GridContainer.get_children():
@@ -92,7 +111,9 @@ func update():
 	
 	dir.list_dir_begin()
 	gdirs = dir.get_directories()
+	currentfles.clear()
 	for file: String in dir.get_files():
+		currentfles.append(file)
 		if (file.get_extension()) == "import" or  (file.get_extension()) == "uid":
 			continue
 		#var resource := load(dir.get_current_dir() + "/" + file)

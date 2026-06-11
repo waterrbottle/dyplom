@@ -1,9 +1,6 @@
-extends Node
+extends Node2D
 
-@export var scenesize = Vector2(0,0)
-@export var windowname = ""
-@export var type = "level"
-@export var embeded = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -12,3 +9,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_button_pressed() -> void:
+	var p = get_parent().get_parent().get_parent().get_parent().get_parent()
+	if p != null:
+		p.savefile(%name.text, %loc.text)
+		get_parent().get_parent().get_parent().queue_free()

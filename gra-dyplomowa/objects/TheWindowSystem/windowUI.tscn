@@ -36,6 +36,15 @@ height = 8
 fill_from = Vector2(1, 1)
 fill_to = Vector2(0.33119658, 1)
 
+[sub_resource type="Gradient" id="Gradient_aeolc"]
+offsets = PackedFloat32Array(0.0022522523, 1)
+colors = PackedColorArray(0.8506667, 0.704, 0.88, 1, 0.49923992, 0.3864, 0.56, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b5f6v"]
+gradient = SubResource("Gradient_aeolc")
+fill_from = Vector2(0.9551282, 1)
+fill_to = Vector2(0.3525641, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_kpmoa"]
 font = ExtResource("3_kpmoa")
 font_size = 20
@@ -107,6 +116,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_v5qpa")
+expand_mode = 1
+
+[node name="builtin" type="TextureRect" parent="Panel/TextureRect" unique_id=1189248524]
+visible = false
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_b5f6v")
 expand_mode = 1
 
 [node name="windownamelabel" type="Label" parent="Panel/TextureRect" unique_id=598720273]

@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://va4qa0r6h0o3"]
+
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="1_aspny"]
+[ext_resource type="Texture2D" uid="uid://bh88h6v40j0lt" path="res://assets/images/apps/paint/pencil.png" id="2_pg7v6"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="3_wlar2"]
+
+[sub_resource type="Gradient" id="Gradient_jhbgo"]
+offsets = PackedFloat32Array(0.033546325, 1)
+colors = PackedColorArray(0, 0.28500006, 0.45, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lg68e"]
+gradient = SubResource("Gradient_jhbgo")
+fill = 1
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2t4b7"]
+font = ExtResource("3_wlar2")
+
+[node name="Newinpaint" type="Node2D" unique_id=313190045]
+
+[node name="Leveldata" parent="." unique_id=1555763267 instance=ExtResource("1_aspny")]
+scenesize = Vector2(300, 300)
+windowname = "NEW IN PAINT 0.3."
+type = "explorer"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1047906347]
+texture_filter = 3
+position = Vector2(142, 26)
+texture = ExtResource("2_pg7v6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1431474951]
+
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer" unique_id=1140048131]
+offset_right = 300.0
+offset_bottom = 300.0
+texture = SubResource("GradientTexture2D_lg68e")
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect" unique_id=807656657]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -45.0
+offset_right = 71.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NEW IN PAINT 0.3."
+label_settings = SubResource("LabelSettings_2t4b7")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect" unique_id=567952464]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.0
+offset_top = 27.0
+offset_right = 19.0
+offset_bottom = 67.0
+grow_horizontal = 2
+texture = ExtResource("2_pg7v6")
+
+[node name="Label2" type="Label" parent="CanvasLayer/ColorRect" unique_id=905717938]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = 10.0
+offset_right = 71.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "10 glorious colors
+pen tool
+rubber tool
+movetool"
+label_settings = SubResource("LabelSettings_2t4b7")
+horizontal_alignment = 1

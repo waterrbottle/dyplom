@@ -11,13 +11,13 @@ func loadtexture():
 
 func load_image_manually(path: String) -> ImageTexture:
 	if not FileAccess.file_exists(path):
-		Global.addwindow("uid://8ogs475b2e7p","",["invalid path.", true])
+		Global.addwindow("uid://8ogs475b2e7p","",["invalid path.", true], null)
 		return null
 		
 	# 1. Load the raw data into an Image object
 	var img = Image.load_from_file(path)
 	if img == null:
-		Global.addwindow("uid://8ogs475b2e7p","",["no image.", true])
+		Global.addwindow("uid://8ogs475b2e7p","",["no image.", true], null)
 		return null
 		
 	# 2. Convert that Image into a Texture so Godot can render it
@@ -60,7 +60,8 @@ func loadc():
 	#	mnoznik = 1+ 100/size.y
 	#	size.y *= mnoznik
 	get_parent().get_parent().get_parent().updatesize(size)
-	
+	$CanvasLayer/checker.show()
+	$CanvasLayer/TextureRect.show()
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

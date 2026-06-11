@@ -33,6 +33,7 @@ func updatetasks(tasks):
 	get_node("/root/MyComputer/taskwindow").updateglobal(tasks)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+
 	#print(lockinput)
 	var focus_owner = get_viewport().gui_get_focus_owner()
 	
@@ -54,7 +55,7 @@ func _process(delta: float) -> void:
 				n.queue_free()
 		playervars["health"] = 100
 
-func addwindow(scene: String, namee, content):
+func addwindow(scene: String, namee, content, loc):
 
 	var scn = load("res://objects/TheWindowSystem/windowUI.tscn")
 	var inst = scn.instantiate()
@@ -87,7 +88,10 @@ func addwindow(scene: String, namee, content):
 		inst.appscene.musicload = content[0]
 		inst.appscene.musicname = content[1]
 	if has_node("/root/MyComputer/Windows"):
-		get_node("/root/MyComputer/Windows").add_child.call_deferred(inst)
+		if loc == null:
+			get_node("/root/MyComputer/Windows").add_child.call_deferred(inst)
+		else:
+			loc.add_child.call_deferred(inst)
 	
 func closewindow(closetype, value):
 	if closetype == "node":
@@ -121,7 +125,7 @@ func deletefolder(path):
 func remove_recursive(path: String) -> Error:
 	var dir = DirAccess.open(path)
 	if not dir:
-		Global.addwindow("uid://8ogs475b2e7p","",["cant delete. error: " + error_string(DirAccess.get_open_error()), true])
+		Global.addwindow("uid://8ogs475b2e7p","",["cant delete. error: " + error_string(DirAccess.get_open_error()), true], null)
 		return DirAccess.get_open_error()
 
 	# Start reading the contents

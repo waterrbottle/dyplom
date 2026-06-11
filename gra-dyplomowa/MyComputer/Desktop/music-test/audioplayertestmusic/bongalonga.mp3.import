@@ -3,11 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://ce4nq5h5318ys"
-valid=false
+path="res://.godot/imported/bongalonga.mp3-9debbfcd4757d38108602d6130c0a07b.mp3str"
 
 [deps]
 
 source_file="res://MyComputer/Desktop/music-test/audioplayertestmusic/bongalonga.mp3"
+dest_files=["res://.godot/imported/bongalonga.mp3-9debbfcd4757d38108602d6130c0a07b.mp3str"]
 
 [params]
 

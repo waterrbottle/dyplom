@@ -10,6 +10,7 @@ var appvalid = false
 var  front = false # activates window on start
 @export var nameoverwrite = ""
 @onready var scenepath = $Panel/SubViewport
+@export var builtin = false
 # Called when the node enters the scene tree for the first time.
 func updatesize(wsize: Vector2):
 		$Panel/SubViewport.size = wsize
@@ -25,7 +26,7 @@ func spawnapp():
 		
 		if inst.get_node_or_null("Leveldata") == null:
 			print("ERROR")
-			Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", ["app " + str(scene) + " doesnt have window config node.",true])
+			Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", ["app " + str(scene) + " doesnt have window config node.",true],null)
 			queue_free()
 			return
 		var windowdata = inst.get_node("Leveldata")
@@ -42,7 +43,7 @@ func spawnapp():
 		
 		appvalid=true
 	else:
-		Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", ["cant open the scene. file " +str(scene) +" does not exist.",true])
+		Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", ["cant open the scene. file " +str(scene) +" does not exist.",true],null)
 		queue_free()
 	
 func _ready() -> void:
@@ -51,13 +52,15 @@ func _ready() -> void:
 		Global.ondesktop = false
 		move_to_front()
 		#get_parent().get_parent().updateactivewindow()
-	$Panel.position = Vector2(randi_range(1,500),randi_range(1,500))
+	$Panel.position = Vector2(randi_range(1,100),randi_range(1,100))
 	if $Panel/SubViewport.get_child_count() == 0:
 		spawnapp()
 	
 	if appvalid == true:
 		Global.activetype = scenepath.get_child(0).get_node("Leveldata").type
-		get_parent().get_parent().updateactivewindow()
+		if get_parent().get_parent() != null:
+			if "updateactivewindow" in get_parent().get_parent():
+				get_parent().get_parent().updateactivewindow()
 	pass # Replace with function body.
 
 func _input(event: InputEvent) -> void:
@@ -97,11 +100,14 @@ func _process(delta: float) -> void:
 	$Panel/StaticBody2D/CollisionShape2D.shape.size = $Panel.size
 	$Panel/StaticBody2D/CollisionShape2D.position = $Panel.size/2
 	if scenepath.get_child_count() == 0:
-		Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", ["window exists but app doesnt.",true])
+		Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", ["window exists but app doesnt.",true],null)
 		queue_free()
 		return
 	if moving == true:
 		$Panel.position = initialposition + get_viewport().get_mouse_position() - clickpos
+	
+	if builtin == true:
+		$Panel/TextureRect/builtin.show()
 
 	if active == false:
 
@@ -167,7 +173,9 @@ func activate_window():
 	active = true
 	Global.ondesktop = false
 	move_to_front()
-	get_parent().get_parent().updateactivewindow()
+	if get_parent().get_parent() != null:
+		if "updateactivewindow" in get_parent().get_parent():
+			get_parent().get_parent().updateactivewindow()
 func _on_timer_timeout() -> void:
 	acceptinput=true
 	

@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://bsxfdcsh3jv4k"]
+
+[ext_resource type="Script" uid="uid://cqg5o3wlbjd7j" path="res://scenes/apps/paint/newfile.gd" id="1_4f1re"]
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="1_f2q8w"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="2_4f1re"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="3_lvrl6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5kvkf"]
+font = ExtResource("2_4f1re")
+font_size = 24
+
+[node name="Newfile" type="Node2D" unique_id=1260973610]
+script = ExtResource("1_4f1re")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=715203963]
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1138947260]
+texture_filter = 1
+offset_right = 400.0
+offset_bottom = 300.0
+theme = ExtResource("1_f2q8w")
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel" unique_id=1592979377]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -69.0
+offset_top = 23.0
+offset_right = 70.0
+offset_bottom = 48.0
+grow_horizontal = 2
+text = "create new file:"
+label_settings = SubResource("LabelSettings_5kvkf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel" unique_id=1782857525]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = -89.0
+offset_right = 179.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer" unique_id=1279207489]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer" unique_id=26654366]
+layout_mode = 2
+text = "canvas width pixels:"
+label_settings = SubResource("LabelSettings_5kvkf")
+
+[node name="x" type="SpinBox" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer" unique_id=148543463]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 4096.0
+value = 64.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer" unique_id=1371131611]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer2" unique_id=193676645]
+layout_mode = 2
+text = "canvas height pixels:"
+label_settings = SubResource("LabelSettings_5kvkf")
+
+[node name="y" type="SpinBox" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer2" unique_id=791439195]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 4096.0
+value = 64.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer" unique_id=1372709590]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer3" unique_id=1449753996]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer" unique_id=723811628]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer4" unique_id=1900094689]
+layout_mode = 2
+text = "transparent bg:"
+label_settings = SubResource("LabelSettings_5kvkf")
+
+[node name="CheckBox" type="CheckBox" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer4" unique_id=971664485]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer" unique_id=1114123889]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer5" unique_id=693889654]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Panel/VBoxContainer" unique_id=30121521]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "ok"
+
+[node name="Leveldata" parent="." unique_id=1537210340 instance=ExtResource("3_lvrl6")]
+scenesize = Vector2(400, 300)
+windowname = "create new paint file"
+type = "explorer"
+
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]

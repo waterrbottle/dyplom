@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://c4ur3tbgxukjd"]
 
-[ext_resource type="Texture2D" uid="uid://dp1ijobw7tlmg" path="res://assets/images/ui/icons/dokument.png" id="1_kdjss"]
 [ext_resource type="Script" uid="uid://ce4n7li1qbunw" path="res://objects/TheWindowSystem/windowFileManager/FileIcon/fileicon.gd" id="1_nr0wp"]
 [ext_resource type="Shader" uid="uid://c8gnyhvoj6jiw" path="res://resources/shaders/gupishader.gdshader" id="2_eauu2"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="2_kdjss"]
-[ext_resource type="Texture2D" uid="uid://1wkon13xccrm" path="res://assets/images/ui/icons/Sprite-folder-pelny copy.png" id="3_nr0wp"]
+[ext_resource type="Texture2D" uid="uid://da11wovlsde4d" path="res://assets/images/ui/icons/plik tekstowy_pelny.png" id="3_eauu2"]
+[ext_resource type="Texture2D" uid="uid://di0ihbs0txekv" path="res://assets/images/ui/icons/folder_pusty .png" id="4_tsewj"]
 
 [sub_resource type="Gradient" id="Gradient_tsewj"]
 offsets = PackedFloat32Array(0, 0.9904762)
@@ -37,7 +37,7 @@ shader_parameter/colorCurve = SubResource("GradientTexture2D_3giw7")
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_kdjss")
+"texture": ExtResource("3_eauu2")
 }],
 "loop": true,
 "name": &"document",
@@ -45,7 +45,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_nr0wp")
+"texture": ExtResource("4_tsewj")
 }],
 "loop": true,
 "name": &"folder",
@@ -92,9 +92,8 @@ script = ExtResource("1_nr0wp")
 texture_filter = 1
 material = SubResource("ShaderMaterial_e7cp4")
 position = Vector2(26.105001, 19.644999)
-scale = Vector2(0.5032813, 0.51109374)
 sprite_frames = SubResource("SpriteFrames_jj43p")
-animation = &"folder"
+animation = &"document"
 
 [node name="Label" type="Label" parent="." unique_id=1406202973]
 texture_filter = 1

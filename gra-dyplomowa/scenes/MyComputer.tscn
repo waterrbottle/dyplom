@@ -322,6 +322,10 @@ mouse_filter = 2
 layout_mode = 1
 scene = "res://scenes/levels/level1.tscn"
 
+[node name="Control2" parent="Windows" unique_id=1033261035 instance=ExtResource("6_x660l")]
+layout_mode = 1
+scene = "res://scenes/apps/screensaver/screensaver.tscn"
+
 [node name="objects" type="Node2D" parent="." unique_id=651193975]
 
 [node name="bottobar" type="Control" parent="." unique_id=2003253051]
