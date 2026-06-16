@@ -17,6 +17,10 @@ var disable = false
 func _ready() -> void:
 	pass # Replace with function body.
 	#$TextEdit.get_child(5,true).queue_free()
+	if type != "levelfolder":
+		$AnimatedSprite2D.material.set_shader_parameter("glitch_chance", 0)
+	else:
+		$AnimatedSprite2D.material.set_shader_parameter("glitch_chance", 1)
 func image(img):
 	$AnimatedSprite2D.hide()
 	$TextureRect.texture = load(img)
@@ -75,14 +79,14 @@ func _on_text_edit_text_submitted(new_text: String) -> void:
 	#if type == "folder":
 
 	if !new_text.validate_filename():
-		Global.addwindow("uid://8ogs475b2e7p","",["invalid name.", false],null)
+		Global.addwindow("uid://8ogs475b2e7p","",{"text": "invalid name.","bug": false},null)
 		$TextEdit.text = ""
 	elif DirAccess.dir_exists_absolute(path + new_text):
-		Global.addwindow("uid://8ogs475b2e7p","",["name exists.", false],null)
+		Global.addwindow("uid://8ogs475b2e7p","",{"text": "name exists.","bug": false},null)
 	else:
 		var e = DirAccess.rename_absolute(path+$Label.text, path+$TextEdit.text + "." + ext)
 		if e != OK:
-			Global.addwindow("uid://8ogs475b2e7p","",["holy shit rename error: " + error_string(e), true],null)
+			Global.addwindow("uid://8ogs475b2e7p","",{"text": "holy shit rename error: " + error_string(e), "bug": true},null)
 		else:
 			$Label.text = $TextEdit.text + "." + ext
 	

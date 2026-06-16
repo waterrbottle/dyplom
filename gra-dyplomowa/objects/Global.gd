@@ -33,7 +33,7 @@ func updatetasks(tasks):
 	get_node("/root/MyComputer/taskwindow").updateglobal(tasks)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-
+	
 	#print(lockinput)
 	var focus_owner = get_viewport().gui_get_focus_owner()
 	
@@ -63,11 +63,26 @@ func addwindow(scene: String, namee, content, loc):
 	inst.nameoverwrite = namee
 	inst.front = true
 	inst.get_child(0).position = get_viewport().get_visible_rect().size/2 - inst.get_child(0).size /2
-	if scene == "res://scenes/apps/fileManager/WindowFileManager.tscn":
+	print("opening app -> ", scene)
+	if scene == "res://scenes/apps/fileManager/WindowFileManager.tscn" or scene == "uid://bweuy5c10gc1l":
+
 		inst.spawnapp()
-		inst.appscene.dirlist = content[0]
-		inst.appscene.updatedirstring()
+		
+		if content is Dictionary:
+			
+
+			if content.has("dirstring"):
+				
+
+
+				inst.appscene.dirstring = content["dirstring"]
+			if content.has("dirlist"):
+				inst.appscene.dirlist = content["dirlist"]
+				inst.appscene.updatedirstring()
+		else:
+			addwindow("uid://8ogs475b2e7p", "", {"text": "error displaying error message. Invalid data.", "bug": true}, null)
 	if scene == "res://scenes/apps/notepad/notepad.tscn":
+		
 		inst.spawnapp()
 		if inst.appvalid == true:
 			inst.appscene.content = content
@@ -75,10 +90,19 @@ func addwindow(scene: String, namee, content, loc):
 	if scene == "res://scenes/apps/notepad/notepad.tscn":
 		pass
 	if scene == "res://scenes/apps/sysmessenger/sysmessenger.tscn" or scene == "uid://8ogs475b2e7p":
-		
+		print(content)
 		inst.spawnapp()
-		inst.appscene.content = content[0]
-		inst.appscene.bug = content[1]
+		if content is Dictionary:
+			if content.has("text"):
+				inst.appscene.content = content["text"]
+			if content.has("bug"):
+				inst.appscene.bug = content["bug"]
+			if content.has("btnf"):
+				inst.appscene.buttonfunctions = content["btnf"]
+			if content.has("image"):
+				inst.appscene.img = content["image"]
+		else:
+			addwindow("uid://8ogs475b2e7p", "", {"text": "error displaying error message. Invalid data.", "bug": true}, null)
 	if scene == "res://scenes/apps/ImageViewer/imageviewer.tscn":
 		inst.spawnapp()
 		inst.appscene.texturepath = content[0]
@@ -125,7 +149,7 @@ func deletefolder(path):
 func remove_recursive(path: String) -> Error:
 	var dir = DirAccess.open(path)
 	if not dir:
-		Global.addwindow("uid://8ogs475b2e7p","",["cant delete. error: " + error_string(DirAccess.get_open_error()), true], null)
+		Global.addwindow("uid://8ogs475b2e7p","",{"text": "cant delete. error: " + error_string(DirAccess.get_open_error()),"bug": true}, null)
 		return DirAccess.get_open_error()
 
 	# Start reading the contents

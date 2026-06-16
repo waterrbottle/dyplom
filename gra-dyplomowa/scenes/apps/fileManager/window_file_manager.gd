@@ -21,6 +21,7 @@ func updatedirstring():
 		dirstring += i +"/"
 
 
+
 func fileopening(n):
 	if mode == "windowed":
 		if n.type == "folder":
@@ -32,7 +33,8 @@ func fileopening(n):
 	else:
 		if n.type == "folder":
 			
-			Global.addwindow("res://scenes/apps/fileManager/WindowFileManager.tscn", "", [["MyComputer", "Desktop", n.get_child(1).text]], null)
+			Global.addwindow("res://scenes/apps/fileManager/WindowFileManager.tscn", "", {"dirstring": "user://MyComputer/Desktop/" + n.get_child(1).text + "/"}, null)
+			
 			Global.ondesktop=false
 	if n.type == "document":
 		if Input.is_action_just_pressed("click"):
@@ -52,9 +54,16 @@ func fileopening(n):
 			Input.action_release("click")
 			if mode == "windowed":
 				get_parent().get_parent().get_parent().active = false
-			print("data")
+			print("additionaldataclcked:")
+			print(n.adata)
 
-			Global.addwindow(n.scenepath, n.get_child(1).text, (n.adata),null)
+			Global.addwindow(n.scenepath, n.get_child(1).text, n.adata,null)
+	if n.type == "levelfolder":
+		if Input.is_action_just_pressed("click"):
+			Input.action_release("click")
+
+
+			Global.addwindow("uid://8ogs475b2e7p", n.get_child(1).text, {"text": "this folder is corrupted, what do you want to do with it?", "bug": false,"image": load("uid://x4v2ehknnfe"), "btnf": [["view contents", "open", {"scene": "uid://bweuy5c10gc1l", "content": {"dirstring": n.path + n.get_child(1).text + "/"}}],["TRY OPENING THE FILE ", "open", {"scene": "res://scenes/levels/level1.tscn", "content": ""}]] },null)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	counter += delta
@@ -96,6 +105,7 @@ func checkfornew():
 		update()
 
 func update():
+	
 	print("time for file update!")
 	if mode == "desktop":
 		dirstring = "user://MyComputer/Desktop/"
@@ -108,6 +118,16 @@ func update():
 
 	var dir := DirAccess.open(dirstring)
 	if dir == null: printerr("Could not open folder"); return
+	
+	for file: String in dir.get_files():
+		if file == "filedata.json":
+			print(dirstring + file + "/")
+			var fp = FileAccess.open(dirstring + file + "/", FileAccess.READ)
+			return
+			if readfolderdata(fp) != null:
+				
+				print(readfolderdata(fp))
+	
 	
 	dir.list_dir_begin()
 	gdirs = dir.get_directories()
@@ -145,6 +165,9 @@ func update():
 					inst.image(contenti)
 				if n == 7:
 					if contenti != "":
+						print("additional data loaded")
+						print(contenti)
+						print( str_to_var(contenti) )
 						inst.adata= str_to_var(contenti)
 					
 						
@@ -166,11 +189,45 @@ func update():
 		inst.type = "folder"
 		inst.path = dirstring
 		inst.get_child(1).text = str(dirs)
+
+		var filesindir := DirAccess.open(dirstring + dirs + "/")
+
+		for filesinfolder in filesindir.get_files():
+
+			if filesinfolder == "folderproperties.json":
+				var fp = FileAccess.open(dirstring + dirs + "/" + filesinfolder, FileAccess.READ)
+				if readfolderdata(fp) != null:
+					var dict = readfolderdata(fp)
+					if dict.has("corrupted"):
+						if dict["corrupted"] == true:
+							inst.type = "levelfolder"
+							inst.get_child(0).play("corruptedfolder")
 		if mode == "windowed":
 			$CanvasLayer/ScrollContainer/VBoxContainer.add_child(inst)
 		else:
 			$GridContainer.add_child(inst)
 		
+
+func readfolderdata(fp):
+	print(fp)
+	var json_string = ( (fp.get_as_text()) )
+	
+	
+	var json = JSON.new()
+	var error = json.parse(json_string)
+	print(json_string)
+	if error == OK:
+		var data_received = json.data
+		if typeof(data_received) == TYPE_DICTIONARY:
+			print(data_received) # Prints the array.
+			return data_received
+			
+		else:
+			return null
+			print("Unexpected data")
+	else:
+		return null
+		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 
 
 func _on_back_button_pressed() -> void:

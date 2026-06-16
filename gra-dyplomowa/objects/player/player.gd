@@ -30,6 +30,8 @@ var sneak = false
 @export var stuck_threshold := 30
 var floordash = 0
 func _ready() -> void:
+	if desktop==true:
+		$Camera2D.enabled=false
 	startpos=position
 	if Global.item != "":
 		add_item(Global.item)
@@ -65,7 +67,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("fight"):
 		if Global.item != "":
 			Global.item = ""
-			canfight=false
+			canfight=true
 			if get_parent() != null:
 				var i = $Itemhold.get_node("item").get_child(0).duplicate()
 				i.position = global_position + Vector2(0,-30)# + Vector2(0,50)
@@ -81,9 +83,11 @@ func _process(delta: float) -> void:
 				else:
 					get_parent().add_child(i)
 					print("no object node to add the object to!")
+				
 		
 		if fight == false:
 			if canfight == true:
+				print("FIGHT!")
 				$fight.show()
 				%fistobject.active = true
 				%fistobject.dir = fightdir
@@ -91,6 +95,8 @@ func _process(delta: float) -> void:
 				$fight.rotation_degrees = 90 * fightdir - 90
 				$fight/fight_anim.play("fight")
 		fight = true
+	
+	
 	
 	for n in $dasparticles.get_children():
 		if n.emitting == false:

@@ -1,0 +1,234 @@
+[gd_scene format=3 uid="uid://dtmt0f0j4bgv8"]
+
+[ext_resource type="Script" uid="uid://dsmct6qxjxstb" path="res://objects/pickablefile/pickablefile.gd" id="1_q5jqs"]
+[ext_resource type="Shader" uid="uid://ifnp3h80bavv" path="res://resources/shaders/corrupted.gdshader" id="1_s6stv"]
+[ext_resource type="Texture2D" uid="uid://dm0nx6q8t3dvm" path="res://assets/images/ui/icons/folder_pelny_glitch2.png" id="2_q5jqs"]
+[ext_resource type="Texture2D" uid="uid://da11wovlsde4d" path="res://assets/images/ui/icons/plik tekstowy_pelny.png" id="3_j0i51"]
+[ext_resource type="Texture2D" uid="uid://di0ihbs0txekv" path="res://assets/images/ui/icons/folder_pusty .png" id="4_xdt60"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qfiyk"]
+shader = ExtResource("1_s6stv")
+shader_parameter/glitch_chance = 1.0
+shader_parameter/glitch_speed = 7.0
+shader_parameter/slice_density = 14.0
+shader_parameter/slice_strength = 0.38
+shader_parameter/shake_strength = 0.02
+shader_parameter/chroma_offset = 0.016
+shader_parameter/noise_strength = 0.2
+shader_parameter/color_flash_strength = 0.4
+shader_parameter/scanline_strength = 0.18
+shader_parameter/local_warp_strength = 0.14
+shader_parameter/flip_chance = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pt4aj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_q5jqs")
+}],
+"loop": true,
+"name": &"corruptedfolder",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_j0i51")
+}],
+"loop": true,
+"name": &"document",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_xdt60")
+}],
+"loop": true,
+"name": &"folder",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0gw1"]
+radius = 49.010204
+
+[sub_resource type="Animation" id="Animation_s6stv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/AnimatedSprite2D:material:shader_parameter/chroma_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.016]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/AnimatedSprite2D:material:shader_parameter/noise_strength")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/AnimatedSprite2D:material:shader_parameter/glitch_chance")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D/AnimatedSprite2D:scale:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Node2D/AnimatedSprite2D:scale:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_j0i51"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/AnimatedSprite2D:material:shader_parameter/glitch_chance")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/AnimatedSprite2D:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 2, -0.052566856, -0.084598064, 0, 0, 1e-05, -0.046666674, 0.33333167, 0, 0),
+"times": PackedFloat32Array(0.06666666, 0.3, 0.43333334)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/AnimatedSprite2D:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 2, -0.052566856, -0.09395063, 0, 0, 1e-05, -0.046666674, 0.33333167, 0, 0),
+"times": PackedFloat32Array(0.06666666, 0.3, 0.43333334)
+}
+
+[sub_resource type="Animation" id="Animation_q5jqs"]
+resource_name = "hit"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.2596218, 0.30938265, 0.3742881),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(1, 2.81), Vector2(3.1, 0.5), Vector2(1, 1), Vector2(0.2, 0.2), Vector2(2, 2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/AnimatedSprite2D:material:shader_parameter/chroma_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.012592897, 0.38408336, 0.39510214),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.016, -2.374, -2.374, 0.016]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/AnimatedSprite2D:material:shader_parameter/noise_strength")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.023611682, 0.37936103, 0.4029727),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.2, 1.0, 1.0, 0.2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j0i51"]
+_data = {
+&"RESET": SubResource("Animation_s6stv"),
+&"die": SubResource("Animation_j0i51"),
+&"hit": SubResource("Animation_q5jqs")
+}
+
+[node name="Pickablefile" type="Node2D" unique_id=843027542]
+script = ExtResource("1_q5jqs")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=464289623]
+scale = Vector2(1.5, 1.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" unique_id=627372800]
+material = SubResource("ShaderMaterial_qfiyk")
+sprite_frames = SubResource("SpriteFrames_pt4aj")
+animation = &"corruptedfolder"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2000195197]
+collision_layer = 16
+collision_mask = 254
+priority = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=267796940]
+shape = SubResource("CircleShape2D_k0gw1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1230553907]
+libraries/ = SubResource("AnimationLibrary_j0i51")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

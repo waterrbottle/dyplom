@@ -30,6 +30,7 @@ entity = "DVD.exe"
 healthbarlengt = 150
 
 [node name="Area2D" type="Area2D" parent="." unique_id=391638708]
+collision_layer = 2
 collision_mask = 65535
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2038068481]

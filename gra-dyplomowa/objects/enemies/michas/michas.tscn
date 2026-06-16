@@ -33,6 +33,8 @@ wait_time = 1.5
 one_shot = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2093928678]
+collision_layer = 2
+collision_mask = 19
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1217549758]
 shape = SubResource("CircleShape2D_2lj0q")
@@ -48,6 +50,7 @@ healthbarlengt = 75
 
 [node name="Movementfollowbasic" parent="extentions/movement" unique_id=570659975 node_paths=PackedStringArray("entity") instance=ExtResource("3_xteaa")]
 entity = NodePath("../../..")
+agrorange = 500.0
 
 [node name="damagers" type="Node" parent="extentions" unique_id=934516349]
 

@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Area2D
 var active = false
 var dir = 0
 var bodyvel = Vector2(0,0)
@@ -9,4 +9,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	
+	if active == false:
+		set_collision_layer_value(5, false)
+		set_collision_mask_value(5, false)
+	else:
+		set_collision_mask_value(5, true)
+		set_collision_layer_value(5, true)
+		

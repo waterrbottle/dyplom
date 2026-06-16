@@ -9,15 +9,18 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		if body.active==true:
 			body.damage(randi_range(setdamage.x,setdamage.y))
-	if body.is_in_group("fist"):
-		if body.active == true:
+func _on_area_2d_area_entered(area: Node2D) -> void:
+	print(area.name)
+	if area.is_in_group("fist"):
+			print("hit")
 			entity.EnemyStats.health -= randi_range(getdamage.x,getdamage.y)
-			entity.velocity.y = -500 + body.bodyvel.y * 2
-			if abs(body.dir) == 1:
-				entity.velocity.x = 100 * body.dir + body.bodyvel.x * 3
+			entity.velocity.y = -500 + area.bodyvel.y * 2
+			if abs(area.dir) == 1:
+				entity.velocity.x = 100 * area.dir + area.bodyvel.x * 3
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	damagearea.connect("body_entered", _on_area_2d_body_entered)
+	damagearea.connect("area_entered", _on_area_2d_area_entered)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

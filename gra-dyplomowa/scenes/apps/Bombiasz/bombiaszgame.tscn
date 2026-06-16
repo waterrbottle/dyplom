@@ -10,6 +10,13 @@ font = ExtResource("1_qhrn4")
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2q2hn"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_2q2hn"]
 
 [sub_resource type="Animation" id="Animation_nwyv4"]
@@ -260,13 +267,20 @@ offset_bottom = 34.0
 text = "bombiasz"
 label_settings = SubResource("LabelSettings_wq0mr")
 
+[node name="cursor" type="Panel" parent="CanvasLayer" unique_id=1583903035]
+texture_filter = 1
+custom_minimum_size = Vector2(20, 20)
+offset_right = 20.0
+offset_bottom = 20.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2q2hn")
+
 [node name="Leveldata" parent="." unique_id=1345651821 instance=ExtResource("1_edujk")]
 scenesize = Vector2(500, 500)
 windowname = "file"
 type = "minigame"
 
 [node name="Timer" type="Timer" parent="." unique_id=1448742199]
-wait_time = 0.25
+wait_time = 0.5
 autostart = true
 
 [node name="detect" type="Area2D" parent="." unique_id=1193176934]
@@ -278,9 +292,10 @@ shape = SubResource("CircleShape2D_2q2hn")
 
 [node name="ColorRect2" type="ColorRect" parent="CanvasLayer2" unique_id=1943401226]
 anchors_preset = -1
+anchor_top = -0.016975308
 anchor_right = 1.0251737
 anchor_bottom = -0.016975308
-offset_top = 556.0
+offset_top = 567.0
 offset_right = -878.0
 offset_bottom = 602.0
 color = Color(1, 0.43, 0.43, 1)

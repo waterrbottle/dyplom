@@ -21,19 +21,19 @@ func _ready() -> void:
 			$CanvasLayer/Control/HBoxContainer/HSlider.max_value = $AudioStreamPlayer.stream.get_length()
 			$CanvasLayer/Control/Panel3/ColorRect/VBoxContainer/musictitle.text = musicname
 		else:
-			Global.addwindow("uid://8ogs475b2e7p","",["unrecognized file ext", true], null)
+			Global.addwindow("uid://8ogs475b2e7p","",{"text": "unrecognized file ext", "bug": true}, null)
 
 	else:
-		Global.addwindow("uid://8ogs475b2e7p","",["no path?", true], null)
+		Global.addwindow("uid://8ogs475b2e7p","",{"text": "no path", "bug": true}, null)
 
 func load_mp3_manually(path: String):
 
 	if not FileAccess.file_exists(path):
-		Global.addwindow("uid://8ogs475b2e7p","",["stream doesnt exist", true], null)
+		Global.addwindow("uid://8ogs475b2e7p","",{"text": "stream does not exist", "bug": true}, null)
 		
 	var file = FileAccess.open(path, FileAccess.READ)
 	if not file:
-		Global.addwindow("uid://8ogs475b2e7p","",["error opening music file", true], null)
+		Global.addwindow("uid://8ogs475b2e7p","",{"text": "error opening music file", "bug": true}, null)
 		
 
 	var bytes = file.get_buffer(file.get_length())

@@ -1,6 +1,6 @@
 extends Node2D
 var display = false
-
+var active = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -31,19 +31,19 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if display == false:
 		
 		
+		if active == true:
+			for n in $object/tilecheck.get_overlapping_bodies():
+				print(n)
+				if n is TileMapLayer:
 		
-		for n in $tilecheck.get_overlapping_bodies():
-			
-			if n is TileMapLayer:
-		
-				var o = n.get_used_cells()
-				for a in o:
+					var o = n.get_used_cells()
+					for a in o:
 
 					
-					if position.distance_to(a * 32) < 200:
-						if n.get_cell_source_id(a) == 0:
-							n.set_cell(a, -1, Vector2(0,0))
-						
+						if $object.global_position.distance_to(a * 32) < 200:
+							if n.get_cell_source_id(a) == 0:
+								n.set_cell(a, -1, Vector2(0,0))
+						active = false
 						
 						
 		$object/display.hide()

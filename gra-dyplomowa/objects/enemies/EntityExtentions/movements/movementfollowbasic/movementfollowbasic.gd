@@ -12,6 +12,8 @@ var timer = null
 @export_range(0, 5000) var maxspeed = 500.0
 @export_category("GRAVITY")
 @export_range(0, 1000) var gravity = 30.0
+@export_category("RANGE")
+@export_range(0, 10000) var agrorange = 30.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	timer = get_tree().create_timer(randf_range(jumpfrequency.x,jumpfrequency.y))
@@ -27,10 +29,13 @@ func _on_timer_timeout2():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if entity.position.x > Global.playervars["position"].x:
-		entity.velocity.x += -speedgain
+	if entity.position.distance_to(Global.playervars["position"]) < agrorange:
+		if entity.position.x > Global.playervars["position"].x:
+			entity.velocity.x += -speedgain
+		else:
+			entity.velocity.x += speedgain
 	else:
-		entity.velocity.x += speedgain
+		entity.velocity.x /= 1.1
 	
 	if abs(entity.velocity.x) > maxspeed:
 		entity.velocity.x /= 1.1

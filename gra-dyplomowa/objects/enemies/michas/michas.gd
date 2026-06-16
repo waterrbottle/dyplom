@@ -4,6 +4,6 @@ extends CharacterBody2D
 
 
 func _process(delta: float) -> void:
-
+	
 	if EnemyStats.health <= 0:
 		queue_free()

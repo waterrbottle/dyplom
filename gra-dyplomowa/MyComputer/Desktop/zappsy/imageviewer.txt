@@ -2,6 +2,6 @@ app-redirect
 scene
 res://scenes/apps/ImageViewer/imageviewer.tscn
 icon
-res://icon.svg
+uid://bc80evshlo8b0
 name
 imageViewer.exe

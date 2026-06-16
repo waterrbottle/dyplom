@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://8ogs475b2e7p"]
+[gd_scene format=3 uid="uid://8ogs475b2e7p"]
 
 [ext_resource type="Script" uid="uid://b8wkwxcr8ybmt" path="res://scenes/apps/sysmessenger/sysmessenger.gd" id="1_3g1eb"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="2_h2k7b"]
-[ext_resource type="Texture2D" uid="uid://ci603ivw70gdi" path="res://assets/images/ui/icons/system/ERROR_.png" id="3_qj7ll"]
+[ext_resource type="Texture2D" uid="uid://d12eulhof6erx" path="res://assets/images/ui/icons/system/ERROR_.png" id="3_qj7ll"]
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="4_3g1eb"]
 [ext_resource type="AudioStream" uid="uid://qq5jobyxtom0" path="res://assets/sounds/sfx/error.wav" id="5_kljoy"]
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="5_qj7ll"]
@@ -13,19 +13,19 @@ font_size = 18
 font_color = Color(0, 0, 0, 1)
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Sysmessenger" type="Node2D"]
+[node name="Sysmessenger" type="Node2D" unique_id=1929072249]
 script = ExtResource("1_3g1eb")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1599976688]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1563774762]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=482121212]
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -42,7 +42,7 @@ text = "komputer wybuchl"
 label_settings = SubResource("LabelSettings_3g1eb")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=784369800]
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -57,7 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_qj7ll")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1829502304]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -71,16 +71,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer"]
-texture_filter = 1
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-focus_mode = 0
-theme = ExtResource("4_3g1eb")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "ok"
-
-[node name="Button2" type="Button" parent="CanvasLayer/HBoxContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer" unique_id=816528038]
 visible = false
 texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
@@ -90,11 +81,21 @@ theme = ExtResource("4_3g1eb")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "ok"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Button2" type="Button" parent="CanvasLayer/HBoxContainer" unique_id=1984587934]
+visible = false
+texture_filter = 1
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("4_3g1eb")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "ok"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=558311682]
 stream = ExtResource("5_kljoy")
 autoplay = true
 
-[node name="Leveldata" parent="." instance=ExtResource("5_qj7ll")]
+[node name="Leveldata" parent="." unique_id=1013451674 instance=ExtResource("5_qj7ll")]
 windowname = "error"
 type = "explorer"
 

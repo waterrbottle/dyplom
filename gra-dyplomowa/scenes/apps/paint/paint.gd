@@ -121,8 +121,8 @@ func save(img: Image, file_name: String) -> void:
 	
 	var error = img.save_png(save_path)
 	if error != OK:
-		Global.addwindow("uid://8ogs475b2e7p","",["invalid path / invalid name. dont end the path on /.", true],null)
-		Global.addwindow("uid://8ogs475b2e7p","",[file_name + " - cant create file here", true],null)
+		Global.addwindow("uid://8ogs475b2e7p","",{"text": "invalid path / invalid name. dont end the path on /.", "bug": true},null)
+		Global.addwindow("uid://8ogs475b2e7p","",{"text": file_name + " - cant create file here","bug": true},null)
 
 func savefile(name, path):
 	save(img, "user://" + path + "/" + name + ".png")

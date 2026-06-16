@@ -6,4 +6,4 @@ res://assets/images/ui/icons/system/ERROR_.png
 name
 system_messenger.exe
 data-injection
-["welcome to system messenger! this app will inform you when an error occurs.",false]
+{"text": "welcome to system messenger! this app will inform you when an error occurs.", "bug": false}

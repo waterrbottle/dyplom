@@ -3,7 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="1_exhw4"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="1_t5o7e"]
 [ext_resource type="Texture2D" uid="uid://b5jo2ayyf14op" path="res://assets/images/ui/windows/inverted.png" id="2_6bwuq"]
-[ext_resource type="Texture2D" uid="uid://kyciafi44qq0" path="res://scenes/levels/bayer16.png" id="4_p3k20"]
+[ext_resource type="Texture2D" uid="uid://8w05q0wmdgvy" path="res://assets/images/ui/icons/musicplayer/slider.png" id="4_p3k20"]
+[ext_resource type="Texture2D" uid="uid://byicg8l8t7bgu" path="res://assets/images/ui/icons/musicplayer/slider_poziomy.png" id="5_er58c"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3k20"]
 texture = ExtResource("1_exhw4")
@@ -61,14 +62,18 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
 Button/fonts/font = ExtResource("1_t5o7e")
 Button/styles/hover = SubResource("StyleBoxTexture_p3k20")
 Button/styles/normal = SubResource("StyleBoxTexture_6bwuq")
 Button/styles/pressed = SubResource("StyleBoxTexture_t5o7e")
 HSlider/icons/grabber = ExtResource("4_p3k20")
+HSlider/icons/grabber_disabled = ExtResource("4_p3k20")
+HSlider/icons/grabber_highlight = ExtResource("4_p3k20")
 HSlider/styles/grabber_area = SubResource("StyleBoxTexture_t5o7e")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_t5o7e")
 HSlider/styles/slider = SubResource("StyleBoxFlat_3x337")
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
 LineEdit/font_sizes/font_size = 24
 LineEdit/fonts/font = ExtResource("1_t5o7e")
 LineEdit/styles/normal = SubResource("StyleBoxTexture_t5o7e")
@@ -84,6 +89,9 @@ TextEdit/fonts/font = ExtResource("1_t5o7e")
 TextEdit/styles/focus = SubResource("StyleBoxFlat_t5o7e")
 TextEdit/styles/normal = SubResource("StyleBoxFlat_p3k20")
 TextEdit/styles/read_only = SubResource("StyleBoxFlat_er58c")
+VSlider/icons/grabber = ExtResource("5_er58c")
+VSlider/icons/grabber_disabled = ExtResource("5_er58c")
+VSlider/icons/grabber_highlight = ExtResource("5_er58c")
 VSlider/styles/grabber_area = SubResource("StyleBoxTexture_t5o7e")
 VSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_t5o7e")
 VSlider/styles/slider = SubResource("StyleBoxFlat_3x337")

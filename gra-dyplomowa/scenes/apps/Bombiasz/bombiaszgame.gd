@@ -1,5 +1,5 @@
 extends Node2D
-var bombaszsize = 13
+var bombaszsize = 9
 var bbuton = load("res://scenes/apps/Bombiasz/bombiaszbutton.tscn")
 var r = null
 var wl = ""
@@ -31,6 +31,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	$CanvasLayer/cursor.position = get_global_mouse_position() - Vector2(10,10)
+	
 	$detect.position = get_global_mouse_position()
 	for n in $CanvasLayer/Control/GridContainer.get_children():
 		if n.state != "bomb":
