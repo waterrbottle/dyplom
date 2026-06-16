@@ -3,14 +3,17 @@
 [ext_resource type="Script" uid="uid://ce4n7li1qbunw" path="res://objects/TheWindowSystem/windowFileManager/FileIcon/fileicon.gd" id="1_nr0wp"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="2_kdjss"]
 [ext_resource type="Shader" uid="uid://ifnp3h80bavv" path="res://resources/shaders/corrupted.gdshader" id="2_tsewj"]
+[ext_resource type="Texture2D" uid="uid://bo2iyr1nmte11" path="res://assets/images/ui/icons/audiop.png" id="3_1ny7j"]
 [ext_resource type="Texture2D" uid="uid://dm0nx6q8t3dvm" path="res://assets/images/ui/icons/folder_pelny_glitch2.png" id="3_3giw7"]
 [ext_resource type="Texture2D" uid="uid://da11wovlsde4d" path="res://assets/images/ui/icons/plik tekstowy_pelny.png" id="3_eauu2"]
 [ext_resource type="Texture2D" uid="uid://di0ihbs0txekv" path="res://assets/images/ui/icons/folder_pusty .png" id="4_tsewj"]
+[ext_resource type="Texture2D" uid="uid://b4etvv2h7kiwf" path="res://assets/images/ui/icons/zdjecie.png" id="7_xt06e"]
+[ext_resource type="Texture2D" uid="uid://dj4qrsom5rvgj" path="res://assets/images/ui/icons/plik tekstowy_pusty.png" id="8_e7cp4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e7cp4"]
 resource_local_to_scene = true
 shader = ExtResource("2_tsewj")
-shader_parameter/glitch_chance = 1.0
+shader_parameter/glitch_chance = 0.0
 shader_parameter/glitch_speed = 7.0
 shader_parameter/slice_density = 13.0
 shader_parameter/slice_strength = -1.7
@@ -24,6 +27,14 @@ shader_parameter/flip_chance = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jj43p"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1ny7j")
+}],
+"loop": true,
+"name": &"audio",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_3giw7")
@@ -46,6 +57,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"folder",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_xt06e")
+}],
+"loop": true,
+"name": &"image",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_e7cp4")
+}],
+"loop": true,
+"name": &"unknown",
 "speed": 5.0
 }]
 
@@ -90,7 +117,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_e7cp4")
 position = Vector2(26.105001, 19.644999)
 sprite_frames = SubResource("SpriteFrames_jj43p")
-animation = &"corruptedfolder"
+animation = &"image"
 
 [node name="Label" type="Label" parent="." unique_id=1406202973]
 texture_filter = 1
@@ -118,6 +145,7 @@ flat = true
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1408260324]
 texture_filter = 1
+material = SubResource("ShaderMaterial_e7cp4")
 layout_mode = 0
 offset_left = 10.0
 offset_top = 3.0

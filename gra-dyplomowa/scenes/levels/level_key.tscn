@@ -62,6 +62,96 @@ physics_layer_0/collision_mask = 7
 sources/0 = SubResource("TileSetScenesCollectionSource_a8nt7")
 sources/1 = SubResource("TileSetAtlasSource_u7g3j")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_3pcep"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ow0dq"]
+animation = &"slide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m4kly"]
+animation = &"slide_2"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_xgwla"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ow0dq")
+blend_point_0/pos = 0.5
+blend_point_1/node = SubResource("AnimationNodeAnimation_m4kly")
+blend_point_1/pos = -0.5
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4flbx"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i3pqv"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_onrkg"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ssrue"]
+animation = &"slide_2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i3pqv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hqtel"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "velocity.length() > .2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2hs0m"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "!is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1jxqw"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4flbx"]
+xfade_time = 0.3
+advance_mode = 2
+advance_expression = "!is_on_floor() "
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sweqy"]
+xfade_time = 0.3
+switch_mode = 1
+advance_mode = 2
+advance_expression = "velocity.length() < 0.2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jnjyq"]
+xfade_time = 0.1
+break_loop_at_end = true
+advance_mode = 2
+advance_expression = "sneak"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ssrue"]
+xfade_time = 0.1
+break_loop_at_end = true
+advance_mode = 2
+advance_expression = "sneak"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gnkmh"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "!sneak"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pvihp"]
+resource_local_to_scene = true
+states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_xgwla")
+states/BlendSpace1D/position = Vector2(505.8144, -39.182613)
+states/End/position = Vector2(866, 84.28298)
+states/Start/position = Vector2(232.5, 84.391205)
+states/idle/node = SubResource("AnimationNodeAnimation_4flbx")
+states/idle/position = Vector2(354.90204, 101.28298)
+states/jump/node = SubResource("AnimationNodeAnimation_i3pqv")
+states/jump/position = Vector2(488, 222)
+states/run/node = SubResource("AnimationNodeAnimation_onrkg")
+states/run/position = Vector2(506.5, 84.3371)
+states/slide/node = SubResource("AnimationNodeAnimation_ssrue")
+states/slide/position = Vector2(333.83527, -7.545105)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_i3pqv"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_hqtel"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_2hs0m"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_1jxqw"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_4flbx"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_sweqy"), "run", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_jnjyq"), "idle", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_ssrue"), "BlendSpace1D", "idle", SubResource("AnimationNodeStateMachineTransition_gnkmh")]
+graph_offset = Vector2(-14.819885, -129.40508)
+
 [node name="LevelKey" type="Node2D" unique_id=1047559331]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1391536193]
@@ -116,3 +206,16 @@ windowname = "huuh??"
 position = Vector2(46, 351)
 
 [node name="Player" parent="." unique_id=1401127334 instance=ExtResource("7_3pcep")]
+position = Vector2(368, 240)
+
+[node name="TextureRect" parent="Player" index="2" unique_id=1031087902]
+texture = SubResource("ViewportTexture_3pcep")
+
+[node name="AnimationTree" parent="Player" index="3" unique_id=938827342]
+tree_root = SubResource("AnimationNodeStateMachine_pvihp")
+
+[node name="Camera2D" parent="Player" index="5" unique_id=1236330716]
+enabled = false
+
+[editable path="Player"]
+[editable path="Player/Itemhold"]

@@ -5,12 +5,114 @@
 [ext_resource type="PackedScene" uid="uid://bvgqjrqb5xftd" path="res://objects/enemies/EntityExtentions/healthbar/stats.tscn" id="3_edrj5"]
 [ext_resource type="PackedScene" uid="uid://d3ylpw37j7qrg" path="res://objects/enemies/EntityExtentions/movements/movementfollowbasic/movementfollowbasic.tscn" id="3_xteaa"]
 [ext_resource type="PackedScene" uid="uid://c4qceoenujvhy" path="res://objects/enemies/EntityExtentions/damager/damagerbasic.tscn" id="4_edrj5"]
+[ext_resource type="Texture2D" uid="uid://dbkcb8tepgqcy" path="res://assets/images/entities/michal/chujowy przeciwsniik.png" id="6_i4f8h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ltib"]
 size = Vector2(34, 34)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2lj0q"]
 radius = 22.022715
+
+[sub_resource type="Animation" id="Animation_7ceso"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.02, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.02, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(5.24, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_m8rwi"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0.02, -0.25, 0, 0.25, 0, 0.025390627, -0.08284128, -0.00089843787, 0, 0, 0.02, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.49704766, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0.02, -0.25, 0, 0.25, 0, 0.014882812, -0.08284128, 0.0008528645, 0, 0, 0.02, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.49704766, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.08464217, 0, 0.0820245, 0, 0, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.50785303, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(5.24, -0.25, 0, 0.25, 0, 9.96, -0.08464217, 0, 0.0820245, 0, 5.24, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.50785303, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dga6l"]
+_data = {
+&"RESET": SubResource("Animation_7ceso"),
+&"idle": SubResource("Animation_m8rwi")
+}
 
 [node name="Michas" type="CharacterBody2D" unique_id=2140165586]
 collision_layer = 2
@@ -19,10 +121,12 @@ script = ExtResource("1_2lj0q")
 EnemyStats = ExtResource("2_mf4m2")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=246346919]
+visible = false
 offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
+color = Color(1, 1, 1, 0.3019608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1560967408]
 position = Vector2(2, 0)
@@ -40,7 +144,7 @@ collision_mask = 19
 shape = SubResource("CircleShape2D_2lj0q")
 
 [node name="Stats" parent="." unique_id=1620432705 instance=ExtResource("3_edrj5")]
-position = Vector2(0, -35)
+position = Vector2(0, -48.9)
 entity = "michas.exe"
 healthbarlengt = 75
 
@@ -58,6 +162,19 @@ agrorange = 500.0
 entity = NodePath("../../..")
 damagearea = NodePath("../../../Area2D")
 getdamage = Vector2i(1, 1)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1482058166]
+position = Vector2(0, -20.12)
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=554570191]
+position = Vector2(0, 5.24)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("6_i4f8h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/Sprite2D" unique_id=903112352]
+libraries/ = SubResource("AnimationLibrary_dga6l")
+autoplay = &"idle"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

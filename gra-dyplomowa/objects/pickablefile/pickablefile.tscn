@@ -4,7 +4,12 @@
 [ext_resource type="Shader" uid="uid://ifnp3h80bavv" path="res://resources/shaders/corrupted.gdshader" id="1_s6stv"]
 [ext_resource type="Texture2D" uid="uid://dm0nx6q8t3dvm" path="res://assets/images/ui/icons/folder_pelny_glitch2.png" id="2_q5jqs"]
 [ext_resource type="Texture2D" uid="uid://da11wovlsde4d" path="res://assets/images/ui/icons/plik tekstowy_pelny.png" id="3_j0i51"]
+[ext_resource type="Texture2D" uid="uid://bo2iyr1nmte11" path="res://assets/images/ui/icons/audiop.png" id="3_pt4aj"]
+[ext_resource type="Texture2D" uid="uid://elmwyrmqpq7o" path="res://assets/images/items/BOMBA.png" id="4_k0gw1"]
 [ext_resource type="Texture2D" uid="uid://di0ihbs0txekv" path="res://assets/images/ui/icons/folder_pusty .png" id="4_xdt60"]
+[ext_resource type="Texture2D" uid="uid://bob2puaakstlv" path="res://assets/images/ui/icons/health_bar.png" id="7_k0gw1"]
+[ext_resource type="Texture2D" uid="uid://b4etvv2h7kiwf" path="res://assets/images/ui/icons/zdjecie.png" id="8_r3hpj"]
+[ext_resource type="Texture2D" uid="uid://dj4qrsom5rvgj" path="res://assets/images/ui/icons/plik tekstowy_pusty.png" id="9_tql6w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qfiyk"]
 shader = ExtResource("1_s6stv")
@@ -20,8 +25,24 @@ shader_parameter/scanline_strength = 0.18
 shader_parameter/local_warp_strength = 0.14
 shader_parameter/flip_chance = 0.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_pt4aj"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_uowqp"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pt4aj")
+}],
+"loop": true,
+"name": &"audio",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_k0gw1")
+}],
+"loop": true,
+"name": &"bombiasz",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_q5jqs")
@@ -44,6 +65,30 @@ animations = [{
 }],
 "loop": true,
 "name": &"folder",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_k0gw1")
+}],
+"loop": true,
+"name": &"health",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_r3hpj")
+}],
+"loop": true,
+"name": &"image",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_tql6w")
+}],
+"loop": true,
+"name": &"unknown",
 "speed": 5.0
 }]
 
@@ -215,8 +260,9 @@ scale = Vector2(1.5, 1.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" unique_id=627372800]
 material = SubResource("ShaderMaterial_qfiyk")
-sprite_frames = SubResource("SpriteFrames_pt4aj")
+sprite_frames = SubResource("SpriteFrames_uowqp")
 animation = &"corruptedfolder"
+autoplay = "corruptedfolder"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2000195197]
 collision_layer = 16

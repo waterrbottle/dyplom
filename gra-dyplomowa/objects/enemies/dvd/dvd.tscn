@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dc85iaiqphdcn" path="res://objects/enemies/dvd/dvd.gd" id="1_yuxou"]
 [ext_resource type="Resource" uid="uid://bv1v5aca7ucty" path="res://objects/enemies/EntityResources/basicenemy.tres" id="2_6jjhy"]
-[ext_resource type="Texture2D" uid="uid://d11xyqsmfmynm" path="res://assets/images/entities/dvd/vcxcykdoopld1.jpeg" id="3_owf32"]
+[ext_resource type="Texture2D" uid="uid://bjqxloysgt75a" path="res://assets/images/entities/dvd/VDV_przecowmol.png" id="3_6jjhy"]
 [ext_resource type="PackedScene" uid="uid://bvgqjrqb5xftd" path="res://objects/enemies/EntityExtentions/healthbar/stats.tscn" id="4_gc42i"]
 [ext_resource type="PackedScene" uid="uid://dxq0iy4aaopp0" path="res://objects/enemies/EntityExtentions/movements/movementfloat/movementfloat.tscn" id="5_6jjhy"]
 [ext_resource type="PackedScene" uid="uid://c4qceoenujvhy" path="res://objects/enemies/EntityExtentions/damager/damagerbasic.tscn" id="5_bu2lh"]
@@ -11,7 +11,13 @@
 size = Vector2(76, 59)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6jjhy"]
-size = Vector2(51, 35.5)
+size = Vector2(95, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owf32"]
+size = Vector2(93, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gc42i"]
+size = Vector2(4, 38)
 
 [node name="Dvd" type="CharacterBody2D" unique_id=68257720]
 collision_layer = 0
@@ -20,16 +26,17 @@ script = ExtResource("1_yuxou")
 EnemyStats = ExtResource("2_6jjhy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1020662069]
-position = Vector2(0, -7.6293945e-06)
-scale = Vector2(0.04875, 0.048749994)
-texture = ExtResource("3_owf32")
+position = Vector2(3.8146973e-06, 0)
+scale = Vector2(0.46507818, 0.46507815)
+texture = ExtResource("3_6jjhy")
 
 [node name="Stats" parent="." unique_id=1620432705 instance=ExtResource("4_gc42i")]
 position = Vector2(0, -52)
-entity = "DVD.exe"
+entity = "VDV.exe"
 healthbarlengt = 150
 
 [node name="Area2D" type="Area2D" parent="." unique_id=391638708]
+visible = false
 collision_layer = 2
 collision_mask = 65535
 
@@ -41,9 +48,10 @@ shape = SubResource("RectangleShape2D_f7eln")
 
 [node name="movement" type="Node" parent="extentions" unique_id=1627008171]
 
-[node name="Movementfloat" parent="extentions/movement" unique_id=1004497749 node_paths=PackedStringArray("entity", "area") instance=ExtResource("5_6jjhy")]
+[node name="Movementfloat" parent="extentions/movement" unique_id=1004497749 node_paths=PackedStringArray("entity", "areas") instance=ExtResource("5_6jjhy")]
 entity = NodePath("../../..")
-area = NodePath("../../../Area2D")
+areas = [NodePath("../../../DETECTORS/up"), NodePath("../../../DETECTORS/down"), NodePath("../../../DETECTORS/left"), NodePath("../../../DETECTORS/down2")]
+speed = 74.763
 
 [node name="damagers" type="Node" parent="extentions" unique_id=857419849]
 
@@ -54,5 +62,35 @@ setdamage = Vector2i(1, 3)
 getdamage = Vector2i(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1925767456]
-position = Vector2(1.5, -1.75)
+position = Vector2(-0.5, 3)
 shape = SubResource("RectangleShape2D_6jjhy")
+
+[node name="DETECTORS" type="Node2D" parent="." unique_id=683533799]
+
+[node name="up" type="Area2D" parent="DETECTORS" unique_id=1209457563]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DETECTORS/up" unique_id=338525178]
+position = Vector2(0, -22)
+shape = SubResource("RectangleShape2D_owf32")
+
+[node name="down" type="Area2D" parent="DETECTORS" unique_id=693946772]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DETECTORS/down" unique_id=1590232430]
+position = Vector2(-0.5, 28)
+shape = SubResource("RectangleShape2D_owf32")
+
+[node name="left" type="Area2D" parent="DETECTORS" unique_id=1923913633]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DETECTORS/left" unique_id=1814374898]
+position = Vector2(-53, 4)
+shape = SubResource("RectangleShape2D_gc42i")
+
+[node name="down2" type="Area2D" parent="DETECTORS" unique_id=1256700314]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DETECTORS/down2" unique_id=2116054862]
+position = Vector2(52, 3)
+shape = SubResource("RectangleShape2D_gc42i")

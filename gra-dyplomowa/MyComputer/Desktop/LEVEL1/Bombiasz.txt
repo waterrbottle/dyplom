@@ -1,0 +1,7 @@
+app-redirect
+scene
+res://scenes/apps/Bombiasz/bombiaszgame.tscn
+icon
+res://assets/images/apps/bombiasz/bomboicona..png
+name
+bombiasz.exe
