@@ -6,6 +6,8 @@ var buttonfunctions = [["ok", "close", {}]]
 var img = load("uid://d12eulhof6erx")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if img is String:
+		return
 	$CanvasLayer/TextureRect.texture = img
 	for l in buttonfunctions:
 		var inst = $CanvasLayer/HBoxContainer/Button.duplicate()

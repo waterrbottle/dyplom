@@ -14,9 +14,11 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="gra dyplomowa"
+config/name="crashin-out-prototype"
 run/main_scene="uid://bqmvvc2ih4t7r"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
+boot_splash/bg_color=Color(0.08333349, 0, 1, 1)
+boot_splash/image="uid://3f3i1x8xl0ea"
 config/icon="uid://b13bka4134nul"
 
 [audio]
@@ -46,6 +48,8 @@ folder_colors={
 
 player=""
 fist=""
+object=""
+item=""
 
 [input]
 

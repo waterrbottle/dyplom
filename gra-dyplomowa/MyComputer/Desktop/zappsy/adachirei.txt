@@ -1,0 +1,7 @@
+app-redirect
+scene
+uid://c1uvbvlt0gyt5
+icon
+uid://svghb57bmxml
+name
+adachirei.cxe

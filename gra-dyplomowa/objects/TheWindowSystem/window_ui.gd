@@ -40,8 +40,14 @@ func spawnapp():
 		appscene = get_node("Panel/SubViewport").get_child(0)
 		%display.size = Vector2( windowdata.scenesize.x, windowdata.scenesize.y)
 		%display.position = %display.size/2 *-1 + Vector2(0,11)
+		if windowdata.transparent == true:
+			$Panel.self_modulate = Color(0.0, 0.0, 0.0, 0.0)
+			$Panel/SubViewport.transparent_bg=true
+			$Panel/TextureRect.self_modulate =   Color(0.0, 0.0, 0.0, 0.3)
+			$Panel/TextureRect/unactive.self_modulate =   Color(0.0, 0.0, 0.0, 0.043)
 		
 		appvalid=true
+		
 	else:
 		Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", {"text": "cant open the scene. file " +str(scene) +" does not exist.", "bug":true},null)
 		queue_free()

@@ -1,5 +1,5 @@
 extends Node2D
-var content = ["",false]
+var content = ["",false, ""]
 
 # notatki: 
 # SKRYPT aplikacji notepad 
@@ -10,9 +10,19 @@ func _ready() -> void:
 	# kod przypisujacy tekst do aplikacji
 	$AppCode/ColorRect/TextEdit.text = content[0]
 	if content[1] == true:
-
-		$AppCode/ColorRect/TextEdit.editable=false
+		pass
+		#$AppCode/ColorRect/TextEdit.editable=false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_timer_timeout() -> void:
+	if content[1] == true:
+		var path = content[2]
+		print(path)
+		if FileAccess.file_exists(path):
+	
+			var file = FileAccess.open(path, FileAccess.WRITE)
+			file.store_string($AppCode/ColorRect/TextEdit.text)

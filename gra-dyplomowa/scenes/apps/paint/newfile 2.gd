@@ -1,0 +1,19 @@
+extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_button_pressed() -> void:
+	print("pressed")
+	var p = get_parent().get_parent().get_parent().get_parent().get_parent()
+	if p != null:
+		p.createimg(Vector2(%x.value, %y.value))
+	get_parent().get_parent().get_parent().queue_free()

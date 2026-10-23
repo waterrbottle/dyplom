@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://csutddenuu67l" path="res://assets/images/ui/tymon/Screenshot 2025-11-17 at 17.25.39.png" id="2_tlqso"]
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="2_vcjmw"]
 [ext_resource type="Script" uid="uid://dgxdx2v8ttdv" path="res://scenes/apps/fileManager/window_file_manager.gd" id="4_eoi4i"]
-[ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player.tscn" id="4_x660l"]
+[ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player 2.tscn" id="4_x660l"]
+[ext_resource type="PackedScene" uid="uid://cydwpoipuoe8x" path="res://objects/TheWindowSystem/windowUI.tscn" id="6_x660l"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="8_y8hb4"]
 [ext_resource type="PackedScene" uid="uid://dndxjkirb7sod" path="res://objects/taskwindow/taskwindow.tscn" id="11_eoi4i"]
 [ext_resource type="Shader" uid="uid://dwuiurj8e5cpe" path="res://scenes/MyComputer.gdshader" id="12_x660l"]
@@ -21,6 +22,7 @@ shader_parameter/colorreduceR = 1.22
 shader_parameter/colorreduceG = 2.59
 shader_parameter/colorreduceB = 2.19
 shader_parameter/colorStrength = 1.76
+shader_parameter/colorAdd = 0.0
 
 [sub_resource type="Gradient" id="Gradient_ng37i"]
 colors = PackedColorArray(0.5991008, 0.5991008, 0.5991008, 1, 0.92, 0.92, 0.92, 1)
@@ -95,7 +97,7 @@ size = Vector2(180, 272)
 size = Vector2(173, 266)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62mc7"]
-size = Vector2(16.5, 1401)
+size = Vector2(49.625, 1401)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eoi4i"]
 size = Vector2(4244, 30)
@@ -206,6 +208,10 @@ anchors_preset = 0
 offset_right = 6.0
 offset_bottom = 5.0
 mouse_filter = 2
+
+[node name="Control" parent="Windows" unique_id=602759468 instance=ExtResource("6_x660l")]
+layout_mode = 1
+scene = "res://scenes/apps/tutorial/tutorial.tscn"
 
 [node name="objects" type="Node2D" parent="." unique_id=651193975]
 
@@ -505,7 +511,7 @@ collision_layer = 4
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="leftsidewall/StaticBody2D2" unique_id=11546122]
-position = Vector2(-5.5, 356.5)
+position = Vector2(-26, 360)
 shape = SubResource("RectangleShape2D_62mc7")
 
 [node name="leftsidewall2" type="Control" parent="." unique_id=1767846772]
@@ -527,7 +533,7 @@ collision_layer = 4
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="leftsidewall2/StaticBody2D2" unique_id=342874143]
-position = Vector2(48.25, 378)
+position = Vector2(66.8125, 378)
 shape = SubResource("RectangleShape2D_62mc7")
 
 [node name="topwall" type="Control" parent="." unique_id=521049296]

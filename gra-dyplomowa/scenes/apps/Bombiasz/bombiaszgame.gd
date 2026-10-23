@@ -37,6 +37,8 @@ func _process(delta: float) -> void:
 	for n in $CanvasLayer/Control/GridContainer.get_children():
 		if n.state != "bomb":
 			if n.inmouse == true:
+				if n.state == "fire":
+					n.get_node("AudioStreamPlayer").play()
 				n.state = ""
 
 
@@ -76,12 +78,14 @@ func _on_timer_timeout() -> void:
 				if j == (bombaszsize-1)/2:
 					if n.state == "fire":
 						if wl == "":
+							$explode.play()
 							$CanvasLayer2/ColorRect2/AnimationPlayer.play("infobar (2)")
 							$CanvasLayer2/ColorRect2.color =  Color(1.0, 0.34, 0.34, 1.0)
 							$CanvasLayer2/Label3.text = "the bomb has exploded!"
 						wl = "lose"
 	if firecount == 0:
 		if wl == "":
+			$AudioStreamPlayer.play()
 			$CanvasLayer2/ColorRect2/AnimationPlayer.play("infobar (2)")
 			$CanvasLayer2/ColorRect2.color = Color(0.214, 0.63, 0.242, 1.0)
 			$CanvasLayer2/Label3.text = "hey u did it! bomb is yours!"

@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://kyciafi44qq0" path="res://scenes/levels/bayer16.png" id="6_icy5c"]
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="7_mbbpy"]
 [ext_resource type="Texture2D" uid="uid://3e6sf5a107yj" path="res://assets/images/ui/tymon/20250713_185202.jpg" id="7_rmjfq"]
-[ext_resource type="PackedScene" uid="uid://d357asu1k1n06" path="res://objects/enemies/michas/michas.tscn" id="8_ouxo3"]
-[ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player.tscn" id="9_icy5c"]
+[ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player 2.tscn" id="9_icy5c"]
+[ext_resource type="PackedScene" uid="uid://2gw7rmnwfami" path="res://objects/enemies/bombacz/bombacz.tscn" id="9_rmjfq"]
+[ext_resource type="Script" uid="uid://powq1usgpexu" path="res://objects/enemies/EntityResources/BasicEnemy.gd" id="10_7pb6i"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_b2cq8"]
 
@@ -33,6 +34,12 @@ shader_parameter/u_bit_depth = 6
 shader_parameter/u_contrast = 3.99
 shader_parameter/u_offset = 0.06
 shader_parameter/u_dither_size = 8
+
+[sub_resource type="Resource" id="Resource_xfk5q"]
+resource_local_to_scene = true
+script = ExtResource("10_7pb6i")
+max_health = 5
+metadata/_custom_type_script = "uid://powq1usgpexu"
 
 [node name="Level" type="Node2D" unique_id=87433020]
 script = ExtResource("1_icy5c")
@@ -71,8 +78,9 @@ texture = ExtResource("7_rmjfq")
 scenesize = Vector2(600, 500)
 windowname = "level 1"
 
-[node name="Michas" parent="." unique_id=2099416904 instance=ExtResource("8_ouxo3")]
-
 [node name="Player" parent="." unique_id=1401127334 instance=ExtResource("9_icy5c")]
 
 [node name="objects" type="Node2D" parent="." unique_id=1827192927]
+
+[node name="Bombacz" parent="." unique_id=1088395146 instance=ExtResource("9_rmjfq")]
+EnemyStats = SubResource("Resource_xfk5q")

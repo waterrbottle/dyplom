@@ -138,3 +138,9 @@ text = "paste"
 scenesize = Vector2(600, 400)
 windowname = "notepad.exe"
 type = "explorer"
+
+[node name="Timer" type="Timer" parent="." unique_id=132634372]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

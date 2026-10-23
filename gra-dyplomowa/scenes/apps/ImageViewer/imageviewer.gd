@@ -44,8 +44,8 @@ func loadc():
 	var mnoznik = 1
 	if size.y < size.x:
 		checksize = size.y
-	if checksize < 50:
-		mnoznik = 1+ 50/checksize
+	if checksize < 100:
+		mnoznik = 1+ 100/checksize
 		size *= mnoznik
 	#if size.y > 500:
 	#	dzielnik = 1+ size.y/500

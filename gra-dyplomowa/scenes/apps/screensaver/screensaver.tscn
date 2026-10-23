@@ -120,7 +120,7 @@ offset_top = -23.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "move your mouse to continue."
+text = "CLICK your mouse to continue."
 label_settings = SubResource("LabelSettings_fx7j8")
 
 [node name="Leveldata" parent="." unique_id=2014004283 instance=ExtResource("1_vub3w")]

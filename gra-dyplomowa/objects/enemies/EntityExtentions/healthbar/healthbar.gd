@@ -16,6 +16,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+
+	$name.text = str(entity)
 	if Engine.is_editor_hint():
 		$name.text = str(entity)
 		$Control/Panel.position = -Vector2($Control/Panel.size.x,$Control/Panel.size.y)/2

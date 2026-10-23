@@ -226,6 +226,7 @@ grow_vertical = 0
 texture_filter = 1
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_6uyr2")
 icon = ExtResource("6_767w8")
 icon_alignment = 1
@@ -234,6 +235,7 @@ icon_alignment = 1
 texture_filter = 1
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_6uyr2")
 icon = ExtResource("7_3sj5x")
 icon_alignment = 1
@@ -259,6 +261,7 @@ flat = true
 [node name="loop" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=10235259]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_6uyr2")
 text = "loop"
 

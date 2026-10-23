@@ -38,12 +38,17 @@ func _process(delta: float) -> void:
 	if $startmenu.visible == true:
 		var hasp = false
 		for n in ( $startmenu/Area2D.get_overlapping_bodies()):
-			if n.is_in_group("player"):
+			if n is CharacterBody2D:
 				if onetimestartmenu==true:
 					hasp=true
 					n.velocity.y = -1000
 					n.move_and_slide()
-					$startmenu/StaticBody2D.set_collision_layer_value(3,false)
+					
+			if n is RigidBody2D:
+				if onetimestartmenu==true:
+					hasp=true
+					n.apply_impulse(Vector2(0,-500))
+			$startmenu/StaticBody2D.set_collision_layer_value(3,false)
 		if hasp == false:
 			onetimestartmenu=false
 			$startmenu/StaticBody2D.set_collision_layer_value(3,true)
@@ -94,7 +99,7 @@ func _on_sleep_pressed() -> void:
 	screensaver=true
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouse or event is InputEventKey:
+	if event is InputEventMouse:
 		if screensaver==true:
 			$screensaver.hide()
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

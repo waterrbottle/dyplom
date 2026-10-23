@@ -4,6 +4,7 @@ extends Node2D
 @export var iconoverride = ""
 var health = 5
 @export var win = false
+var beinghit = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Area2D.monitorable=true
@@ -19,9 +20,11 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-
+	
 	if area.is_in_group("fist"):
-
+		if beinghit == true:
+			return
+		beinghit=true
 		print("object hit")
 		$AnimationPlayer.play("hit")
 		health -= 1
@@ -71,4 +74,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		if win == true:
 			Global.addwindow("uid://8ogs475b2e7p", "good news", {"text": "LEVEL CLEARED!", "image": load("uid://c15a6gp0qy7g6")}, null)
 		queue_free()
-		
+	if anim_name == "hit":
+		beinghit=false

@@ -3,6 +3,7 @@ uniform float colorreduceR = 2.0f;
 uniform float colorreduceG = 2.0f;
 uniform float colorreduceB = 2.0f;
 uniform float colorStrength = 1.0f;
+uniform float colorAdd = 0.0f;
 void vertex() {
 
 	// VERTEX.x += (1.0 - UV.y) * abs(sin(TIME)) * 1000.0;
@@ -14,6 +15,9 @@ void fragment() {
 	COLOR.r = floor(COLOR.r * colorreduceR)/colorreduceR;
 	COLOR.g = floor(COLOR.g * colorreduceG)/colorreduceG;
 	COLOR.b = floor(COLOR.b * colorreduceB)/colorreduceB;
+	COLOR.r += colorAdd;
+	COLOR.g += colorAdd;
+	COLOR.b += colorAdd;
 	COLOR *= colorStrength;
 	
 	//COLOR *= 1.0;

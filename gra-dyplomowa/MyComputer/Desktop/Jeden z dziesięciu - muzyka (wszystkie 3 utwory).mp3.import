@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bq61fu6rkk26"
+path="res://.godot/imported/Jeden z dziesięciu - muzyka (wszystkie 3 utwory).mp3-498a34ae203b0ffab75e45d4c00c6535.mp3str"
+
+[deps]
+
+source_file="res://MyComputer/Desktop/Jeden z dziesięciu - muzyka (wszystkie 3 utwory).mp3"
+dest_files=["res://.godot/imported/Jeden z dziesięciu - muzyka (wszystkie 3 utwory).mp3-498a34ae203b0ffab75e45d4c00c6535.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

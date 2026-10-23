@@ -18,6 +18,8 @@ func _ready() -> void:
 			
 			load_wav_manually(musicload)
 			$AudioStreamPlayer.stream = load_wav_manually(musicload)
+			if $AudioStreamPlayer.stream == null:
+				return
 			$CanvasLayer/Control/HBoxContainer/HSlider.max_value = $AudioStreamPlayer.stream.get_length()
 			$CanvasLayer/Control/Panel3/ColorRect/VBoxContainer/musictitle.text = musicname
 		else:

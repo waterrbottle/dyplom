@@ -53,6 +53,10 @@ func _process(delta: float) -> void:
 		for n in get_node("/root/MyComputer/Windows").get_children():
 			if n.appscene.get_node("Leveldata").type == "level":
 				n.queue_free()
+		addwindow("uid://8ogs475b2e7p", "Data Overflow", {"text": "you run out of lives", "bug": false, "image": load("uid://tks5bgimi0am") }, null)
+		get_node("/root/MyComputer/Player").set_deferred("active", true)
+		ondesktop=true
+
 		playervars["health"] = 100
 
 func addwindow(scene: String, namee, content, loc):

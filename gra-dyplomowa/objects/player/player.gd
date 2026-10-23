@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 15.0
+const SPEED = 18.0
 const JUMP_VELOCITY = -1000.0
 var walkspeed = 0
 var velocityhist := 0.0
@@ -29,6 +29,8 @@ var stuck_frames = 0
 var sneak = false
 @export var stuck_threshold := 30
 var floordash = 0
+var touchdown = 0
+var walktimer = [0, true]
 func _ready() -> void:
 	if desktop==true:
 		$Camera2D.enabled=false
@@ -84,17 +86,19 @@ func _process(delta: float) -> void:
 					get_parent().add_child(i)
 					print("no object node to add the object to!")
 				
-		
-		if fight == false:
-			if canfight == true:
-				print("FIGHT!")
+		print(%fistobject.active)
+
+		if canfight == true:
+				
+			if %fistobject.active == false:
+				$punch.play()
 				$fight.show()
 				%fistobject.active = true
 				%fistobject.dir = fightdir
 				%fistobject.bodyvel = velocity
 				$fight.rotation_degrees = 90 * fightdir - 90
 				$fight/fight_anim.play("fight")
-		fight = true
+	
 	
 	
 	
@@ -109,6 +113,13 @@ func _process(delta: float) -> void:
 				sneak = true
 			else:
 				sneak = false
+		
+			if $walk.playing == false:
+				if walktimer[0] <= 0:
+					if sneak == false:
+						$walk.playing=true
+					walktimer[0] = 1/abs(velocity.x)*10.0
+			walktimer[0] -= delta
 			
 	else:
 		sneak=false
@@ -147,7 +158,7 @@ func _physics_process(delta: float) -> void:
 						velocity.y += abs(velocityhist)*-1.0
 
 						velocity.x = velocityhist *-1.5 - 10
-	
+	#print(touchdown)
 	if active == true:
 		if Global.lockinput==false:
 			
@@ -155,13 +166,24 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_pressed("down"):
 				if sneak == false:
 					if not is_on_floor():
+						touchdown = 1
 						velocity.y+=100
 						velocity.x/=1.5
 						floordash = 1
+						if not $fall.playing:
+							$fall.play()
 					if is_on_floor():
-						if floordash == 1:
-							floordasparticle()
-							floordash=0
+						if touchdown == 1:
+							$land.play()
+							touchdown = 0
+			if floordash == 1:
+				if is_on_floor():
+					$land.play()
+					floordasparticle()
+					floordash=0
+
+			if is_on_floor():
+				$fall.stop()
 					
 
 		
@@ -183,6 +205,7 @@ func _physics_process(delta: float) -> void:
 	if active == true:
 		if Global.lockinput==false:
 			if Input.is_action_just_pressed("jump") and is_on_floor():
+				$jump.play()
 				velocity.y = JUMP_VELOCITY
 	if not is_on_floor() and velocity.y < 0:
 		fightdir = 0
@@ -221,7 +244,9 @@ func _physics_process(delta: float) -> void:
 					velocity.x = move_toward(velocity.x, 0, SPEED*3)
 				if wallfever == false:
 					if sneak == false:
-						velocity.x = move_toward(velocity.x, 0, SPEED*3)
+						if not Input.is_action_pressed("left"):
+							if not Input.is_action_pressed("right"):
+								velocity.x = move_toward(velocity.x, 0, SPEED*10)
 			velocityhist = velocity.x
 	
 	$sprintparticle.emitting=false
@@ -305,7 +330,8 @@ func _on_fight_anim_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fight":
 		fight = false
 		$fight.hide()
-		%fistobject.active = false
+
+		
 
 
 func handle_crush_physics(delta: float):

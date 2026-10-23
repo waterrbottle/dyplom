@@ -1,6 +1,7 @@
 extends Node2D
 var display = false
 var active = true
+var used = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -25,26 +26,32 @@ func _process(delta: float) -> void:
 		$object.freeze=false
 	
 	
+func tilecheck():
+	used = true
+	print("hello")
+	print($object/tilecheck/CollisionShape2D.disabled)
+	for n in $object/tilecheck.get_overlapping_bodies():
+		print(n)
+		if n is TileMapLayer:
+		
+			var o = n.get_used_cells()
+			for a in o:
 
+					
+				if $object.global_position.distance_to(a * 32) < 200:
+					if n.get_cell_source_id(a) == 0:
+						n.set_cell(a, -1, Vector2(0,0))
+				active = false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if display == false:
 		
 		
 		if active == true:
-			for n in $object/tilecheck.get_overlapping_bodies():
-				print(n)
-				if n is TileMapLayer:
-		
-					var o = n.get_used_cells()
-					for a in o:
+			$object/tilecheck/CollisionShape2D.set_deferred("disabled", false)
+			call_deferred("tilecheck")
 
-					
-						if $object.global_position.distance_to(a * 32) < 200:
-							if n.get_cell_source_id(a) == 0:
-								n.set_cell(a, -1, Vector2(0,0))
-						active = false
-						
+			
 						
 		$object/display.hide()
 		$object.call_deferred("set_freeze_enabled", true)

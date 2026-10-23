@@ -3,6 +3,7 @@ shader_type canvas_item;
 /* ================= SETTINGS ================= */
 
 // Probability of glitch effect happening
+uniform float alpha = 1.0;
 uniform float glitch_chance : hint_range(0.0, 1.0) = 0.2;
 
 // Speed of glitch state changes
@@ -104,4 +105,6 @@ void fragment() {
 	color = mix(color, flash_color, rand(TIME * 4.0) * color_flash_strength * glitch);
 
 	COLOR = vec4(color, base.a);
+	
+	COLOR.a =COLOR.a* alpha;
 }

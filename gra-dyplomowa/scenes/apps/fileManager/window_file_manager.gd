@@ -61,7 +61,7 @@ func fileopening(n):
 			var file = FileAccess.open(dirstring + n.get_child(1).text, FileAccess.READ)
 			if n.subtype == "text":
 				var content = file.get_as_text()
-				Global.addwindow("res://scenes/apps/notepad/notepad.tscn", n.get_child(1).text, [content, true], null)
+				Global.addwindow("res://scenes/apps/notepad/notepad.tscn", n.get_child(1).text, [content, true, dirstring + n.get_child(1).text], null)
 			if n.subtype == "image":
 				Global.addwindow("res://scenes/apps/ImageViewer/imageviewer.tscn", n.get_child(1).text, [dirstring + n.get_child(1).text],null)
 			if n.subtype == "music":
@@ -171,7 +171,9 @@ func update():
 		inst.get_child(1).text = str(file)
 		
 		var filer = FileAccess.open(dirstring+file, FileAccess.READ)
-		
+		if filer == null:
+			Global.addwindow("uid://8ogs475b2e7p", "ERROR", {"text": "failed loading.", "bug": true}, null)
+			return
 		var content = filer.get_line()
 		
 		for n in corrupted:

@@ -117,9 +117,11 @@ func _process(delta: float) -> void:
 						deskotop(col2)
 			if hit == false:
 				updatetasks([])
-			
+
+func copypath(path):
+	DisplayServer.clipboard_set(str(path.get_parent().path + path.get_parent().filename))
 func fileicontasks(col):
-	updatetasks([["rename",rename.bind(col) ],["delete", Global.deletefolder.bind(col.get_parent().path + col.get_parent().filename)]])
+	updatetasks([["rename",rename.bind(col) ],["delete", Global.deletefolder.bind(col.get_parent().path + col.get_parent().filename)], ["copy file path",copypath.bind(col) ]])
 func deskotop(col):
 	var filename = "folder"
 	for i in range(1000):

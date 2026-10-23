@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="2_tvxw8"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="3_a5r02"]
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="4_wquea"]
+[ext_resource type="Texture2D" uid="uid://im7hq712vv2g" path="res://assets/images/ui/icons/backbutton.png" id="5_a5r02"]
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="5_tvxw8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_40gkv"]
@@ -95,6 +96,7 @@ clip_text = true
 custom_minimum_size = Vector2(27, 27)
 layout_mode = 2
 theme = ExtResource("4_wquea")
+icon = ExtResource("5_a5r02")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer" unique_id=1083382951]
 anchors_preset = 15
