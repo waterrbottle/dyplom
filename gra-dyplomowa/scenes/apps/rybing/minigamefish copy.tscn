@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://td8b61o8limk"]
+
+[ext_resource type="Script" uid="uid://dl2xm1xj08d1w" path="res://scenes/apps/rybing/minigamefish copy.gd" id="1_d8hge"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_usata"]
+radius = 4.1231055
+
+[node name="Minigamefish" type="Area2D" unique_id=1964440502]
+script = ExtResource("1_d8hge")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1137098719]
+offset_right = 9.0
+offset_bottom = 7.0
+color = Color(0, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="." unique_id=1453318569]
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=227319398]
+position = Vector2(4, 3)
+shape = SubResource("CircleShape2D_usata")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

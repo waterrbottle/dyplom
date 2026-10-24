@@ -144,8 +144,10 @@ func _physics_process(delta: float) -> void:
 		detection_range = Global.playervars["scale"].x
 		Global.playervars["position"] = global_position
 		if is_on_wall():
+			
 			if !is_on_floor():
-				if Input.is_key_pressed(KEY_SPACE):
+				
+				if 1 == 0: #Input.is_key_pressed(KEY_SPACE):
 					wallfever = true
 					$GPUParticles2D.emitting = true
 	
