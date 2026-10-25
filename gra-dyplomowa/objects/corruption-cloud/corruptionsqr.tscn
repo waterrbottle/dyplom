@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://y4lpf2iseht2"]
+
+[ext_resource type="Script" uid="uid://bcyyggwc53sb3" path="res://objects/corruption-cloud/corruptionsqr.gd" id="1_3kaqm"]
+[ext_resource type="Texture2D" uid="uid://dm0nx6q8t3dvm" path="res://assets/images/ui/icons/folder_pelny_glitch2.png" id="2_0wqy3"]
+[ext_resource type="Texture2D" uid="uid://d1eltwlrem3hq" path="res://assets/images/particles/IKS.png" id="2_wxo7u"]
+[ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="3_wxo7u"]
+[ext_resource type="PackedScene" uid="uid://c4qceoenujvhy" path="res://objects/enemies/EntityExtentions/damager/damagerbasic.tscn" id="4_0wqy3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1cdh"]
+size = Vector2(84, 28)
+
+[sub_resource type="Gradient" id="Gradient_6jbel"]
+offsets = PackedFloat32Array(0.010771993, 1)
+colors = PackedColorArray(0.099999905, 0, 1, 1, 0.4, 0, 0.3533333, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bp5kr"]
+gradient = SubResource("Gradient_6jbel")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_002dv"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(86.13, 0, 0)
+emission_shape_scale = Vector3(85.9, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+gravity = Vector3(0, -40, 0)
+scale_min = 0.5
+color_initial_ramp = SubResource("GradientTexture1D_bp5kr")
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_p518t"]
+frames = 2
+frame_0/texture = ExtResource("2_0wqy3")
+frame_1/texture = ExtResource("3_wxo7u")
+frame_1/duration = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p518t"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(86.13, 0, 0)
+emission_shape_scale = Vector3(85.9, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+gravity = Vector3(0, 10, 0)
+scale_min = 0.099999994
+scale_max = 0.29999998
+color_initial_ramp = SubResource("GradientTexture1D_bp5kr")
+
+[node name="Corruptionsqr" type="ColorRect" unique_id=959051083]
+custom_minimum_size = Vector2(5, 5)
+offset_right = 44.0
+offset_bottom = 138.0
+color = Color(0.8666668, 0, 1, 1)
+script = ExtResource("1_3kaqm")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1449566425]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1009754983]
+visible = false
+shape = SubResource("RectangleShape2D_b1cdh")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="." unique_id=1334452865]
+modulate = Color(3.1256604, 3.1256604, 3.1256604, 1)
+scale = Vector2(0.49, 0.49)
+amount = 200
+texture = ExtResource("2_wxo7u")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_002dv")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="." unique_id=1455069766]
+scale = Vector2(0.49, 0.49)
+amount = 300
+texture = SubResource("AnimatedTexture_p518t")
+process_material = SubResource("ParticleProcessMaterial_p518t")
+
+[node name="extentions" type="Node" parent="." unique_id=1273980194]
+
+[node name="Damagerbasic" parent="extentions" unique_id=1209103094 node_paths=PackedStringArray("entity", "damagearea") instance=ExtResource("4_0wqy3")]
+entity = NodePath("../../Area2D")
+damagearea = NodePath("../../Area2D")
+kb = Vector2(-500, -1000)

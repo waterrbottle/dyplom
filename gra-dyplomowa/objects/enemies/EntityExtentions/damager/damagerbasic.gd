@@ -2,22 +2,24 @@ extends Node
 var areasitems = []
 @export var entity: Node
 @export var damagearea: Area2D
-@export_category("DAMAGE (random x, y)")
+@export_category("DAMAGE setter")
+@export var kb = Vector2(-500,-500)
 @export var setdamage = Vector2i(1,1)
-@export var getdamage = Vector2i(5,5)
-@export var damagers = [["fist", {"damagemin": 1, "damagemax": 1, "kb_strength": 500}], ["item", {"id": "bomb", "damagemin": 1, "damagemax": 5, "kb_strength": 500}]]
+#@export var getdamage = Vector2i(5,5)
+@export_category("DAMAGE getter")
+@export var damagers = [["fist", {"damagemin": 1, "damagemax": 1, "kb_strength": Vector2(500,500)}], ["item", {"id": "bomb", "damagemin": 1, "damagemax": 5, "kb_strength": Vector2(500,500)}]]
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		if body.active==true:
-			body.damage(randi_range(setdamage.x,setdamage.y))
+			body.damage(randi_range(setdamage.x,setdamage.y), kb)
 
 func damagersetter(n,area,dmgtype):
 	print("EntityExtention: Damagerbasic: damage on " + str(entity) + " with: " +  str(dmgtype))
 	entity.EnemyStats.health -= randi_range(n[1]["damagemin"],n[1]["damagemax"])
 	if dmgtype == "fist":
-		entity.velocity.y = -n[1]["kb_strength"] + area.bodyvel.y * 2
+		entity.velocity.y = -n[1]["kb_strength"].x + area.bodyvel.y * 2
 		if abs(area.dir) == 1:
-			entity.velocity.x = 100 * area.dir + area.bodyvel.x * 3
+			entity.velocity.x = n[1]["kb_strength"].y * area.dir + area.bodyvel.x * 3
 
 func _on_area_2d_area_exited(area: Node2D) -> void:
 	if areasitems.has(area):

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cksof2nd06hmt"]
+
+[ext_resource type="Script" uid="uid://cl8uhwibgpi6f" path="res://objects/player/abilities/wallfever/wallfever.gd" id="1_kcx5t"]
+
+[sub_resource type="Gradient" id="Gradient_jnjyq"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kcx5t"]
+gradient = SubResource("Gradient_jnjyq")
+fill_from = Vector2(0.0021367522, 0.014957265)
+
+[sub_resource type="Gradient" id="Gradient_mn2of"]
+offsets = PackedFloat32Array(0, 0.235, 0.53625, 0.76625, 0.91375, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.9666667, 1, 0, 1, 0, 1, 0.76666665, 1, 0.6091645, 0.39083552, 0.30979314, 1, 0.1500001, 0, 1, 1, 0.8833332, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gnkmh"]
+gradient = SubResource("Gradient_mn2of")
+
+[sub_resource type="Gradient" id="Gradient_h28qd"]
+offsets = PackedFloat32Array(0.67625, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xkryw"]
+gradient = SubResource("Gradient_h28qd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dntk2"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 30.0
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+inherit_velocity_ratio = 0.1
+spread = 180.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.049999997
+scale_max = 0.099999994
+color_ramp = SubResource("GradientTexture1D_xkryw")
+color_initial_ramp = SubResource("GradientTexture1D_gnkmh")
+
+[node name="Wallfever" type="Node2D" unique_id=1108321943]
+script = ExtResource("1_kcx5t")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1373333158]
+emitting = false
+amount = 100
+texture = SubResource("GradientTexture2D_kcx5t")
+process_material = SubResource("ParticleProcessMaterial_dntk2")

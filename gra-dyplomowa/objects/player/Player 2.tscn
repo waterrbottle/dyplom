@@ -10,6 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://sw05tbaksorr" path="res://assets/sounds/sfx/character/fall.wav" id="8_8dl5a"]
 [ext_resource type="AudioStream" uid="uid://cngtf8t5koh51" path="res://assets/sounds/sfx/character/punch.wav" id="9_iyjr8"]
 [ext_resource type="AudioStream" uid="uid://cunh5mrfyhrn6" path="res://assets/sounds/sfx/character/krokiCO1.3.mp3" id="10_hytha"]
+[ext_resource type="PackedScene" uid="uid://cksof2nd06hmt" path="res://objects/player/abilities/wallfever/wallfever.tscn" id="11_d0yub"]
+[ext_resource type="PackedScene" uid="uid://cujfa22dhveuq" path="res://objects/player/abilities/sliding/sliding.tscn" id="12_e76wp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 16.0
@@ -2757,42 +2759,6 @@ states/slide/position = Vector2(333.83527, -7.545105)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_i3pqv"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_hqtel"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_2hs0m"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_1jxqw"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_4flbx"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_sweqy"), "run", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_jnjyq"), "idle", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_ssrue"), "BlendSpace1D", "idle", SubResource("AnimationNodeStateMachineTransition_gnkmh"), "jump", "dashdown", SubResource("AnimationNodeStateMachineTransition_d0yub"), "dashdown", "idle", SubResource("AnimationNodeStateMachineTransition_e76wp"), "dashdown", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_hytha")]
 graph_offset = Vector2(14.640016, 24.464735)
 
-[sub_resource type="Gradient" id="Gradient_jnjyq"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_g7ett"]
-gradient = SubResource("Gradient_jnjyq")
-fill_from = Vector2(0.0021367522, 0.014957265)
-
-[sub_resource type="Gradient" id="Gradient_ssrue"]
-offsets = PackedFloat32Array(0, 0.235, 0.53625, 0.76625, 0.91375, 1)
-colors = PackedColorArray(1, 0, 0, 1, 0.9666667, 1, 0, 1, 0, 1, 0.76666665, 1, 0.6091645, 0.39083552, 0.30979314, 1, 0.1500001, 0, 1, 1, 0.8833332, 0, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_gnkmh"]
-gradient = SubResource("Gradient_ssrue")
-
-[sub_resource type="Gradient" id="Gradient_g7ett"]
-offsets = PackedFloat32Array(0.67625, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_xkryw"]
-gradient = SubResource("Gradient_g7ett")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ssrue"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 30.0
-angle_min = 1.0728835e-05
-angle_max = 1.0728835e-05
-inherit_velocity_ratio = 0.1
-spread = 180.0
-initial_velocity_max = 50.0
-gravity = Vector3(0, 98, 0)
-scale_min = 0.049999997
-scale_max = 0.099999994
-color_ramp = SubResource("GradientTexture1D_xkryw")
-color_initial_ramp = SubResource("GradientTexture1D_gnkmh")
-
 [sub_resource type="Animation" id="Animation_g7ett"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -2937,6 +2903,13 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_ssrue"]
 radius = 29.0
 
+[sub_resource type="Gradient" id="Gradient_d0yub"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g7ett"]
+gradient = SubResource("Gradient_d0yub")
+fill_from = Vector2(0.0021367522, 0.014957265)
+
 [sub_resource type="Curve" id="Curve_ssrue"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -3024,6 +2997,7 @@ transform = Transform3D(0.17364797, 0.984807, 0, -0.984807, 0.17364797, 0, 0, 0,
 material = SubResource("StandardMaterial3D_sh265")
 
 [node name="right arm" type="Node3D" parent="SubViewport/Node3D" unique_id=1786653235]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CSGCylinder3D4" type="CSGCylinder3D" parent="SubViewport/Node3D/right arm" unique_id=68684133]
 transform = Transform3D(0.17364806, -0.9848075, 0, 0.9848075, 0.17364806, 0, 0, 0, 1, 0.8917453, -0.10806051, 0)
@@ -3037,7 +3011,7 @@ transform = Transform3D(0.90630805, 0.42261803, 0, -0.42261803, 0.90630805, 0, 0
 material = SubResource("StandardMaterial3D_sh265")
 
 [node name="right leg" type="Node3D" parent="SubViewport/Node3D" unique_id=1739319851]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="SubViewport/Node3D/right leg" unique_id=1717583317]
 transform = Transform3D(0.90630805, -0.42261803, 0, 0.42261803, 0.90630805, 0, 0, 0, 1, 0.5, -1.3, 0)
@@ -3065,6 +3039,7 @@ offset_bottom = 35.512817
 pivot_offset = Vector2(33, 35)
 texture = SubResource("ViewportTexture_d0yub")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=938827342]
 root_node = NodePath("../SubViewport")
@@ -3072,12 +3047,6 @@ tree_root = SubResource("AnimationNodeStateMachine_2hs0m")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../SubViewport/AnimationPlayer")
 parameters/BlendSpace1D/blend_position = -0.006148696
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1291451770]
-emitting = false
-amount = 100
-texture = SubResource("GradientTexture2D_g7ett")
-process_material = SubResource("ParticleProcessMaterial_ssrue")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1236330716]
 
@@ -3099,6 +3068,7 @@ scale = Vector2(0.44, 1.0077121)
 texture = ExtResource("2_g7ett")
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="fistobject" type="Area2D" parent="fight/fightrotated" unique_id=1961952011 groups=["fist"]]
 unique_name_in_owner = true
@@ -3178,6 +3148,16 @@ stream = SubResource("AudioStreamRandomizer_hytha")
 [node name="walk" type="AudioStreamPlayer" parent="." unique_id=122372297]
 stream = SubResource("AudioStreamRandomizer_b1cdh")
 volume_db = -4.145
+
+[node name="abilities" type="Node2D" parent="." unique_id=1964524410]
+
+[node name="Wallfever" parent="abilities" unique_id=872153734 node_paths=PackedStringArray("entity") instance=ExtResource("11_d0yub")]
+entity = NodePath("../..")
+active = false
+
+[node name="Sliding" parent="abilities" unique_id=59165395 node_paths=PackedStringArray("entity") instance=ExtResource("12_e76wp")]
+entity = NodePath("../..")
+active = false
 
 [connection signal="animation_finished" from="SubViewport/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="fight/fightrotated/fistobject/cooldown" to="fight/fightrotated/fistobject" method="_on_cooldown_timeout"]

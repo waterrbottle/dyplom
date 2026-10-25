@@ -5,7 +5,7 @@ const SPEED = 18.0
 const JUMP_VELOCITY = -1000.0
 var walkspeed = 0
 var velocityhist := 0.0
-var wallfever = false
+
 var active = true
 var particlescene = load("res://objects/player/playerspawnpart.tscn")
 
@@ -26,7 +26,10 @@ var target_scale := Vector2.ONE
 @export var kill_threshold := 0.1
 var is_stuck = false
 var stuck_frames = 0
+# abs i mean abilities lollllll
 var sneak = false
+var wallfever = false
+################################
 @export var stuck_threshold := 30
 var floordash = 0
 var touchdown = 0
@@ -99,9 +102,6 @@ func _process(delta: float) -> void:
 				$fight.rotation_degrees = 90 * fightdir - 90
 				$fight/fight_anim.play("fight")
 	
-	
-	
-	
 	for n in $dasparticles.get_children():
 		if n.emitting == false:
 			
@@ -109,32 +109,12 @@ func _process(delta: float) -> void:
 	
 	if abs(velocity.x) > 30:
 		if is_on_floor():
-			if Input.is_action_pressed("down"):
-				sneak = true
-			else:
-				sneak = false
-		
 			if $walk.playing == false:
 				if walktimer[0] <= 0:
 					if sneak == false:
 						$walk.playing=true
 					walktimer[0] = 1/abs(velocity.x)*10.0
 			walktimer[0] -= delta
-			
-	else:
-		sneak=false
-	if sneak == true:
-		if not is_on_floor():
-			if Input.is_action_pressed("down"):
-				sneak=true
-			else:
-				sneak=false
-			if Input.is_action_pressed("jump"):
-				sneak = false
-
-			
-			
-
 
 	
 func _physics_process(delta: float) -> void:
@@ -143,23 +123,9 @@ func _physics_process(delta: float) -> void:
 		original_size = modsize * Global.playervars["scale"] * 1
 		detection_range = Global.playervars["scale"].x
 		Global.playervars["position"] = global_position
-		if is_on_wall():
-			
-			if !is_on_floor():
-				
-				if 1 == 0: #Input.is_key_pressed(KEY_SPACE):
-					wallfever = true
-					$GPUParticles2D.emitting = true
-	
-					if abs(velocityhist) > 10:
-						
-						velocity.y=0
-						if abs(velocityhist) > 1000:
-							velocityhist /= 1.5
-
-						velocity.y += abs(velocityhist)*-1.0
-
-						velocity.x = velocityhist *-1.5 - 10
+		
+		
+		
 	#print(touchdown)
 	if active == true:
 		if Global.lockinput==false:
@@ -189,16 +155,7 @@ func _physics_process(delta: float) -> void:
 					
 
 		
-			if !Input.is_key_pressed(KEY_SPACE) or abs(velocity.x) < 20 or is_on_floor():
-				$GPUParticles2D.emitting = false
-				if wallfever ==true:
-					wallfever = false
-					if Input.is_action_pressed("left") and velocity.x > 0:
-						velocity.x/=5
-					if Input.is_action_pressed("right") and velocity.x < 0:
-						velocity.x/=5
-					if not Input.is_action_pressed("right") and not Input.is_action_pressed("left"):
-						velocity.x/=1.1
+
 	# Add the gravity.
 		if not is_on_floor():
 			velocity += get_gravity() * delta * 3
@@ -300,7 +257,7 @@ func die():
 	inst.position = global_position
 	inst.top_level=true
 	add_child(inst)
-	$GPUParticles2D.emitting=false
+	$abilities/Wallfever/GPUParticles2D.emitting=false
 	wallfever = false
 	#$AnimationPlayer.play("despawn")
 	call_deferred("set_position", startpos)
@@ -310,7 +267,7 @@ func despawn():
 	active = false
 	$AnimationPlayer.play("despawn")
 	wallfever = false
-	$GPUParticles2D.emitting=false
+	$abilities/Wallfever/GPUParticles2D.emitting=false
 	var inst = particlescene.instantiate()
 	inst.emitting = true
 	add_child(inst)
@@ -322,9 +279,9 @@ func spawn():
 	inst.emitting = true
 	#add_child(inst)
 
-func damage(amount: int):
-	velocity.x = -500
-	velocity.y = -500
+func damage(amount: int, kb: Vector2):
+	velocity.x = kb.x
+	velocity.y = kb.y
 	Global.playervars["health"] -= amount
 
 
