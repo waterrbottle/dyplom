@@ -11,6 +11,7 @@ var  front = false # activates window on start
 @export var nameoverwrite = ""
 @onready var scenepath = $Panel/SubViewport
 @export var builtin = false
+var windowdata = null
 # Called when the node enters the scene tree for the first time.
 func updatesize(wsize: Vector2):
 		$Panel/SubViewport.size = wsize
@@ -29,7 +30,7 @@ func spawnapp():
 			Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", {"text": "app " + str(scene) + " doesnt have window config node.","bug":true},null)
 			queue_free()
 			return
-		var windowdata = inst.get_node("Leveldata")
+		windowdata = inst.get_node("Leveldata")
 		$Panel/SubViewport.size = windowdata.scenesize
 		%windownamelabel.text = windowdata.windowname
 		if nameoverwrite != "":
@@ -43,8 +44,8 @@ func spawnapp():
 		if windowdata.transparent == true:
 			$Panel.self_modulate = Color(0.0, 0.0, 0.0, 0.0)
 			$Panel/SubViewport.transparent_bg=true
-			$Panel/TextureRect.self_modulate =   Color(0.0, 0.0, 0.0, 0.3)
-			$Panel/TextureRect/unactive.self_modulate =   Color(0.0, 0.0, 0.0, 0.043)
+			$Panel/TextureRect.self_modulate =   Color(1.0, 1.0, 1.0, 1.0)
+			$Panel/TextureRect/unactive.self_modulate =   Color(1.0, 1.0, 1.0, 0.0)
 		
 		appvalid=true
 		
@@ -119,13 +120,15 @@ func _process(delta: float) -> void:
 
 		#$Panel/buttons/focusbutton.mouse_filter = 0
 		acceptinput = false
-
+		if windowdata.transparent == true:
+			$Panel/TextureRect.modulate = Color(1.0, 1.0, 1.0, 0.0)
 		$Panel/TextureRect/unactive.show()
 		
 
 			
 	else:
-		
+		if windowdata.transparent == true:
+			$Panel/TextureRect.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		#$Panel/buttons/focusbutton.mouse_filter = 2
 		if $Timer.is_stopped():
 			$Timer.start()

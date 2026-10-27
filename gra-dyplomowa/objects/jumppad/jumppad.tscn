@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b4itc4x3jutqu"]
+
+[ext_resource type="Script" uid="uid://bppj1dxirtg4g" path="res://objects/jumppad/jumppad.gd" id="1_uktux"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1cdh"]
+size = Vector2(59, 16)
+
+[node name="jumppad" type="ColorRect" unique_id=1524758591]
+offset_right = 59.0
+offset_bottom = 16.0
+color = Color(0, 1, 0.083333254, 1)
+script = ExtResource("1_uktux")
+strength = Vector2(0, -100)
+
+[node name="Jumppad" type="Area2D" parent="." unique_id=1477515824]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jumppad" unique_id=576614969]
+position = Vector2(29.5, 8)
+shape = SubResource("RectangleShape2D_b1cdh")
+
+[connection signal="body_entered" from="Jumppad" to="." method="_on_jumppad_body_entered"]

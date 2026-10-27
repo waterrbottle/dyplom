@@ -38,16 +38,15 @@ entity = "BOMBACZ.cxe"
 [node name="Damagerbasic" parent="extentions/damagers" unique_id=1209103094 node_paths=PackedStringArray("entity", "damagearea") instance=ExtResource("5_u0wt3")]
 entity = NodePath("../../..")
 damagearea = NodePath("../../../Area2D")
-getdamage = Vector2i(3, 5)
 damagers = [["fist", {
 "damagemax": 0,
 "damagemin": 0,
-"kb_strength": 500
+"kb_strength": Vector2(500, 500)
 }], ["item", {
 "damagemax": 1,
 "damagemin": 1,
 "id": "bomb",
-"kb_strength": 500
+"kb_strength": Vector2(500, 500)
 }]]
 
 [node name="movement" type="Node" parent="extentions" unique_id=252619256]

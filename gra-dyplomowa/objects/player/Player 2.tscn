@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://cunh5mrfyhrn6" path="res://assets/sounds/sfx/character/krokiCO1.3.mp3" id="10_hytha"]
 [ext_resource type="PackedScene" uid="uid://cksof2nd06hmt" path="res://objects/player/abilities/wallfever/wallfever.tscn" id="11_d0yub"]
 [ext_resource type="PackedScene" uid="uid://cujfa22dhveuq" path="res://objects/player/abilities/sliding/sliding.tscn" id="12_e76wp"]
+[ext_resource type="PackedScene" uid="uid://druvnvd5xy5jk" path="res://objects/player/squash_handler/squashhandler.tscn" id="13_8qrxt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 16.0
@@ -2997,7 +2998,7 @@ transform = Transform3D(0.17364797, 0.984807, 0, -0.984807, 0.17364797, 0, 0, 0,
 material = SubResource("StandardMaterial3D_sh265")
 
 [node name="right arm" type="Node3D" parent="SubViewport/Node3D" unique_id=1786653235]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CSGCylinder3D4" type="CSGCylinder3D" parent="SubViewport/Node3D/right arm" unique_id=68684133]
 transform = Transform3D(0.17364806, -0.9848075, 0, 0.9848075, 0.17364806, 0, 0, 0, 1, 0.8917453, -0.10806051, 0)
@@ -3153,11 +3154,12 @@ volume_db = -4.145
 
 [node name="Wallfever" parent="abilities" unique_id=872153734 node_paths=PackedStringArray("entity") instance=ExtResource("11_d0yub")]
 entity = NodePath("../..")
-active = false
 
 [node name="Sliding" parent="abilities" unique_id=59165395 node_paths=PackedStringArray("entity") instance=ExtResource("12_e76wp")]
 entity = NodePath("../..")
-active = false
+
+[node name="Squashhandler" parent="." unique_id=1164027075 node_paths=PackedStringArray("entity") instance=ExtResource("13_8qrxt")]
+entity = NodePath("..")
 
 [connection signal="animation_finished" from="SubViewport/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="fight/fightrotated/fistobject/cooldown" to="fight/fightrotated/fistobject" method="_on_cooldown_timeout"]

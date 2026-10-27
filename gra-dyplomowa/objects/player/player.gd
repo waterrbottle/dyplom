@@ -1,9 +1,16 @@
 extends CharacterBody2D
 
+@export var desktop = false
+@export_category("speed and acc")
 
-const SPEED = 18.0
-const JUMP_VELOCITY = -1000.0
-var walkspeed = 0
+@export_range(0, 100) var accel = 18.0
+@export_range(0, 5000) var maxSpeed = 1000.0
+@export_range(0, 50) var drag = 10.0
+@export_range(0, 1) var dirSwitchDrag = 0.25
+@export_category("jumping")
+@export_range(-5000, -100) var jumpVel = -1000.0
+
+
 var velocityhist := 0.0
 
 var active = true
@@ -13,31 +20,27 @@ var particlescene = load("res://objects/player/playerspawnpart.tscn")
 var fight = false
 var fightdir = 0
 var fightdirmem = 0
-@export var desktop = false
+
 var startpos := Vector2(0,0)
 var scalemodifier = Vector2(1,1)
-@export var detection_range := 1.0 # How far to look for walls
-var modsize := Vector2(35, 35)
-@export var original_size := Vector2(35, 35)
-@export var min_scale := 0.25
-var target_scale := Vector2.ONE
-@export var recovery_speed := 5.0
-@export var squash_speed := 20.0
-@export var kill_threshold := 0.1
-var is_stuck = false
-var stuck_frames = 0
+
 # abs i mean abilities lollllll
 var sneak = false
 var wallfever = false
-################################
-@export var stuck_threshold := 30
+################################ 
+
 var floordash = 0
 var touchdown = 0
 var walktimer = [0, true]
 func _ready() -> void:
+	
+	# so the cam on desktop is static
 	if desktop==true:
 		$Camera2D.enabled=false
+	
 	startpos=position
+	
+	# adds item on new player instance
 	if Global.item != "":
 		add_item(Global.item)
 
@@ -46,7 +49,8 @@ func add_item(id):
 	$Itemhold.load_item()
 
 func _process(delta: float) -> void:
-
+	
+	
 	$Itemhold.hide()
 	if active == false:
 		set_collision_layer_value(1,false)
@@ -115,22 +119,12 @@ func _process(delta: float) -> void:
 						$walk.playing=true
 					walktimer[0] = 1/abs(velocity.x)*10.0
 			walktimer[0] -= delta
-
 	
-func _physics_process(delta: float) -> void:
-	#Global.playervars["scale"] = Vector2(2,2)
-	if active == true:
-		original_size = modsize * Global.playervars["scale"] * 1
-		detection_range = Global.playervars["scale"].x
-		Global.playervars["position"] = global_position
-		
-		
-		
-	#print(touchdown)
-	if active == true:
-		if Global.lockinput==false:
-			
-			
+	fight_direction_handler()
+
+
+
+func dashdownlogic():
 			if Input.is_action_pressed("down"):
 				if sneak == false:
 					if not is_on_floor():
@@ -152,67 +146,91 @@ func _physics_process(delta: float) -> void:
 
 			if is_on_floor():
 				$fall.stop()
-					
-
-		
-
-	# Add the gravity.
-		if not is_on_floor():
-			velocity += get_gravity() * delta * 3
-
-	# Handle jump.
-	if active == true:
-		if Global.lockinput==false:
-			if Input.is_action_just_pressed("jump") and is_on_floor():
+func jumplogic():
+	
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 				$jump.play()
-				velocity.y = JUMP_VELOCITY
+				velocity.y = jumpVel
+func fight_direction_handler():
 	if not is_on_floor() and velocity.y < 0:
 		fightdir = 0
 	if not is_on_floor() and velocity.y > 0:
 		fightdir = 2
 	if is_on_floor():
 		fightdir=fightdirmem
+func movementlogic():
+	var direction := Input.get_axis("left", "right")
+	if not direction == 0: # setting fight dir
+		fightdir = direction
+		fightdirmem = fightdir
+	
+	# this cancels out velofity when running in a dir and then changing it
+	if sneak == false:
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	if active == true:
-		if Global.lockinput==false:
-			var direction := Input.get_axis("left", "right")
-			if not direction == 0:
-				fightdir = direction
-				fightdirmem = fightdir
-			if sneak == false:
-				if velocity.x>10:
-					if Input.is_action_just_pressed("left"):
-						velocity.x = abs(velocity.x) * -0.1
-						walkspeed = abs(velocity.x) * -0.1
-				if velocity.x<-10:
-					if Input.is_action_just_pressed("right"):
-						velocity.x = abs(velocity.x) * 0.1
-						walkspeed = abs(velocity.x) * 0.1
-			if direction:
-				if abs(velocity.x) < 1000:
-					if wallfever == false:
-						velocity.x += direction * SPEED
+		if Input.is_action_pressed("left"):
+			if wallfever == false:
+				if velocity.x > 0:
+						
+					velocity.x = move_toward(velocity.x, 0, abs(velocity.x*dirSwitchDrag))
+
+		if Input.is_action_pressed("right"):
+			if wallfever == false:
+				if velocity.x < 0:
+						
+					velocity.x = move_toward(velocity.x, 0, abs(velocity.x*dirSwitchDrag))
+	if direction:
+		if abs(velocity.x) < maxSpeed:
+			if wallfever == false:
+				velocity.x += direction * accel
 			
 
 
-			else:
+	else:
 
-				if !Input.is_key_pressed(KEY_SPACE) and wallfever == true:
-					velocity.x = move_toward(velocity.x, 0, SPEED*3)
-				if wallfever == false:
-					if sneak == false:
-						if not Input.is_action_pressed("left"):
-							if not Input.is_action_pressed("right"):
-								velocity.x = move_toward(velocity.x, 0, SPEED*10)
-			velocityhist = velocity.x
+		if !Input.is_key_pressed(KEY_SPACE) and wallfever == true:
+			velocity.x = move_toward(velocity.x, 0, accel*3)
+		if wallfever == false:
+			if sneak == false:
+				if not Input.is_action_pressed("left"):
+					if not Input.is_action_pressed("right"):
+						velocity.x = move_toward(velocity.x, 0, accel*drag)
+	velocityhist = velocity.x
+
+
+	
+
+func _physics_process(delta: float) -> void:
+	#Global.playervars["scale"] = Vector2(2,2)
+	if active == true:
+	#	original_size = modsize * Global.playervars["scale"] * 1
+		#detection_range = Global.playervars["scale"].x
+		Global.playervars["position"] = global_position
+		
+		
+		
+	#---------> MOVEMENT <------------------------------------------------------#
+
+	if active == true:
+		if Global.lockinput==false:
+			dashdownlogic()
+			jumplogic()
+			movementlogic()
+	
+	# Add the gravity.
+		if not is_on_floor():
+			velocity += get_gravity() * delta * 3
+	
+	#---------> MOVEMENT END <------------------------------------------------------#
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	
 	
 	$sprintparticle.emitting=false
 	if is_on_floor():
 		if abs(velocity.x) > 20:
 			$sprintparticle.emitting=true
-		
+
 	
 	if active == true:
 		move_and_slide()
@@ -222,15 +240,11 @@ func _physics_process(delta: float) -> void:
 		$fight.hide()
 		$SubViewport/Node3D.hide()
 	
-	handle_crush_physics(delta)
-	
-	# Smoothly apply the scale changes
-	scalemodifier.x = lerp(scalemodifier.x, target_scale.x, squash_speed * delta)
-	scalemodifier.y = lerp(scalemodifier.y, target_scale.y, squash_speed * delta)
-	check_if_stuck()
 
+	
 	$AnimationTree.set("parameters/blend_position", velocity.x)
 	$AnimationTree.set("parameters/BlendSpace1D/blend_position", velocity.x)
+
 
 
 
@@ -261,7 +275,7 @@ func die():
 	wallfever = false
 	#$AnimationPlayer.play("despawn")
 	call_deferred("set_position", startpos)
-	target_scale = Vector2(1,1)
+	#target_scale = Vector2(1,1)
  
 func despawn():
 	active = false
@@ -291,92 +305,3 @@ func _on_fight_anim_animation_finished(anim_name: StringName) -> void:
 		$fight.hide()
 
 		
-
-
-func handle_crush_physics(delta: float):
-	# 1. Check Horizontal (Left/Right)
-	var dist_l = get_distance_to_wall(Vector2.LEFT)
-	var dist_r = get_distance_to_wall(Vector2.RIGHT)
-	if dist_l != -1.0 and dist_r != -1.0:
-		var total_gap = dist_l + dist_r
-		if total_gap < original_size.x:
-			target_scale.x = max(total_gap / original_size.x, min_scale)
-			target_scale.y = 1/max(total_gap / original_size.x, min_scale)
-			# Reposition to stay perfectly centered between the two walls
-			var offset = (dist_r - dist_l) / 2.0
-			global_position.x += offset
-	else:
-		target_scale.x = move_toward(target_scale.x, 1.0, target_scale.y)
-
-	# 2. Check Vertical (Up/Down)
-	var dist_u = get_distance_to_wall(Vector2.UP)
-	var dist_d = get_distance_to_wall(Vector2.DOWN)
-	
-	if dist_u != -1.0 and dist_d != -1.0:
-		var total_gap = dist_u + dist_d
-		if total_gap < original_size.y:
-			target_scale.y = max(total_gap / original_size.y, min_scale)
-			target_scale.x = 1/max(total_gap / original_size.y, min_scale)
-			var offset = (dist_d - dist_u) / 2.0
-			global_position.y += offset
-	else:
-		target_scale.y = move_toward(target_scale.y, 1.0, recovery_speed * delta)
-
-func get_distance_to_wall(direction: Vector2) -> float:
-	var space_state = get_world_2d().direct_space_state
-	
-	# We use a ShapeQuery to detect walls as a "block" rather than a thin line
-	var query = PhysicsShapeQueryParameters2D.new()
-	
-	# Use a small rectangle as the sensor
-	var sensor_shape = RectangleShape2D.new()
-	sensor_shape.size = Vector2(4, 4) # Small probe size
-	
-	query.shape = sensor_shape
-	query.collision_mask = collision_mask # Use the same layers the player hits
-	query.exclude = [get_rid()]           # Don't hit ourselves
-	
-	# Cast the shape out in the chosen direction
-	var cast_distance = original_size.x # Look far enough to find opposing walls
-	query.transform = global_transform
-	query.motion = direction * cast_distance
-	
-	var result = space_state.cast_motion(query)
-	
-	# result[0] is the safe fraction (0.0 to 1.0) before hitting a wall
-	if result[0] < 1.0:
-		return result[0] * cast_distance
-
-	return -1.0 # No wall found within range
-
-func check_if_stuck():
-	# 1. Check if the scale is too small (meaning walls have physically crushed us)
-
-	if target_scale.x <= kill_threshold or target_scale.y <= kill_threshold:
-		print("ded")
-		on_crushed()
-		return
-
-	var is_currently_overlapping = test_move(global_transform, Vector2.ZERO)
-	
-	if is_currently_overlapping:
-		stuck_frames += 1
-	else:
-		stuck_frames = 0
-	
-	# Only set is_stuck to true if it persists
-	if stuck_frames >= stuck_threshold:
-		if not is_stuck:
-			is_stuck = true
-			die()
-			print("Definitely Stuck")
-	else:
-		if is_stuck:
-			is_stuck = false
-			print("Escaped")
-
-func on_crushed():
-	# Replace this with your game over logic
-	# print("CRUSHED!")
-	die()
-	pass

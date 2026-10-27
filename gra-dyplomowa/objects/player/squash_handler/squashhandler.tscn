@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://druvnvd5xy5jk"]
+
+[ext_resource type="Script" uid="uid://qhb260trdumr" path="res://objects/player/squash_handler/squashhandler.gd" id="1_bp7dw"]
+
+[node name="Squashhandler" type="Node2D" unique_id=1164027075]
+script = ExtResource("1_bp7dw")
