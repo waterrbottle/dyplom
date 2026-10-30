@@ -2978,7 +2978,9 @@ stream_0/stream = ExtResource("10_hytha")
 [node name="Player" type="CharacterBody2D" unique_id=1401127334 groups=["player"]]
 collision_mask = 4
 script = ExtResource("1_4flbx")
-accel = 14.0
+accel = 10.0
+maxSpeed = 900.0
+jumpVel = -900.0
 jumpstrengthovertime = SubResource("CurveTexture_u3mmx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1440106345]
