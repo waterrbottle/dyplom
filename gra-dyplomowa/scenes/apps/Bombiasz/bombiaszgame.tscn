@@ -325,6 +325,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=268958758]
 stream = ExtResource("5_s2tf5")
+volume_db = -13.315
 
 [node name="explode" type="AudioStreamPlayer" parent="." unique_id=310748495]
 stream = ExtResource("6_5n20p")

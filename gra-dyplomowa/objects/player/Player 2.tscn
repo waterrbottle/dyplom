@@ -14,6 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://cujfa22dhveuq" path="res://objects/player/abilities/sliding/sliding.tscn" id="12_e76wp"]
 [ext_resource type="PackedScene" uid="uid://druvnvd5xy5jk" path="res://objects/player/squash_handler/squashhandler.tscn" id="13_8qrxt"]
 
+[sub_resource type="Curve" id="Curve_gj0d3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.003676474, 0.02822578), 0.0, 0.0, 0, 0, Vector2(0.99816173, 0.016129017), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_u3mmx"]
+curve = SubResource("Curve_gj0d3")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 16.0
 
@@ -2971,6 +2978,8 @@ stream_0/stream = ExtResource("10_hytha")
 [node name="Player" type="CharacterBody2D" unique_id=1401127334 groups=["player"]]
 collision_mask = 4
 script = ExtResource("1_4flbx")
+accel = 14.0
+jumpstrengthovertime = SubResource("CurveTexture_u3mmx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1440106345]
 shape = SubResource("CircleShape2D_onrkg")

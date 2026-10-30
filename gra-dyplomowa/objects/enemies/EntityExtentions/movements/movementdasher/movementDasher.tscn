@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dw0ofgdcqexnu"]
+
+[ext_resource type="Script" uid="uid://1oda3xvjurmo" path="res://objects/enemies/EntityExtentions/movements/movementdasher/movement_dasher.gd" id="1_07frc"]
+
+[node name="MovementDasher" type="Node" unique_id=1003286378]
+script = ExtResource("1_07frc")
+
+[node name="dashtimer" type="Timer" parent="." unique_id=868788424]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]

@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://2gw7rmnwfami"]
 
+[ext_resource type="Script" uid="uid://dwqqclb2pxwvp" path="res://objects/enemies/czarek/czarek.gd" id="1_8nm87"]
 [ext_resource type="Texture2D" uid="uid://d0w0ik0jxta7w" path="res://MyComputer/pngimg.png" id="1_lyy6o"]
-[ext_resource type="Script" uid="uid://dwqqclb2pxwvp" path="res://objects/enemies/bombacz/bombacz.gd" id="1_q7fln"]
 [ext_resource type="PackedScene" uid="uid://bvgqjrqb5xftd" path="res://objects/enemies/EntityExtentions/healthbar/stats.tscn" id="2_fxlbk"]
 [ext_resource type="Resource" uid="uid://bv1v5aca7ucty" path="res://objects/enemies/EntityResources/basicenemy.tres" id="2_u0wt3"]
 [ext_resource type="PackedScene" uid="uid://c4qceoenujvhy" path="res://objects/enemies/EntityExtentions/damager/damagerbasic.tscn" id="5_u0wt3"]
-[ext_resource type="PackedScene" uid="uid://d3ylpw37j7qrg" path="res://objects/enemies/EntityExtentions/movements/movementfollowbasic/movementfollowbasic.tscn" id="6_bpsis"]
+[ext_resource type="PackedScene" uid="uid://dw0ofgdcqexnu" path="res://objects/enemies/EntityExtentions/movements/movementdasher/movementDasher.tscn" id="6_8nm87"]
+[ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="7_u3mmx"]
+[ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="8_gj0d3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1cdh"]
 radius = 24.0
@@ -13,10 +15,20 @@ radius = 24.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_muynp"]
 radius = 28.01785
 
-[node name="Bombacz" type="CharacterBody2D" unique_id=1088395146]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tuxft"]
+texture = ExtResource("7_u3mmx")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1cdh"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="Czarek" type="CharacterBody2D" unique_id=1088395146]
 collision_layer = 2
 collision_mask = 254
-script = ExtResource("1_q7fln")
+script = ExtResource("1_8nm87")
 EnemyStats = ExtResource("2_u0wt3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=808351055]
@@ -28,8 +40,8 @@ scale = Vector2(0.032974303, 0.018742317)
 texture = ExtResource("1_lyy6o")
 
 [node name="Stats" parent="." unique_id=1620432705 instance=ExtResource("2_fxlbk")]
-position = Vector2(0, -41)
-entity = "BOMBACZ.cxe"
+position = Vector2(0, -62.91)
+entity = "czarek.cxe"
 
 [node name="extentions" type="Node" parent="." unique_id=1743634273]
 
@@ -51,10 +63,9 @@ damagers = [["fist", {
 
 [node name="movement" type="Node" parent="extentions" unique_id=252619256]
 
-[node name="Movementfollowbasic" parent="extentions/movement" unique_id=198252922 node_paths=PackedStringArray("entity") instance=ExtResource("6_bpsis")]
+[node name="MovementDasher" parent="extentions/movement" unique_id=1003286378 node_paths=PackedStringArray("entity", "chargebar") instance=ExtResource("6_8nm87")]
 entity = NodePath("../../..")
-speedgain = 0.0
-maxspeed = 0.0
+chargebar = NodePath("../../../Panel/ProgressBar")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1809620329]
 collision_layer = 8
@@ -62,3 +73,34 @@ collision_mask = 65535
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=760654777]
 shape = SubResource("CircleShape2D_muynp")
+
+[node name="Panel" type="Panel" parent="." unique_id=51513006]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -51.0
+offset_right = 50.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_tuxft")
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel" unique_id=478522076]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_gj0d3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b1cdh")
+value = 75.18
+show_percentage = false

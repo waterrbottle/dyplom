@@ -9,10 +9,13 @@ extends CharacterBody2D
 @export_range(0, 1) var dirSwitchDrag = 0.25
 @export_category("jumping")
 @export_range(-5000, -100) var jumpVel = -1000.0
-
-
+@export_range(0, 1) var airJumpTime = 0.1
+@export var maxJumpPower = 100
+@export var jumpstrengthovertime : CurveTexture
+var jumppower = 0
+var airjump = 0
 var velocityhist := 0.0
-
+var jumping = false
 var active = true
 var particlescene = load("res://objects/player/playerspawnpart.tscn")
 
@@ -32,6 +35,7 @@ var wallfever = false
 var floordash = 0
 var touchdown = 0
 var walktimer = [0, true]
+@onready var curve = jumpstrengthovertime.curve
 func _ready() -> void:
 	
 	# so the cam on desktop is static
@@ -125,6 +129,8 @@ func _process(delta: float) -> void:
 
 
 func dashdownlogic():
+			if Input.is_action_just_released("down"):
+				floordash = 0
 			if Input.is_action_pressed("down"):
 				if sneak == false:
 					if not is_on_floor():
@@ -146,11 +152,32 @@ func dashdownlogic():
 
 			if is_on_floor():
 				$fall.stop()
-func jumplogic():
+func jumplogic(delta):
+	if is_on_floor():
+		jumping = false
+		jumppower = maxJumpPower
+		airjump = airJumpTime
+	else:
+		airjump -= delta
+
+	if Input.is_action_pressed("jump") and airjump > 0:
+		if jumppower > 0:
+			airjump = 0
+			jumping = true
+			$jump.play()
+			
+			
+		
+	if jumping == true:
+		if Input.is_action_pressed("jump"):
+			if jumppower > 0:
+				var value = curve.sample(1 - (1.0 * jumppower  / maxJumpPower))
+
+				velocity.y += jumpVel * value
+		if Input.is_action_just_released("jump"):
+			jumppower = 0
+		jumppower -= 1
 	
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-				$jump.play()
-				velocity.y = jumpVel
 func fight_direction_handler():
 	if not is_on_floor() and velocity.y < 0:
 		fightdir = 0
@@ -213,12 +240,12 @@ func _physics_process(delta: float) -> void:
 	if active == true:
 		if Global.lockinput==false:
 			dashdownlogic()
-			jumplogic()
+			jumplogic(delta)
 			movementlogic()
 	
 	# Add the gravity.
 		if not is_on_floor():
-			velocity += get_gravity() * delta * 3
+			velocity += get_gravity() * delta * 4
 	
 	#---------> MOVEMENT END <------------------------------------------------------#
 
