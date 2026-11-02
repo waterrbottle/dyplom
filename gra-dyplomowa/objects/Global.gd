@@ -49,13 +49,7 @@ func _process(delta: float) -> void:
 		# No UI element is focused
 		lockinput = false
 	do_something()
-	
 	if playervars["health"] < 1:
-		if !has_node("/root/MyComputer/Windows"):
-			addwindow("uid://8ogs475b2e7p", "Data Overflow", {"text": "you run out of lives", "bug": false, "image": load("uid://tks5bgimi0am") }, null)
-			addwindow("uid://8ogs475b2e7p", "Info", {"text": "since u in scene mode lives reset ", "bug": false, "image": load("uid://bn4l23n5c0444") }, null)
-			playervars["health"] = 100
-			return
 		for n in get_node("/root/MyComputer/Windows").get_children():
 			if n.appscene.get_node("Leveldata").type == "level":
 				n.queue_free()
@@ -126,10 +120,6 @@ func addwindow(scene: String, namee, content, loc):
 			get_node("/root/MyComputer/Windows").add_child.call_deferred(inst)
 		else:
 			loc.add_child.call_deferred(inst)
-	else:
-		print("adding window")
-		inst.position = playervars["position"]
-		get_node("/root").get_child(-1).add_child.call_deferred(inst)
 	
 func closewindow(closetype, value):
 	if closetype == "node":

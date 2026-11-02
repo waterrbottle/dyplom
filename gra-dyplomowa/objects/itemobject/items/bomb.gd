@@ -27,7 +27,6 @@ func _process(delta: float) -> void:
 	
 	
 func tilecheck():
-	$AudioStreamPlayer.play()
 	used = true
 	print("hello")
 	print($object/tilecheck/CollisionShape2D.disabled)
@@ -43,27 +42,14 @@ func tilecheck():
 					if n.get_cell_source_id(a) == 0:
 						n.set_cell(a, -1, Vector2(0,0))
 				active = false
-		if n is CharacterBody2D:
-			print(n)
-			if n.is_in_group("enemy"):
-				var damagernode = n.find_child("Damagerbasic", true)
-				print(damagernode)
-				if damagernode != null:
-					
-					for m in damagernode.damagers:
-						if m[0] == "item":
-							if m[1]["id"] == "bomb":
-								damagernode.damagergetter(m,$object/tilecheck,"item")
-					
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if display == false:
 		
 		
 		if active == true:
-			if used == false:
-				$object/tilecheck/CollisionShape2D.set_deferred("disabled", false)
-				call_deferred("tilecheck")
+			$object/tilecheck/CollisionShape2D.set_deferred("disabled", false)
+			call_deferred("tilecheck")
 
 			
 						
