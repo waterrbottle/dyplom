@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 [gd_scene format=4 uid="uid://rf7u1cd8br6x"]
-=======
-[gd_scene format=4 uid="uid://byrhpxq3aheqr"]
->>>>>>> Stashed changes
 
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="1_6t30v"]
 [ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player 2.tscn" id="2_ndko2"]
@@ -11,11 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://2gw7rmnwfami" path="res://objects/enemies/czarek/czarek.tscn" id="5_km3s8"]
 [ext_resource type="Script" uid="uid://powq1usgpexu" path="res://objects/enemies/EntityResources/BasicEnemy.gd" id="6_17ngv"]
 
-<<<<<<< Updated upstream
 [sub_resource type="ViewportTexture" id="ViewportTexture_6t30v"]
-=======
-[sub_resource type="ViewportTexture" id="ViewportTexture_66t62"]
->>>>>>> Stashed changes
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ow0dq"]
@@ -107,11 +99,7 @@ advance_expression = "floordash == 0 or is_on_floor()"
 advance_mode = 2
 advance_expression = "sneak and is_on_floor()"
 
-<<<<<<< Updated upstream
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ndko2"]
-=======
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_k8jln"]
->>>>>>> Stashed changes
 resource_local_to_scene = true
 states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_xgwla")
 states/BlendSpace1D/position = Vector2(506.1572, -38.682613)
@@ -185,11 +173,7 @@ physics_layer_0/collision_mask = 3
 sources/1 = SubResource("TileSetAtlasSource_s3h5r")
 sources/0 = SubResource("TileSetAtlasSource_b328d")
 
-<<<<<<< Updated upstream
 [sub_resource type="Resource" id="Resource_krft1"]
-=======
-[sub_resource type="Resource" id="Resource_66t62"]
->>>>>>> Stashed changes
 resource_local_to_scene = true
 script = ExtResource("6_17ngv")
 max_health = 5
@@ -203,7 +187,6 @@ windowname = "level 1"
 
 [node name="Player" parent="." unique_id=1401127334 instance=ExtResource("2_ndko2")]
 position = Vector2(797, -39)
-<<<<<<< Updated upstream
 accel = 14.0
 maxSpeed = 700.0
 
@@ -218,20 +201,6 @@ texture = SubResource("ViewportTexture_6t30v")
 
 [node name="AnimationTree" parent="Player" index="3" unique_id=938827342]
 tree_root = SubResource("AnimationNodeStateMachine_ndko2")
-=======
-
-[node name="right arm" parent="Player/SubViewport/Node3D" parent_id_path=PackedInt32Array(1401127334, 1438825571) index="1" unique_id=1786653235]
-transform = Transform3D(0.9999997, 0, 0, 0, 0.9999997, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="left leg" parent="Player/SubViewport/Node3D" parent_id_path=PackedInt32Array(1401127334, 1438825571) index="2" unique_id=528099174]
-transform = Transform3D(0.9895803, 0.1439759, 0, -0.1439759, 0.9895803, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="TextureRect" parent="Player" index="2" unique_id=1031087902]
-texture = SubResource("ViewportTexture_66t62")
-
-[node name="AnimationTree" parent="Player" index="3" unique_id=938827342]
-tree_root = SubResource("AnimationNodeStateMachine_k8jln")
->>>>>>> Stashed changes
 
 [node name="Camera2D" parent="Player" index="4" unique_id=1236330716]
 zoom = Vector2(0.75, 0.75)
@@ -251,12 +220,7 @@ offset_bottom = -302.0
 
 [node name="Czarek" parent="." unique_id=1088395146 instance=ExtResource("5_km3s8")]
 position = Vector2(976, 7)
-<<<<<<< Updated upstream
 EnemyStats = SubResource("Resource_krft1")
-=======
-EnemyStats = SubResource("Resource_66t62")
-type = "lobotomized"
->>>>>>> Stashed changes
 
 [node name="Label" type="Label" parent="." unique_id=137931636]
 offset_left = 1290.0
