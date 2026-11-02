@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene format=4 uid="uid://dfjk3r1lsd7i8"]
+=======
+[gd_scene format=4 uid="uid://dowc7vihfahpi"]
+>>>>>>> Stashed changes
 
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="1_ouf8k"]
 [ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player 2.tscn" id="2_j6tds"]
