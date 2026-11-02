@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://elmwyrmqpq7o" path="res://assets/images/items/BOMBA.png" id="1_uhsla"]
 [ext_resource type="Texture2D" uid="uid://d1eltwlrem3hq" path="res://assets/images/particles/IKS.png" id="2_uhsla"]
 [ext_resource type="Texture2D" uid="uid://br68ug1vyokhs" path="res://assets/images/particles/chmurka.png" id="4_13f8l"]
+[ext_resource type="AudioStream" uid="uid://ctsrg82htncoj" path="res://assets/sounds/sfx/minigames/BOMBAIGUESS3 (1).wav" id="5_2p2vj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_byym3"]
 bounce = 0.59
@@ -225,5 +226,8 @@ offset_left = -86.0
 offset_top = -77.0
 offset_right = 89.0
 offset_bottom = 78.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2086769514]
+stream = ExtResource("5_2p2vj")
 
 [connection signal="body_entered" from="object/Area2D" to="." method="_on_area_2d_body_entered"]

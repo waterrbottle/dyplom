@@ -187,8 +187,11 @@ windowname = "level 1"
 
 [node name="Player" parent="." unique_id=1401127334 instance=ExtResource("2_ndko2")]
 position = Vector2(797, -39)
+<<<<<<< HEAD
 accel = 14.0
 maxSpeed = 700.0
+=======
+>>>>>>> df699747f6706ab19ffca1dd7b16d48598e086b5
 
 [node name="right arm" parent="Player/SubViewport/Node3D" parent_id_path=PackedInt32Array(1401127334, 1438825571) index="1" unique_id=1786653235]
 transform = Transform3D(0.9999996, 0, 0, 0, 0.9999996, 0, 0, 0, 1, 0, 0, 0)

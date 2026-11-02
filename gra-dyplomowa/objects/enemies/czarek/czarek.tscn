@@ -25,11 +25,12 @@ texture_margin_bottom = 4.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1cdh"]
 bg_color = Color(1, 0, 0, 1)
 
-[node name="Czarek" type="CharacterBody2D" unique_id=1088395146]
+[node name="Czarek" type="CharacterBody2D" unique_id=1088395146 groups=["enemy"]]
 collision_layer = 2
 collision_mask = 254
 script = ExtResource("1_8nm87")
 EnemyStats = ExtResource("2_u0wt3")
+type = "lobotomized"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=808351055]
 shape = SubResource("CircleShape2D_b1cdh")
@@ -88,6 +89,7 @@ offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_tuxft")
+metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="ProgressBar" parent="Panel" unique_id=478522076]
 layout_mode = 1
@@ -104,3 +106,4 @@ theme = ExtResource("8_gj0d3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_b1cdh")
 value = 75.18
 show_percentage = false
+metadata/_edit_use_anchors_ = true
