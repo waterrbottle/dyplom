@@ -19,9 +19,9 @@ size = Vector2(93, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gc42i"]
 size = Vector2(4, 38)
 
-[node name="Dvd" type="CharacterBody2D" unique_id=68257720]
-collision_layer = 0
-collision_mask = 4
+[node name="Dvd" type="CharacterBody2D" unique_id=68257720 groups=["enemy"]]
+collision_layer = 2
+collision_mask = 254
 script = ExtResource("1_yuxou")
 EnemyStats = ExtResource("2_6jjhy")
 
@@ -32,7 +32,7 @@ texture = ExtResource("3_6jjhy")
 
 [node name="Stats" parent="." unique_id=1620432705 instance=ExtResource("4_gc42i")]
 position = Vector2(0, -52)
-entity = "VDV.exe"
+entity = "VDV.cxe"
 healthbarlengt = 150
 
 [node name="Area2D" type="Area2D" parent="." unique_id=391638708]
@@ -59,7 +59,6 @@ speed = 74.763
 entity = NodePath("../../..")
 damagearea = NodePath("../../../Area2D")
 setdamage = Vector2i(1, 3)
-getdamage = Vector2i(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1925767456]
 position = Vector2(-0.5, 3)

@@ -124,9 +124,9 @@ _data = {
 &"idle": SubResource("Animation_m8rwi")
 }
 
-[node name="Michas" type="CharacterBody2D" unique_id=2140165586]
+[node name="Michas" type="CharacterBody2D" unique_id=2140165586 groups=["enemy"]]
 collision_layer = 2
-collision_mask = 6
+collision_mask = 254
 script = ExtResource("1_2lj0q")
 EnemyStats = ExtResource("2_mf4m2")
 
@@ -161,7 +161,7 @@ shape = SubResource("CircleShape2D_2lj0q")
 
 [node name="Stats" parent="." unique_id=1620432705 instance=ExtResource("3_edrj5")]
 position = Vector2(0, -48.9)
-entity = "michas.exe"
+entity = "michas.cxe"
 healthbarlengt = 75
 
 [node name="extentions" type="Node" parent="." unique_id=620799667]
@@ -177,7 +177,6 @@ agrorange = 500.0
 [node name="Damagerbasic" parent="extentions/damagers" unique_id=1582854605 node_paths=PackedStringArray("entity", "damagearea") instance=ExtResource("4_edrj5")]
 entity = NodePath("../../..")
 damagearea = NodePath("../../../Area2D")
-getdamage = Vector2i(1, 1)
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1482058166]
 position = Vector2(0, -20.12)

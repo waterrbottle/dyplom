@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bkleyxl3xg6ef" path="res://scenes/levels/level_1.gd" id="1_g7tkf"]
 [ext_resource type="Texture2D" uid="uid://d8h710hmn2rb" path="res://assets/images/tiles/tile.png" id="2_dd0lh"]
 [ext_resource type="Texture2D" uid="uid://dmvmxavj5esir" path="res://assets/images/backgrounds/tilemapa.png" id="2_jprdt"]
-[ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player.tscn" id="3_dd0lh"]
+[ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player 2.tscn" id="3_dd0lh"]
 [ext_resource type="Texture2D" uid="uid://ctt522uyt37f1" path="res://assets/images/tiles/bardzo rozwalony tile.png" id="3_nfihu"]
 [ext_resource type="Texture2D" uid="uid://d2lwueeiducau" path="res://assets/images/backgrounds/tlotol.png" id="3_ps2vj"]
 [ext_resource type="Shader" uid="uid://ifnp3h80bavv" path="res://resources/shaders/corrupted.gdshader" id="3_sbmf2"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://3f3i1x8xl0ea" path="res://assets/images/0101-2.png" id="7_gvm5i"]
 [ext_resource type="Texture2D" uid="uid://ct6wl5q0mj1f7" path="res://assets/images/deco/pngtree-forest-landscape-with-lush-green-trees-png-image_20988313.png" id="7_jrfo0"]
 [ext_resource type="PackedScene" uid="uid://dpox42dqsw7fu" path="res://objects/enemies/dvd/dvd.tscn" id="8_8a7m2"]
-[ext_resource type="Texture2D" uid="uid://cgkdw1e4aycbi" path="res://assets/images/deco/sam-schooler-E9aetBe2w40-unsplash.jpg" id="9_jrfo0"]
+[ext_resource type="Texture2D" uid="uid://j68160lrqdqk" path="res://assets/images/deco/sam-schooler-E9aetBe2w40-unsplash.jpg" id="9_jrfo0"]
 [ext_resource type="Texture2D" uid="uid://ibdagho86ogb" path="res://assets/GlucioTemplates/Glucio_Green.png" id="9_plydf"]
 [ext_resource type="Texture2D" uid="uid://pg2bwn4haugy" path="res://assets/GlucioTemplates/Glucio_Red.png" id="10_5ntmo"]
 [ext_resource type="Texture2D" uid="uid://cabkbs027ycft" path="res://MyComputer/Desktop/LEVEL1/08-06-1997_HULAKULA.jpg" id="10_c2nc4"]
@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dtmt0f0j4bgv8" path="res://objects/pickablefile/pickablefile.tscn" id="13_lgguw"]
 [ext_resource type="Texture2D" uid="uid://ciewyfom7cux2" path="res://assets/images/deco/Screenshot 2026-06-18 at 17.52.59.png" id="15_6gwlt"]
 [ext_resource type="Texture2D" uid="uid://bm47dykvnki2s" path="res://assets/images/deco/mikolaj-zrL8YaovJhk-unsplash-removebg-preview.png" id="19_4fww7"]
-[ext_resource type="Texture2D" uid="uid://d2p71d4qerlfm" path="res://assets/images/deco/green-grass-on-transparent-background-png.png.webp" id="19_gvm5i"]
+[ext_resource type="AudioStream" uid="uid://b2qpblbcsvfou" path="res://assets/CLOUD1_lobby.mp3" id="24_u6nna"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1xax6"]
 shader = ExtResource("3_sbmf2")
@@ -187,133 +187,133 @@ shader_parameter/colorreduceB = 2.0
 shader_parameter/colorStrength = 15.97
 shader_parameter/colorAdd = -0.2
 
-[sub_resource type="Resource" id="Resource_gvm5i"]
+[sub_resource type="Resource" id="Resource_8wh56"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 15
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_jrfo0"]
+[sub_resource type="Resource" id="Resource_c1l53"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 15
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_db1r7"]
+[sub_resource type="Resource" id="Resource_37p4h"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_6gwlt"]
+[sub_resource type="Resource" id="Resource_nbj34"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_c2nc4"]
+[sub_resource type="Resource" id="Resource_bxn7h"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_vhxpm"]
+[sub_resource type="Resource" id="Resource_tw8ve"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_arkx4"]
+[sub_resource type="Resource" id="Resource_bebr5"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_jqv5m"]
+[sub_resource type="Resource" id="Resource_6iciq"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_noix2"]
+[sub_resource type="Resource" id="Resource_mvjqf"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_025c5"]
+[sub_resource type="Resource" id="Resource_wmyhk"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_bw3ef"]
+[sub_resource type="Resource" id="Resource_vdcuo"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_07dy8"]
+[sub_resource type="Resource" id="Resource_hu3l1"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_3gp1u"]
+[sub_resource type="Resource" id="Resource_yaeov"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 15
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_igeo0"]
+[sub_resource type="Resource" id="Resource_hlg3k"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_y71nm"]
+[sub_resource type="Resource" id="Resource_bgetl"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_6d4iq"]
+[sub_resource type="Resource" id="Resource_bck7j"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_7plwd"]
+[sub_resource type="Resource" id="Resource_wrngw"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_agrr7"]
+[sub_resource type="Resource" id="Resource_d3lof"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_b2isc"]
+[sub_resource type="Resource" id="Resource_fdfm2"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_qg8x4"]
+[sub_resource type="Resource" id="Resource_3xyjt"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_nm6kf"]
+[sub_resource type="Resource" id="Resource_urotf"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 15
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_88m6t"]
+[sub_resource type="Resource" id="Resource_bicy6"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 15
@@ -519,31 +519,26 @@ material = SubResource("ShaderMaterial_4fww7")
 material = SubResource("ShaderMaterial_4fww7")
 position = Vector2(2804.8123, 1427)
 scale = Vector2(0.42281738, 0.088571616)
-texture = ExtResource("19_gvm5i")
 
 [node name="Sprite2D2" type="Sprite2D" parent="deco/grass" unique_id=1591760056]
 material = SubResource("ShaderMaterial_4fww7")
 position = Vector2(2503.8748, 1410.2501)
 scale = Vector2(0.11869942, 0.19000046)
-texture = ExtResource("19_gvm5i")
 
 [node name="Sprite2D3" type="Sprite2D" parent="deco/grass" unique_id=771860394]
 material = SubResource("ShaderMaterial_4fww7")
 position = Vector2(2309.9375, 1429.0001)
 scale = Vector2(0.11869942, 0.07785751)
-texture = ExtResource("19_gvm5i")
 
 [node name="Sprite2D4" type="Sprite2D" parent="deco/grass" unique_id=387103369]
 material = SubResource("ShaderMaterial_4fww7")
 position = Vector2(2986.5, 1187.6563)
 scale = Vector2(0.040504083, 0.52946454)
-texture = ExtResource("19_gvm5i")
 
 [node name="Sprite2D5" type="Sprite2D" parent="deco/grass" unique_id=1979905585]
 material = SubResource("ShaderMaterial_4fww7")
 position = Vector2(3463.25, 1407.3281)
 scale = Vector2(0.31278127, 0.1961608)
-texture = ExtResource("19_gvm5i")
 
 [node name="Screenshot20260618At17_52_59" type="Sprite2D" parent="deco" unique_id=1521765390]
 material = SubResource("ShaderMaterial_025c5")
@@ -570,24 +565,24 @@ windowname = "LEVELIK"
 
 [node name="Dvd2" parent="enemies" unique_id=528180961 instance=ExtResource("8_8a7m2")]
 position = Vector2(7569, 43)
-EnemyStats = SubResource("Resource_gvm5i")
+EnemyStats = SubResource("Resource_8wh56")
 
 [node name="Dvd3" parent="enemies" unique_id=1127652216 instance=ExtResource("8_8a7m2")]
 position = Vector2(7311, 294)
-EnemyStats = SubResource("Resource_jrfo0")
+EnemyStats = SubResource("Resource_c1l53")
 
 [node name="Michas" parent="enemies" unique_id=2140165586 instance=ExtResource("6_2r1tl")]
 position = Vector2(4586, 717)
-EnemyStats = SubResource("Resource_db1r7")
+EnemyStats = SubResource("Resource_37p4h")
 
 [node name="Piotrek1" parent="enemies" unique_id=1487640581 instance=ExtResource("6_2r1tl")]
 position = Vector2(5379, 717)
-EnemyStats = SubResource("Resource_6gwlt")
+EnemyStats = SubResource("Resource_nbj34")
 
-[node name="ColorRect" parent="enemies/Piotrek1" index="0" unique_id=246346919]
+[node name="ColorRect" parent="enemies/Piotrek1" index="1" unique_id=246346919]
 color = Color(0.8829846, 0, 0.08119296, 1)
 
-[node name="Stats" parent="enemies/Piotrek1" index="4" unique_id=1620432705]
+[node name="Stats" parent="enemies/Piotrek1" index="5" unique_id=1620432705]
 entity = "piotrek.exe"
 
 [node name="Movementfollowbasic" parent="enemies/Piotrek1/extentions/movement" parent_id_path=PackedInt32Array(1487640581, 1942901925) index="0" unique_id=570659975]
@@ -598,21 +593,21 @@ setdamage = Vector2i(1, 10)
 
 [node name="Michas3" parent="enemies" unique_id=606860125 instance=ExtResource("6_2r1tl")]
 position = Vector2(5917, 1354)
-EnemyStats = SubResource("Resource_c2nc4")
+EnemyStats = SubResource("Resource_bxn7h")
 
 [node name="Michas4" parent="enemies" unique_id=431094519 instance=ExtResource("6_2r1tl")]
 position = Vector2(6385, 1354)
-EnemyStats = SubResource("Resource_vhxpm")
+EnemyStats = SubResource("Resource_tw8ve")
 
 [node name="Piotrek2" parent="enemies" unique_id=645277613 instance=ExtResource("6_2r1tl")]
 position = Vector2(6156, 1351)
-EnemyStats = SubResource("Resource_arkx4")
+EnemyStats = SubResource("Resource_bebr5")
 
-[node name="ColorRect" parent="enemies/Piotrek2" index="0" unique_id=246346919]
+[node name="ColorRect" parent="enemies/Piotrek2" index="1" unique_id=246346919]
 color = Color(0.8829846, 0, 0.08119296, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Stats" parent="enemies/Piotrek2" index="4" unique_id=1620432705]
+[node name="Stats" parent="enemies/Piotrek2" index="5" unique_id=1620432705]
 entity = "piotrek.exe"
 
 [node name="Movementfollowbasic" parent="enemies/Piotrek2/extentions/movement" parent_id_path=PackedInt32Array(645277613, 1942901925) index="0" unique_id=570659975]
@@ -623,20 +618,20 @@ setdamage = Vector2i(1, 10)
 
 [node name="Michas6" parent="enemies" unique_id=1965477293 instance=ExtResource("6_2r1tl")]
 position = Vector2(5457, 3375)
-EnemyStats = SubResource("Resource_jqv5m")
+EnemyStats = SubResource("Resource_6iciq")
 
 [node name="Michas7" parent="enemies" unique_id=755297112 instance=ExtResource("6_2r1tl")]
 position = Vector2(5879, 3376)
-EnemyStats = SubResource("Resource_noix2")
+EnemyStats = SubResource("Resource_mvjqf")
 
 [node name="Bolek1" parent="enemies" unique_id=1725128436 instance=ExtResource("6_2r1tl")]
 position = Vector2(5664, 3377)
-EnemyStats = SubResource("Resource_025c5")
+EnemyStats = SubResource("Resource_wmyhk")
 
-[node name="ColorRect" parent="enemies/Bolek1" index="0" unique_id=246346919]
+[node name="ColorRect" parent="enemies/Bolek1" index="1" unique_id=246346919]
 color = Color(0.92901075, 0.8670719, 0, 1)
 
-[node name="Stats" parent="enemies/Bolek1" index="4" unique_id=1620432705]
+[node name="Stats" parent="enemies/Bolek1" index="5" unique_id=1620432705]
 entity = "bolek.exe"
 
 [node name="Damagerbasic" parent="enemies/Bolek1/extentions/damagers" parent_id_path=PackedInt32Array(1725128436, 934516349) index="0" unique_id=1582854605]
@@ -644,17 +639,17 @@ setdamage = Vector2i(1, 10)
 
 [node name="Michas8" parent="enemies" unique_id=966446423 instance=ExtResource("6_2r1tl")]
 position = Vector2(6551, 3498)
-EnemyStats = SubResource("Resource_bw3ef")
+EnemyStats = SubResource("Resource_vdcuo")
 
 [node name="Piotrek3" parent="enemies" unique_id=869968737 instance=ExtResource("6_2r1tl")]
 position = Vector2(7278, 3497)
-EnemyStats = SubResource("Resource_07dy8")
+EnemyStats = SubResource("Resource_hu3l1")
 
-[node name="ColorRect" parent="enemies/Piotrek3" index="0" unique_id=246346919]
+[node name="ColorRect" parent="enemies/Piotrek3" index="1" unique_id=246346919]
 color = Color(0.8829846, 0, 0.08119296, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Stats" parent="enemies/Piotrek3" index="4" unique_id=1620432705]
+[node name="Stats" parent="enemies/Piotrek3" index="5" unique_id=1620432705]
 entity = "piotrek.exe"
 
 [node name="Movementfollowbasic" parent="enemies/Piotrek3/extentions/movement" parent_id_path=PackedInt32Array(869968737, 1942901925) index="0" unique_id=570659975]
@@ -665,17 +660,17 @@ setdamage = Vector2i(1, 10)
 
 [node name="Dvd4" parent="enemies" unique_id=1473417612 instance=ExtResource("8_8a7m2")]
 position = Vector2(7198, 3194)
-EnemyStats = SubResource("Resource_3gp1u")
+EnemyStats = SubResource("Resource_yaeov")
 
 [node name="Bolek2" parent="enemies" unique_id=300202454 instance=ExtResource("6_2r1tl")]
 position = Vector2(8815, 3499)
-EnemyStats = SubResource("Resource_igeo0")
+EnemyStats = SubResource("Resource_hlg3k")
 
-[node name="ColorRect" parent="enemies/Bolek2" index="0" unique_id=246346919]
+[node name="ColorRect" parent="enemies/Bolek2" index="1" unique_id=246346919]
 color = Color(0.92901075, 0.8670719, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Stats" parent="enemies/Bolek2" index="4" unique_id=1620432705]
+[node name="Stats" parent="enemies/Bolek2" index="5" unique_id=1620432705]
 entity = "bolek.exe"
 
 [node name="Damagerbasic" parent="enemies/Bolek2/extentions/damagers" parent_id_path=PackedInt32Array(300202454, 934516349) index="0" unique_id=1582854605]
@@ -683,13 +678,13 @@ setdamage = Vector2i(1, 10)
 
 [node name="Bolek3" parent="enemies" unique_id=488715918 instance=ExtResource("6_2r1tl")]
 position = Vector2(8239, 3500)
-EnemyStats = SubResource("Resource_y71nm")
+EnemyStats = SubResource("Resource_bgetl")
 
-[node name="ColorRect" parent="enemies/Bolek3" index="0" unique_id=246346919]
+[node name="ColorRect" parent="enemies/Bolek3" index="1" unique_id=246346919]
 color = Color(0.92901075, 0.8670719, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Stats" parent="enemies/Bolek3" index="4" unique_id=1620432705]
+[node name="Stats" parent="enemies/Bolek3" index="5" unique_id=1620432705]
 entity = "bolek.exe"
 
 [node name="Damagerbasic" parent="enemies/Bolek3/extentions/damagers" parent_id_path=PackedInt32Array(488715918, 934516349) index="0" unique_id=1582854605]
@@ -697,13 +692,13 @@ setdamage = Vector2i(1, 10)
 
 [node name="Piotrek4" parent="enemies" unique_id=65160601 instance=ExtResource("6_2r1tl")]
 position = Vector2(8540, 3500)
-EnemyStats = SubResource("Resource_6d4iq")
+EnemyStats = SubResource("Resource_bck7j")
 
-[node name="ColorRect" parent="enemies/Piotrek4" index="0" unique_id=246346919]
+[node name="ColorRect" parent="enemies/Piotrek4" index="1" unique_id=246346919]
 color = Color(0.8829846, 0, 0.08119296, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Stats" parent="enemies/Piotrek4" index="4" unique_id=1620432705]
+[node name="Stats" parent="enemies/Piotrek4" index="5" unique_id=1620432705]
 entity = "piotrek.exe"
 
 [node name="Movementfollowbasic" parent="enemies/Piotrek4/extentions/movement" parent_id_path=PackedInt32Array(65160601, 1942901925) index="0" unique_id=570659975]
@@ -714,13 +709,13 @@ setdamage = Vector2i(1, 10)
 
 [node name="Piotrek5" parent="enemies" unique_id=609344105 instance=ExtResource("6_2r1tl")]
 position = Vector2(6560, 4652)
-EnemyStats = SubResource("Resource_7plwd")
+EnemyStats = SubResource("Resource_wrngw")
 
-[node name="ColorRect" parent="enemies/Piotrek5" index="0" unique_id=246346919]
+[node name="ColorRect" parent="enemies/Piotrek5" index="1" unique_id=246346919]
 color = Color(0.8829846, 0, 0.08119296, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Stats" parent="enemies/Piotrek5" index="4" unique_id=1620432705]
+[node name="Stats" parent="enemies/Piotrek5" index="5" unique_id=1620432705]
 entity = "piotrek.exe"
 
 [node name="Movementfollowbasic" parent="enemies/Piotrek5/extentions/movement" parent_id_path=PackedInt32Array(609344105, 1942901925) index="0" unique_id=570659975]
@@ -731,13 +726,13 @@ setdamage = Vector2i(1, 10)
 
 [node name="Piotrek6" parent="enemies" unique_id=208300613 instance=ExtResource("6_2r1tl")]
 position = Vector2(7168, 4651)
-EnemyStats = SubResource("Resource_agrr7")
+EnemyStats = SubResource("Resource_d3lof")
 
-[node name="ColorRect" parent="enemies/Piotrek6" index="0" unique_id=246346919]
+[node name="ColorRect" parent="enemies/Piotrek6" index="1" unique_id=246346919]
 color = Color(0.8829846, 0, 0.08119296, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Stats" parent="enemies/Piotrek6" index="4" unique_id=1620432705]
+[node name="Stats" parent="enemies/Piotrek6" index="5" unique_id=1620432705]
 entity = "piotrek.exe"
 
 [node name="Movementfollowbasic" parent="enemies/Piotrek6/extentions/movement" parent_id_path=PackedInt32Array(208300613, 1942901925) index="0" unique_id=570659975]
@@ -748,13 +743,13 @@ setdamage = Vector2i(1, 10)
 
 [node name="Bolek4" parent="enemies" unique_id=856037998 instance=ExtResource("6_2r1tl")]
 position = Vector2(6624, 5067)
-EnemyStats = SubResource("Resource_b2isc")
+EnemyStats = SubResource("Resource_fdfm2")
 
-[node name="ColorRect" parent="enemies/Bolek4" index="0" unique_id=246346919]
+[node name="ColorRect" parent="enemies/Bolek4" index="1" unique_id=246346919]
 color = Color(0.92901075, 0.8670719, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Stats" parent="enemies/Bolek4" index="4" unique_id=1620432705]
+[node name="Stats" parent="enemies/Bolek4" index="5" unique_id=1620432705]
 entity = "bolek.exe"
 
 [node name="Damagerbasic" parent="enemies/Bolek4/extentions/damagers" parent_id_path=PackedInt32Array(856037998, 934516349) index="0" unique_id=1582854605]
@@ -762,13 +757,13 @@ setdamage = Vector2i(1, 10)
 
 [node name="Bolek5" parent="enemies" unique_id=1601009060 instance=ExtResource("6_2r1tl")]
 position = Vector2(7138, 5067)
-EnemyStats = SubResource("Resource_qg8x4")
+EnemyStats = SubResource("Resource_3xyjt")
 
-[node name="ColorRect" parent="enemies/Bolek5" index="0" unique_id=246346919]
+[node name="ColorRect" parent="enemies/Bolek5" index="1" unique_id=246346919]
 color = Color(0.92901075, 0.8670719, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Stats" parent="enemies/Bolek5" index="4" unique_id=1620432705]
+[node name="Stats" parent="enemies/Bolek5" index="5" unique_id=1620432705]
 entity = "bolek.exe"
 
 [node name="Damagerbasic" parent="enemies/Bolek5/extentions/damagers" parent_id_path=PackedInt32Array(1601009060, 934516349) index="0" unique_id=1582854605]
@@ -776,11 +771,11 @@ setdamage = Vector2i(1, 10)
 
 [node name="Dvd5" parent="enemies" unique_id=1572006948 instance=ExtResource("8_8a7m2")]
 position = Vector2(6655, 5297)
-EnemyStats = SubResource("Resource_nm6kf")
+EnemyStats = SubResource("Resource_urotf")
 
 [node name="Dvd6" parent="enemies" unique_id=1676670741 instance=ExtResource("8_8a7m2")]
 position = Vector2(7116, 5290)
-EnemyStats = SubResource("Resource_88m6t")
+EnemyStats = SubResource("Resource_bicy6")
 
 [node name="objects" type="Node2D" parent="." unique_id=1140636792]
 
@@ -1501,6 +1496,10 @@ wait_time = 5.0
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=379859024]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=949531050]
+stream = ExtResource("24_u6nna")
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
