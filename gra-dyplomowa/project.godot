@@ -51,6 +51,7 @@ player=""
 fist=""
 object=""
 item=""
+enemy=""
 
 [input]
 
