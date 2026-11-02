@@ -4,6 +4,3 @@
 
 [node name="Damagerbasic" type="Node" unique_id=1209103094]
 script = ExtResource("1_5ibli")
-
-[node name="Timer" type="Timer" parent="." unique_id=851458482]
-one_shot = true
