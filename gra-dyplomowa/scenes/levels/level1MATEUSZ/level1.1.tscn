@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 [gd_scene format=3 uid="uid://c5qw4pcd2mwib"]
+=======
+[gd_scene format=3 uid="uid://byrhpxq3aheqr"]
+>>>>>>> parent of 3ecf242 (komit 2)
 
 [node name="Level1Side1" type="Node2D" unique_id=1210810149]
