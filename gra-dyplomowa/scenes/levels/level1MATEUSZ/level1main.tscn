@@ -67,7 +67,7 @@ physics_layer_0/collision_mask = 3
 sources/1 = SubResource("TileSetAtlasSource_rnx1q")
 sources/0 = SubResource("TileSetAtlasSource_twmwk")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_lbpln"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_008vf"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ow0dq"]
@@ -159,7 +159,7 @@ advance_expression = "floordash == 0 or is_on_floor()"
 advance_mode = 2
 advance_expression = "sneak and is_on_floor()"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_n7505"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lb6g3"]
 resource_local_to_scene = true
 states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_xgwla")
 states/BlendSpace1D/position = Vector2(506.1572, -38.682613)
@@ -177,6 +177,75 @@ states/slide/node = SubResource("AnimationNodeAnimation_ssrue")
 states/slide/position = Vector2(333.83527, -7.545105)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_i3pqv"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_hqtel"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_2hs0m"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_1jxqw"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_4flbx"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_sweqy"), "run", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_jnjyq"), "idle", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_ssrue"), "BlendSpace1D", "idle", SubResource("AnimationNodeStateMachineTransition_gnkmh"), "jump", "dashdown", SubResource("AnimationNodeStateMachineTransition_d0yub"), "dashdown", "idle", SubResource("AnimationNodeStateMachineTransition_e76wp"), "dashdown", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_hytha")]
 graph_offset = Vector2(14.640016, 24.464735)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qdkrc"]
+resource_local_to_scene = true
+size = Vector2(84, 28)
+
+[sub_resource type="Gradient" id="Gradient_6jbel"]
+offsets = PackedFloat32Array(0.010771993, 1)
+colors = PackedColorArray(0.099999905, 0, 1, 1, 0.4, 0, 0.3533333, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bp5kr"]
+gradient = SubResource("Gradient_6jbel")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kidxk"]
+resource_local_to_scene = true
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(86.13, 0, 0)
+emission_shape_scale = Vector3(85.9, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+gravity = Vector3(0, -40, 0)
+scale_min = 0.5
+color_initial_ramp = SubResource("GradientTexture1D_bp5kr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_twmwk"]
+resource_local_to_scene = true
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(86.13, 0, 0)
+emission_shape_scale = Vector3(85.9, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+gravity = Vector3(0, 10, 0)
+scale_min = 0.099999994
+scale_max = 0.29999998
+color_initial_ramp = SubResource("GradientTexture1D_bp5kr")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnx1q"]
+resource_local_to_scene = true
+size = Vector2(84, 28)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lbpln"]
+resource_local_to_scene = true
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(86.13, 0, 0)
+emission_shape_scale = Vector3(85.9, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+gravity = Vector3(0, -40, 0)
+scale_min = 0.5
+color_initial_ramp = SubResource("GradientTexture1D_bp5kr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n7505"]
+resource_local_to_scene = true
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(86.13, 0, 0)
+emission_shape_scale = Vector3(85.9, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+gravity = Vector3(0, 10, 0)
+scale_min = 0.099999994
+scale_max = 0.29999998
+color_initial_ramp = SubResource("GradientTexture1D_bp5kr")
 
 [sub_resource type="Resource" id="Resource_ukdj2"]
 resource_local_to_scene = true
@@ -202,37 +271,37 @@ script = ExtResource("9_lb6g3")
 max_health = 5
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_008vf"]
+[sub_resource type="Resource" id="Resource_41l7b"]
 resource_local_to_scene = true
 script = ExtResource("9_lb6g3")
 max_health = 5
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_lb6g3"]
+[sub_resource type="Resource" id="Resource_7bqtf"]
 resource_local_to_scene = true
 script = ExtResource("9_lb6g3")
 max_health = 5
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_qdkrc"]
+[sub_resource type="Resource" id="Resource_6w4rf"]
 resource_local_to_scene = true
 script = ExtResource("9_lb6g3")
 max_health = 5
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_kidxk"]
+[sub_resource type="Resource" id="Resource_amw8t"]
 resource_local_to_scene = true
 script = ExtResource("9_lb6g3")
 max_health = 5
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_twmwk"]
+[sub_resource type="Resource" id="Resource_m40u7"]
 resource_local_to_scene = true
 script = ExtResource("9_lb6g3")
 max_health = 5
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_rnx1q"]
+[sub_resource type="Resource" id="Resource_7lnch"]
 resource_local_to_scene = true
 script = ExtResource("9_lb6g3")
 max_health = 5
@@ -444,10 +513,10 @@ transform = Transform3D(0.98958015, 0.14397588, 0, -0.14397588, 0.98958015, 0, 0
 transform = Transform3D(0.99999934, 0, 0, 0, 0.99999934, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="TextureRect" parent="Player" index="2" unique_id=1031087902]
-texture = SubResource("ViewportTexture_lbpln")
+texture = SubResource("ViewportTexture_008vf")
 
 [node name="AnimationTree" parent="Player" index="3" unique_id=938827342]
-tree_root = SubResource("AnimationNodeStateMachine_n7505")
+tree_root = SubResource("AnimationNodeStateMachine_lb6g3")
 
 [node name="Camera2D" parent="Player" index="4" unique_id=1236330716]
 zoom = Vector2(0.6, 0.6)
@@ -478,10 +547,19 @@ offset_top = 576.0
 offset_right = 3008.0
 offset_bottom = 672.0
 
+[node name="CollisionShape2D" parent="Corruptionsqr/Area2D" parent_id_path=PackedInt32Array(959051083, 1449566425) index="0" unique_id=1009754983]
+shape = SubResource("RectangleShape2D_qdkrc")
+
+[node name="GPUParticles2D4" parent="Corruptionsqr" index="1" unique_id=1334452865]
+process_material = SubResource("ParticleProcessMaterial_kidxk")
+
+[node name="GPUParticles2D3" parent="Corruptionsqr" index="2" unique_id=1455069766]
+process_material = SubResource("ParticleProcessMaterial_twmwk")
+
 [node name="Corruptionsqr2" parent="." unique_id=581174935 instance=ExtResource("6_1di1a")]
 offset_left = 2688.0
 offset_top = -960.0
-offset_right = 2784.0
+offset_right = 2782.0
 offset_bottom = -928.0
 
 [node name="Corruptionsqr3" parent="." unique_id=1614520576 instance=ExtResource("6_1di1a")]
@@ -489,6 +567,15 @@ offset_left = 736.0
 offset_top = -800.0
 offset_right = 1376.0
 offset_bottom = -768.0
+
+[node name="CollisionShape2D" parent="Corruptionsqr3/Area2D" parent_id_path=PackedInt32Array(1614520576, 1449566425) index="0" unique_id=1009754983]
+shape = SubResource("RectangleShape2D_rnx1q")
+
+[node name="GPUParticles2D4" parent="Corruptionsqr3" index="1" unique_id=1334452865]
+process_material = SubResource("ParticleProcessMaterial_lbpln")
+
+[node name="GPUParticles2D3" parent="Corruptionsqr3" index="2" unique_id=1455069766]
+process_material = SubResource("ParticleProcessMaterial_n7505")
 
 [node name="jumppad" parent="." unique_id=1524758591 instance=ExtResource("9_m4jsl")]
 offset_left = -1184.0
@@ -552,27 +639,27 @@ EnemyStats = SubResource("Resource_cibob")
 
 [node name="Michas4" parent="." unique_id=208680131 instance=ExtResource("10_qdkrc")]
 position = Vector2(-2033, 116)
-EnemyStats = SubResource("Resource_008vf")
+EnemyStats = SubResource("Resource_41l7b")
 
 [node name="Michas5" parent="." unique_id=377321221 instance=ExtResource("10_qdkrc")]
 position = Vector2(-2341, 136)
-EnemyStats = SubResource("Resource_lb6g3")
+EnemyStats = SubResource("Resource_7bqtf")
 
 [node name="Michas6" parent="." unique_id=540563116 instance=ExtResource("10_qdkrc")]
 position = Vector2(-2602, 135)
-EnemyStats = SubResource("Resource_qdkrc")
+EnemyStats = SubResource("Resource_6w4rf")
 
 [node name="Michas7" parent="." unique_id=470730459 instance=ExtResource("10_qdkrc")]
 position = Vector2(-218, -800)
-EnemyStats = SubResource("Resource_kidxk")
+EnemyStats = SubResource("Resource_amw8t")
 
 [node name="Michas8" parent="." unique_id=1467022619 instance=ExtResource("10_qdkrc")]
 position = Vector2(-479, -801)
-EnemyStats = SubResource("Resource_twmwk")
+EnemyStats = SubResource("Resource_m40u7")
 
 [node name="Michas9" parent="." unique_id=1026892247 instance=ExtResource("10_qdkrc")]
 position = Vector2(3337, -728)
-EnemyStats = SubResource("Resource_rnx1q")
+EnemyStats = SubResource("Resource_7lnch")
 
 [node name="Movingplatform" parent="." unique_id=231484033 instance=ExtResource("11_kidxk")]
 position = Vector2(1937, -889)
@@ -601,5 +688,4 @@ position = Vector2(2043, -1279)
 [editable path="Player"]
 [editable path="Player/Itemhold"]
 [editable path="Corruptionsqr"]
-[editable path="Corruptionsqr2"]
 [editable path="Corruptionsqr3"]

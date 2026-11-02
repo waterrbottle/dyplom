@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c4qceoenujvhy" path="res://objects/enemies/EntityExtentions/damager/damagerbasic.tscn" id="4_0wqy3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1cdh"]
+resource_local_to_scene = true
 size = Vector2(84, 28)
 
 [sub_resource type="Gradient" id="Gradient_6jbel"]
@@ -17,6 +18,7 @@ colors = PackedColorArray(0.099999905, 0, 1, 1, 0.4, 0, 0.3533333, 1)
 gradient = SubResource("Gradient_6jbel")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_002dv"]
+resource_local_to_scene = true
 lifetime_randomness = 1.0
 particle_flag_disable_z = true
 emission_shape_offset = Vector3(86.13, 0, 0)
@@ -35,6 +37,7 @@ frame_1/texture = ExtResource("3_wxo7u")
 frame_1/duration = 1.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p518t"]
+resource_local_to_scene = true
 lifetime_randomness = 1.0
 particle_flag_disable_z = true
 emission_shape_offset = Vector3(86.13, 0, 0)
