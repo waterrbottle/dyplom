@@ -12,6 +12,7 @@ var  front = false # activates window on start
 @onready var scenepath = $Panel/SubViewport
 @export var builtin = false
 var windowdata = null
+var damager = false
 # Called when the node enters the scene tree for the first time.
 func updatesize(wsize: Vector2):
 		$Panel/SubViewport.size = wsize
@@ -103,7 +104,8 @@ func character_teleportation_handler():
 						scenepath.get_child(0).get_node("Player").despawn()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-
+	if damager == true:
+		$Panel.self_modulate = Color(randf_range(0,1),randf_range(0,1),randf_range(0,1))
 	$Panel/StaticBody2D/CollisionShape2D.shape.size = $Panel.size
 	$Panel/StaticBody2D/CollisionShape2D.position = $Panel.size/2
 	if scenepath.get_child_count() == 0:
