@@ -108,7 +108,7 @@ position = Vector2(0, -5.684342e-14)
 scale = Vector2(1, 1.0000001)
 sprite_frames = SubResource("SpriteFrames_ohe7k")
 animation = &"idle"
-frame_progress = 0.47503212
+frame_progress = 0.8903432
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1334218826]
 texture_filter = 1
