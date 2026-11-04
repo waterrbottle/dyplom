@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b4itc4x3jutqu" path="res://objects/jumppad/jumppad.tscn" id="9_m4jsl"]
 [ext_resource type="PackedScene" uid="uid://d357asu1k1n06" path="res://objects/enemies/michas/michas.tscn" id="10_qdkrc"]
 [ext_resource type="PackedScene" uid="uid://c2nfsrwguk86f" path="res://objects/movingplatform/movingplatform.tscn" id="11_kidxk"]
+[ext_resource type="AudioStream" uid="uid://dghhnftijhjg7" path="res://assets/sounds/CLOUD1_lobby2.mp3" id="12_lb6g3"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wudgw"]
 blend_mode = 1
@@ -684,6 +685,10 @@ autoplay = &"mp3"
 
 [node name="Movingplatform4" parent="." unique_id=622961859 instance=ExtResource("11_kidxk")]
 position = Vector2(2043, -1279)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1903175692]
+stream = ExtResource("12_lb6g3")
+autoplay = true
 
 [editable path="Player"]
 [editable path="Player/Itemhold"]
