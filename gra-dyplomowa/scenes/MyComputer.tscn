@@ -200,6 +200,9 @@ focus_mode = 0
 mouse_filter = 1
 flat = true
 
+[node name="Player" parent="." unique_id=1401127334 instance=ExtResource("4_x660l")]
+desktop = true
+
 [node name="Windows" type="Control" parent="." unique_id=1765414581]
 anchors_preset = 0
 offset_right = 6.0
@@ -577,8 +580,6 @@ offset_top = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="Player" parent="." unique_id=1401127334 instance=ExtResource("4_x660l")]
 
 [connection signal="pressed" from="Backgroundclick" to="." method="_on_backgroundclick_pressed"]
 [connection signal="pressed" from="desktopfocus" to="." method="_on_desktopfocus_pressed"]
