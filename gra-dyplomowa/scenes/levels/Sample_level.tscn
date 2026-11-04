@@ -3,10 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="1_putl5"]
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="3_5tbq7"]
 [ext_resource type="PackedScene" uid="uid://ct2s4m0efv1fa" path="res://objects/hurtbox/hurtbox.tscn" id="4_afr48"]
+[ext_resource type="Script" uid="uid://powq1usgpexu" path="res://objects/enemies/EntityResources/BasicEnemy.gd" id="5_8sb0w"]
 [ext_resource type="PackedScene" uid="uid://d357asu1k1n06" path="res://objects/enemies/michas/michas.tscn" id="5_dv82m"]
-[ext_resource type="Texture2D" uid="uid://djcnjxnlm44ev" path="res://assets/GlucioTemplates/Glucio_Green.png" id="6_dv82m"]
-[ext_resource type="Texture2D" uid="uid://1uuucn76p1cy" path="res://assets/GlucioTemplates/Glucio_Red.png" id="7_v2kfx"]
-[ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player.tscn" id="8_8sb0w"]
+[ext_resource type="Texture2D" uid="uid://ibdagho86ogb" path="res://assets/GlucioTemplates/Glucio_Green.png" id="6_dv82m"]
+[ext_resource type="Texture2D" uid="uid://pg2bwn4haugy" path="res://assets/GlucioTemplates/Glucio_Red.png" id="7_v2kfx"]
+[ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player_working.tscn" id="8_8sb0w"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_vt4ye"]
 
@@ -22,6 +23,12 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetScenesCollectionSource_vt4ye")
 sources/1 = SubResource("TileSetAtlasSource_afr48")
+
+[sub_resource type="Resource" id="Resource_owqtf"]
+resource_local_to_scene = true
+script = ExtResource("5_8sb0w")
+max_health = 5
+metadata/_custom_type_script = "uid://powq1usgpexu"
 
 [node name="SampleLevel" type="Node2D" unique_id=613661222]
 
@@ -205,6 +212,7 @@ position = Vector2(6589, 137)
 visible = false
 position = Vector2(573, -165)
 scale = Vector2(0.6, 0.6)
+EnemyStats = SubResource("Resource_owqtf")
 
 [node name="Arena_Barrier1" type="Sprite2D" parent="." unique_id=1075571]
 position = Vector2(4302, 128)

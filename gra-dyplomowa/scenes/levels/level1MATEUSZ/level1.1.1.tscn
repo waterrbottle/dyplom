@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://rf7u1cd8br6x"]
 
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="1_6t30v"]
-[ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player 2.tscn" id="2_ndko2"]
+[ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player_working.tscn" id="2_ndko2"]
 [ext_resource type="Texture2D" uid="uid://ctt522uyt37f1" path="res://assets/images/tiles/bardzo rozwalony tile.png" id="3_krft1"]
 [ext_resource type="Texture2D" uid="uid://d8h710hmn2rb" path="res://assets/images/tiles/tile.png" id="4_yhqr5"]
 [ext_resource type="PackedScene" uid="uid://2gw7rmnwfami" path="res://objects/enemies/czarek/czarek.tscn" id="5_km3s8"]
