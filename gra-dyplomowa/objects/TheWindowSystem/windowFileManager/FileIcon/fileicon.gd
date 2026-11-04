@@ -13,6 +13,7 @@ var adata = ["",false]
 var scenepath = "" # used just for storing the real path 
 var disable = false
 var corrupted = false
+var storedpath = ""
 # Called when the node enters the scene tree for the first time.
 
 func _ready() -> void:

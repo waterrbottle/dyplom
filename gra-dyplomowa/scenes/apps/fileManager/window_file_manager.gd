@@ -29,10 +29,11 @@ func remove_last_directory(path: String) -> String:
 	return base_dir
 
 func fileopening(n):
-
+	print("FAGDSHFDSHGSHJSHFGSFHF")
 	if mode == "windowed":
 		if n.type == "folder":
 			if n.corrupted == true:
+				
 				Global.addwindow("uid://8ogs475b2e7p", "ERROR", {"text": "this folder is corrupted! explore the folder to uncorrupt it."}, null)
 				return
 			dirstring = dirstring + n.get_child(1).text + "/"
@@ -45,6 +46,7 @@ func fileopening(n):
 		if n.type == "folder":
 			
 			if n.corrupted == true:
+				
 				Global.addwindow("uid://8ogs475b2e7p", "ERROR", {"text": "this folder is corrupted! explore the folder to uncorrupt it."}, null)
 				return
 			Global.addwindow("res://scenes/apps/fileManager/WindowFileManager.tscn", "", {"dirstring": "user://MyComputer/Desktop/" + n.get_child(1).text + "/"}, null)
@@ -84,9 +86,9 @@ func fileopening(n):
 		
 		if Input.is_action_just_pressed("click"):
 			Input.action_release("click")
+			
 
-
-			Global.addwindow("uid://8ogs475b2e7p", n.get_child(1).text, {"text": "this folder is corrupted, what do you want to do with it?", "bug": false,"image": load("uid://x4v2ehknnfe"), "btnf": [["view contents", "open", {"scene": "uid://bweuy5c10gc1l", "content": {"dirstring": n.path + n.get_child(1).text + "/"}}],["TRY OPENING THE FILE ", "open", {"scene": "res://scenes/levels/level1.tscn", "content": ""}]] },null)
+			Global.addwindow("uid://8ogs475b2e7p", n.get_child(1).text, {"text": "this folder is corrupted, what do you want to do with it?", "bug": false,"image": load("uid://x4v2ehknnfe"), "btnf": [["view contents", "open", {"scene": "uid://bweuy5c10gc1l", "content": {"dirstring": n.path + n.get_child(1).text + "/"}}],["TRY OPENING THE FILE ", "open", {"scene": n.storedpath, "content": ""}]] },null)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	counter += delta
@@ -247,8 +249,12 @@ func update():
 
 							if dict["level"] == true:
 								inst.type = "levelfolder"
+							
 								
 							inst.corrupted = true
+					if dict.has("levelpath"):
+						inst.storedpath = dict["levelpath"]
+						
 		if mode == "windowed":
 			$CanvasLayer/ScrollContainer/VBoxContainer.add_child(inst)
 		else:
