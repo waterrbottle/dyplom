@@ -15,6 +15,8 @@ func _on_area_2d_body_entered(area: Node2D) -> void:
 	checkforurt()
 
 func damagergetter(n,area,dmgtype):
+	if entity.has_method("got_dmg"):
+		entity.got_dmg(dmgtype)
 	print("EntityExtention: Damagerbasic: damage on " + str(entity) + " with: " +  str(dmgtype))
 	entity.EnemyStats.health -= randi_range(n[1]["damagemin"],n[1]["damagemax"])
 	if dmgtype == "fist":
@@ -31,7 +33,9 @@ func _on_area_2d_area_entered(area: Node2D) -> void:
 	for n in damagers:
 		if n[0] == "fist":
 			if area.is_in_group("fist"):
+				
 				damagergetter(n,area,"fist")
+				
 	#	if n[0] == "item":
 			
 	#		var itemnode = area.get_parent().get_parent()

@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dugfo0donybjn" path="res://assets/images/entities/czarek/ludzik_wybuchnie_-Sheet_ idle animacja.png" id="10_tuxft"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1cdh"]
-radius = 31.0
+radius = 26.019224
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6o776"]
 atlas = ExtResource("10_tuxft")
@@ -71,12 +71,6 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_gj0d3"]
-offsets = PackedFloat32Array(0.010526316, 0.18947369)
-colors = PackedColorArray(0.9768557, 0.947041, 0.7760101, 1, 1, 1, 1, 0)
-metadata/_snap_enabled = true
-metadata/_snap_count = 95
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_muynp"]
 radius = 36.013885
 
@@ -90,6 +84,12 @@ texture_margin_bottom = 4.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1cdh"]
 bg_color = Color(1, 0, 0, 1)
 
+[sub_resource type="Gradient" id="Gradient_gj0d3"]
+offsets = PackedFloat32Array(0.010526316, 0.18947369)
+colors = PackedColorArray(0.9768557, 0.947041, 0.7760101, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 95
+
 [node name="Czarek" type="CharacterBody2D" unique_id=1088395146 groups=["enemy"]]
 collision_layer = 2
 collision_mask = 254
@@ -98,53 +98,23 @@ EnemyStats = ExtResource("2_u0wt3")
 type = "lobotomized"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=808351055]
-visible = false
 shape = SubResource("CircleShape2D_b1cdh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2010004470]
-visible = false
 texture_filter = 1
 position = Vector2(0, -5.684342e-14)
 scale = Vector2(1, 1.0000001)
 sprite_frames = SubResource("SpriteFrames_ohe7k")
 animation = &"idle"
-frame_progress = 0.8903432
+autoplay = "idle"
+frame_progress = 0.86655277
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1334218826]
+visible = false
 texture_filter = 1
 texture_repeat = 1
 scale = Vector2(1.060547, 1.1035156)
 texture = ExtResource("3_u3mmx")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D" unique_id=486188057]
-texture_filter = 1
-position = Vector2(-2.485437, 0)
-rotation = 6.2831855
-scale = Vector2(1.2427185, 1.2190477)
-amount = 10
-texture = ExtResource("4_gj0d3")
-lifetime = 3.0
-randomness = 0.34
-emission_shape = 1
-emission_sphere_radius = 20.67
-direction = Vector2(0, 0)
-spread = 180.0
-gravity = Vector2(-1.1, 976.99)
-initial_velocity_min = 54.45
-initial_velocity_max = 242.57
-radial_accel_min = 62.64
-radial_accel_max = 62.64
-tangential_accel_min = -100.0
-tangential_accel_max = 100.0
-damping_min = 57.921
-damping_max = 57.921
-angle_min = -705.7
-angle_max = -228.1
-scale_amount_min = 2.0
-scale_amount_max = 4.0
-color_ramp = SubResource("Gradient_gj0d3")
-hue_variation_min = -0.41
-hue_variation_max = -0.41
 
 [node name="Stats" parent="." unique_id=1620432705 instance=ExtResource("2_fxlbk")]
 position = Vector2(0, -62.91)
@@ -214,3 +184,37 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_b1cdh")
 value = 75.18
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=486188057]
+texture_filter = 1
+position = Vector2(-2.6359227, 0)
+scale = Vector2(1.3179613, 1.3452381)
+emitting = false
+amount = 10
+texture = ExtResource("4_gj0d3")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+randomness = 0.34
+emission_shape = 1
+emission_sphere_radius = 20.67
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(-1.1, 976.99)
+initial_velocity_min = 54.45
+initial_velocity_max = 242.57
+radial_accel_min = 62.64
+radial_accel_max = 62.64
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0
+damping_min = 57.921
+damping_max = 57.921
+angle_min = -705.7
+angle_max = -228.1
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_gj0d3")
+hue_variation_min = -0.41
+hue_variation_max = -0.41
+
+[node name="particles" type="Node2D" parent="." unique_id=1960893249]
