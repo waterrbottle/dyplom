@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d357asu1k1n06" path="res://objects/enemies/michas/michas.tscn" id="5_bfpmf"]
 [ext_resource type="Script" uid="uid://powq1usgpexu" path="res://objects/enemies/EntityResources/BasicEnemy.gd" id="6_w5uqj"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ouf8k"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_bfpmf"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ow0dq"]
@@ -99,7 +99,7 @@ advance_expression = "floordash == 0 or is_on_floor()"
 advance_mode = 2
 advance_expression = "sneak and is_on_floor()"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j6tds"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_w5uqj"]
 resource_local_to_scene = true
 states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_xgwla")
 states/BlendSpace1D/position = Vector2(506.1572, -38.682613)
@@ -173,13 +173,13 @@ physics_layer_0/collision_mask = 3
 sources/1 = SubResource("TileSetAtlasSource_62xyo")
 sources/0 = SubResource("TileSetAtlasSource_tmbop")
 
-[sub_resource type="Resource" id="Resource_g8kpa"]
+[sub_resource type="Resource" id="Resource_tmbop"]
 resource_local_to_scene = true
 script = ExtResource("6_w5uqj")
 max_health = 5
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_e18ys"]
+[sub_resource type="Resource" id="Resource_62xyo"]
 resource_local_to_scene = true
 script = ExtResource("6_w5uqj")
 max_health = 5
@@ -197,10 +197,10 @@ windowname = "level 1"
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="TextureRect" parent="Player" index="2" unique_id=1031087902]
-texture = SubResource("ViewportTexture_ouf8k")
+texture = SubResource("ViewportTexture_bfpmf")
 
 [node name="AnimationTree" parent="Player" index="3" unique_id=938827342]
-tree_root = SubResource("AnimationNodeStateMachine_j6tds")
+tree_root = SubResource("AnimationNodeStateMachine_w5uqj")
 
 [node name="Camera2D" parent="Player" index="4" unique_id=1236330716]
 zoom = Vector2(0.75, 0.75)
@@ -213,11 +213,11 @@ tile_set = SubResource("TileSet_e18ys")
 
 [node name="Michas" parent="." unique_id=2140165586 instance=ExtResource("5_bfpmf")]
 position = Vector2(333, 139)
-EnemyStats = SubResource("Resource_g8kpa")
+EnemyStats = SubResource("Resource_tmbop")
 
 [node name="Michas2" parent="." unique_id=884651660 instance=ExtResource("5_bfpmf")]
 position = Vector2(-363, 139)
-EnemyStats = SubResource("Resource_e18ys")
+EnemyStats = SubResource("Resource_62xyo")
 
 [editable path="Player"]
 [editable path="Player/Itemhold"]
