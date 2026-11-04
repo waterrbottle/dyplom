@@ -1,0 +1,7 @@
+app-redirect
+scene
+uid://dxtek4es05os3
+icon
+res://assets/images/apps/bombiasz/bomboicona..png
+name
+1.1.2.exe

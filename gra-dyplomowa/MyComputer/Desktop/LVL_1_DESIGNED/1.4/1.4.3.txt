@@ -1,0 +1,7 @@
+app-redirect
+scene
+uid://c6lhj0ku42j6t
+icon
+res://assets/images/apps/bombiasz/bomboicona..png
+name
+bombiasz.exe
