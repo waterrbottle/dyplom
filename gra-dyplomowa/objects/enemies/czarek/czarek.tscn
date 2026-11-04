@@ -1,19 +1,84 @@
 [gd_scene format=3 uid="uid://2gw7rmnwfami"]
 
 [ext_resource type="Script" uid="uid://dwqqclb2pxwvp" path="res://objects/enemies/czarek/czarek.gd" id="1_8nm87"]
-[ext_resource type="Texture2D" uid="uid://d0w0ik0jxta7w" path="res://MyComputer/pngimg.png" id="1_lyy6o"]
 [ext_resource type="PackedScene" uid="uid://bvgqjrqb5xftd" path="res://objects/enemies/EntityExtentions/healthbar/stats.tscn" id="2_fxlbk"]
 [ext_resource type="Resource" uid="uid://bv1v5aca7ucty" path="res://objects/enemies/EntityResources/basicenemy.tres" id="2_u0wt3"]
+[ext_resource type="Texture2D" uid="uid://ch3l3ewfkprvw" path="res://assets/images/entities/czarek/czarek.png" id="3_u3mmx"]
+[ext_resource type="Texture2D" uid="uid://yjfe018omdmf" path="res://assets/images/particles/iskierka czarek.png" id="4_gj0d3"]
 [ext_resource type="PackedScene" uid="uid://c4qceoenujvhy" path="res://objects/enemies/EntityExtentions/damager/damagerbasic.tscn" id="5_u0wt3"]
 [ext_resource type="PackedScene" uid="uid://dw0ofgdcqexnu" path="res://objects/enemies/EntityExtentions/movements/movementdasher/movementDasher.tscn" id="6_8nm87"]
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="7_u3mmx"]
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="8_gj0d3"]
+[ext_resource type="Texture2D" uid="uid://dugfo0donybjn" path="res://assets/images/entities/czarek/ludzik_wybuchnie_-Sheet_ idle animacja.png" id="10_tuxft"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1cdh"]
-radius = 24.0
+radius = 31.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o776"]
+atlas = ExtResource("10_tuxft")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsrvy"]
+atlas = ExtResource("10_tuxft")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gp32y"]
+atlas = ExtResource("10_tuxft")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bagg7"]
+atlas = ExtResource("10_tuxft")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgkcc"]
+atlas = ExtResource("10_tuxft")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_begl3"]
+atlas = ExtResource("10_tuxft")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4rfv"]
+atlas = ExtResource("10_tuxft")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ohe7k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o776")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsrvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gp32y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bagg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgkcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_begl3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4rfv")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 7.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_gj0d3"]
+offsets = PackedFloat32Array(0.010526316, 0.18947369)
+colors = PackedColorArray(0.9768557, 0.947041, 0.7760101, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 95
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_muynp"]
-radius = 28.01785
+radius = 36.013885
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tuxft"]
 texture = ExtResource("7_u3mmx")
@@ -33,12 +98,53 @@ EnemyStats = ExtResource("2_u0wt3")
 type = "lobotomized"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=808351055]
+visible = false
 shape = SubResource("CircleShape2D_b1cdh")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2010004470]
+visible = false
+texture_filter = 1
+position = Vector2(0, -5.684342e-14)
+scale = Vector2(1, 1.0000001)
+sprite_frames = SubResource("SpriteFrames_ohe7k")
+animation = &"idle"
+frame_progress = 0.47503212
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1334218826]
-position = Vector2(-6, 0)
-scale = Vector2(0.032974303, 0.018742317)
-texture = ExtResource("1_lyy6o")
+texture_filter = 1
+texture_repeat = 1
+scale = Vector2(1.060547, 1.1035156)
+texture = ExtResource("3_u3mmx")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D" unique_id=486188057]
+texture_filter = 1
+position = Vector2(-2.485437, 0)
+rotation = 6.2831855
+scale = Vector2(1.2427185, 1.2190477)
+amount = 10
+texture = ExtResource("4_gj0d3")
+lifetime = 3.0
+randomness = 0.34
+emission_shape = 1
+emission_sphere_radius = 20.67
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(-1.1, 976.99)
+initial_velocity_min = 54.45
+initial_velocity_max = 242.57
+radial_accel_min = 62.64
+radial_accel_max = 62.64
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0
+damping_min = 57.921
+damping_max = 57.921
+angle_min = -705.7
+angle_max = -228.1
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_gj0d3")
+hue_variation_min = -0.41
+hue_variation_max = -0.41
 
 [node name="Stats" parent="." unique_id=1620432705 instance=ExtResource("2_fxlbk")]
 position = Vector2(0, -62.91)
@@ -69,6 +175,7 @@ entity = NodePath("../../..")
 chargebar = NodePath("../../../Panel/ProgressBar")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1809620329]
+visible = false
 collision_layer = 8
 collision_mask = 65535
 
