@@ -85,6 +85,5 @@ windowname = "level 1"
 [node name="Bombacz" parent="." unique_id=1088395146 instance=ExtResource("9_rmjfq")]
 position = Vector2(277, 291)
 EnemyStats = SubResource("Resource_rmjfq")
-type = "lobotomized"
 
 [editable path="Bombacz"]
