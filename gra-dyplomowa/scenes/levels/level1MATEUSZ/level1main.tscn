@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://d357asu1k1n06" path="res://objects/enemies/michas/michas.tscn" id="10_qdkrc"]
 [ext_resource type="PackedScene" uid="uid://c2nfsrwguk86f" path="res://objects/movingplatform/movingplatform.tscn" id="11_kidxk"]
 [ext_resource type="AudioStream" uid="uid://dghhnftijhjg7" path="res://assets/sounds/CLOUD1_lobby2.mp3" id="12_lb6g3"]
+[ext_resource type="PackedScene" uid="uid://dtmt0f0j4bgv8" path="res://objects/pickablefile/pickablefile.tscn" id="13_qdkrc"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wudgw"]
 blend_mode = 1
@@ -68,7 +69,7 @@ physics_layer_0/collision_mask = 3
 sources/1 = SubResource("TileSetAtlasSource_rnx1q")
 sources/0 = SubResource("TileSetAtlasSource_twmwk")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_008vf"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_kidxk"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ow0dq"]
@@ -160,7 +161,7 @@ advance_expression = "floordash == 0 or is_on_floor()"
 advance_mode = 2
 advance_expression = "sneak and is_on_floor()"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lb6g3"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_twmwk"]
 resource_local_to_scene = true
 states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_xgwla")
 states/BlendSpace1D/position = Vector2(506.1572, -38.682613)
@@ -179,7 +180,7 @@ states/slide/position = Vector2(333.83527, -7.545105)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_i3pqv"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_hqtel"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_2hs0m"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_1jxqw"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_4flbx"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_sweqy"), "run", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_jnjyq"), "idle", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_ssrue"), "BlendSpace1D", "idle", SubResource("AnimationNodeStateMachineTransition_gnkmh"), "jump", "dashdown", SubResource("AnimationNodeStateMachineTransition_d0yub"), "dashdown", "idle", SubResource("AnimationNodeStateMachineTransition_e76wp"), "dashdown", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_hytha")]
 graph_offset = Vector2(14.640016, 24.464735)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qdkrc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnx1q"]
 resource_local_to_scene = true
 size = Vector2(84, 28)
 
@@ -189,37 +190,6 @@ colors = PackedColorArray(0.099999905, 0, 1, 1, 0.4, 0, 0.3533333, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_bp5kr"]
 gradient = SubResource("Gradient_6jbel")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kidxk"]
-resource_local_to_scene = true
-lifetime_randomness = 1.0
-particle_flag_disable_z = true
-emission_shape_offset = Vector3(86.13, 0, 0)
-emission_shape_scale = Vector3(85.9, 1, 1)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-spread = 180.0
-gravity = Vector3(0, -40, 0)
-scale_min = 0.5
-color_initial_ramp = SubResource("GradientTexture1D_bp5kr")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_twmwk"]
-resource_local_to_scene = true
-lifetime_randomness = 1.0
-particle_flag_disable_z = true
-emission_shape_offset = Vector3(86.13, 0, 0)
-emission_shape_scale = Vector3(85.9, 1, 1)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-spread = 180.0
-gravity = Vector3(0, 10, 0)
-scale_min = 0.099999994
-scale_max = 0.29999998
-color_initial_ramp = SubResource("GradientTexture1D_bp5kr")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnx1q"]
-resource_local_to_scene = true
-size = Vector2(84, 28)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lbpln"]
 resource_local_to_scene = true
@@ -248,23 +218,36 @@ scale_min = 0.099999994
 scale_max = 0.29999998
 color_initial_ramp = SubResource("GradientTexture1D_bp5kr")
 
-[sub_resource type="Resource" id="Resource_ukdj2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukdj2"]
 resource_local_to_scene = true
-script = ExtResource("9_lb6g3")
-max_health = 5
-metadata/_custom_type_script = "uid://powq1usgpexu"
+size = Vector2(84, 28)
 
-[sub_resource type="Resource" id="Resource_065c8"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_065c8"]
 resource_local_to_scene = true
-script = ExtResource("9_lb6g3")
-max_health = 5
-metadata/_custom_type_script = "uid://powq1usgpexu"
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(86.13, 0, 0)
+emission_shape_scale = Vector3(85.9, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+gravity = Vector3(0, -40, 0)
+scale_min = 0.5
+color_initial_ramp = SubResource("GradientTexture1D_bp5kr")
 
-[sub_resource type="Resource" id="Resource_0j1lp"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0j1lp"]
 resource_local_to_scene = true
-script = ExtResource("9_lb6g3")
-max_health = 5
-metadata/_custom_type_script = "uid://powq1usgpexu"
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(86.13, 0, 0)
+emission_shape_scale = Vector3(85.9, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+gravity = Vector3(0, 10, 0)
+scale_min = 0.099999994
+scale_max = 0.29999998
+color_initial_ramp = SubResource("GradientTexture1D_bp5kr")
 
 [sub_resource type="Resource" id="Resource_cibob"]
 resource_local_to_scene = true
@@ -303,6 +286,24 @@ max_health = 5
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
 [sub_resource type="Resource" id="Resource_7lnch"]
+resource_local_to_scene = true
+script = ExtResource("9_lb6g3")
+max_health = 5
+metadata/_custom_type_script = "uid://powq1usgpexu"
+
+[sub_resource type="Resource" id="Resource_7er4u"]
+resource_local_to_scene = true
+script = ExtResource("9_lb6g3")
+max_health = 5
+metadata/_custom_type_script = "uid://powq1usgpexu"
+
+[sub_resource type="Resource" id="Resource_ducef"]
+resource_local_to_scene = true
+script = ExtResource("9_lb6g3")
+max_health = 5
+metadata/_custom_type_script = "uid://powq1usgpexu"
+
+[sub_resource type="Resource" id="Resource_h4h3f"]
 resource_local_to_scene = true
 script = ExtResource("9_lb6g3")
 max_health = 5
@@ -499,7 +500,7 @@ tile_map_data = PackedByteArray("AAAkABMAAQAAAAAAAAAjABMAAQAAAAAAAAAiABMAAQAAAAA
 tile_set = SubResource("TileSet_qdkrc")
 
 [node name="Player" parent="." unique_id=1401127334 instance=ExtResource("4_gbj2v")]
-position = Vector2(2394, -790)
+position = Vector2(511, 476)
 
 [node name="left arm" parent="Player/SubViewport/Node3D" parent_id_path=PackedInt32Array(1401127334, 1438825571) index="0" unique_id=105483409]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
@@ -514,10 +515,10 @@ transform = Transform3D(0.98958015, 0.14397588, 0, -0.14397588, 0.98958015, 0, 0
 transform = Transform3D(0.99999934, 0, 0, 0, 0.99999934, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="TextureRect" parent="Player" index="2" unique_id=1031087902]
-texture = SubResource("ViewportTexture_008vf")
+texture = SubResource("ViewportTexture_kidxk")
 
 [node name="AnimationTree" parent="Player" index="3" unique_id=938827342]
-tree_root = SubResource("AnimationNodeStateMachine_lb6g3")
+tree_root = SubResource("AnimationNodeStateMachine_twmwk")
 
 [node name="Camera2D" parent="Player" index="4" unique_id=1236330716]
 zoom = Vector2(0.6, 0.6)
@@ -549,13 +550,13 @@ offset_right = 3008.0
 offset_bottom = 672.0
 
 [node name="CollisionShape2D" parent="Corruptionsqr/Area2D" parent_id_path=PackedInt32Array(959051083, 1449566425) index="0" unique_id=1009754983]
-shape = SubResource("RectangleShape2D_qdkrc")
+shape = SubResource("RectangleShape2D_rnx1q")
 
 [node name="GPUParticles2D4" parent="Corruptionsqr" index="1" unique_id=1334452865]
-process_material = SubResource("ParticleProcessMaterial_kidxk")
+process_material = SubResource("ParticleProcessMaterial_lbpln")
 
 [node name="GPUParticles2D3" parent="Corruptionsqr" index="2" unique_id=1455069766]
-process_material = SubResource("ParticleProcessMaterial_twmwk")
+process_material = SubResource("ParticleProcessMaterial_n7505")
 
 [node name="Corruptionsqr2" parent="." unique_id=581174935 instance=ExtResource("6_1di1a")]
 offset_left = 2688.0
@@ -570,13 +571,13 @@ offset_right = 1376.0
 offset_bottom = -768.0
 
 [node name="CollisionShape2D" parent="Corruptionsqr3/Area2D" parent_id_path=PackedInt32Array(1614520576, 1449566425) index="0" unique_id=1009754983]
-shape = SubResource("RectangleShape2D_rnx1q")
+shape = SubResource("RectangleShape2D_ukdj2")
 
 [node name="GPUParticles2D4" parent="Corruptionsqr3" index="1" unique_id=1334452865]
-process_material = SubResource("ParticleProcessMaterial_lbpln")
+process_material = SubResource("ParticleProcessMaterial_065c8")
 
 [node name="GPUParticles2D3" parent="Corruptionsqr3" index="2" unique_id=1455069766]
-process_material = SubResource("ParticleProcessMaterial_n7505")
+process_material = SubResource("ParticleProcessMaterial_0j1lp")
 
 [node name="jumppad" parent="." unique_id=1524758591 instance=ExtResource("9_m4jsl")]
 offset_left = -1184.0
@@ -624,43 +625,43 @@ horizontal_alignment = 1
 
 [node name="Czarek" parent="." unique_id=1088395146 instance=ExtResource("8_008vf")]
 position = Vector2(510, 1573)
-EnemyStats = SubResource("Resource_ukdj2")
+EnemyStats = SubResource("Resource_cibob")
 
 [node name="Michas" parent="." unique_id=2140165586 instance=ExtResource("10_qdkrc")]
 position = Vector2(2661, 637)
-EnemyStats = SubResource("Resource_065c8")
+EnemyStats = SubResource("Resource_41l7b")
 
 [node name="Michas2" parent="." unique_id=1255490246 instance=ExtResource("10_qdkrc")]
 position = Vector2(2320, 626)
-EnemyStats = SubResource("Resource_0j1lp")
+EnemyStats = SubResource("Resource_7bqtf")
 
 [node name="Michas3" parent="." unique_id=1900175020 instance=ExtResource("10_qdkrc")]
 position = Vector2(1945, 621)
-EnemyStats = SubResource("Resource_cibob")
+EnemyStats = SubResource("Resource_6w4rf")
 
 [node name="Michas4" parent="." unique_id=208680131 instance=ExtResource("10_qdkrc")]
 position = Vector2(-2033, 116)
-EnemyStats = SubResource("Resource_41l7b")
+EnemyStats = SubResource("Resource_amw8t")
 
 [node name="Michas5" parent="." unique_id=377321221 instance=ExtResource("10_qdkrc")]
 position = Vector2(-2341, 136)
-EnemyStats = SubResource("Resource_7bqtf")
+EnemyStats = SubResource("Resource_m40u7")
 
 [node name="Michas6" parent="." unique_id=540563116 instance=ExtResource("10_qdkrc")]
 position = Vector2(-2602, 135)
-EnemyStats = SubResource("Resource_6w4rf")
+EnemyStats = SubResource("Resource_7lnch")
 
 [node name="Michas7" parent="." unique_id=470730459 instance=ExtResource("10_qdkrc")]
 position = Vector2(-218, -800)
-EnemyStats = SubResource("Resource_amw8t")
+EnemyStats = SubResource("Resource_7er4u")
 
 [node name="Michas8" parent="." unique_id=1467022619 instance=ExtResource("10_qdkrc")]
 position = Vector2(-479, -801)
-EnemyStats = SubResource("Resource_m40u7")
+EnemyStats = SubResource("Resource_ducef")
 
 [node name="Michas9" parent="." unique_id=1026892247 instance=ExtResource("10_qdkrc")]
 position = Vector2(3337, -728)
-EnemyStats = SubResource("Resource_7lnch")
+EnemyStats = SubResource("Resource_h4h3f")
 
 [node name="Movingplatform" parent="." unique_id=231484033 instance=ExtResource("11_kidxk")]
 position = Vector2(1937, -889)
@@ -689,6 +690,11 @@ position = Vector2(2043, -1279)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1903175692]
 stream = ExtResource("12_lb6g3")
 autoplay = true
+
+[node name="Pickablefile" parent="." unique_id=843027542 instance=ExtResource("13_qdkrc")]
+position = Vector2(678, 508)
+fileopenpath = "res://MyComputer/Desktop/LVL_1_DESIGNED/"
+filesunlocked = "1.1"
 
 [editable path="Player"]
 [editable path="Player/Itemhold"]

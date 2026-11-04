@@ -337,6 +337,9 @@ color = Color(1, 1, 0, 1)
 
 [node name="Pickablefile" parent="." unique_id=843027542 instance=ExtResource("7_ndko2")]
 position = Vector2(-1057, -345)
+fileopenpath = "res://MyComputer/Desktop/LVL_1_DESIGNED/1.1/"
+filesunlocked = "Bombiasz.txt"
+iconoverride = "bombiasz"
 
 [editable path="Player"]
 [editable path="Player/Itemhold"]
