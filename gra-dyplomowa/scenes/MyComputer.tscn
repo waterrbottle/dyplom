@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://csutddenuu67l" path="res://assets/images/ui/tymon/Screenshot 2025-11-17 at 17.25.39.png" id="2_tlqso"]
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="2_vcjmw"]
 [ext_resource type="Script" uid="uid://dgxdx2v8ttdv" path="res://scenes/apps/fileManager/window_file_manager.gd" id="4_eoi4i"]
+
 [ext_resource type="PackedScene" uid="uid://boyf3rscl7gyh" path="res://objects/player/Player_working.tscn" id="4_x660l"]
+
 [ext_resource type="PackedScene" uid="uid://cydwpoipuoe8x" path="res://objects/TheWindowSystem/windowUI.tscn" id="6_x660l"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="8_y8hb4"]
 [ext_resource type="PackedScene" uid="uid://dndxjkirb7sod" path="res://objects/taskwindow/taskwindow.tscn" id="11_eoi4i"]
@@ -199,9 +201,6 @@ grow_vertical = 2
 focus_mode = 0
 mouse_filter = 1
 flat = true
-
-[node name="Player" parent="." unique_id=1401127334 instance=ExtResource("4_x660l")]
-desktop = true
 
 [node name="Windows" type="Control" parent="." unique_id=1765414581]
 anchors_preset = 0
@@ -580,6 +579,8 @@ offset_top = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Player" parent="." unique_id=1401127334 instance=ExtResource("4_x660l")]
 
 [connection signal="pressed" from="Backgroundclick" to="." method="_on_backgroundclick_pressed"]
 [connection signal="pressed" from="desktopfocus" to="." method="_on_desktopfocus_pressed"]
