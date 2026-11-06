@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dugfo0donybjn"
-path="res://.godot/imported/ludzik_wybuchnie_-Sheet_ idle animacja.png-9043808c8cffbe4a7def70e35e1e38bd.ctex"
+uid="uid://c8trq7uuypd0t"
+path="res://.godot/imported/CZAREK_ANIMACJE_CHODZENI.png-9984abdd339ca0a77a5ca342c4a4beea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/entities/czarek/ludzik_wybuchnie_-Sheet_ idle animacja.png"
-dest_files=["res://.godot/imported/ludzik_wybuchnie_-Sheet_ idle animacja.png-9043808c8cffbe4a7def70e35e1e38bd.ctex"]
+source_file="res://objects/CZAREK_ANIMACJE_CHODZENI.png"
+dest_files=["res://.godot/imported/CZAREK_ANIMACJE_CHODZENI.png-9984abdd339ca0a77a5ca342c4a4beea.ctex"]
 
 [params]
 

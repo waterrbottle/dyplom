@@ -4,12 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://bvgqjrqb5xftd" path="res://objects/enemies/EntityExtentions/healthbar/stats.tscn" id="2_fxlbk"]
 [ext_resource type="Resource" uid="uid://bv1v5aca7ucty" path="res://objects/enemies/EntityResources/basicenemy.tres" id="2_u0wt3"]
 [ext_resource type="Texture2D" uid="uid://ch3l3ewfkprvw" path="res://assets/images/entities/czarek/czarek.png" id="3_u3mmx"]
+[ext_resource type="Texture2D" uid="uid://dq3ltn47onfte" path="res://assets/images/entities/czarek/CZAREK_ANIMACJE_CHODZENI.png" id="4_6o776"]
 [ext_resource type="Texture2D" uid="uid://yjfe018omdmf" path="res://assets/images/particles/iskierka czarek.png" id="4_gj0d3"]
 [ext_resource type="PackedScene" uid="uid://c4qceoenujvhy" path="res://objects/enemies/EntityExtentions/damager/damagerbasic.tscn" id="5_u0wt3"]
 [ext_resource type="PackedScene" uid="uid://dw0ofgdcqexnu" path="res://objects/enemies/EntityExtentions/movements/movementdasher/movementDasher.tscn" id="6_8nm87"]
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="7_u3mmx"]
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="8_gj0d3"]
-[ext_resource type="Texture2D" uid="uid://dugfo0donybjn" path="res://assets/images/entities/czarek/ludzik_wybuchnie_-Sheet_ idle animacja.png" id="10_tuxft"]
+[ext_resource type="Texture2D" uid="uid://dugfo0donybjn" path="res://assets/images/entities/czarek/CZAREK_ANIMACJA_IDLE.png" id="10_tuxft"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1cdh"]
 radius = 26.019224
@@ -71,6 +72,56 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bk2ky"]
+atlas = ExtResource("4_6o776")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uc0ku"]
+atlas = ExtResource("4_6o776")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_havsq"]
+atlas = ExtResource("4_6o776")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qe8ms"]
+atlas = ExtResource("4_6o776")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x4y0"]
+atlas = ExtResource("4_6o776")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yd06a"]
+atlas = ExtResource("4_6o776")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hhti7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bk2ky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uc0ku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_havsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qe8ms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x4y0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yd06a")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 9.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_muynp"]
 radius = 28.0
 
@@ -101,6 +152,7 @@ type = "lobotomized"
 shape = SubResource("CircleShape2D_b1cdh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2010004470]
+visible = false
 texture_filter = 1
 position = Vector2(0, -5.684342e-14)
 scale = Vector2(1, 1.0000001)
@@ -108,6 +160,12 @@ sprite_frames = SubResource("SpriteFrames_ohe7k")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.86655277
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=807691089]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_hhti7")
+autoplay = "default"
+frame_progress = 0.7874951
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1334218826]
 visible = false
