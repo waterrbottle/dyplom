@@ -2341,5 +2341,7 @@ process_material = SubResource("ParticleProcessMaterial_gnkmh")
 
 [node name="dasparticles" type="Node2D" parent="." unique_id=1491564747]
 
+[node name="hurt" type="AudioStreamPlayer" parent="." unique_id=1898223667]
+
 [connection signal="animation_finished" from="SubViewport/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="fight/fight_anim" to="." method="_on_fight_anim_animation_finished"]
