@@ -321,6 +321,8 @@ func spawn():
 	#add_child(inst)
 
 func damage(amount: int, kb: Vector2):
+	$dmg.play("dmg")
+	$ouch.play()
 	velocity.x = kb.x
 	velocity.y = kb.y
 	Global.playervars["health"] -= amount

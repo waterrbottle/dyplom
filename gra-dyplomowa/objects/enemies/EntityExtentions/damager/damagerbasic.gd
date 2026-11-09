@@ -3,7 +3,7 @@ var areasitems = []
 @export var entity: Node
 @export var damagearea: Area2D
 @export_category("DAMAGE setter")
-@export var kb = Vector2(-500,-500)
+@export var kb = Vector2(-800,-1000)
 @export var setdamage = Vector2i(1,1)
 #@export var getdamage = Vector2i(5,5)
 @export var dmgsettercooldon = 0.1
