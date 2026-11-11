@@ -7,6 +7,9 @@ var areasitems = []
 @export var setdamage = Vector2i(1,1)
 #@export var getdamage = Vector2i(5,5)
 @export var dmgsettercooldon = 0.1
+@export_category("DAMAGE setter -> TELEPORTATION")
+@export var teleportAfterDamage = false
+@export var teleportMarker := Node2D
 @export_category("DAMAGE getter")
 @export var damagers = [["fist", {"damagemin": 1, "damagemax": 1, "kb_strength": Vector2(500,500)}], ["item", {"id": "bomb", "damagemin": 1, "damagemax": 5, "kb_strength": Vector2(500,500)}]]
 

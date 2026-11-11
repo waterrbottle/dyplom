@@ -81,7 +81,9 @@ process_material = SubResource("ParticleProcessMaterial_p518t")
 
 [node name="extentions" type="Node" parent="." unique_id=1273980194]
 
-[node name="Damagerbasic" parent="extentions" unique_id=1209103094 node_paths=PackedStringArray("entity", "damagearea") instance=ExtResource("4_0wqy3")]
-entity = NodePath("../../Area2D")
-damagearea = NodePath("../../Area2D")
+[node name="damagers" type="Node" parent="extentions" unique_id=2081868638]
+
+[node name="Damagerbasic" parent="extentions/damagers" unique_id=1209103094 node_paths=PackedStringArray("entity", "damagearea") instance=ExtResource("4_0wqy3")]
+entity = NodePath("../../../Area2D")
+damagearea = NodePath("../../../Area2D")
 kb = Vector2(-500, -1000)

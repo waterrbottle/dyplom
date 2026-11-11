@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dur28hglfeema"]
+
+[ext_resource type="Script" uid="uid://drkorw7vmu5t4" path="res://objects/technical/marker/markerobj.gd" id="1_xsnx0"]
+
+[node name="Markerobj" type="Node2D" unique_id=793538584]
+modulate = Color(0, 0.733, 1, 1)
+script = ExtResource("1_xsnx0")
+markerType = "teleportation"
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=235432151]
+rotation = -0.0018526553
+scale = Vector2(4, 4)
+polygon = PackedVector2Array(0, 0, -4, -4, -1, -4, -1, -12, 1, -12, 1, -4, 4, -4)
+
+[node name="Label" type="Label" parent="." unique_id=1932452927]
+custom_minimum_size = Vector2(-5000, 0)
+offset_left = -112.0
+offset_top = -77.0
+offset_right = 113.0
+offset_bottom = -53.0
+text = "will teleport here"
+horizontal_alignment = 1

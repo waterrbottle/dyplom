@@ -98,6 +98,10 @@ process_material = SubResource("ParticleProcessMaterial_52gg4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=486522896]
 shape = SubResource("CircleShape2D_08vu4")
 
-[node name="Damagerbasic" parent="." unique_id=1209103094 node_paths=PackedStringArray("entity", "damagearea") instance=ExtResource("4_lo6y4")]
-entity = NodePath("..")
-damagearea = NodePath("..")
+[node name="extentions" type="Node" parent="." unique_id=942228255]
+
+[node name="dmaagers" type="Node" parent="extentions" unique_id=469307467]
+
+[node name="Damagerbasic" parent="extentions/dmaagers" unique_id=1209103094 node_paths=PackedStringArray("entity", "damagearea") instance=ExtResource("4_lo6y4")]
+entity = NodePath("../../..")
+damagearea = NodePath("../../..")
