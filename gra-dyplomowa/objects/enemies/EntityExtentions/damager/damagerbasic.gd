@@ -1,5 +1,6 @@
 extends Node
 var areasitems = []
+@export var active = true
 @export var entity: Node
 @export var damagearea: Area2D
 @export_category("DAMAGE setter")
@@ -18,6 +19,8 @@ func _on_area_2d_body_entered(area: Node2D) -> void:
 	checkforurt()
 
 func damagergetter(n,area,dmgtype):
+	if active == false:
+		return
 	if entity.has_method("got_dmg"):
 		entity.got_dmg(dmgtype)
 	print("EntityExtention: Damagerbasic: damage on " + str(entity) + " with: " +  str(dmgtype))
@@ -65,6 +68,8 @@ func _ready() -> void:
 
 
 func checkforurt():
+	if active == false:
+		return
 	for n in damagearea.get_overlapping_bodies():
 			if n.is_in_group("player"):
 				if n.active==true:

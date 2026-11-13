@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dndxjkirb7sod" path="res://objects/taskwindow/taskwindow.tscn" id="11_eoi4i"]
 [ext_resource type="Shader" uid="uid://dwuiurj8e5cpe" path="res://scenes/MyComputer.gdshader" id="12_x660l"]
 [ext_resource type="PackedScene" uid="uid://cgayns48dk0gb" path="res://scenes/apps/screensaver/screensaver.tscn" id="13_amumy"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="13_dmm6e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x660l"]
 size = Vector2(2359, 1431)
@@ -216,6 +217,7 @@ scene = "res://scenes/apps/tutorial/tutorial.tscn"
 [node name="Control2" parent="Windows" unique_id=655243662 instance=ExtResource("6_x660l")]
 layout_mode = 1
 scene = "uid://dglvei3y5mee6"
+corrupted = true
 
 [node name="objects" type="Node2D" parent="." unique_id=651193975]
 
@@ -581,6 +583,9 @@ offset_top = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Leveldata" parent="." unique_id=485170918 instance=ExtResource("13_dmm6e")]
+scenesize = Vector2(600, 400)
 
 [connection signal="pressed" from="Backgroundclick" to="." method="_on_backgroundclick_pressed"]
 [connection signal="pressed" from="desktopfocus" to="." method="_on_desktopfocus_pressed"]

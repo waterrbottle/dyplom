@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://badcrcvd47qos"]
+
+[ext_resource type="Script" uid="uid://bkpxkg5uqlc4v" path="res://objects/physicsobjects/physicssquare/physics_square.gd" id="1_0h2nj"]
+[ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="2_j3qds"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1cdh"]
+size = Vector2(120, 120)
+
+[node name="PhysicsSquare" type="RigidBody2D" unique_id=1056928471]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_0h2nj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=33391977]
+shape = SubResource("RectangleShape2D_b1cdh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1538509239]
+scale = Vector2(1.875, 1.875)
+texture = ExtResource("2_j3qds")

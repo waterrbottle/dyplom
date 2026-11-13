@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://ig1ntrj458og"]
+
+[ext_resource type="Script" uid="uid://wbmi2272rd53" path="res://objects/errormissile/errormissile.gd" id="1_deder"]
+[ext_resource type="Shader" uid="uid://ifnp3h80bavv" path="res://resources/shaders/corrupted.gdshader" id="1_pr3km"]
+[ext_resource type="Texture2D" uid="uid://d12eulhof6erx" path="res://assets/images/ui/icons/system/ERROR_.png" id="2_cseuu"]
+[ext_resource type="Texture2D" uid="uid://3f3i1x8xl0ea" path="res://assets/images/0101-2.png" id="2_nllfl"]
+[ext_resource type="PackedScene" uid="uid://c4qceoenujvhy" path="res://objects/enemies/EntityExtentions/damager/damagerbasic.tscn" id="5_7oi3v"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m7nin"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(5.69, 5.3, 1)
+emission_shape = 1
+emission_sphere_radius = 4.9
+spread = 180.0
+gravity = Vector3(0, 10, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_muynp"]
+shader = ExtResource("1_pr3km")
+shader_parameter/alpha = 1.0
+shader_parameter/glitch_chance = 1.0
+shader_parameter/glitch_speed = 7.0
+shader_parameter/slice_density = 14.0
+shader_parameter/slice_strength = 0.38
+shader_parameter/shake_strength = 0.02
+shader_parameter/chroma_offset = 0.016
+shader_parameter/noise_strength = 2.87
+shader_parameter/color_flash_strength = 0.4
+shader_parameter/scanline_strength = 0.18
+shader_parameter/local_warp_strength = 0.14
+shader_parameter/flip_chance = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1cdh"]
+radius = 16.03122
+
+[node name="errormissile" type="Area2D" unique_id=17918173]
+script = ExtResource("1_deder")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1580980428]
+modulate = Color(18.892157, 0, 17.395548, 1)
+amount = 50
+texture = ExtResource("2_nllfl")
+process_material = SubResource("ParticleProcessMaterial_m7nin")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2098625444]
+texture_filter = 1
+material = SubResource("ShaderMaterial_muynp")
+scale = Vector2(2.46, 2.46)
+texture = ExtResource("2_cseuu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2029105188]
+shape = SubResource("CircleShape2D_b1cdh")
+
+[node name="extentions" type="Node" parent="." unique_id=1161331870]
+
+[node name="damagers" type="Node" parent="extentions" unique_id=671043609]
+
+[node name="Damagerbasic" parent="extentions/damagers" unique_id=1209103094 node_paths=PackedStringArray("entity", "damagearea") instance=ExtResource("5_7oi3v")]
+entity = NodePath("../../..")
+damagearea = NodePath("../../..")
+teleportAfterDamage = true
+
+[node name="Timer" type="Timer" parent="." unique_id=2038514853]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

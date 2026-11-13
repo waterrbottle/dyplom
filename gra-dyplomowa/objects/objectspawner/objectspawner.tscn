@@ -25,6 +25,7 @@ offset_right = 547.0
 offset_bottom = 288.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_b1cdh")
 script = ExtResource("1_060po")
+metadata/_edit_group_ = true
 
 [node name="editor" type="Control" parent="." unique_id=1178789617]
 layout_mode = 1
@@ -92,5 +93,7 @@ autostart = true
 
 [node name="spawnedobjects" type="Node2D" parent="." unique_id=613954986]
 top_level = true
+
+[node name="COPIER" type="Node2D" parent="." unique_id=2095661588]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

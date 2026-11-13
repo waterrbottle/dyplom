@@ -70,6 +70,7 @@ offset_right = 131.0
 offset_bottom = 138.0
 color = Color(0.8666668, 0, 1, 1)
 script = ExtResource("1_3kaqm")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1449566425]
 

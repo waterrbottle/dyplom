@@ -11,6 +11,7 @@ var  front = false # activates window on start
 @export var nameoverwrite = ""
 @onready var scenepath = $Panel/SubViewport
 @export var builtin = false
+@export var corrupted = false
 var windowdata = null
 var damager = false
 # Called when the node enters the scene tree for the first time.
@@ -69,12 +70,18 @@ func _ready() -> void:
 		if get_parent().get_parent() != null:
 			if "updateactivewindow" in get_parent().get_parent():
 				get_parent().get_parent().updateactivewindow()
-	pass # Replace with function body.
+	if corrupted:
+		%Damagerbasic.active = true
+		%display.material = load("res://resources/shaders/glitchshadermat.tres")
+		$Panel/StaticBody2D.set_collision_mask_value(1,false)
+		$Panel/StaticBody2D.set_collision_layer_value(3,false)
 
 func _input(event: InputEvent) -> void:
 
 	if not acceptinput:
 		return
+	
+
 
 	if event is InputEventMouse:
 		var shifted_event = event.duplicate()
@@ -108,15 +115,24 @@ func _process(delta: float) -> void:
 		$Panel.self_modulate = Color(randf_range(0,1),randf_range(0,1),randf_range(0,1))
 	$Panel/StaticBody2D/CollisionShape2D.shape.size = $Panel.size
 	$Panel/StaticBody2D/CollisionShape2D.position = $Panel.size/2
+	$Panel/Area2D/CollisionShape2D.shape.size = $Panel.size
+	$Panel/Area2D/CollisionShape2D.position = $Panel.size/2
 	if scenepath.get_child_count() == 0:
 		Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", {"text": "window exists but app doesnt.","bug": true},null)
 		queue_free()
 		return
-	if moving == true:
-		$Panel.position = initialposition + get_viewport().get_mouse_position() - clickpos
+	
+	if corrupted == false:
+		if moving == true:
+			$Panel.position = initialposition + get_viewport().get_mouse_position() - clickpos
+	else:
+		$Panel.position = Vector2(0,0)
 	
 	if builtin == true:
 		$Panel/TextureRect/builtin.show()
+	if corrupted == true:
+		$Panel/TextureRect/corrupted.show()
+		$Panel.self_modulate = Color(0.62, 0.0, 0.331, 1.0)
 
 	if active == false:
 

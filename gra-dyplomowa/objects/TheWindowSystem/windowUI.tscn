@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="2_aeolc"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="3_kpmoa"]
 [ext_resource type="Texture2D" uid="uid://c6xj8pxoysayl" path="res://assets/images/ui/buttons/Xv1.png" id="4_v5qpa"]
+[ext_resource type="PackedScene" uid="uid://c4qceoenujvhy" path="res://objects/enemies/EntityExtentions/damager/damagerbasic.tscn" id="5_v5qpa"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nsapq"]
 texture = ExtResource("2_aeolc")
@@ -38,10 +39,18 @@ fill_to = Vector2(0.33119658, 1)
 
 [sub_resource type="Gradient" id="Gradient_aeolc"]
 offsets = PackedFloat32Array(0.0022522523, 1)
-colors = PackedColorArray(0.8506667, 0.704, 0.88, 1, 0.49923992, 0.3864, 0.56, 1)
+colors = PackedColorArray(0.88, 0.8184, 0.704, 1, 0.56, 0.49634668, 0.3864, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_b5f6v"]
 gradient = SubResource("Gradient_aeolc")
+fill_from = Vector2(0.9551282, 1)
+fill_to = Vector2(0.3525641, 1)
+
+[sub_resource type="Gradient" id="Gradient_b5f6v"]
+colors = PackedColorArray(0.52096003, 0.2816, 0.88, 1, 0.56, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l4b8s"]
+gradient = SubResource("Gradient_b5f6v")
 fill_from = Vector2(0.9551282, 1)
 fill_to = Vector2(0.3525641, 1)
 
@@ -63,12 +72,13 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_rfedv")
 scene = "uid://b2lo68nfx3r6m"
+metadata/_edit_group_ = true
 
 [node name="Panel" type="Panel" parent="." unique_id=443853389]
 texture_filter = 1
 layout_mode = 0
-offset_right = 500.0
-offset_bottom = 527.0
+offset_right = 100.0
+offset_bottom = 100.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_nsapq")
 
 [node name="Control" type="Control" parent="Panel" unique_id=1852205247]
@@ -129,6 +139,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_b5f6v")
+expand_mode = 1
+
+[node name="corrupted" type="TextureRect" parent="Panel/TextureRect" unique_id=1693775373]
+visible = false
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_l4b8s")
 expand_mode = 1
 
 [node name="windownamelabel" type="Label" parent="Panel/TextureRect" unique_id=598720273]
@@ -264,6 +286,12 @@ own_world_3d = true
 physics_object_picking = true
 size = Vector2i(500, 300)
 
+[node name="Area2D" type="Area2D" parent="Panel" unique_id=855055360]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Panel/Area2D" unique_id=1703772899]
+position = Vector2(17.5, 55.75)
+shape = SubResource("RectangleShape2D_kpmoa")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="Panel" unique_id=471777357 groups=["window"]]
 collision_layer = 4
 collision_mask = 7
@@ -282,6 +310,16 @@ grow_vertical = 2
 [node name="Timer" type="Timer" parent="." unique_id=733712414]
 wait_time = 0.00999999999999999
 one_shot = true
+
+[node name="extentions" type="Node" parent="." unique_id=1819299246]
+
+[node name="damagers" type="Node" parent="extentions" unique_id=2040829028]
+
+[node name="Damagerbasic" parent="extentions/damagers" unique_id=1209103094 node_paths=PackedStringArray("entity", "damagearea") instance=ExtResource("5_v5qpa")]
+unique_name_in_owner = true
+active = false
+entity = NodePath("../../..")
+damagearea = NodePath("../../../Panel/Area2D")
 
 [connection signal="pressed" from="Panel/TextureRect/exitbutton" to="." method="_on_exitbutton_pressed"]
 [connection signal="button_down" from="Panel/buttons/Topbar" to="." method="_on_topbar_button_down"]

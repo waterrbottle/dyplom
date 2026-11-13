@@ -18,7 +18,7 @@ var velocityhist := 0.0
 var jumping = false
 var active = true
 var particlescene = load("res://objects/player/playerspawnpart.tscn")
-
+var push_force = 200
 #fighting vars
 var fight = false
 var fightdir = 0
@@ -271,6 +271,11 @@ func _physics_process(delta: float) -> void:
 	
 	$AnimationTree.set("parameters/blend_position", velocity.x)
 	$AnimationTree.set("parameters/BlendSpace1D/blend_position", velocity.x)
+	
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 
 
 
