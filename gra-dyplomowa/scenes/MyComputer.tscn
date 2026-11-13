@@ -217,7 +217,6 @@ scene = "res://scenes/apps/tutorial/tutorial.tscn"
 [node name="Control2" parent="Windows" unique_id=655243662 instance=ExtResource("6_x660l")]
 layout_mode = 1
 scene = "uid://dglvei3y5mee6"
-corrupted = true
 
 [node name="objects" type="Node2D" parent="." unique_id=651193975]
 
@@ -586,6 +585,8 @@ mouse_filter = 2
 
 [node name="Leveldata" parent="." unique_id=485170918 instance=ExtResource("13_dmm6e")]
 scenesize = Vector2(600, 400)
+windowname = "MyComputer"
+type = "explorer"
 
 [connection signal="pressed" from="Backgroundclick" to="." method="_on_backgroundclick_pressed"]
 [connection signal="pressed" from="desktopfocus" to="." method="_on_desktopfocus_pressed"]

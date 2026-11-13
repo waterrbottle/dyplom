@@ -62,7 +62,7 @@ font_size = 20
 resource_local_to_scene = true
 size = Vector2(35, 38.5)
 
-[node name="Control" type="Control" unique_id=602759468]
+[node name="Application" type="Control" unique_id=602759468]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
