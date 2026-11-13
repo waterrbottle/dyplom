@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d1eltwlrem3hq" path="res://assets/images/particles/IKS.png" id="2_wxo7u"]
 [ext_resource type="Texture2D" uid="uid://d22elfinooomh" path="res://assets/images/ui/windows/bgpanel.png" id="3_wxo7u"]
 [ext_resource type="PackedScene" uid="uid://c4qceoenujvhy" path="res://objects/enemies/EntityExtentions/damager/damagerbasic.tscn" id="4_0wqy3"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="6_p518t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1cdh"]
 resource_local_to_scene = true
@@ -50,9 +51,22 @@ scale_min = 0.099999994
 scale_max = 0.29999998
 color_initial_ramp = SubResource("GradientTexture1D_bp5kr")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jbel"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5921569, 0, 0.5803922, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_002dv"]
+font = ExtResource("6_p518t")
+outline_size = 4
+outline_color = Color(0.59, 0.005899994, 0.5802648, 1)
+
 [node name="Corruptionsqr" type="ColorRect" unique_id=959051083]
 custom_minimum_size = Vector2(5, 5)
-offset_right = 44.0
+offset_right = 131.0
 offset_bottom = 138.0
 color = Color(0.8666668, 0, 1, 1)
 script = ExtResource("1_3kaqm")
@@ -87,3 +101,65 @@ process_material = SubResource("ParticleProcessMaterial_p518t")
 entity = NodePath("../../../Area2D")
 damagearea = NodePath("../../../Area2D")
 kb = Vector2(-500, -1000)
+
+[node name="editor" type="Control" parent="." unique_id=1805355092]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="editor" unique_id=853305160]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.65866673, 0, 0.76, 1)
+
+[node name="ColorRect" type="ColorRect" parent="editor" unique_id=513804655]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.25
+grow_horizontal = 2
+color = Color(0.9133334, 0.35000002, 1, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="editor" unique_id=1912384672]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.054
+offset_bottom = 1.4879999
+grow_horizontal = 2
+color = Color(0.93600005, 0.52, 1, 1)
+
+[node name="Panel" type="Panel" parent="editor" unique_id=1834847476]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6jbel")
+
+[node name="Label" type="Label" parent="editor/Panel" unique_id=944038397]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.5
+offset_top = -8.5
+offset_right = 39.5
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "corruption sqr"
+label_settings = SubResource("LabelSettings_002dv")
+horizontal_alignment = 1

@@ -2672,7 +2672,7 @@ shader_parameter/noise_strength = 1.37
 shader_parameter/color_flash_strength = 0.4
 shader_parameter/scanline_strength = 0.18
 shader_parameter/local_warp_strength = 0.14
-shader_parameter/flip_chance = 0.15
+shader_parameter/flip_chance = 0.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ssrue"]
 viewport_path = NodePath("SubViewport")
@@ -3107,14 +3107,20 @@ speed_scale = 0.3
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1031087902]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ekndk")
-offset_left = -33.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
 offset_top = -35.0
-offset_right = 33.0
-offset_bottom = 35.512817
-pivot_offset = Vector2(33, 35)
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0.5, 0)
 texture = SubResource("ViewportTexture_ssrue")
 expand_mode = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=938827342]
 root_node = NodePath("../SubViewport")

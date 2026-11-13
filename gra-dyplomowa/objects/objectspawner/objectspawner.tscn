@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://cp0ydtt0ynxl0"]
+
+[ext_resource type="Script" uid="uid://naecqovutmh6" path="res://objects/objectspawner/objectspawner.gd" id="1_060po"]
+[ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="3_xtd26"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1cdh"]
+bg_color = Color(1, 0.85, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muynp"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.81, 0.52933496, 0.008099993, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b1cdh"]
+font = ExtResource("3_xtd26")
+outline_size = 4
+outline_color = Color(0.81, 0.675, 0, 1)
+
+[node name="objectSpawner" type="Panel" unique_id=1098328780]
+custom_minimum_size = Vector2(5, 5)
+offset_right = 547.0
+offset_bottom = 288.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b1cdh")
+script = ExtResource("1_060po")
+
+[node name="editor" type="Control" parent="." unique_id=1178789617]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="editor" unique_id=168233305]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.9, 0.72, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="editor" unique_id=1849407390]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.25
+grow_horizontal = 2
+color = Color(1, 0.90250003, 0.35000002, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="editor" unique_id=751215174]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.054
+offset_bottom = 1.4879999
+grow_horizontal = 2
+color = Color(1, 0.943, 0.62, 1)
+
+[node name="Panel" type="Panel" parent="editor" unique_id=483313421]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muynp")
+
+[node name="Label" type="Label" parent="editor/Panel" unique_id=253126867]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.5
+offset_top = -8.5
+offset_right = 39.5
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "object spawner"
+label_settings = SubResource("LabelSettings_b1cdh")
+
+[node name="Timer" type="Timer" parent="." unique_id=1440025184]
+autostart = true
+
+[node name="spawnedobjects" type="Node2D" parent="." unique_id=613954986]
+top_level = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

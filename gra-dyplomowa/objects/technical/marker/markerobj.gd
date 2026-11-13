@@ -15,4 +15,7 @@ func _process(delta: float) -> void:
 	
 
 func _ready() -> void:
-	hide()
+	if Engine.is_editor_hint():
+		show()
+	else:
+		hide()

@@ -69,6 +69,11 @@ func checkforurt():
 			if n.is_in_group("player"):
 				if n.active==true:
 				
+					
+					if teleportAfterDamage == true:
+						n.position = teleportMarker.global_position
+						kb = Vector2(0,0)
+					
 					n.damage(randi_range(setdamage.x,setdamage.y), kb)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
