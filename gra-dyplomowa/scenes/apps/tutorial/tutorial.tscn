@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://df8e8cxive5km"]
 
 [ext_resource type="Script" uid="uid://fwrrxmfr47y3" path="res://scenes/apps/tutorial/tutorial.gd" id="1_cp4lj"]
-[ext_resource type="Texture2D" uid="uid://cccmfyj0bxa60" path="res://assets/images/ui/icons/Clippy.webp" id="1_vohrj"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="2_7grjo"]
+[ext_resource type="Texture2D" uid="uid://x2orfjpua6j1" path="res://miku.png" id="3_82kwn"]
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="3_cp4lj"]
 [ext_resource type="AudioStream" uid="uid://b276pv44oopxe" path="res://assets/sounds/sfx/tutorial/zszywacz.wav" id="5_82kwn"]
 [ext_resource type="AudioStream" uid="uid://b7g432k4ntrii" path="res://assets/sounds/sfx/tutorial/zszywacz2.wav" id="6_xj8me"]
@@ -104,7 +104,7 @@ horizontal_alignment = 1
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1777021901]
 position = Vector2(192, 58)
 scale = Vector2(1, 0.29104477)
-texture = ExtResource("1_vohrj")
+texture = ExtResource("3_82kwn")
 
 [node name="Leveldata" parent="." unique_id=485170918 instance=ExtResource("3_cp4lj")]
 scenesize = Vector2(400, 180)
