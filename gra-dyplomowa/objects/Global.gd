@@ -23,6 +23,7 @@ func do_something():
 	# Stuff happens here at the end of the current frame
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	item = "key"
 	pass # Replace with function body.
 
 func add_item(itemm):

@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://uq8a5lb2xq4o"]
+
+[ext_resource type="Script" uid="uid://db433lrwpw2d8" path="res://objects/itemobject/items/key.gd" id="1_mfq4i"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mfq4i"]
+bounce = 0.24
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfq4i"]
+size = Vector2(54, 20)
+
+[node name="Key" type="Node2D" unique_id=1505406799]
+script = ExtResource("1_mfq4i")
+
+[node name="display" type="Node2D" parent="." unique_id=1634105395]
+visible = false
+
+[node name="Node2D" type="Node2D" parent="display" unique_id=638667240]
+position = Vector2(-26, -10)
+scale = Vector2(0.5, 0.5)
+
+[node name="ColorRect" type="ColorRect" parent="display/Node2D" unique_id=925780125]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 0.8333334, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="display/Node2D" unique_id=1836031073]
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 105.0
+offset_bottom = 23.0
+color = Color(1, 0.8333334, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="display/Node2D" unique_id=1569046706]
+offset_left = 97.0
+offset_top = 15.0
+offset_right = 105.0
+offset_bottom = 40.0
+color = Color(1, 0.8333334, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="display/Node2D" unique_id=2003957204]
+offset_left = 83.0
+offset_top = 15.0
+offset_right = 91.0
+offset_bottom = 40.0
+color = Color(1, 0.8333334, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="object" type="RigidBody2D" parent="." unique_id=182561686]
+collision_layer = 128
+collision_mask = 135
+mass = 0.499
+physics_material_override = SubResource("PhysicsMaterial_mfq4i")
+gravity_scale = 1.467
+can_sleep = false
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 5
+
+[node name="Node2D" type="Node2D" parent="object" unique_id=1518928900]
+position = Vector2(-26, -10)
+scale = Vector2(0.5, 0.5)
+
+[node name="ColorRect5" type="ColorRect" parent="object/Node2D" unique_id=1144920368]
+visible = false
+offset_left = -160.0
+offset_top = -196.0
+offset_right = 318.0
+offset_bottom = 346.0
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="object/Node2D" unique_id=32625110]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 0.8333334, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="object/Node2D" unique_id=561521687]
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 105.0
+offset_bottom = 23.0
+color = Color(1, 0.8333334, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="object/Node2D" unique_id=959539295]
+offset_left = 97.0
+offset_top = 15.0
+offset_right = 105.0
+offset_bottom = 40.0
+color = Color(1, 0.8333334, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="object/Node2D" unique_id=1856337967]
+offset_left = 83.0
+offset_top = 15.0
+offset_right = 91.0
+offset_bottom = 40.0
+color = Color(1, 0.8333334, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="object" unique_id=632648667]
+shape = SubResource("RectangleShape2D_mfq4i")
+
+[connection signal="body_entered" from="object" to="." method="_on_object_body_entered"]

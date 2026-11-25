@@ -6,6 +6,7 @@ var areasitems = []
 @export_category("DAMAGE setter")
 @export var kb = Vector2(-800,-1000)
 @export var setdamage = Vector2i(1,1)
+@export_flags("player", "enemy", "item") var dmgentities = 1
 #@export var getdamage = Vector2i(5,5)
 @export var dmgsettercooldon = 0.1
 @export_category("DAMAGE setter -> TELEPORTATION")
@@ -75,11 +76,37 @@ func checkforurt():
 				if n.active==true:
 				
 					
-					if teleportAfterDamage == true:
-						n.position = teleportMarker.global_position
-						kb = Vector2(0,0)
-					
-					n.damage(randi_range(setdamage.x,setdamage.y), kb)
+					tpdmgcheck(n)
+			else:
+				tpdmgcheck(n)
+
+func tpdmgcheck(n):
+	
+	if n == entity:
+		return
+	if teleportAfterDamage == true:
+		if n is RigidBody2D:
+			if n.has_method("tp_rigid"):
+				n.tp_rigid(teleportMarker.global_position)
+				kb = Vector2(0,0)
+		else:
+
+			n.position = teleportMarker.global_position
+			kb = Vector2(0,0)
+						
+	
+	if n.has_method("damage"):
+		n.damage(randi_range(setdamage.x,setdamage.y), kb)
+	else:
+		if n is CharacterBody2D:
+			if n.is_in_group("enemy"):
+				n.EnemyStats.health -= randi_range(setdamage.x,setdamage.y)
+			n.velocity = kb
+		if n is RigidBody2D:
+			if n.is_in_group("enemy"):
+				n.EnemyStats.health -= randi_range(setdamage.x,setdamage.y)
+			n.apply_central_force(kb*10)
+				
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if $Timer.time_left <= 0:

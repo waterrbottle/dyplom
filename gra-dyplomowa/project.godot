@@ -107,6 +107,7 @@ enter={
 2d_physics/layer_2="enemies"
 2d_physics/layer_3="ground"
 2d_physics/layer_5="hitbox"
+2d_physics/layer_8="item"
 
 [rendering]
 
