@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://2gw7rmnwfami" path="res://objects/enemies/czarek/czarek.tscn" id="32_igeo0"]
 [ext_resource type="AudioStream" uid="uid://b2qpblbcsvfou" path="res://assets/sounds/CLOUD1_lobby.mp3" id="33_igeo0"]
 [ext_resource type="PackedScene" uid="uid://4tvj1xms0gj2" path="res://objects/keygate/keygate.tscn" id="34_y71nm"]
+[ext_resource type="PackedScene" uid="uid://uq8a5lb2xq4o" path="res://objects/itemobject/items/key.tscn" id="35_6d4iq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1xax6"]
 shader = ExtResource("3_sbmf2")
@@ -207,34 +208,16 @@ shader_parameter/scanline_strength = 1.09
 shader_parameter/local_warp_strength = 0.19
 shader_parameter/flip_chance = 0.15
 
-[sub_resource type="Resource" id="Resource_6d4iq"]
-resource_local_to_scene = true
-script = ExtResource("7_8a7m2")
-max_health = 15
-metadata/_custom_type_script = "uid://powq1usgpexu"
-
-[sub_resource type="Resource" id="Resource_7plwd"]
-resource_local_to_scene = true
-script = ExtResource("7_8a7m2")
-max_health = 15
-metadata/_custom_type_script = "uid://powq1usgpexu"
-
-[sub_resource type="Resource" id="Resource_agrr7"]
-resource_local_to_scene = true
-script = ExtResource("7_8a7m2")
-max_health = 10
-metadata/_custom_type_script = "uid://powq1usgpexu"
-
 [sub_resource type="Resource" id="Resource_b2isc"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
-max_health = 10
+max_health = 15
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
 [sub_resource type="Resource" id="Resource_qg8x4"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
-max_health = 10
+max_health = 15
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
 [sub_resource type="Resource" id="Resource_nm6kf"]
@@ -282,7 +265,7 @@ metadata/_custom_type_script = "uid://powq1usgpexu"
 [sub_resource type="Resource" id="Resource_tsudw"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
-max_health = 15
+max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
 [sub_resource type="Resource" id="Resource_71yoy"]
@@ -300,7 +283,7 @@ metadata/_custom_type_script = "uid://powq1usgpexu"
 [sub_resource type="Resource" id="Resource_a21j6"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
-max_health = 10
+max_health = 15
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
 [sub_resource type="Resource" id="Resource_3e3xw"]
@@ -330,10 +313,28 @@ metadata/_custom_type_script = "uid://powq1usgpexu"
 [sub_resource type="Resource" id="Resource_c52q8"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
-max_health = 15
+max_health = 10
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
 [sub_resource type="Resource" id="Resource_2e78u"]
+resource_local_to_scene = true
+script = ExtResource("7_8a7m2")
+max_health = 10
+metadata/_custom_type_script = "uid://powq1usgpexu"
+
+[sub_resource type="Resource" id="Resource_mcic2"]
+resource_local_to_scene = true
+script = ExtResource("7_8a7m2")
+max_health = 10
+metadata/_custom_type_script = "uid://powq1usgpexu"
+
+[sub_resource type="Resource" id="Resource_0p1sx"]
+resource_local_to_scene = true
+script = ExtResource("7_8a7m2")
+max_health = 15
+metadata/_custom_type_script = "uid://powq1usgpexu"
+
+[sub_resource type="Resource" id="Resource_qncc2"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 15
@@ -456,19 +457,19 @@ _data = {
 &"glide": SubResource("Animation_7plwd")
 }
 
-[sub_resource type="Resource" id="Resource_mcic2"]
+[sub_resource type="Resource" id="Resource_01mkw"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 5
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_0p1sx"]
+[sub_resource type="Resource" id="Resource_wkw6o"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 5
 metadata/_custom_type_script = "uid://powq1usgpexu"
 
-[sub_resource type="Resource" id="Resource_qncc2"]
+[sub_resource type="Resource" id="Resource_78o28"]
 resource_local_to_scene = true
 script = ExtResource("7_8a7m2")
 max_health = 5
@@ -879,19 +880,19 @@ windowname = "LEVELIK"
 
 [node name="Dvd2" parent="enemies" unique_id=528180961 instance=ExtResource("8_8a7m2")]
 position = Vector2(7569, 43)
-EnemyStats = SubResource("Resource_6d4iq")
+EnemyStats = SubResource("Resource_b2isc")
 
 [node name="Dvd3" parent="enemies" unique_id=1127652216 instance=ExtResource("8_8a7m2")]
 position = Vector2(7311, 294)
-EnemyStats = SubResource("Resource_7plwd")
+EnemyStats = SubResource("Resource_qg8x4")
 
 [node name="Michas" parent="enemies" unique_id=2140165586 instance=ExtResource("6_2r1tl")]
 position = Vector2(4586, 717)
-EnemyStats = SubResource("Resource_agrr7")
+EnemyStats = SubResource("Resource_nm6kf")
 
 [node name="Piotrek1" parent="enemies" unique_id=1487640581 instance=ExtResource("6_2r1tl")]
 position = Vector2(5379, 717)
-EnemyStats = SubResource("Resource_b2isc")
+EnemyStats = SubResource("Resource_88m6t")
 
 [node name="ColorRect" parent="enemies/Piotrek1" index="1" unique_id=246346919]
 color = Color(0.8829846, 0, 0.08119296, 1)
@@ -907,15 +908,15 @@ setdamage = Vector2i(1, 10)
 
 [node name="Michas3" parent="enemies" unique_id=606860125 instance=ExtResource("6_2r1tl")]
 position = Vector2(5643, 1186)
-EnemyStats = SubResource("Resource_qg8x4")
+EnemyStats = SubResource("Resource_oub7f")
 
 [node name="Michas4" parent="enemies" unique_id=431094519 instance=ExtResource("6_2r1tl")]
 position = Vector2(6385, 1354)
-EnemyStats = SubResource("Resource_nm6kf")
+EnemyStats = SubResource("Resource_p5q6g")
 
 [node name="Piotrek2" parent="enemies" unique_id=645277613 instance=ExtResource("6_2r1tl")]
 position = Vector2(6156, 1351)
-EnemyStats = SubResource("Resource_88m6t")
+EnemyStats = SubResource("Resource_idf83")
 
 [node name="ColorRect" parent="enemies/Piotrek2" index="1" unique_id=246346919]
 color = Color(0.8829846, 0, 0.08119296, 1)
@@ -932,15 +933,15 @@ setdamage = Vector2i(1, 10)
 
 [node name="Michas6" parent="enemies" unique_id=1965477293 instance=ExtResource("6_2r1tl")]
 position = Vector2(5457, 3375)
-EnemyStats = SubResource("Resource_oub7f")
+EnemyStats = SubResource("Resource_sqv5l")
 
 [node name="Michas7" parent="enemies" unique_id=755297112 instance=ExtResource("6_2r1tl")]
 position = Vector2(5879, 3376)
-EnemyStats = SubResource("Resource_p5q6g")
+EnemyStats = SubResource("Resource_gr08b")
 
 [node name="Bolek1" parent="enemies" unique_id=1725128436 instance=ExtResource("6_2r1tl")]
 position = Vector2(5664, 3377)
-EnemyStats = SubResource("Resource_idf83")
+EnemyStats = SubResource("Resource_tsudw")
 
 [node name="ColorRect" parent="enemies/Bolek1" index="1" unique_id=246346919]
 color = Color(0.92901075, 0.8670719, 0, 1)
@@ -953,11 +954,11 @@ setdamage = Vector2i(1, 10)
 
 [node name="Michas8" parent="enemies" unique_id=966446423 instance=ExtResource("6_2r1tl")]
 position = Vector2(6551, 3498)
-EnemyStats = SubResource("Resource_sqv5l")
+EnemyStats = SubResource("Resource_71yoy")
 
 [node name="Piotrek3" parent="enemies" unique_id=869968737 instance=ExtResource("6_2r1tl")]
 position = Vector2(7278, 3497)
-EnemyStats = SubResource("Resource_gr08b")
+EnemyStats = SubResource("Resource_u1mjy")
 
 [node name="ColorRect" parent="enemies/Piotrek3" index="1" unique_id=246346919]
 color = Color(0.8829846, 0, 0.08119296, 1)
@@ -974,11 +975,11 @@ setdamage = Vector2i(1, 10)
 
 [node name="Dvd4" parent="enemies" unique_id=1473417612 instance=ExtResource("8_8a7m2")]
 position = Vector2(7198, 3194)
-EnemyStats = SubResource("Resource_tsudw")
+EnemyStats = SubResource("Resource_a21j6")
 
 [node name="Bolek2" parent="enemies" unique_id=300202454 instance=ExtResource("6_2r1tl")]
 position = Vector2(8815, 3499)
-EnemyStats = SubResource("Resource_71yoy")
+EnemyStats = SubResource("Resource_3e3xw")
 
 [node name="ColorRect" parent="enemies/Bolek2" index="1" unique_id=246346919]
 color = Color(0.92901075, 0.8670719, 0, 1)
@@ -992,7 +993,7 @@ setdamage = Vector2i(1, 10)
 
 [node name="Bolek3" parent="enemies" unique_id=488715918 instance=ExtResource("6_2r1tl")]
 position = Vector2(8239, 3500)
-EnemyStats = SubResource("Resource_u1mjy")
+EnemyStats = SubResource("Resource_u1mhv")
 
 [node name="ColorRect" parent="enemies/Bolek3" index="1" unique_id=246346919]
 color = Color(0.92901075, 0.8670719, 0, 1)
@@ -1006,7 +1007,7 @@ setdamage = Vector2i(1, 10)
 
 [node name="Piotrek4" parent="enemies" unique_id=65160601 instance=ExtResource("6_2r1tl")]
 position = Vector2(8540, 3500)
-EnemyStats = SubResource("Resource_a21j6")
+EnemyStats = SubResource("Resource_5ol6i")
 
 [node name="ColorRect" parent="enemies/Piotrek4" index="1" unique_id=246346919]
 color = Color(0.8829846, 0, 0.08119296, 1)
@@ -1023,7 +1024,7 @@ setdamage = Vector2i(1, 10)
 
 [node name="Piotrek5" parent="enemies" unique_id=609344105 instance=ExtResource("6_2r1tl")]
 position = Vector2(6560, 4652)
-EnemyStats = SubResource("Resource_3e3xw")
+EnemyStats = SubResource("Resource_nimoc")
 
 [node name="ColorRect" parent="enemies/Piotrek5" index="1" unique_id=246346919]
 color = Color(0.8829846, 0, 0.08119296, 1)
@@ -1040,7 +1041,7 @@ setdamage = Vector2i(1, 10)
 
 [node name="Piotrek6" parent="enemies" unique_id=208300613 instance=ExtResource("6_2r1tl")]
 position = Vector2(7168, 4651)
-EnemyStats = SubResource("Resource_u1mhv")
+EnemyStats = SubResource("Resource_c52q8")
 
 [node name="ColorRect" parent="enemies/Piotrek6" index="1" unique_id=246346919]
 color = Color(0.8829846, 0, 0.08119296, 1)
@@ -1057,7 +1058,7 @@ setdamage = Vector2i(1, 10)
 
 [node name="Bolek4" parent="enemies" unique_id=856037998 instance=ExtResource("6_2r1tl")]
 position = Vector2(6624, 5067)
-EnemyStats = SubResource("Resource_5ol6i")
+EnemyStats = SubResource("Resource_2e78u")
 
 [node name="ColorRect" parent="enemies/Bolek4" index="1" unique_id=246346919]
 color = Color(0.92901075, 0.8670719, 0, 1)
@@ -1071,7 +1072,7 @@ setdamage = Vector2i(1, 10)
 
 [node name="Bolek5" parent="enemies" unique_id=1601009060 instance=ExtResource("6_2r1tl")]
 position = Vector2(7138, 5067)
-EnemyStats = SubResource("Resource_nimoc")
+EnemyStats = SubResource("Resource_mcic2")
 
 [node name="ColorRect" parent="enemies/Bolek5" index="1" unique_id=246346919]
 color = Color(0.92901075, 0.8670719, 0, 1)
@@ -1085,11 +1086,11 @@ setdamage = Vector2i(1, 10)
 
 [node name="Dvd5" parent="enemies" unique_id=1572006948 instance=ExtResource("8_8a7m2")]
 position = Vector2(6655, 5297)
-EnemyStats = SubResource("Resource_c52q8")
+EnemyStats = SubResource("Resource_0p1sx")
 
 [node name="Dvd6" parent="enemies" unique_id=1676670741 instance=ExtResource("8_8a7m2")]
 position = Vector2(7116, 5290)
-EnemyStats = SubResource("Resource_2e78u")
+EnemyStats = SubResource("Resource_qncc2")
 
 [node name="objectsmat" type="Node2D" parent="." unique_id=1140636792]
 visible = false
@@ -1942,15 +1943,15 @@ position = Vector2(383.95868, 23.25393)
 
 [node name="Bombacz" parent="." unique_id=1088395146 instance=ExtResource("32_igeo0")]
 position = Vector2(3307, 1426)
-EnemyStats = SubResource("Resource_mcic2")
+EnemyStats = SubResource("Resource_01mkw")
 
 [node name="Bombacz2" parent="." unique_id=2131325062 instance=ExtResource("32_igeo0")]
 position = Vector2(3307, 1385)
-EnemyStats = SubResource("Resource_0p1sx")
+EnemyStats = SubResource("Resource_wkw6o")
 
 [node name="Bombacz3" parent="." unique_id=1989249510 instance=ExtResource("32_igeo0")]
 position = Vector2(3306, 1342)
-EnemyStats = SubResource("Resource_qncc2")
+EnemyStats = SubResource("Resource_78o28")
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1561914248]
 stream = ExtResource("33_igeo0")
@@ -1959,6 +1960,12 @@ autoplay = true
 
 [node name="Keygate" parent="." unique_id=892889514 instance=ExtResource("34_y71nm")]
 position = Vector2(2241, 1312)
+
+[node name="Key" parent="." unique_id=1505406799 instance=ExtResource("35_6d4iq")]
+position = Vector2(2335, 1401)
+
+[node name="Itemmaster" parent="Key" index="2" unique_id=942265493]
+activateOnSpawn = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="teleporters/Area2D" to="teleporters/Area2D" method="_on_area_entered"]
@@ -1978,3 +1985,4 @@ position = Vector2(2241, 1312)
 [editable path="corruptionclouds/Corruptioncloud6"]
 [editable path="Bombacz2"]
 [editable path="Bombacz3"]
+[editable path="Key"]

@@ -6,7 +6,7 @@ var used = false
 
 func _on_object_body_entered(body: Node) -> void:
 
-	if display == false:
+	if $Itemmaster.display == false:
 
 		if body.is_in_group("player"):
 			print("key picked up")

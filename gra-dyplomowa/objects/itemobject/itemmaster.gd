@@ -1,13 +1,20 @@
 extends Node
-var display = true
+@export var display = true
 @export var holdstate : Node
 @export var itemstate : RigidBody2D
 @export var parent : Node
 @export var canPickup = false
 @export var canThrow = true
+@export var activateOnSpawn = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	
+	if activateOnSpawn == true:
+		holdstate.hide()
+		itemstate.show()
+		itemstate.freeze=false
+		itemstate.freeze=false
+		display=false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
