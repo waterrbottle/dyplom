@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://4tvj1xms0gj2"]
+
+[ext_resource type="Script" uid="uid://d0miu3jwwagwq" path="res://objects/keygate/keygate.gd" id="1_5y2se"]
+[ext_resource type="TileSet" uid="uid://dsbfynsvu5d5p" path="res://resources/tilesets/maintileset.tres" id="1_wcquw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1cdh"]
+radius = 44.0
+
+[node name="Keygate" type="Node2D" unique_id=892889514]
+script = ExtResource("1_5y2se")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=40928098]
+modulate = Color(1.9834497, 2.1118155, 0.5714253, 1)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0)
+tile_set = ExtResource("1_wcquw")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1606247312]
+offset_left = 5.0
+offset_top = 44.0
+offset_right = 28.0
+offset_bottom = 68.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=279254450]
+offset_left = 13.0
+offset_top = 54.0
+offset_right = 20.0
+offset_bottom = 89.0
+color = Color(0, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=144452250]
+collision_layer = 16
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1306773893]
+position = Vector2(17, 65)
+shape = SubResource("CircleShape2D_b1cdh")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

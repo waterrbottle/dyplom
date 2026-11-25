@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://uq8a5lb2xq4o"]
 
 [ext_resource type="Script" uid="uid://db433lrwpw2d8" path="res://objects/itemobject/items/key.gd" id="1_mfq4i"]
+[ext_resource type="PackedScene" uid="uid://bymlpmrkcdjab" path="res://objects/itemobject/itemmaster.tscn" id="2_j8qd6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mfq4i"]
 bounce = 0.24
@@ -50,12 +51,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="object" type="RigidBody2D" parent="." unique_id=182561686]
 collision_layer = 128
-collision_mask = 135
+collision_mask = 151
 mass = 0.499
 physics_material_override = SubResource("PhysicsMaterial_mfq4i")
 gravity_scale = 1.467
 can_sleep = false
-freeze_mode = 1
 contact_monitor = true
 max_contacts_reported = 5
 
@@ -103,5 +103,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="object" unique_id=632648667]
 shape = SubResource("RectangleShape2D_mfq4i")
+
+[node name="Itemmaster" parent="." unique_id=942265493 node_paths=PackedStringArray("holdstate", "itemstate", "parent") instance=ExtResource("2_j8qd6")]
+holdstate = NodePath("../display")
+itemstate = NodePath("../object")
+parent = NodePath("..")
 
 [connection signal="body_entered" from="object" to="." method="_on_object_body_entered"]

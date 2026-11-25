@@ -23,7 +23,7 @@ func do_something():
 	# Stuff happens here at the end of the current frame
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	item = "key"
+	add_item("key")
 	pass # Replace with function body.
 
 func add_item(itemm):
@@ -188,3 +188,6 @@ func remove_recursive(path: String) -> Error:
 
 	# The folder is now empty, delete the folder itself
 	return DirAccess.remove_absolute(path)
+
+func bug(txt):
+	addwindow("uid://8ogs475b2e7p", "crashin out bug - please report", {"image": "uid://d12eulhof6erx", "text": txt, "bug":true}, null)

@@ -82,20 +82,25 @@ func _process(delta: float) -> void:
 			Global.item = ""
 			canfight=true
 			if get_parent() != null:
+				
 				var i = $Itemhold.get_node("item").get_child(0).duplicate()
-				i.position = global_position + Vector2(0,-30)# + Vector2(0,50)
-				i.display = false
+				if i.has_node("Itemmaster"):
+					if i.get_node("Itemmaster").canThrow == true:
+						i.position = global_position + Vector2(0,-30)# + Vector2(0,50)
+						#i.display = false
 				
-
-				i.spawn(Vector2(velocity.x * 2,velocity.y -300))
-				Global.add_item("")
-				$Itemhold.get_node("item").get_child(0).queue_free()
 				
-				if get_parent().has_node("objects"):
-					get_parent().get_node("objects").add_child(i)
+						i.get_node("Itemmaster").spawn(Vector2(velocity.x * 2,velocity.y -300))
+						Global.add_item("")
+						$Itemhold.get_node("item").get_child(0).queue_free()
+				
+						if get_parent().has_node("objects"):
+							get_parent().get_node("objects").add_child(i)
+						else:
+							get_parent().add_child(i)
+							print("no object node to add the object to!")
 				else:
-					get_parent().add_child(i)
-					print("no object node to add the object to!")
+					Global.bug("Looks like itemmaster isnt attched to the item. Attach it first.")
 				
 		print(%fistobject.active)
 

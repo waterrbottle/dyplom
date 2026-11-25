@@ -1,31 +1,8 @@
 extends Node2D
-var display = false
+
 var active = true
 var used = false
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-func spawn(vel):
-	$object.freeze=false
-	display=false
-	$object.apply_central_impulse(vel)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	
-	if display == true:
-		$display.show()
-		$object.hide()
-		$object.freeze=true
-		$object.position=Vector2(0,0)
-	else:
-		
-		$display.hide()
-		$object.show()
-		$object.freeze=false
-	
-	
+@export var objectid = "bomb"
 func tilecheck():
 	$AudioStreamPlayer.play()
 	used = true
@@ -57,7 +34,7 @@ func tilecheck():
 					
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if display == false:
+	if $Itemmaster.display == false:
 		
 		
 		if active == true:

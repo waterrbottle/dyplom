@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bymlpmrkcdjab"]
+
+[ext_resource type="Script" uid="uid://bu1tpf5118cua" path="res://objects/itemobject/itemmaster.gd" id="1_ri1hr"]
+
+[node name="Itemmaster" type="Node" unique_id=942265493]
+script = ExtResource("1_ri1hr")

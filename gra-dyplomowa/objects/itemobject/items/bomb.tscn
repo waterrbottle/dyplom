@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d1eltwlrem3hq" path="res://assets/images/particles/IKS.png" id="2_uhsla"]
 [ext_resource type="Texture2D" uid="uid://br68ug1vyokhs" path="res://assets/images/particles/chmurka.png" id="4_13f8l"]
 [ext_resource type="AudioStream" uid="uid://ctsrg82htncoj" path="res://assets/sounds/sfx/minigames/BOMBAIGUESS3 (1).wav" id="5_2p2vj"]
+[ext_resource type="PackedScene" uid="uid://bymlpmrkcdjab" path="res://objects/itemobject/itemmaster.tscn" id="6_s8asg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_byym3"]
 bounce = 0.59
@@ -229,5 +230,10 @@ offset_bottom = 78.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2086769514]
 stream = ExtResource("5_2p2vj")
+
+[node name="Itemmaster" parent="." unique_id=1995293786 node_paths=PackedStringArray("holdstate", "itemstate", "parent") instance=ExtResource("6_s8asg")]
+holdstate = NodePath("../display")
+itemstate = NodePath("../object")
+parent = NodePath("..")
 
 [connection signal="body_entered" from="object/Area2D" to="." method="_on_area_2d_body_entered"]

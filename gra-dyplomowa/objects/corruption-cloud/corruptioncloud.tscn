@@ -70,6 +70,7 @@ gravity = Vector3(0, 10, 0)
 radius = 55.0
 
 [node name="Corruptioncloud" type="Area2D" unique_id=1060774204]
+collision_mask = 131
 script = ExtResource("1_bi7ef")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1226111170]

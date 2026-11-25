@@ -15,8 +15,9 @@ func load_item():
 	if loadscn == null:
 		return
 	var i = loadscn.instantiate()
-	i.display = true
-	$item.add_child(i)
+
+	
+	$item.call_deferred("add_child", i)
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
