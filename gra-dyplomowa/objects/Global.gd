@@ -53,80 +53,46 @@ func _process(delta: float) -> void:
 	
 	if playervars["health"] < 1:
 		if !has_node("/root/MyComputer/Windows"):
-			addwindow("uid://8ogs475b2e7p", "Data Overflow", {"text": "you run out of lives", "bug": false, "image": load("uid://tks5bgimi0am") }, null)
-			addwindow("uid://8ogs475b2e7p", "Info", {"text": "since u in scene mode lives reset ", "bug": false, "image": load("uid://bn4l23n5c0444") }, null)
+			addwindow({"scene": "uid://8ogs475b2e7p", "name": "Data Overflow", "data": {"text": "you run out of lives", "bug": false, "image": "uid://tks5bgimi0am" }, "loc": null})
+			addwindow({"scene": "uid://8ogs475b2e7p", "name": "info", "data": {"text": "since u in scene mode lives reset", "bug": false, "image": "uid://bn4l23n5c0444" }, "loc": null})
+
 			playervars["health"] = 100
 			return
 		for n in get_node("/root/MyComputer/Windows").get_children():
 			if n.appscene.get_node("Leveldata").type == "level":
 				n.queue_free()
-		addwindow("uid://8ogs475b2e7p", "Data Overflow", {"text": "you run out of lives", "bug": false, "image": load("uid://tks5bgimi0am") }, null)
+		addwindow({"scene": "uid://8ogs475b2e7p", "name": "Data Overflow", "data": {"text": "you run out of lives", "bug": false, "image": "uid://tks5bgimi0am" }, "loc": null})
 		get_node("/root/MyComputer/Player").set_deferred("active", true)
 		ondesktop=true
 
 		playervars["health"] = 100
 
-func addwindow(scene: String, namee, content, loc):
+func addwindow(windowsetup: Dictionary):
 
 	var scn = load("res://objects/TheWindowSystem/windowUI.tscn")
 	var inst = scn.instantiate()
-	inst.scene = scene
-	inst.nameoverwrite = namee
+	inst.scene = windowsetup["scene"]
+	inst.nameoverwrite = windowsetup["name"]
 	inst.front = true
 	inst.get_child(0).position = get_viewport().get_visible_rect().size/2 - inst.get_child(0).size /2
-	print("opening app -> ", scene)
-	if scene == "res://scenes/apps/fileManager/WindowFileManager.tscn" or scene == "uid://bweuy5c10gc1l":
-
-		inst.spawnapp()
-		
-		if content is Dictionary:
-			
-
-			if content.has("dirstring"):
-				
-
-
-				inst.appscene.dirstring = content["dirstring"]
-			if content.has("dirlist"):
-				inst.appscene.dirlist = content["dirlist"]
-				inst.appscene.updatedirstring()
-		else:
-			addwindow("uid://8ogs475b2e7p", "", {"text": "error displaying error message. Invalid data.", "bug": true}, null)
-	if scene == "res://scenes/apps/notepad/notepad.tscn":
-		
-		inst.spawnapp()
-		if inst.appvalid == true:
-			inst.appscene.content = content
+	
+	print("opening app -> ", windowsetup["scene"])
+	inst.spawnapp()
+	if inst.appscene != null:
+		if "contentdata" in inst.appscene:
+			inst.appscene.contentdata = windowsetup["data"]
+	
 		#inst.appscene.get_child(0).content = content
-	if scene == "res://scenes/apps/notepad/notepad.tscn":
-		pass
-	if scene == "res://scenes/apps/sysmessenger/sysmessenger.tscn" or scene == "uid://8ogs475b2e7p":
-		print(content)
-		inst.spawnapp()
-		if content is Dictionary:
-			if content.has("text"):
-				inst.appscene.content = content["text"]
-			if content.has("bug"):
-				inst.appscene.bug = content["bug"]
-			if content.has("btnf"):
-				inst.appscene.buttonfunctions = content["btnf"]
-			if content.has("image"):
-				inst.appscene.img = content["image"]
-		else:
-			addwindow("uid://8ogs475b2e7p", "", {"text": "error displaying error message. Invalid data.", "bug": true}, null)
-	if scene == "res://scenes/apps/ImageViewer/imageviewer.tscn":
-		inst.spawnapp()
-		inst.appscene.texturepath = content[0]
-		inst.appscene.loadtexture()
-	if scene == "res://scenes/apps/musicplayer/musicplayer.tscn":
-		inst.spawnapp()
-		inst.appscene.musicload = content[0]
-		inst.appscene.musicname = content[1]
+
+
+
+
+	
 	if has_node("/root/MyComputer/Windows"):
-		if loc == null:
+		if windowsetup["loc"] == null:
 			get_node("/root/MyComputer/Windows").add_child.call_deferred(inst)
 		else:
-			loc.add_child.call_deferred(inst)
+			windowsetup["loc"].add_child.call_deferred(inst)
 	else:
 		print("adding window")
 		inst.position = playervars["position"]
@@ -164,7 +130,8 @@ func deletefolder(path):
 func remove_recursive(path: String) -> Error:
 	var dir = DirAccess.open(path)
 	if not dir:
-		Global.addwindow("uid://8ogs475b2e7p","",{"text": "cant delete. error: " + error_string(DirAccess.get_open_error()),"bug": true}, null)
+		bug("cant delete. error: " + error_string(DirAccess.get_open_error()))
+		
 		return DirAccess.get_open_error()
 
 	# Start reading the contents
@@ -190,4 +157,7 @@ func remove_recursive(path: String) -> Error:
 	return DirAccess.remove_absolute(path)
 
 func bug(txt):
-	addwindow("uid://8ogs475b2e7p", "crashin out bug - please report", {"image": "uid://d12eulhof6erx", "text": txt, "bug":true}, null)
+	addwindow({"scene": "uid://8ogs475b2e7p", 
+	"name": "crashin out bug - please report", 
+	"data": {"image": "uid://d12eulhof6erx", "text": txt, "bug":true},
+	"loc": null})

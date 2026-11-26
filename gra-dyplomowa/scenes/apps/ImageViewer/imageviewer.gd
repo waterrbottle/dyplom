@@ -1,9 +1,11 @@
 extends Node2D
 var texturepath = "user://icon.svg"
-
+var contentdata = {}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	if contentdata.has("image"):
+		texturepath = contentdata["image"]
+		loadtexture()
 	
 func loadtexture():
 	if texturepath != "":
@@ -11,13 +13,15 @@ func loadtexture():
 
 func load_image_manually(path: String) -> ImageTexture:
 	if not FileAccess.file_exists(path):
-		Global.addwindow("uid://8ogs475b2e7p","",{"text": "invalid path.","bug": true}, null)
+		Global.bug("imageViewer: invalid path.")
+		
 		return null
 		
 	# 1. Load the raw data into an Image object
 	var img = Image.load_from_file(path)
 	if img == null:
-		Global.addwindow("uid://8ogs475b2e7p","",{"text": "no image.","bug": true}, null)
+		Global.bug("imageViewer: no image.")
+		
 		return null
 		
 	# 2. Convert that Image into a Texture so Godot can render it

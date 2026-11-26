@@ -6,4 +6,4 @@ uid://belpn83i2x82g
 name
 fileManager.exe
 data-injection
-{"path": "user://MyComputer/Desktop/"}
+{"dirstring": "user://MyComputer/Desktop/"}

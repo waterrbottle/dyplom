@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://c1uvbvlt0gyt5"]
 
-[ext_resource type="Script" uid="uid://bbdpvcubq0466" path="res://scenes/apps/hatsunemiku/hatsunemiku.gd" id="1_n0p78"]
-[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="2_l7fyj"]
-[ext_resource type="Texture2D" uid="uid://b0j120kci4xpk" path="res://assets/images/randomshit/9edc47c28c11a05aac5c7549cfd8f357-removebg-preview.png" id="3_l7fyj"]
+[ext_resource type="Script" uid="uid://bbdpvcubq0466" path="res://scenes/apps/desktopTrinket/desktoptrinket.gd" id="1_wcysd"]
+[ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="2_hb1rr"]
+[ext_resource type="Texture2D" uid="uid://b0j120kci4xpk" path="res://assets/images/randomshit/9edc47c28c11a05aac5c7549cfd8f357-removebg-preview.png" id="3_l5abc"]
 
 [node name="Hatsunemiku" type="Node2D" unique_id=1198253132]
-script = ExtResource("1_n0p78")
+script = ExtResource("1_wcysd")
 
-[node name="Leveldata" parent="." unique_id=485170918 instance=ExtResource("2_l7fyj")]
+[node name="Leveldata" parent="." unique_id=485170918 instance=ExtResource("2_hb1rr")]
 scenesize = Vector2(50, 50)
 windowname = "MIKU"
 type = "explorer"
@@ -25,5 +25,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_l7fyj")
+texture = ExtResource("3_l5abc")
 expand_mode = 1

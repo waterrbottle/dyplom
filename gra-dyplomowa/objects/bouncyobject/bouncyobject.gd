@@ -9,13 +9,15 @@ var savedoffset = Vector2(0,0)
 
 func load_image_manually(path: String) -> ImageTexture:
 	if not FileAccess.file_exists(path):
-		Global.addwindow("uid://8ogs475b2e7p","",{"text": "invalid path.","bug": true}, null)
+		Global.bug("desktopTrinket: invalid path.")
+		
 		return null
 		
 
 	var img = Image.load_from_file(path)
 	if img == null:
-		Global.addwindow("uid://8ogs475b2e7p","",{"text": "no image.","bug": true}, null)
+		Global.bug("desktopTrinket: no image.")
+		
 		return null
 		
 
@@ -59,13 +61,16 @@ func loadsettings() -> void:
 						
 				
 			else:
-				Global.addwindow("uid://8ogs475b2e7p","",{"text": "dictionary is null. maybe you made a typo?.","bug": false},null)
+				Global.addwindow({"scene": "uid://8ogs475b2e7p", "name": "", "data": {"text": "desktopTrinket: dictionary is null. maybe you made a typo?.","bug": false}, "loc":null })
+				
 				
 
 		else:
-			Global.addwindow("uid://8ogs475b2e7p","",{"text": "cant open settings file.","bug": false},null)
+			Global.addwindow({"scene": "uid://8ogs475b2e7p", "name": "", "data": {"text": "desktopTrinket: cant open settings file.","bug": false}, "loc":null })
+			
 	else:
-		Global.addwindow("uid://8ogs475b2e7p","",{"text": "YOU DELETED SETTINGS DATA :( add it back at: user://MyComputer/appdata/adachirei.cxe/settings.txt","bug": false},null)
+		Global.addwindow({"scene": "uid://8ogs475b2e7p", "name": "", "data": {"text": "desktopTrinket: YOU DELETED SETTINGS DATA :( add it back at: user://MyComputer/appdata/adachirei.cxe/settings.txt","bug": false}, "loc":null })
+	#	Global.addwindow("uid://8ogs475b2e7p","",{"text": "YOU DELETED SETTINGS DATA :( add it back at: user://MyComputer/appdata/adachirei.cxe/settings.txt","bug": false},null)
 	var w =  $Sprite2D.texture.get_width()
 	var h = $Sprite2D.texture.get_height()
 	var max_dim = max(w, h)

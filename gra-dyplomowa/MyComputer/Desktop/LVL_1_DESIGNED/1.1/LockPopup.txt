@@ -6,4 +6,4 @@ uid://dxqyc7ai7rhfk
 name
 LockPopup.cxe
 data-injection
-{"path": "user://MyComputer/Desktop/"}
+{"path": "user://MyComputer/Desktop/", "password": "dummy67"}

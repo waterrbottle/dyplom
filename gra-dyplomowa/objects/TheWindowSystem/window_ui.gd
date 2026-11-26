@@ -29,7 +29,8 @@ func spawnapp():
 		
 		if inst.get_node_or_null("Leveldata") == null:
 			print("ERROR")
-			Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", {"text": "app " + str(scene) + " doesnt have window config node.","bug":true},null)
+			Global.bug("system: app " + str(scene) + " doesnt have window config node.")
+			#Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", {"text": "app " + str(scene) + " doesnt have window config node.","bug":true},null)
 			queue_free()
 			return
 		windowdata = inst.get_node("Leveldata")
@@ -52,7 +53,8 @@ func spawnapp():
 		appvalid=true
 		
 	else:
-		Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", {"text": "cant open the scene. file " +str(scene) +" does not exist.", "bug":true},null)
+		Global.bug("system: cant open the scene. file " +str(scene) +" does not exist.")
+		
 		queue_free()
 	
 func _ready() -> void:
@@ -118,7 +120,8 @@ func _process(delta: float) -> void:
 	$Panel/Area2D/CollisionShape2D.shape.size = $Panel.size
 	$Panel/Area2D/CollisionShape2D.position = $Panel.size/2
 	if scenepath.get_child_count() == 0:
-		Global.addwindow("res://scenes/apps/sysmessenger/sysmessenger.tscn", "actual game bug", {"text": "window exists but app doesnt.","bug": true},null)
+		Global.bug("system: window exists but app doesnt.")
+		
 		queue_free()
 		return
 	

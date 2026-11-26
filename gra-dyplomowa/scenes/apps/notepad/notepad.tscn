@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ccg2insd1jt0s"]
 
 [ext_resource type="Theme" uid="uid://cgmct2d0jwq0v" path="res://resources/themes/computertheme.tres" id="1_e8qk0"]
-[ext_resource type="Script" uid="uid://6pn8piyioe6o" path="res://scenes/apps/notepad/app_code.gd" id="2_52xsm"]
+[ext_resource type="Script" uid="uid://6pn8piyioe6o" path="res://scenes/apps/notepad/notepad.gd" id="2_52xsm"]
 [ext_resource type="PackedScene" uid="uid://b3fu3b6u6nyfu" path="res://objects/leveldata.tscn" id="3_52xsm"]
 [ext_resource type="FontFile" uid="uid://bh8by4nhlf6md" path="res://assets/Jersey_15/Jersey15-Regular.ttf" id="4_o03j8"]
 
@@ -41,7 +41,7 @@ offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_e8qk0")
-text = "fffff"
+text = "error loading notepad"
 wrap_mode = 1
 
 [node name="Label" type="Label" parent="AppCode/ColorRect" unique_id=59041673]

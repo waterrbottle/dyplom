@@ -87,14 +87,16 @@ func _on_text_edit_text_submitted(new_text: String) -> void:
 	#if type == "folder":
 
 	if !new_text.validate_filename():
-		Global.addwindow("uid://8ogs475b2e7p","",{"text": "invalid name.","bug": false},null)
+		Global.addwindow({"scene": "uid://8ogs475b2e7p", "name": "", "data": {"text": "system: invalid name.","bug": false}, "loc": null})
+		
 		$TextEdit.text = ""
 	elif DirAccess.dir_exists_absolute(path + new_text):
-		Global.addwindow("uid://8ogs475b2e7p","",{"text": "name exists.","bug": false},null)
+		Global.addwindow({"scene": "uid://8ogs475b2e7p", "name": "", "data": {"text": "system: name exists.","bug": false}, "loc": null})
 	else:
 		var e = DirAccess.rename_absolute(path+$Label.text, path+$TextEdit.text + "." + ext)
 		if e != OK:
-			Global.addwindow("uid://8ogs475b2e7p","",{"text": "holy shit rename error: " + error_string(e), "bug": true},null)
+			Global.bug("holy shit rename error: " + error_string(e))
+			
 		else:
 			$Label.text = $TextEdit.text + "." + ext
 	

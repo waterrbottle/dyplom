@@ -1,11 +1,29 @@
 extends Node
-
+var contentdata = {}
 var content = "computer exploded"
 var bug = false
 var buttonfunctions = [["ok", "close", {}]]
 var img = load("uid://d12eulhof6erx")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	if contentdata is Dictionary:
+		if contentdata.has("text"):
+			content = contentdata["text"]
+		if contentdata.has("bug"):
+			bug = contentdata["bug"]
+		if contentdata.has("btnf"):
+			buttonfunctions = contentdata["btnf"]
+		if contentdata.has("image"):
+			if contentdata["image"] is String:
+				img = load(contentdata["image"])
+			else:
+				Global.bug("systemMessenger: cant load an image path that isnt a string")
+	else:
+		Global.bug("sysMessenger: invalid contentdata")
+	
+	
+	
 	if img is String:
 		return
 	$CanvasLayer/TextureRect.texture = img
@@ -21,7 +39,8 @@ func close(data):
 	get_parent().get_parent().get_parent().queue_free()
 
 func open(data):
-	Global.addwindow(data["scene"], "", data["content"], null)
+	Global.addwindow({"scene": data["scene"], "name": "", "data": data["content"], "loc": null})
+
 	close(data)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

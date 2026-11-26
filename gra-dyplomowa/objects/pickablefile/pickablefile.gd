@@ -70,9 +70,11 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "die":
 		
 		open()
-		Global.addwindow("res://scenes/apps/fileManager/WindowFileManager.tscn", "", {"dirstring": fileopenpath},null)
+		Global.addwindow({"scene": "uid://bweuy5c10gc1l", "name": "", "data": {"dirstring": fileopenpath}, "loc": null})
+		
 		if win == true:
-			Global.addwindow("uid://8ogs475b2e7p", "good news", {"text": "LEVEL CLEARED!", "image": load("uid://c15a6gp0qy7g6")}, null)
+			Global.addwindow({"scene": "uid://8ogs475b2e7p", "name": "good news", "data": {"text": "LEVEL CLEARED!", "image": "uid://c15a6gp0qy7g6"}, "loc": null})
+
 		queue_free()
 	if anim_name == "hit":
 		beinghit=false

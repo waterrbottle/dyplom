@@ -12,7 +12,8 @@ var startclick = Vector2(0,0)
 # Called when the node enters the scene tree for the first time.
 
 func _ready() -> void:
-	Global.addwindow("res://scenes/apps/paint/newfile.tscn", "", [], $windows)
+	Global.addwindow({"scene": "res://scenes/apps/paint/newfile.tscn", "name": "", "data": {}, "loc": $windows})
+	
 	%texture.hide()
 	for n in $paintui/paintui/Panel3/VBoxContainer/GridContainer.get_children():
 		n.get_child(0).color = colors[n.get_index()]
@@ -121,15 +122,17 @@ func save(img: Image, file_name: String) -> void:
 	
 	var error = img.save_png(save_path)
 	if error != OK:
-		Global.addwindow("uid://8ogs475b2e7p","",{"text": "invalid path / invalid name. dont end the path on /.", "bug": true},null)
-		Global.addwindow("uid://8ogs475b2e7p","",{"text": file_name + " - cant create file here","bug": true},null)
+		Global.bug("paint: invalid path / invalid name. dont end the path on /.")
+		Global.bug("paint: " + file_name + " - cant create file here")
+		
 
 func savefile(name, path):
 	save(img, "user://" + path + "/" + name + ".png")
 
 func _on_savefileas_pressed() -> void:
-	Global.addwindow("uid://bfpf6kh6ry4ad", "", [], $windows)
+	Global.addwindow({"scene": "uid://bfpf6kh6ry4ad", "name": "", "data": {}, "loc": $windows})
+
 
 
 func _on_newfile_pressed() -> void:
-	Global.addwindow("uid://bsxfdcsh3jv4k", "", [], $windows)
+	Global.addwindow({"scene": "uid://bfpf6kh6ry4ad", "name": "", "data": {}, "loc": $windows})

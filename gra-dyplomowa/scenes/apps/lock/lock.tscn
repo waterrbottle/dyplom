@@ -100,3 +100,5 @@ horizontal_alignment = 1
 scenesize = Vector2(500, 150)
 windowname = "File is locked"
 type = "explorer"
+
+[connection signal="text_submitted" from="CanvasLayer/Control/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]

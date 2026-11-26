@@ -4,11 +4,20 @@ var open=false
 var musicname = ""
 var spectrum = AudioEffectSpectrumAnalyzerInstance
 var loop = false
+var contentdata = {}
+
 var texturesspeaker = [load("res://assets/images/ui/icons/musicplayer/glosnik_bez_paskow.png"),
 load("res://assets/images/ui/icons/musicplayer/glosnik.png"),
  load("res://assets/images/ui/icons/musicplayer/glosnik_paski_2.png")]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+
+	if contentdata != null:
+		if contentdata.has("path"):
+			musicload = contentdata["path"]
+		if contentdata.has("trackname"):
+			musicname = contentdata["trackname"]
+	
 	spectrum=AudioServer.get_bus_effect_instance(0,0)
 	print(musicload)
 	if musicload != "":
@@ -23,19 +32,21 @@ func _ready() -> void:
 			$CanvasLayer/Control/HBoxContainer/HSlider.max_value = $AudioStreamPlayer.stream.get_length()
 			$CanvasLayer/Control/Panel3/ColorRect/VBoxContainer/musictitle.text = musicname
 		else:
-			Global.addwindow("uid://8ogs475b2e7p","",{"text": "unrecognized file ext", "bug": true}, null)
+			Global.bug("musicPlayer: unrecognized file ext")
+			
 
 	else:
-		Global.addwindow("uid://8ogs475b2e7p","",{"text": "no path", "bug": true}, null)
+		Global.bug("musicPlayer: no music file path")
+		
 
 func load_mp3_manually(path: String):
 
 	if not FileAccess.file_exists(path):
-		Global.addwindow("uid://8ogs475b2e7p","",{"text": "stream does not exist", "bug": true}, null)
+		Global.bug("musicPlayer: audio stream does not exist. why? i dunno")
 		
 	var file = FileAccess.open(path, FileAccess.READ)
 	if not file:
-		Global.addwindow("uid://8ogs475b2e7p","",{"text": "error opening music file", "bug": true}, null)
+		Global.bug("musicPlayer: error opening music file lol")
 		
 
 	var bytes = file.get_buffer(file.get_length())

@@ -1,5 +1,5 @@
 extends Node
-
+var contentdata = {}
 var icon = load("res://objects/TheWindowSystem/windowFileManager/FileIcon/fileicon.tscn")
 var gdirs = null
 var dirstring = "user://MyComputer/"
@@ -10,6 +10,23 @@ var currentfles = []
 var counter = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	if contentdata == null:
+		Global.bug("fileManager: contentdata is null")
+		return
+	if contentdata is Dictionary:
+			
+
+		if contentdata.has("dirstring"):
+				
+
+
+			dirstring = contentdata["dirstring"]
+		if contentdata.has("dirlist"):
+			dirlist = contentdata["dirlist"]
+			updatedirstring()
+	else:
+		Global.bug("fileManager: contentdata is invalid")
 	update()
 	if mode == "desktop":
 		dirstring = "user://MyComputer/Desktop/"
@@ -33,8 +50,8 @@ func fileopening(n):
 	if mode == "windowed":
 		if n.type == "folder":
 			if n.corrupted == true:
-				
-				Global.addwindow("uid://8ogs475b2e7p", "ERROR", {"text": "this folder is corrupted! explore the folder to uncorrupt it."}, null)
+				Global.addwindow({"scene": "uid://8ogs475b2e7p", "name": "ERROR", "data":{"text": "this folder is corrupted! explore the folder to uncorrupt it."},"loc": null})
+
 				return
 			dirstring = dirstring + n.get_child(1).text + "/"
 		#	dirlist.append(n.get_child(1).text)
@@ -47,15 +64,16 @@ func fileopening(n):
 			
 			if n.corrupted == true:
 				
-				Global.addwindow("uid://8ogs475b2e7p", "ERROR", {"text": "this folder is corrupted! explore the folder to uncorrupt it."}, null)
+				Global.addwindow({"scene": "uid://8ogs475b2e7p", "name": "ERROR", "data":{"text": "this folder is corrupted! explore the folder to uncorrupt it."},"loc": null})
 				return
-			Global.addwindow("res://scenes/apps/fileManager/WindowFileManager.tscn", "", {"dirstring": "user://MyComputer/Desktop/" + n.get_child(1).text + "/"}, null)
+			Global.addwindow({"scene": "uid://bweuy5c10gc1l", "name": "", "data":{"dirstring": "user://MyComputer/Desktop/" + n.get_child(1).text + "/"},"loc": null})
+
 			
 			Global.ondesktop=false
 	if n.type == "document":
 		if Input.is_action_just_pressed("click"):
 			if n.corrupted == true:
-				Global.addwindow("uid://8ogs475b2e7p", "ERROR", {"text": "this file is corrupted! explore the folder to uncorrupt it."}, null)
+				Global.addwindow({"scene": "uid://8ogs475b2e7p", "name": "ERROR", "data":{"text": "this document is corrupted! explore the folder to uncorrupt it."},"loc": null})
 				return
 			if mode == "windowed":
 				Input.action_release("click")
@@ -63,32 +81,51 @@ func fileopening(n):
 			var file = FileAccess.open(dirstring + n.get_child(1).text, FileAccess.READ)
 			if n.subtype == "text":
 				var content = file.get_as_text()
-				Global.addwindow("res://scenes/apps/notepad/notepad.tscn", n.get_child(1).text, [content, true, dirstring + n.get_child(1).text], null)
+				Global.addwindow({"scene": "uid://ccg2insd1jt0s", "name": n.get_child(1).text, "data":{"text": content, "canSave": true, "savePath": dirstring + n.get_child(1).text},"loc": null})
+				
 			if n.subtype == "image":
-				Global.addwindow("res://scenes/apps/ImageViewer/imageviewer.tscn", n.get_child(1).text, [dirstring + n.get_child(1).text],null)
+				Global.addwindow({"scene": "uid://bcofs4xfxw186", "name": n.get_child(1).text, "data":{"image": dirstring + n.get_child(1).text},"loc": null})
+				
 			if n.subtype == "music":
-				Global.addwindow("res://scenes/apps/musicplayer/musicplayer.tscn", "audio_player.exe", [dirstring + n.get_child(1).text,n.get_child(1).text ],null)
+				Global.addwindow({"scene": "uid://dov4nvr0lhshw", "name": "audioPlayer.cxe", "data":{"path": dirstring + n.get_child(1).text, "trackname": n.get_child(1).text },"loc": null})
+
 	if n.type == "app":
 		
 		if Input.is_action_just_pressed("click"):
 			if n.corrupted == true:
-				Global.addwindow("uid://8ogs475b2e7p", "ERROR", {"text": "this application is corrupted! explore the folder to uncorrupt it."}, null)
+				Global.addwindow({"scene": "uid://8ogs475b2e7p", "name": "ERROR", "data":{"text": "this application is corrupted! explore the folder to uncorrupt it."},"loc": null})
 				return
 			if n.corrupted == true:
 				return
 			Input.action_release("click")
 			if mode == "windowed":
 				get_parent().get_parent().get_parent().active = false
+			
+			Global.addwindow({"scene": n.scenepath, "name": n.get_child(1).text, "data":n.adata,"loc": null})
 
-
-			Global.addwindow(n.scenepath, n.get_child(1).text, n.adata,null)
 	if n.type == "levelfolder":
 		
 		if Input.is_action_just_pressed("click"):
 			Input.action_release("click")
 			
-
-			Global.addwindow("uid://8ogs475b2e7p", n.get_child(1).text, {"text": "this folder is corrupted, what do you want to do with it?", "bug": false,"image": load("uid://x4v2ehknnfe"), "btnf": [["view contents", "open", {"scene": "uid://bweuy5c10gc1l", "content": {"dirstring": n.path + n.get_child(1).text + "/"}}],["TRY OPENING THE FILE ", "open", {"scene": n.storedpath, "content": ""}]] },null)
+			Global.addwindow({"scene": "uid://8ogs475b2e7p",
+			"name": n.get_child(1).text,
+			"loc": null,
+			"data": 
+				{"text": "this folder is corrupted, what do you want to do with it?", 
+				"bug": false,
+				"image": "uid://x4v2ehknnfe", 
+				"btnf": [
+					
+					["view contents", 
+					"open", 
+					{"scene": "uid://bweuy5c10gc1l", "content": {"dirstring": n.path + n.get_child(1).text + "/"}}],
+					
+					["TRY OPENING THE FILE ", 
+					"open", 
+					{"scene": n.storedpath, "content": ""}]] }
+			})
+			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	counter += delta
@@ -174,7 +211,8 @@ func update():
 		
 		var filer = FileAccess.open(dirstring+file, FileAccess.READ)
 		if filer == null:
-			Global.addwindow("uid://8ogs475b2e7p", "ERROR", {"text": "failed loading.", "bug": true}, null)
+			Global.bug("fileManager: failed loading.")
+			
 			return
 		var content = filer.get_line()
 		

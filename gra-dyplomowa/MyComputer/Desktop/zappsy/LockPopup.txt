@@ -6,4 +6,4 @@ uid://dxqyc7ai7rhfk
 name
 LockPopup.cxe
 data-injection
-{"path": "user://MyComputer/Desktop/"}
+{"path": "uid://8ogs475b2e7p", "password": "dummy67", "scenedata": {"bug": false, "text": "LockPopUp unlocked the app!", "image": "uid://dpn7657bugb5n"}}
