@@ -9,7 +9,8 @@ bounce = 0.24
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mfq4i"]
 size = Vector2(54, 20)
 
-[node name="Key" type="Node2D" unique_id=1505406799]
+[node name="Key" type="Node2D" unique_id=1505406799 groups=["item"]]
+position = Vector2(0, 1)
 script = ExtResource("1_mfq4i")
 
 [node name="display" type="Node2D" parent="." unique_id=1634105395]
@@ -104,7 +105,7 @@ metadata/_edit_use_anchors_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="object" unique_id=632648667]
 shape = SubResource("RectangleShape2D_mfq4i")
 
-[node name="Itemmaster" parent="." unique_id=942265493 node_paths=PackedStringArray("holdstate", "itemstate", "parent") instance=ExtResource("2_j8qd6")]
+[node name="Itemmaster" parent="." unique_id=942265493 node_paths=PackedStringArray("holdstate", "itemstate", "parent") groups=["item"] instance=ExtResource("2_j8qd6")]
 holdstate = NodePath("../display")
 itemstate = NodePath("../object")
 parent = NodePath("..")

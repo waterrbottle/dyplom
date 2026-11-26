@@ -1,0 +1,9 @@
+app-redirect
+scene
+uid://x62vhatf3jln
+icon
+uid://dxqyc7ai7rhfk
+name
+LockPopup.cxe
+data-injection
+{"path": "user://MyComputer/Desktop/"}

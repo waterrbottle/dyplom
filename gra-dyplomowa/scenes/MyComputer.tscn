@@ -216,7 +216,7 @@ scene = "res://scenes/apps/tutorial/tutorial.tscn"
 
 [node name="Control2" parent="Windows" unique_id=655243662 instance=ExtResource("6_x660l")]
 layout_mode = 1
-scene = "uid://dglvei3y5mee6"
+scene = "uid://x62vhatf3jln"
 
 [node name="objects" type="Node2D" parent="." unique_id=651193975]
 
